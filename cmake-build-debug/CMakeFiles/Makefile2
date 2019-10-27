@@ -44,21 +44,21 @@ RM = "/Users/huanwu/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/huanwu/Desktop/myVersion
+CMAKE_SOURCE_DIR = /Users/huanwu/Desktop/myVersion/CheckerGameAI
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/huanwu/Desktop/myVersion/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/huanwu/Desktop/myVersion/CheckerGameAI/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/myVersion.dir/all
+all: CMakeFiles/CheckerGameAI.dir/all
 
 .PHONY : all
 
 # The main recursive "clean" target.
-clean: CMakeFiles/myVersion.dir/clean
+clean: CMakeFiles/CheckerGameAI.dir/clean
 
 .PHONY : clean
 
@@ -68,31 +68,31 @@ preinstall:
 .PHONY : preinstall
 
 #=============================================================================
-# Target rules for target CMakeFiles/myVersion.dir
+# Target rules for target CMakeFiles/CheckerGameAI.dir
 
 # All Build rule for target.
-CMakeFiles/myVersion.dir/all:
-	$(MAKE) -f CMakeFiles/myVersion.dir/build.make CMakeFiles/myVersion.dir/depend
-	$(MAKE) -f CMakeFiles/myVersion.dir/build.make CMakeFiles/myVersion.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/huanwu/Desktop/myVersion/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target myVersion"
-.PHONY : CMakeFiles/myVersion.dir/all
+CMakeFiles/CheckerGameAI.dir/all:
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/depend
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/huanwu/Desktop/myVersion/CheckerGameAI/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target CheckerGameAI"
+.PHONY : CMakeFiles/CheckerGameAI.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/myVersion.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/huanwu/Desktop/myVersion/cmake-build-debug/CMakeFiles 6
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/myVersion.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/huanwu/Desktop/myVersion/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/myVersion.dir/rule
+CMakeFiles/CheckerGameAI.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/huanwu/Desktop/myVersion/CheckerGameAI/cmake-build-debug/CMakeFiles 6
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/CheckerGameAI.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/huanwu/Desktop/myVersion/CheckerGameAI/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/CheckerGameAI.dir/rule
 
 # Convenience name for target.
-myVersion: CMakeFiles/myVersion.dir/rule
+CheckerGameAI: CMakeFiles/CheckerGameAI.dir/rule
 
-.PHONY : myVersion
+.PHONY : CheckerGameAI
 
 # clean rule for target.
-CMakeFiles/myVersion.dir/clean:
-	$(MAKE) -f CMakeFiles/myVersion.dir/build.make CMakeFiles/myVersion.dir/clean
-.PHONY : CMakeFiles/myVersion.dir/clean
+CMakeFiles/CheckerGameAI.dir/clean:
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/clean
+.PHONY : CMakeFiles/CheckerGameAI.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

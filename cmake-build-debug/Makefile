@@ -48,10 +48,10 @@ RM = "/Users/huanwu/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/huanwu/Desktop/myVersion
+CMAKE_SOURCE_DIR = /Users/huanwu/Desktop/myVersion/CheckerGameAI
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/huanwu/Desktop/myVersion/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/huanwu/Desktop/myVersion/CheckerGameAI/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/huanwu/Desktop/myVersion/cmake-build-debug/CMakeFiles /Users/huanwu/Desktop/myVersion/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/huanwu/Desktop/myVersion/CheckerGameAI/cmake-build-debug/CMakeFiles /Users/huanwu/Desktop/myVersion/CheckerGameAI/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/huanwu/Desktop/myVersion/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/huanwu/Desktop/myVersion/CheckerGameAI/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named myVersion
+# Target rules for targets named CheckerGameAI
 
 # Build rule for target.
-myVersion: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 myVersion
-.PHONY : myVersion
+CheckerGameAI: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 CheckerGameAI
+.PHONY : CheckerGameAI
 
 # fast build rule for target.
-myVersion/fast:
-	$(MAKE) -f CMakeFiles/myVersion.dir/build.make CMakeFiles/myVersion.dir/build
-.PHONY : myVersion/fast
+CheckerGameAI/fast:
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/build
+.PHONY : CheckerGameAI/fast
 
 AlphaBetaSearch.o: AlphaBetaSearch.cpp.o
 
@@ -129,7 +129,7 @@ AlphaBetaSearch.o: AlphaBetaSearch.cpp.o
 
 # target to build an object file
 AlphaBetaSearch.cpp.o:
-	$(MAKE) -f CMakeFiles/myVersion.dir/build.make CMakeFiles/myVersion.dir/AlphaBetaSearch.cpp.o
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.o
 .PHONY : AlphaBetaSearch.cpp.o
 
 AlphaBetaSearch.i: AlphaBetaSearch.cpp.i
@@ -138,7 +138,7 @@ AlphaBetaSearch.i: AlphaBetaSearch.cpp.i
 
 # target to preprocess a source file
 AlphaBetaSearch.cpp.i:
-	$(MAKE) -f CMakeFiles/myVersion.dir/build.make CMakeFiles/myVersion.dir/AlphaBetaSearch.cpp.i
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.i
 .PHONY : AlphaBetaSearch.cpp.i
 
 AlphaBetaSearch.s: AlphaBetaSearch.cpp.s
@@ -147,7 +147,7 @@ AlphaBetaSearch.s: AlphaBetaSearch.cpp.s
 
 # target to generate assembly for a file
 AlphaBetaSearch.cpp.s:
-	$(MAKE) -f CMakeFiles/myVersion.dir/build.make CMakeFiles/myVersion.dir/AlphaBetaSearch.cpp.s
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.s
 .PHONY : AlphaBetaSearch.cpp.s
 
 Checker.o: Checker.cpp.o
@@ -156,7 +156,7 @@ Checker.o: Checker.cpp.o
 
 # target to build an object file
 Checker.cpp.o:
-	$(MAKE) -f CMakeFiles/myVersion.dir/build.make CMakeFiles/myVersion.dir/Checker.cpp.o
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/Checker.cpp.o
 .PHONY : Checker.cpp.o
 
 Checker.i: Checker.cpp.i
@@ -165,7 +165,7 @@ Checker.i: Checker.cpp.i
 
 # target to preprocess a source file
 Checker.cpp.i:
-	$(MAKE) -f CMakeFiles/myVersion.dir/build.make CMakeFiles/myVersion.dir/Checker.cpp.i
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/Checker.cpp.i
 .PHONY : Checker.cpp.i
 
 Checker.s: Checker.cpp.s
@@ -174,7 +174,7 @@ Checker.s: Checker.cpp.s
 
 # target to generate assembly for a file
 Checker.cpp.s:
-	$(MAKE) -f CMakeFiles/myVersion.dir/build.make CMakeFiles/myVersion.dir/Checker.cpp.s
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/Checker.cpp.s
 .PHONY : Checker.cpp.s
 
 GameTree.o: GameTree.cpp.o
@@ -183,7 +183,7 @@ GameTree.o: GameTree.cpp.o
 
 # target to build an object file
 GameTree.cpp.o:
-	$(MAKE) -f CMakeFiles/myVersion.dir/build.make CMakeFiles/myVersion.dir/GameTree.cpp.o
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o
 .PHONY : GameTree.cpp.o
 
 GameTree.i: GameTree.cpp.i
@@ -192,7 +192,7 @@ GameTree.i: GameTree.cpp.i
 
 # target to preprocess a source file
 GameTree.cpp.i:
-	$(MAKE) -f CMakeFiles/myVersion.dir/build.make CMakeFiles/myVersion.dir/GameTree.cpp.i
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/GameTree.cpp.i
 .PHONY : GameTree.cpp.i
 
 GameTree.s: GameTree.cpp.s
@@ -201,7 +201,7 @@ GameTree.s: GameTree.cpp.s
 
 # target to generate assembly for a file
 GameTree.cpp.s:
-	$(MAKE) -f CMakeFiles/myVersion.dir/build.make CMakeFiles/myVersion.dir/GameTree.cpp.s
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/GameTree.cpp.s
 .PHONY : GameTree.cpp.s
 
 MinMaxAB.o: MinMaxAB.cpp.o
@@ -210,7 +210,7 @@ MinMaxAB.o: MinMaxAB.cpp.o
 
 # target to build an object file
 MinMaxAB.cpp.o:
-	$(MAKE) -f CMakeFiles/myVersion.dir/build.make CMakeFiles/myVersion.dir/MinMaxAB.cpp.o
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.o
 .PHONY : MinMaxAB.cpp.o
 
 MinMaxAB.i: MinMaxAB.cpp.i
@@ -219,7 +219,7 @@ MinMaxAB.i: MinMaxAB.cpp.i
 
 # target to preprocess a source file
 MinMaxAB.cpp.i:
-	$(MAKE) -f CMakeFiles/myVersion.dir/build.make CMakeFiles/myVersion.dir/MinMaxAB.cpp.i
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.i
 .PHONY : MinMaxAB.cpp.i
 
 MinMaxAB.s: MinMaxAB.cpp.s
@@ -228,7 +228,7 @@ MinMaxAB.s: MinMaxAB.cpp.s
 
 # target to generate assembly for a file
 MinMaxAB.cpp.s:
-	$(MAKE) -f CMakeFiles/myVersion.dir/build.make CMakeFiles/myVersion.dir/MinMaxAB.cpp.s
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.s
 .PHONY : MinMaxAB.cpp.s
 
 main.o: main.cpp.o
@@ -237,7 +237,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/myVersion.dir/build.make CMakeFiles/myVersion.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -246,7 +246,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/myVersion.dir/build.make CMakeFiles/myVersion.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -255,7 +255,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/myVersion.dir/build.make CMakeFiles/myVersion.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -266,7 +266,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... myVersion"
+	@echo "... CheckerGameAI"
 	@echo "... AlphaBetaSearch.o"
 	@echo "... AlphaBetaSearch.i"
 	@echo "... AlphaBetaSearch.s"
