@@ -8,114 +8,119 @@
 
 using namespace std;
 
-void print(char,int);
+struct Step{
+    int heuristic_value;
+    int row;
+    int clo;
+};
 
-int nodes_generated,nodes_expanded,steps;
+void print(char, int);
 
-void MinMax()
-{
-    Checker *ck = new Checker();
-    cout << "Initial board " << endl;
-    ck->displayBoard();
-    char win = ck->checkWin();
-    char player ='A';
-    int start_s = clock();
-    while(win == 'N')
-    {
-        steps++;
-        GameTree *head = new GameTree(player);
-        head->copyBoardStatus(ck);
-        cout << "*****Turn*****" << player << endl;
-        MinMaxAB(head,0,player,10000,-10000);
-        int hole = head->heuristic_value;
-        cout<< "hole # "<<hole<<endl;
-        player = ck->move(hole,player);
-        ck->displayBoard();
-        win = ck->checkWin();
-    }
-    int stop_s = clock();
-    int execution_time = stop_s - start_s;
-    ck->displayBoard();
-    print(win,execution_time);
+int nodes_generated, nodes_expanded, steps;
 
-}
 
-void AlphaBeta()
-{
+void MinMax() {
     Checker *ck = new Checker();
     cout << "Initial board " << endl;
     ck->displayBoard();
     char win = ck->checkWin();
     char player = 'A';
     int start_s = clock();
-    while(win == 'N')
-    {
+    while (win == 'N') {
         steps++;
         GameTree *head = new GameTree(player);
         head->copyBoardStatus(ck);
         cout << "*****Turn*****" << player << endl;
-        alphabeta(head,0,player,1000,-1000);
-        int hole = head->get_hole_number();
-        player = ck->move(hole,player);
-        //cout << "The index of the board " << obj.value << endl;
-        //cout << "The board with the new position " << endl;
+        MinMaxAB(head, 0, player, 10000, -10000);
+
+        Step hole;
+        hole.heuristic_value = head->heuristic_value.heuristic_value; // need to return new place and heuristic_value
+        hole.row = head->heuristic_value.row;
+        hole.clo = head->heuristic_value.clo;
+
+        cout << "hole row # " << hole.row <<  "hole col # "<< hole.clo << endl;
+        player = ck->move(hole.row, hole.clo, player);
         ck->displayBoard();
         win = ck->checkWin();
     }
     int stop_s = clock();
     int execution_time = stop_s - start_s;
     ck->displayBoard();
-    print(win,execution_time);
+    print(win, execution_time);
+
+}
+
+void AlphaBeta() {
+    Checker *ck = new Checker();
+    cout << "Initial board " << endl;
+    ck->displayBoard();
+    char win = ck->checkWin();
+    char player = 'A';
+    int start_s = clock();
+    while (win == 'N') {
+        steps++;
+        GameTree *head = new GameTree(player);
+        head->copyBoardStatus(ck);
+        cout << "*****Turn*****" << player << endl;
+        alphabeta(head, 0, player, 1000, -1000);
+
+        Step hole;
+        hole.heuristic_value = head->heuristic_value.heuristic_value; // need to return new place and heuristic_value
+        hole.row = head->heuristic_value.row;
+        hole.clo = head->heuristic_value.clo;
+
+        player = ck->move(hole.row, hole.clo, player);
+        ck->displayBoard();
+        win = ck->checkWin();
+    }
+    int stop_s = clock();
+    int execution_time = stop_s - start_s;
+    ck->displayBoard();
+    print(win, execution_time);
 }
 
 
-void print(char win,int execution_time)
-{
-    cout << "The result of the game is : " <<win<< endl;
+void print(char win, int execution_time) {
+    cout << "The result of the game is : " << win << endl;
     cout << endl;
 
-    if(win == 'A')
+    if (win == 'A')
         cout << "Player A won! Congrats " << endl;
-    else if(win == 'B')
+    else if (win == 'B')
         cout << "Player B won! Congrats " << endl;
-    else if(win == 'T')
+    else if (win == 'T')
         cout << "Game tied!! " << endl;
 
-    cout <<"\n\t\t\tGame Ends-*\n" << endl;
+    cout << "\n\t\t\tGame Ends-*\n" << endl;
 
-    cout << "Execution time taken is : " << (execution_time)/double(CLOCKS_PER_SEC) << " seconds" << endl;
+    cout << "Execution time taken is : " << (execution_time) / double(CLOCKS_PER_SEC) << " seconds" << endl;
 }
 
-void Statistics_print()
-{
+void Statistics_print() {
     cout << "Number of nodes generated : " << nodes_generated << endl;
     cout << "Number of nodes expanded : " << nodes_expanded << endl;
     cout << "Number of steps : " << steps << endl;
-    cout << "Memory need for 1 node is: 81 bytes."<<endl;
+    cout << "Memory need for 1 node is: 81 bytes." << endl;
     int x = 81 * nodes_generated;
-    cout<<"Total memory needed for the algorithm is : "<< x << "bytes = " << x/(1024)<<"ck"<<endl;
+    cout << "Total memory needed for the algorithm is : " << x << "bytes = " << x / (1024) << "ck" << endl;
     //cin>>x;
 }
 
-int main()
-{
+int main() {
     int choice_game;
-    cout <<"\t\t\tChecker Game(8X8)\n\t\t      *-*-*-*-*-*-*-*-*-*-*-*\n\t\t\t*-Game Begins" << endl;
+    cout << "\t\t\tChecker Game(8X8)\n\t\t      *-*-*-*-*-*-*-*-*-*-*-*\n\t\t\t*-Game Begins" << endl;
     cout << "Enter 1 for MinMaxAB " << endl;
     cout << "Enter 2 for AlphaBetaSearch " << endl;
 
     cin >> choice_game;
 
-    switch(choice_game)
-    {
+    switch (choice_game) {
         case 1:
             MinMax();
             break;
         case 2:
             AlphaBeta();
             break;
-
-
     }
     // Statistics_print();
 

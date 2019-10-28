@@ -4,27 +4,35 @@
 
 #include <stdio.h>
 #include<iostream>
+
 using namespace std;
 
-class Checker
-{
+class Checker {
 public:
-    int A[12],B[12];
-    int checker_A,checker_B;
-    int winDecider,numberOfSlots;
-    int *ptr;
-    
+    int A[8][8], B[8][8];
+    int winDecider, numberOfSlots;
+    int (**ptr);
+
     Checker();
-    Checker(int[],int[],int,int);
+
+    Checker(int[], int[], int, int);
+
     Checker(Checker *);
-    char move_A(int);
-    char move_B(int);
-    char move(int,char);
+
+    char move_A(int, int);
+
+    char move_B(int, int);
+
+    char move(int, int, char);
+
     // int evaluation();
     char checkWin();
+
     void operator=(Checker);
+
     void displayBoard();
-    bool checkLegealMove(char player,int hole);
+
+    bool checkLegealMove(char player, int hole);
 };
 
 

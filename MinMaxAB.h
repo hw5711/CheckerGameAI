@@ -8,6 +8,6 @@
 
 using namespace std;
 
-int MinMaxAB(GameTree *,int, char, int, int);
+int MinMaxAB(GameTree *, int, char, int, int);
 
 #endif /* MinMaxAB_hpp */
