@@ -11,7 +11,8 @@ using namespace std;
 struct Step{
     int heuristic_value;
     int row;
-    int clo;
+    int col;
+    char role; //k is king, m is man, e is empty
 };
 
 void print(char, int);
@@ -34,12 +35,12 @@ void MinMax() {
         MinMaxAB(head, 0, player, 10000, -10000);
 
         Step hole;
-        hole.heuristic_value = head->heuristic_value.heuristic_value; // need to return new place and heuristic_value
-        hole.row = head->heuristic_value.row;
-        hole.clo = head->heuristic_value.clo;
+        hole.heuristic_value = head->step.heuristic_value; // need to return new place and heuristic_value
+        hole.row = head->step.row;
+        hole.col = head->step.col;
 
-        cout << "hole row # " << hole.row <<  "hole col # "<< hole.clo << endl;
-        player = ck->move(hole.row, hole.clo, player);
+        cout << "hole row # " << hole.row <<  "hole col # "<< hole.col << endl;
+        player = ck->move(hole.row, hole.col, player);
         ck->displayBoard();
         win = ck->checkWin();
     }
@@ -65,11 +66,11 @@ void AlphaBeta() {
         alphabeta(head, 0, player, 1000, -1000);
 
         Step hole;
-        hole.heuristic_value = head->heuristic_value.heuristic_value; // need to return new place and heuristic_value
-        hole.row = head->heuristic_value.row;
-        hole.clo = head->heuristic_value.clo;
+        hole.heuristic_value = head->step.heuristic_value; // need to return new place and heuristic_value
+        hole.row = head->step.row;
+        hole.col = head->step.col;
 
-        player = ck->move(hole.row, hole.clo, player);
+        player = ck->move(hole.row, hole.col, player);
         ck->displayBoard();
         win = ck->checkWin();
     }

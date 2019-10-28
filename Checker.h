@@ -7,11 +7,19 @@
 
 using namespace std;
 
+struct Board{
+    char player;
+    int row;
+    int col;
+    char role;
+};
+
 class Checker {
 public:
     int A[8][8], B[8][8];
     int winDecider, numberOfSlots;
     int (**ptr);
+    Board board;
 
     Checker();
 

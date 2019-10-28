@@ -10,15 +10,16 @@ using namespace std;
 struct StepInfo{
     int heuristic_value;
     int row;
-    int clo;
+    int col;
+    char role;
 };
 
 class GameTree {
 
 public:
-    StepInfo heuristic_value;
+    StepInfo step;
     char player;
-    Checker board_status;
+    Checker board_status; //contains board status including each location info
     int number_of_children;
     GameTree *children[4]; // one step has 4 directions choices(man+king)
 
@@ -28,7 +29,7 @@ public:
 
     void create_node(char);
 
-    void set_heuristic_value(int, int, int);
+    void set_heuristic_value(int, int, int, char);
 
     void add_all_children();
 

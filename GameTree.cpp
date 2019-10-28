@@ -9,19 +9,19 @@ using namespace std;
 extern int nodes_generated, nodes_expanded, steps;
 
 GameTree::GameTree() {
-    heuristic_value = -1000;
+    step.heuristic_value = -1000;
     player = 'n';
     number_of_children = 0;
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 4; i++) { // each node can have at most 4 children(directions)
         children[i] = NULL;
     }
 }
 
 GameTree::GameTree(char p) {
     player = p;
-    heuristic_value = -1000;
+    step.heuristic_value = -1000;
     number_of_children = 0;
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 4; i++) {
         children[i] = NULL;
     }
 }
@@ -30,8 +30,11 @@ void GameTree::create_node(char p) {
     children[number_of_children++] = new GameTree(p);
 }
 
-void GameTree::set_heuristic_value(int value) {
-    heuristic_value = value;
+void GameTree::set_heuristic_value(int value, int r_num ,int c_num, char r) {
+    step.heuristic_value = value;
+    step.row = r_num;
+    step.col = value;
+    step.role = r;
 }
 
 void GameTree::add_all_children() {
@@ -53,8 +56,8 @@ void GameTree::add_all_children() {
 }
 
 bool GameTree::deepenough(int depth) {
-    if (heuristic_value != -1000)
-        return heuristic_value;
+    if (step.heuristic_value != -1000)
+        return step.heuristic_value;
     if (depth >= 3 || board_status.checkWin() !=
                       'N')//if the depth is greater than 3 or a player has won the game then it is deep enough.
     {
@@ -67,7 +70,7 @@ bool GameTree::deepenough(int depth) {
 }
 
 void GameTree::print(GameTree *node, int nestLevel) {
-    cout << node->player << ":" << node->heuristic_value << endl;
+    cout << node->player << ":" << node->step.heuristic_value << endl;
     int i, j;
     for (i = 0; node->children[i] != NULL && i < 6; i++) {
         for (j = 0; j < nestLevel; j++)
@@ -80,7 +83,7 @@ int GameTree::get_hole_number() {
     for (int i = 0; i < 6; i++) {
         if (children[i] == NULL)
             continue;
-        if (children[i]->heuristic_value == heuristic_value) {
+        if (children[i]->step.heuristic_value == step.heuristic_value) {
             cout << "hole #" << i;
             return i;
         }
@@ -169,7 +172,7 @@ int GameTree::get_hole_number() {
 ///       BURAK'S EVALUATION      ///
 /////////////////////////////////////
 
-int GameTree::evaluation() {
+int GameTree::evaluation() { //
     int value;
     if (player == 'A') {
         int a_rocks = 0;
@@ -208,6 +211,4 @@ void GameTree::copyBoardStatus(Checker kb) {
         this->board_status.A[i] = kb.A[i];
         this->board_status.B[i] = kb.B[i];
     }
-    this->board_status.checker_A = kb.checker_A;
-    this->board_status.checker_B = kb.checker_B;
 }
