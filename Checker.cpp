@@ -10,56 +10,74 @@ using namespace std;
 
 //initializing the board
 Checker::Checker() {
-    for (int i = 0; i < 8; i++) {
-        for(int j = 0; j < 8; j++) {
-            A[i][j] = 0;
-            B[i][j] = 0;
+    for(int i = 0; i < 8; i++){
+        for( int j = 0; j < 8; j++){
+            //set player A side board
+            if(i == 0 && j%2 == 0){ //A side 1st row
+                setBoard('A',i,j,'m',-1000);
+            }else{
+                setBoard(' ',i,j,'n',-1000);
+            }
+            if(i == 1 && j%2 != 0){ //A side 2nd row
+                setBoard('A',i,j,'m',-1000);
+            }else{
+                setBoard(' ',i,j,'n',-1000);
+            }
+            if(i == 2 && j%2 == 0){ //A side 3rd row
+                setBoard('A',i,j,'m',-1000);
+            }else{
+                setBoard(' ',i,j,'n',-1000);
+            }
+            //set middle 2 lines board
+            if(i == 3 || i == 4 ){
+                setBoard(' ',i,j,'n',-1000);
+            }
+            //set player B side board
+            if(i == 5 && j%2 != 0){ //A side 1st row
+                setBoard('B',i,j,'m',-1000);
+            }else{
+                setBoard(' ',i,j,'n',-1000); // N means not possessed by both playler
+            }
+            if(i == 6 && j%2 == 0){ //A side 2nd row
+                setBoard('B',i,j,'m',-1000);
+            }else{
+                setBoard(' ',i,j,'n',-1000);
+            }
+            if(i == 7 && j%2 != 0){ //A side 3rd row
+                setBoard('B',i,j,'m',-1000);
+            }else{
+                setBoard(' ',i,j,'n',-1000);
+            }
         }
     }
-    numberOfSlots = 5;
-//    checker_A = 0, checker_B = 0; // stores stones of each player
-    //int (*ptr)[8][8];
-    winDecider = 36;
+    this->heuristic_value = -1000;
 }
-
-//constructor to set the board values, mainly used for testing
-//Checker::Checker(int arr1[][8], int arr2[][8], int a, int b) {
-//    for (int i = 0; i < 8; i++) {
-//        for(int j = 0; j < 8; j++) {
-//            A[i][j] = arr1[i][j];
-//            B[i][j] = arr2[i][j];
-//        }
-//    }
-//    checker_A = a;
-//    checker_B = b;
-//}
 
 //copy constructor to copy the value of the board from one var to another
 Checker::Checker(Checker *b) {
     for (int i = 0; i < 8; i++) {
         for(int j = 0; j < 8; j++) {
-            this->A[i][j] = b->A[i][j];
-            this->B[i][j] = b->B[i][j];
+            this->board[i][j].player = b->board[i][j].player;
+            this->board[i][j].row = b->board[i][j].row;
+            this->board[i][j].col = b->board[i][j].col;
+            this->board[i][j].role = b->board[i][j].role;
+            this->board[i][j].heuristic_value = b->board[i][j].heuristic_value;
         }
     }
+}
 
+//constructor to set the board values, mainly used for testing
+void Checker::setBoard(char p, int r, int c, char ro, int he) {
+    this->board[r][c].player = p;
+    this->board[r][c].row = r;
+    this->board[r][c].col = c;
+    this->board[r][c].role = ro;
+    this->board[r][c].heuristic_value = he;
 }
 
 //Function to move for the A player
-char Checker::move_A(int hole_number_r, int hole_number_c) {
-    int tempPos_r = hole_number_r;
-    int tempPos_c = hole_number_c;
-
-    for (int i = 0; i < 8; i++) {
-        for(int j = 0; j < 8; j++) {
-            ptr[i][j] = A[i][j];//ptr[]
-        }
-    }
-    int numberOfStones = ptr[tempPos_r][tempPos_c];
-    ptr[tempPos_r][tempPos_c] = 0;
-    int opponentPos, opponentStones;
-
-
+char Checker::move_A(int r, int c) {
+    int current_row =
     return 'B';
 }
 
@@ -80,8 +98,6 @@ char Checker::move_B(int hole_number_r, int hole_number_c) {
                 if (ptr[tempPos] == 0) {
                     ptr = A;
                     opponentStones = ptr[opponentPos];
-                    ptr[opponentPos] = 0;
-                    checker_B += opponentStones + 1;
                     if (numberOfStones == 0)
                         return 'A';
                 } else {
@@ -95,7 +111,6 @@ char Checker::move_B(int hole_number_r, int hole_number_c) {
             }
         } else if (tempPos == 6 && numberOfStones >= 1) {
             numberOfStones--;
-            checker_B += 1;
             if (numberOfStones == 0)
                 return 'B';
         } else if (tempPos > 6 && tempPos <= 12) {
@@ -114,6 +129,7 @@ char Checker::move_B(int hole_number_r, int hole_number_c) {
 }
 
 //Function which decides as to who should move
+/*** will perform move and change role, board ***/
 char Checker::move(int hole_number_r, int hole_number_c, char player) {
     char v;
     if (player == 'A')
@@ -125,110 +141,51 @@ char Checker::move(int hole_number_r, int hole_number_c, char player) {
 
 //Function to decide as to which player wins
 char Checker::checkWin() {
-    int a0 = 0, b0 = 0, a_stones = 0, b_stones = 0;
-    for (int i = 0; i < 6; i++) {
-        if (A[i] == 0) {
-            a0++;
+    int acc_a = 0;
+    int acc_b = 0;
+    for (int i = 0; i < 8; i++) {
+        for(int j = 0; j < 8; j++) {
+            if(board[i][j].player == 'A')   acc_a ++;
+            if(board[i][j].player == 'B')   acc_b ++;
         }
-        if (B[i] == 0) {
-            b0++;
-        }
-        a_stones += A[i];
-        b_stones += B[i];
-
     }
-    if (a0 == 6) {
-        checker_B += b_stones;
-        for (int i = 0; i < 6; i++) {
-            B[i] = 0;
-        }
-        cout << "A has no stones left to play" << endl;
-    }
-    if (b0 == 6) {
-        checker_A += a_stones;
-        for (int i = 0; i < 6; i++) {
-            A[i] = 0;
-        }
-        cout << "B has no stones left to play" << endl;
-    }
-    if (checker_A > winDecider)//A wins
-    {
-        return 'A';   // A wins
-    } else if (checker_B > winDecider)//B Wins
-    {
-        return 'B';  // B wins
-    } else if (a0 == 6 || b0 == 6) {
-        return 'T'; // indicates that a tie occurred
-    } else//No win
-    {
-        return 'N';
-    }
+    if(acc_a == 0)  return 'B';
+    if(acc_b == 0)  return 'A';
 }
 
-//
 void Checker::operator=(Checker kb) {
-    for (int i = 0; i < 6; i++) {
-        A[i] = kb.A[i];
-        B[i] = kb.B[i];
+}
 
-    }
-    numberOfSlots = 5;
-    checker_A = kb.checker_A;
-    checker_B = kb.checker_B;
-    ptr = NULL;
-    winDecider = 36;
+char Checker::getPlayer(int r, int c) {
+    return this->board[r][c].player;
 }
 
 //Function to display the board
 void Checker::displayBoard() {
-    cout << endl;
-    cout << "\t\t\tA PLAYER";
-    cout << endl;
-    // First Line
-    cout << "\t\t";
-    for (int i = 0; i < 25; i++) {
-        cout << "-";
+    cout << "***** DISPLAY BOARD *****";
+    for(int i = 0; i < 8; i++){
+        for( int j = 0; j < 8; j++) {
+            cout << "|" << getPlayer(i,j) << "| ";
+        }
+        cout << endl;
     }
-    //Second Line
-    cout << endl;
-    cout << "\t\t" << "|";
-    cout << setw(2);
-
-    for (int i = 5; i >= 0; i--) {
-        cout << A[i] << setw(2) << "|";
-        cout << " ";
-    }
-    cout << endl;
-    cout << endl;
-    cout << " |" << setw(3) << checker_A << " |"; // Fourth Line
-    cout << "\t\t\t\t\t\t\t   |" << setw(3) << checker_B << " |"; // Fourth Line
-    cout << endl;
-    // Fifth Line
-    cout << "\t\t";
-    for (int i = 0; i < 25; i++) {
-        cout << "-";
-    }
-    cout << endl;
-    //Sixth Line
-    cout << "\t\t" << "|";
-    cout << setw(2);
-
-    for (int i = 0; i < 6; i++) {
-        cout << B[i] << setw(2) << "|";
-        cout << " ";
-    }
-    cout << endl;
-    cout << "\t\t\tB PLAYER";
-    cout << endl << endl << endl << endl;
 }
 
-bool Checker::checkLegealMove(char player, int hole) {
-    if (hole > 5 || hole < 0)
-        return false;
-    if (player == 'A' && A[hole] == 0) {
-        return false;
-    } else if (player == 'B' && B[hole] == 0) {
-        return false;
-    }
-    return true;
+//bool Checker::checkLegealMove(char player, int hole) {
+//    if (hole > 5 || hole < 0)
+//        return false;
+//    if (player == 'A' && A[hole] == 0) {
+//        return false;
+//    } else if (player == 'B' && B[hole] == 0) {
+//        return false;
+//    }
+//    return true;
+//}
+
+int Checker::get_heuristic_value_board(){
+    return this->heuristic_value;
+}
+
+void Checker::set_heuristic_value_board(int v){
+    this->heuristic_value = v;
 }

@@ -12,14 +12,13 @@ struct Board{
     int row;
     int col;
     char role;
+    int heuristic_value;
 };
 
 class Checker {
 public:
-    int A[8][8], B[8][8];
-    int winDecider, numberOfSlots;
-    int (**ptr);
-    Board board;
+    Board board[8][8];
+    int heuristic_value;
 
     Checker();
 
@@ -36,11 +35,19 @@ public:
     // int evaluation();
     char checkWin();
 
+    void setBoard(char, int, int, char, int);
+
     void operator=(Checker);
 
     void displayBoard();
 
     bool checkLegealMove(char player, int hole);
+
+    char getPlayer(int, int);
+
+    int get_heuristic_value_board();
+
+    void set_heuristic_value_board(int);
 };
 
 

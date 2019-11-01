@@ -8,6 +8,13 @@
 
 using namespace std;
 
-int MinMaxAB(GameTree *, int, char, int, int);
+struct Obj{
+    int heuristic_value;
+    int row;
+    int col;
+    char role;
+};
+
+Obj MinMaxAB(GameTree *, int, char, int, int);
 
 #endif /* MinMaxAB_hpp */

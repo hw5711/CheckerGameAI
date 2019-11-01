@@ -7,17 +7,17 @@
 
 using namespace std;
 
-struct StepInfo{
-    int heuristic_value;
-    int row;
-    int col;
-    char role;
-};
+//struct StepInfo{
+//    int heuristic_value;
+//    int row;
+//    int col;
+//    char role;
+//};
 
 class GameTree {
 
 public:
-    StepInfo step;
+    //StepInfo step;
     char player;
     Checker board_status; //contains board status including each location info
     int number_of_children;
@@ -29,11 +29,17 @@ public:
 
     void create_node(char);
 
-    void set_heuristic_value(int, int, int, char);
+    void set_heuristic_value(int);
+
+    int get_heuristic_value();
 
     void add_all_children();
 
     bool deepenough(int);
+
+    int* jump_further(int, int, Checker);
+
+    bool jump_available(int, int, Checker, char);
 
     void print(GameTree *, int);
 

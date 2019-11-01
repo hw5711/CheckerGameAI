@@ -31,10 +31,12 @@ void MinMax() {
         steps++;
         GameTree *head = new GameTree(player);
         head->copyBoardStatus(ck);
+
         cout << "*****Turn*****" << player << endl;
+        Step hole;
+
         MinMaxAB(head, 0, player, 10000, -10000);
 
-        Step hole;
         hole.heuristic_value = head->step.heuristic_value; // need to return new place and heuristic_value
         hole.row = head->step.row;
         hole.col = head->step.col;
@@ -64,7 +66,7 @@ void AlphaBeta() {
         head->copyBoardStatus(ck);
         cout << "*****Turn*****" << player << endl;
         alphabeta(head, 0, player, 1000, -1000);
-
+        //head will contain best heristic value and location
         Step hole;
         hole.heuristic_value = head->step.heuristic_value; // need to return new place and heuristic_value
         hole.row = head->step.row;

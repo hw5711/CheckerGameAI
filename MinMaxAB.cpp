@@ -4,20 +4,22 @@
 
 using namespace std;
 
-int MinMaxAB(GameTree *board, int depth, char player, int UseT, int PassT) {
-    int obj;
+
+Obj MinMaxAB(GameTree *board, int depth, char player, int UseT, int PassT) {
+    Obj obj;
     int newVal;
     char NewPlayer;
 
     if (board->deepenough(depth)) {
-        //board->player = player;
-        obj = board->evaluation();
+        obj.heuristic_value = board->evaluation();//will generate moved location
         if (player == 'B')
-            obj = -obj;
-        board->set_heuristic_value(obj);
+            obj.heuristic_value = -obj.heuristic_value;
+        board->set_heuristic_value(obj.heuristic_value);
         return obj;
     }
-    int obj1 = 0;
+    Obj obj1;
+    obj1.heuristic_value = 0;
+
     for (int i = 0; i < 6; i++) {
         if (board->children[i] == NULL)
             continue;
@@ -27,19 +29,18 @@ int MinMaxAB(GameTree *board, int depth, char player, int UseT, int PassT) {
             NewPlayer = 'A';
 
         obj1 = MinMaxAB(board->children[i], depth + 1, NewPlayer, -PassT, -UseT);
-        newVal = -obj1;
+        newVal = -obj1.heuristic_value;
 
         if (newVal > PassT) {
-            board->set_heuristic_value(i);
+            board->set_heuristic_value(obj.heuristic_value, obj.row, obj.col, obj.role);
             PassT = newVal;
         }
         if (PassT >= UseT) {
-            obj1 = PassT;
-            //board->set_heuristic_value(obj1);
+            obj1.heuristic_value = PassT;
             return obj1;
         }
     }
-    obj1 = PassT;
+    obj1.heuristic_value = PassT;
     //board->set_heuristic_value(obj1);
     return obj1;
 }
