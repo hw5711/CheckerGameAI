@@ -37,9 +37,7 @@ public:
 
     bool deepenough(int);
 
-    int* jump_further(int, int, Checker);
-
-    bool jump_available(int, int, Checker, char);
+    int* jump(int, int, Checker, char);
 
     void print(GameTree *, int);
 

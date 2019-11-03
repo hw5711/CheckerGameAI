@@ -34,82 +34,160 @@ void GameTree::set_heuristic_value(int value) {
     board_status.set_heuristic_value_board(value);
 }
 
-//test if jump available
-bool GameTree::jump_available(int i, int j, Checker board, char player){
-
-}
 
 //test if can jump more than once and return the new location
-int * GameTree::jump_further(int i, int j, Checker board){
-    int layer = 1;
+int * GameTree::jump(int i, int j, Checker board, char player){
+    int *ptr = NULL;
+    int arr[8]={-1,-1,-1,-1,-1,-1,-1,-1};
+    char p = (player == 'A')? 'B' : 'A';
+    if(this->board_status.board[i][j].role == 'm'){
+        int arr[4]={-1,-1,-1,-1};
 
+        if(i+1<=7 && j-1>=0){ //check down left first
+            if(this->board_status.board[i+1][j-1].player == ' '){
+                arr[0] = i+1;
+                arr[1] = j-1;
+            }
+            else if(this->board_status.board[i+1][j-1].player == p){//check down right first
+                if(i+2<=7 && j-2<=7 && this->board_status.board[i+2][j-2].player == ' '){
+                    arr[0] = i+2;
+                    arr[1] = j-2;
+                }
+            }else{}
+        }
 
-}
+        if(i+1<=7 && j+1<=7){ //check down right first
+            if(this->board_status.board[i+1][j+1].player == ' '){
+                arr[2] = i+1;
+                arr[3] = j+1;
+            }
+            else if(this->board_status.board[i+1][j+1].player == p){//check down right first
+                if(i+2<=7 && j+2<=7 && this->board_status.board[i+2][j-2].player == ' '){
+                    arr[2] = i+2;
+                    arr[3] = j-2;
+                }
+            }else{}
+        }
+    }else{
+        int arr[8]={-1,-1,-1,-1,-1,-1,-1,-1};
+
+        if(i+1<=7 && j-1>=0){ //check down left first
+            if(this->board_status.board[i+1][j-1].player == ' '){
+                arr[0] = i+1;
+                arr[1] = j-1;
+            }
+            else if(this->board_status.board[i+1][j-1].player == p){//check down right first
+                if(i+2<=7 && j-2<=7 && this->board_status.board[i+2][j-2].player == ' '){
+                    arr[0] = i+2;
+                    arr[1] = j-2;
+                }
+            }else{}
+        }
+
+        if(i+1<=7 && j+1<=7){ //check down right first
+            if(this->board_status.board[i+1][j+1].player == ' '){
+                arr[2] = i+1;
+                arr[3] = j+1;
+            }
+            else if(this->board_status.board[i+1][j+1].player == p){//check down right first
+                if(i+2<=7 && j+2<=7 && this->board_status.board[i+2][j-2].player == ' '){
+                    arr[2] = i+2;
+                    arr[3] = j-2;
+                }
+            }else{}
+        }
+
+        if(i-1>=0 && j-1>=0){ //check up left first
+            if(this->board_status.board[i-1][j-1].player == ' '){
+                arr[4] = i-1;
+                arr[5] = j-1;
+            }
+            else if(this->board_status.board[i-1][j-1].player == p){//check down right first
+                if(i-2>=0 && j-2>=0 && this->board_status.board[i-2][j-2].player == ' '){
+                    arr[4] = i-2;
+                    arr[5] = j-2;
+                }
+            }else{}
+        }
+
+        if(i-1>=0 && j+1<=7){ //check up right first
+            if(this->board_status.board[i-1][j+1].player == ' '){
+                arr[6] = i-1;
+                arr[7] = j+1;
+            }
+            else if(this->board_status.board[i-1][j+1].player == p){//check down right first
+                if(i-2>=0 && j+2<=7 && this->board_status.board[i-2][j+2].player == ' '){
+                    arr[6] = i-2;
+                    arr[7] = j+2;
+                }
+            }else{}
+        }
+    }
+    ptr = arr;
+    return ptr;
+    }
 
 
 //find a right position, store it into the children array and move
 void GameTree::add_all_children() {
-    char p = (player == 'A') ? 'B' : 'A';
     //go through the every potential locations of enemy and store it to created children array
     //if it's available, add it into the child list
+    int *location = NULL;
     int children_num = 0;
     for(int i = 0; i < 8; i++){
         for(int j = 0; j < 8; j++){
 
-            if(this->board_status.board[i][j].player == 'A' && player == 'A')
+            if(this->board_status.board[i][j].player == 'A'){
+                char p = (player == 'A') ? 'B' : 'A';
+                location = jump(i,j,this->board_status,'A');
                 if(this->board_status.board[i][j].role == 'm'){
-                    int location[2];
-                    int *ptr = NULL;
-//                    ptr = location;
-                    ptr = jump_further(i,j, this->board_status);
-
-
-//                    if(i+1<=7 && j-1>=0 && j+1<=7){
-//                        if(this->board_status.board[i+1][j-1].player == ' '){
-//                            children[children_num]=new GameTree(p);
-//                            children[children_num]->board_status = this->board_status;
-//                            //children[children_num]->board_status.move(i,j);
-//                        }else if(this->board_status.board[i+1][j-1].player == 'B'){ // if the available place is enemy
-//                            int temp = 2;
-//                            while(i+temp<=7 && j-temp<=7){
-//                                if( this->board_status.board[i+1][j-1].player == ' '){
-//                                    temp++;
-//                                }else break;
-//
-//                            }
-//                            children[children_num]=new GameTree(p);
-//                            children[children_num]->board_status = this->board_status;
-//                            //children[children_num]->board_status.move(i+temp,j-temp);
-//                        }else break; //??? continue
-//                        if(this->board_status.board[i+1][j+1].player == ' '){
-//                            children[children_num++]=new GameTree(p);
-//                            children[children_num++]->board_status = this->board_status;
-//                        }
-//                    }
-                }
-                else if(this->board_status.board[i][j].role == 'k'){
-                    if(i-1>=0 && i+1<=7 && j-1>=0 && j+1<=7){
-
+                    for(int k=0; k<4; k+=2){
+                        if(*(location+k)!= -1){
+                            children[children_num] = new GameTree(p);
+                            children[children_num]->board_status = this->board_status;
+                            children[children_num]->board_status.move(*(location+k), *(location+k+1),'A');
+                            children_num++;
+                        }
                     }
                 }
-
+                else if(this->board_status.board[i][j].role == 'k'){
+                    for(int k=0; k<8; k+=2){
+                        if(*(location+k)!= -1){
+                            children[children_num] = new GameTree(p);
+                            children[children_num]->board_status = this->board_status;
+                            children[children_num]->board_status.move(*(location+k), *(location+k+1),'A');
+                            children_num++;
+                        }
+                    }
+                }
+            }
+            else{
+                char p = (player == 'A') ? 'B' : 'A';
+                location = jump(i,j,this->board_status,'B');
+                if(this->board_status.board[i][j].role == 'm'){
+                    for(int k=0; k<4; k+=2){
+                        if(*(location+k)!= -1){
+                            children[children_num] = new GameTree(p);
+                            children[children_num]->board_status = this->board_status;
+                            children[children_num]->board_status.move(*(location+k), *(location+k+1),'B');
+                            children_num++;
+                        }
+                    }
+                }
+                else if(this->board_status.board[i][j].role == 'k'){
+                    for(int k=0; k<8; k+=2){
+                        if(*(location+k)!= -1){
+                            children[children_num] = new GameTree(p);
+                            children[children_num]->board_status = this->board_status;
+                            children[children_num]->board_status.move(*(location+k), *(location+k+1),'B');
+                            children_num++;
+                        }
+                    }
+                }
+            }
         }
     }
-
-//    for (int i = 0; i < 6; i++) {
-//        number_of_children++;
-//        children[i] = new GameTree(p);
-//        if (this->board_status.A[i] != 0 && player == 'A')
-//            children[i]->board_status = this->board_status;
-//        else if (this->board_status.B[i] != 0 && player == 'B')
-//            children[i]->board_status = this->board_status;
-//        else
-//            children[i] = NULL;
-//        if (children[i] != NULL) {
-//            nodes_generated++;
-//            children[i]->board_status.move(i, children[i]->player);
-//        }
-//    }
+    
 }
 
 bool GameTree::deepenough(int depth) {
