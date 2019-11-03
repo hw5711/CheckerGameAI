@@ -31,25 +31,25 @@ void GameTree::create_node(char p) {
 }
 
 void GameTree::set_heuristic_value(int value) {
-    board_status.set_heuristic_value_board(value);
+    this->board_status.heuristic_value = value;
 }
 
 
 //test if can jump more than once and return the new location
-int * GameTree::jump(int i, int j, Checker board, char player){
+int * GameTree::jump(int i, int j, Checker checker, char player){
     int *ptr = NULL;
     int arr[8]={-1,-1,-1,-1,-1,-1,-1,-1};
     char p = (player == 'A')? 'B' : 'A';
-    if(this->board_status.board[i][j].role == 'm'){
+    if(checker.board[i][j].role == 'm'){
         int arr[4]={-1,-1,-1,-1};
 
         if(i+1<=7 && j-1>=0){ //check down left first
-            if(this->board_status.board[i+1][j-1].player == ' '){
+            if(checker.board[i+1][j-1].player == ' '){
                 arr[0] = i+1;
                 arr[1] = j-1;
             }
-            else if(this->board_status.board[i+1][j-1].player == p){//check down right first
-                if(i+2<=7 && j-2<=7 && this->board_status.board[i+2][j-2].player == ' '){
+            else if(checker.board[i+1][j-1].player == p){//check down right first
+                if(i+2<=7 && j-2<=7 && checker.board[i+2][j-2].player == ' '){
                     arr[0] = i+2;
                     arr[1] = j-2;
                 }
@@ -57,12 +57,12 @@ int * GameTree::jump(int i, int j, Checker board, char player){
         }
 
         if(i+1<=7 && j+1<=7){ //check down right first
-            if(this->board_status.board[i+1][j+1].player == ' '){
+            if(checker.board[i+1][j+1].player == ' '){
                 arr[2] = i+1;
                 arr[3] = j+1;
             }
-            else if(this->board_status.board[i+1][j+1].player == p){//check down right first
-                if(i+2<=7 && j+2<=7 && this->board_status.board[i+2][j-2].player == ' '){
+            else if(checker.board[i+1][j+1].player == p){//check down right first
+                if(i+2<=7 && j+2<=7 && checker.board[i+2][j-2].player == ' '){
                     arr[2] = i+2;
                     arr[3] = j-2;
                 }
@@ -72,12 +72,12 @@ int * GameTree::jump(int i, int j, Checker board, char player){
         int arr[8]={-1,-1,-1,-1,-1,-1,-1,-1};
 
         if(i+1<=7 && j-1>=0){ //check down left first
-            if(this->board_status.board[i+1][j-1].player == ' '){
+            if(checker.board[i+1][j-1].player == ' '){
                 arr[0] = i+1;
                 arr[1] = j-1;
             }
-            else if(this->board_status.board[i+1][j-1].player == p){//check down right first
-                if(i+2<=7 && j-2<=7 && this->board_status.board[i+2][j-2].player == ' '){
+            else if(checker.board[i+1][j-1].player == p){//check down right first
+                if(i+2<=7 && j-2<=7 && checker.board[i+2][j-2].player == ' '){
                     arr[0] = i+2;
                     arr[1] = j-2;
                 }
@@ -85,12 +85,12 @@ int * GameTree::jump(int i, int j, Checker board, char player){
         }
 
         if(i+1<=7 && j+1<=7){ //check down right first
-            if(this->board_status.board[i+1][j+1].player == ' '){
+            if(checker.board[i+1][j+1].player == ' '){
                 arr[2] = i+1;
                 arr[3] = j+1;
             }
-            else if(this->board_status.board[i+1][j+1].player == p){//check down right first
-                if(i+2<=7 && j+2<=7 && this->board_status.board[i+2][j-2].player == ' '){
+            else if(checker.board[i+1][j+1].player == p){//check down right first
+                if(i+2<=7 && j+2<=7 && checker.board[i+2][j-2].player == ' '){
                     arr[2] = i+2;
                     arr[3] = j-2;
                 }
@@ -98,12 +98,12 @@ int * GameTree::jump(int i, int j, Checker board, char player){
         }
 
         if(i-1>=0 && j-1>=0){ //check up left first
-            if(this->board_status.board[i-1][j-1].player == ' '){
+            if(checker.board[i-1][j-1].player == ' '){
                 arr[4] = i-1;
                 arr[5] = j-1;
             }
-            else if(this->board_status.board[i-1][j-1].player == p){//check down right first
-                if(i-2>=0 && j-2>=0 && this->board_status.board[i-2][j-2].player == ' '){
+            else if(checker.board[i-1][j-1].player == p){//check down right first
+                if(i-2>=0 && j-2>=0 && checker.board[i-2][j-2].player == ' '){
                     arr[4] = i-2;
                     arr[5] = j-2;
                 }
@@ -111,12 +111,12 @@ int * GameTree::jump(int i, int j, Checker board, char player){
         }
 
         if(i-1>=0 && j+1<=7){ //check up right first
-            if(this->board_status.board[i-1][j+1].player == ' '){
+            if(checker.board[i-1][j+1].player == ' '){
                 arr[6] = i-1;
                 arr[7] = j+1;
             }
-            else if(this->board_status.board[i-1][j+1].player == p){//check down right first
-                if(i-2>=0 && j+2<=7 && this->board_status.board[i-2][j+2].player == ' '){
+            else if(checker.board[i-1][j+1].player == p){//check down right first
+                if(i-2>=0 && j+2<=7 && checker.board[i-2][j+2].player == ' '){
                     arr[6] = i-2;
                     arr[7] = j+2;
                 }
@@ -187,7 +187,7 @@ void GameTree::add_all_children() {
             }
         }
     }
-    
+
 }
 
 bool GameTree::deepenough(int depth) {
@@ -223,6 +223,134 @@ int GameTree::get_hole_number() {
         }
     }
     return -1;
+}
+
+/////////////////////////////////////
+///       BURAK'S EVALUATION      ///
+/////////////////////////////////////
+
+int GameTree::evaluation() { //
+    int value;
+    if (player == 'A') {
+        //check piece
+        for (int i = 0; i < 8; i++) {
+            for(int j = 0; j < 8; j++) {
+                if(board_status.board[i][j].role == 'm' && board_status.board[i][j].player == 'A'){
+                    value +=10;
+                }else if (board_status.board[i][j].role == 'k' && board_status.board[i][j].player == 'A'){
+                    value +=20;
+                }else if (board_status.board[i][j].role == 'm' && board_status.board[i][j].player == 'B'){
+                    value -=10;
+                }else if (board_status.board[i][j].role == 'k' && board_status.board[i][j].player == 'B'){
+                    value -=20;
+                }else{}
+            }
+        }
+        //check side
+        for (int i = 4; i < 8; i++) {
+            for (int j = 4; j < 8; j++) {
+                if (board_status.board[i][j].player == 'A') {
+                    value += 4;
+                }
+            }
+        }
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (board_status.board[i][j].player == 'B') {
+                    value -= 4;
+                }
+            }
+        }
+
+        //threatened
+        for (int i = 0; i < 8; i++) {
+            for(int j = 0; j < 8; j++) {
+                if(threaten(i,j, board_status,'A')){
+                    value +=10;
+                }else if(threaten(i,j, board_status,'B')){
+                    value -=10;
+                }else{}
+            }
+        }
+
+    } else if (player == 'B') {
+        //check piece
+        for (int i = 0; i < 8; i++) {
+            for(int j = 0; j < 8; j++) {
+                if(board_status.board[i][j].role == 'm' && board_status.board[i][j].player == 'B'){
+                    value +=10;
+                }else if (board_status.board[i][j].role == 'k' && board_status.board[i][j].player == 'B'){
+                    value +=20;
+                }else if (board_status.board[i][j].role == 'm' && board_status.board[i][j].player == 'A'){
+                    value -=10;
+                }else if (board_status.board[i][j].role == 'k' && board_status.board[i][j].player == 'A'){
+                    value -=20;
+                }else{}
+            }
+        }
+        //check side
+        for (int i = 4; i < 8; i++) {
+            for (int j = 4; j < 8; j++) {
+                if (board_status.board[i][j].player == 'B') {
+                    value += 4;
+                }
+            }
+        }
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (board_status.board[i][j].player == 'A') {
+                    value -= 4;
+                }
+            }
+        }
+
+        //threatened
+        for (int i = 0; i < 8; i++) {
+            for(int j = 0; j < 8; j++) {
+                if(threaten(i,j, board_status,'B')){
+                    value +=10;
+                }else if(threaten(i,j, board_status,'A')){
+                    value -=10;
+                }else{}
+            }
+        }
+    }
+    set_heuristic_value(value);
+    return value;
+}
+
+void GameTree::copyBoardStatus(Checker kb) {
+
+}
+
+bool GameTree::threaten(int i, int j, Checker checker, char player){
+    char p = (player == 'A')? 'B':'A';
+    if(i-1>=0 && j-1>=0 && checker.board[i-1][j-1].player == p){
+        if(i+1<=7 && j+1<=7 && checker.board[i+1][j+1].player == ' '){
+            return true;
+        }
+    }
+    else if(i-1>=0 && j+1<=7 && checker.board[i-1][j+1].player == p){
+        if(i+1<=7 && j-1>=0 && checker.board[i+1][j-1].player == ' '){
+            return true;
+        }
+    }
+    else if(i+1<=7 && j-1>=0 && checker.board[i+1][j-1].player == p){
+        if(i-1>=0 && j+1<=7 && checker.board[i-1][j+1].player == ' '){
+            return true;
+        }
+    }
+    else if(i+1<=7 && j+1<=7 && checker.board[i+1][j+1].player == p){
+        if(i-1>=0 && j-1>=0 && checker.board[i-1][j-1].player == ' '){
+            return true;
+        }
+    } else{
+        return false;
+    }
+    return false;
+}
+
+
 }
 /////////////////////////////////////
 ///       HURSH'S EVALUATION      ///
@@ -300,40 +428,4 @@ int GameTree::get_hole_number() {
 //     }
 //     set_heuristic_value(value);
 //     return value;
-// }
 
-/////////////////////////////////////
-///       BURAK'S EVALUATION      ///
-/////////////////////////////////////
-
-int GameTree::evaluation() { //
-    int value;
-    if (player == 'A') {
-        for (int i = 0; i < 8; i++) {
-            for(int j = 0; j < 8; j++) {
-                if(board_status.board.role ==)
-            }
-            }
-
-
-    } else if (player == 'B') {
-        int b_rocks = 0;
-        for (int i = 0; i < 6; i++) {
-            if (board_status.A[i] == 0) {
-                b_rocks++;
-            } else if (board_status.A[i] > 0 && board_status.A[i] < 3) {
-                value = 100;
-            } else if (board_status.A[i] >= 3 && board_status.A[i] < 5) {
-                value = 950;
-            } else {
-                value = 0;
-            }
-        }
-    }
-    set_heuristic_value(value);
-    return value;
-}
-
-void GameTree::copyBoardStatus(Checker kb) {
-
-}

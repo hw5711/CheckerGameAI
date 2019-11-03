@@ -46,6 +46,8 @@ public:
     int get_hole_number();
 
     void copyBoardStatus(Checker kb);
+
+    bool threaten(int, int, Checker, char);
 };
 
 
