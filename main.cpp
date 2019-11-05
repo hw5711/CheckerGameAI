@@ -19,7 +19,7 @@ void print(char, int);
 
 int nodes_generated, nodes_expanded, steps;
 
-
+//MinmaxAB vs MinmaxAB
 void MinMax() {
     Checker *ck = new Checker();
     cout << "Initial board " << endl;
@@ -27,22 +27,27 @@ void MinMax() {
     char win = ck->checkWin();
     char player = 'A';
     int start_s = clock();
+    int shift = 0;
     while (win == 'N') {
         steps++;
         GameTree *head = new GameTree(player);
         head->copyBoardStatus(ck);
-
         cout << "*****Turn*****" << player << endl;
         Step hole;
+        int evaluation1 = 1;
+        int evaluation2 =2;
 
-        MinMaxAB(head, 0, player, 10000, -10000);
-
+        if(shift %2 == 0) {
+            MinMaxAB(head, 0, player, 10000, -10000, evaluation1);
+        }else{
+            MinMaxAB(head, 0, player, 10000, -10000, evaluation2);
+        }
         hole.heuristic_value = head->step.heuristic_value; // need to return new place and heuristic_value
         hole.row = head->step.row;
         hole.col = head->step.col;
-
         cout << "hole row # " << hole.row <<  "hole col # "<< hole.col << endl;
         player = ck->move(hole.row, hole.col, player);
+        //Add antoo[o
         ck->displayBoard();
         win = ck->checkWin();
     }
@@ -50,9 +55,9 @@ void MinMax() {
     int execution_time = stop_s - start_s;
     ck->displayBoard();
     print(win, execution_time);
-
 }
 
+//AlphaBeta vs AlphaBeta
 void AlphaBeta() {
     Checker *ck = new Checker();
     cout << "Initial board " << endl;
@@ -112,8 +117,10 @@ void Statistics_print() {
 int main() {
     int choice_game;
     cout << "\t\t\tChecker Game(8X8)\n\t\t      *-*-*-*-*-*-*-*-*-*-*-*\n\t\t\t*-Game Begins" << endl;
-    cout << "Enter 1 for MinMaxAB " << endl;
-    cout << "Enter 2 for AlphaBetaSearch " << endl;
+    cout << "Enter 1 for MinMaxAB(EF1) VS MinMaxAB(EF2) " << endl;
+    cout << "Enter 2 for AlphaBetaSearch(EF1) VS AlphaBetaSearch(EF2) " << endl;
+    cout << "Enter 3 for MinMaxAB(EF1) VS AlphaBetaSearch(EF1) " << endl;
+    cout << "Enter 4 for MinMaxAB(EF2) VS AlphaBetaSearch(EF2)  " << endl;
 
     cin >> choice_game;
 

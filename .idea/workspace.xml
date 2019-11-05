@@ -13,6 +13,9 @@
   <component name="ChangeListManager">
     <list default="true" id="1049f50a-b802-4356-8d39-63554f1d0167" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinMaxAB.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/MinMaxAB.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinMaxAB.h" beforeDir="false" afterPath="$PROJECT_DIR$/MinMaxAB.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +70,7 @@
       <workItem from="1572211553446" duration="230000" />
       <workItem from="1572211821581" duration="148000" />
       <workItem from="1572211990539" duration="64000" />
-      <workItem from="1572212220753" duration="57085000" />
+      <workItem from="1572212220753" duration="59249000" />
     </task>
     <servers />
   </component>

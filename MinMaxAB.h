@@ -15,6 +15,6 @@ struct Obj{
     char role;
 };
 
-Obj MinMaxAB(GameTree *, int, char, int, int);
+Obj MinMaxAB(GameTree *, int, char, int, int, int);
 
 #endif /* MinMaxAB_hpp */

@@ -5,7 +5,7 @@
 using namespace std;
 
 
-Obj MinMaxAB(GameTree *board, int depth, char player, int UseT, int PassT) {
+Obj MinMaxAB(GameTree *board, int depth, char player, int UseT, int PassT, int EF) {
     Obj obj;
     int newVal;
     char NewPlayer;
