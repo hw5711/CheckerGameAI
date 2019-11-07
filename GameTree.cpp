@@ -30,8 +30,10 @@ void GameTree::create_node(char p) {
     children[number_of_children++] = new GameTree(p);
 }
 
-void GameTree::set_heuristic_value(int value) {
+void GameTree::set_heuristic_value(int value, int r, int c) {
     this->board_status.heuristic_value = value;
+    this->board_status.row = r;
+    this->board_status.col = c;
 }
 
 
@@ -320,7 +322,14 @@ int GameTree::evaluation() { //
 }
 
 void GameTree::copyBoardStatus(Checker kb) {
-
+    for(int i=0; i<8; i++){
+        for(int j=0; j<8; j++){
+            this->board_status.board[i][j] = kb.board[i][i];
+            this->board_status.row = kb.row;
+            this->board_status.col = kb.col;
+            this->board_status.heuristic_value = kb.heuristic_value;
+        }
+    }
 }
 
 bool GameTree::threaten(int i, int j, Checker checker, char player){

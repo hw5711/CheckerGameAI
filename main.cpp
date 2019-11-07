@@ -42,12 +42,11 @@ void MinMax() {
         }else{
             MinMaxAB(head, 0, player, 10000, -10000, evaluation2);
         }
-        hole.heuristic_value = head->step.heuristic_value; // need to return new place and heuristic_value
-        hole.row = head->step.row;
-        hole.col = head->step.col;
+        hole.heuristic_value = head->board_status.heuristic_value; // need to return new place and heuristic_value
+        hole.row = head->board_status.row;
+        hole.col = head->board_status.col;
         cout << "hole row # " << hole.row <<  "hole col # "<< hole.col << endl;
         player = ck->move(hole.row, hole.col, player);
-        //Add antoo[o
         ck->displayBoard();
         win = ck->checkWin();
     }
@@ -73,9 +72,9 @@ void AlphaBeta() {
         alphabeta(head, 0, player, 1000, -1000);
         //head will contain best heristic value and location
         Step hole;
-        hole.heuristic_value = head->step.heuristic_value; // need to return new place and heuristic_value
-        hole.row = head->step.row;
-        hole.col = head->step.col;
+        hole.heuristic_value = head->board_status.heuristic_value; // need to return new place and heuristic_value
+        hole.row = head->board_status.row;
+        hole.col = head->board_status.col;
 
         player = ck->move(hole.row, hole.col, player);
         ck->displayBoard();

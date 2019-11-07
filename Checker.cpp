@@ -77,55 +77,84 @@ void Checker::setBoard(char p, int r, int c, char ro, int he) {
 
 //Function to move for the A player
 char Checker::move_A(int r, int c) {
-    int current_row =
+    int row_diff = abs(r-this->row);
+    int col_diff = abs(c-this->col);
+    if(row_diff == 1 && col_diff ==1){
+        char role = this->board[r][c].role;
+        char player = this->board[r][c].player;
+        setBoard(player,r,c,role,-1000); // set the moving place
+        setBoard(' ',this->row,this->col,'n',-1000); //set current place as empty
+        this->row = r; //change the current head row
+        this->col = c; //change the current head col
+    }else{ // eat enemy
+        char role = this->board[r][c].role;
+        char player = this->board[r][c].player;
+        setBoard(' ',r,c,'n',-1000);
+        if(r > this->row && c > this->col) {
+            setBoard(player, r, c, role, -1000);
+            setBoard(' ', this->row+1, this->col+1, 'n', -1000);
+            setBoard(' ', this->row, this->col, 'n', -1000);
+        }
+        else if(r > this->row && c < this->col){
+            setBoard(player, r, c, role, -1000);
+            setBoard(' ', this->row+1, this->col-1, 'n', -1000);
+            setBoard(' ', this->row, this->col, 'n', -1000);
+        }
+        else if(r < this->row && c > this->col){
+            setBoard(player, r, c, role, -1000);
+            setBoard(' ', this->row-1, this->col+1, 'n', -1000);
+            setBoard(' ', this->row, this->col, 'n', -1000);
+        }
+        else if(r < this->row && c < this->col){
+            setBoard(player, r, c, role, -1000);
+            setBoard(' ', this->row-1, this->col-1, 'n', -1000);
+            setBoard(' ', this->row, this->col, 'n', -1000);
+        }else{}
+        this->row = r; //change the current head row
+        this->col = c; //change the current head col
+    }
     return 'B';
 }
 
 //Function to move for the B player
-char Checker::move_B(int hole_number_r, int hole_number_c) {
-    int tempPos = hole_number;
-    ptr = B;
-    int numberOfStones = ptr[tempPos];
-    ptr[hole_number] = 0;
-    int opponentPos, opponentStones;
-
-    tempPos++;
-    while (numberOfStones > 0) {
-        if (tempPos >= 0 && tempPos <= 5) {
-            if (numberOfStones == 1) {
-                numberOfStones--;
-                opponentPos = numberOfSlots - tempPos;
-                if (ptr[tempPos] == 0) {
-                    ptr = A;
-                    opponentStones = ptr[opponentPos];
-                    if (numberOfStones == 0)
-                        return 'A';
-                } else {
-                    ptr[tempPos] += 1;
-                    if (numberOfStones == 0)
-                        return 'A';
-                }
-            } else if (numberOfStones > 1) {
-                numberOfStones--;
-                ptr[tempPos] += 1;
-            }
-        } else if (tempPos == 6 && numberOfStones >= 1) {
-            numberOfStones--;
-            if (numberOfStones == 0)
-                return 'B';
-        } else if (tempPos > 6 && tempPos <= 12) {
-            ptr = A;
-            numberOfStones--;
-            ptr[tempPos - 7] += 1;
-            if (numberOfStones == 0)
-                return 'A';
-        } else if (tempPos >= 12) {
-            tempPos = -1;
-            ptr = B;
+char Checker::move_B(int r, int c) {
+    int row_diff = abs(r-this->row);
+    int col_diff = abs(c-this->col);
+    if(row_diff == 1 && col_diff ==1){
+        char role = this->board[r][c].role;
+        char player = this->board[r][c].player;
+        setBoard(player,r,c,role,-1000); // set the moving place
+        setBoard(' ',this->row,this->col,'n',-1000); //set current place as empty
+        this->row = r; //change the current head row
+        this->col = c; //change the current head col
+    }else{ // eat enemy
+        char role = this->board[r][c].role;
+        char player = this->board[r][c].player;
+        setBoard(' ',r,c,'n',-1000);
+        if(r > this->row && c > this->col) {
+            setBoard(player, r, c, role, -1000);
+            setBoard(' ', this->row+1, this->col+1, 'n', -1000);
+            setBoard(' ', this->row, this->col, 'n', -1000);
         }
-        tempPos++;
+        else if(r > this->row && c < this->col){
+            setBoard(player, r, c, role, -1000);
+            setBoard(' ', this->row+1, this->col-1, 'n', -1000);
+            setBoard(' ', this->row, this->col, 'n', -1000);
+        }
+        else if(r < this->row && c > this->col){
+            setBoard(player, r, c, role, -1000);
+            setBoard(' ', this->row-1, this->col+1, 'n', -1000);
+            setBoard(' ', this->row, this->col, 'n', -1000);
+        }
+        else if(r < this->row && c < this->col){
+            setBoard(player, r, c, role, -1000);
+            setBoard(' ', this->row-1, this->col-1, 'n', -1000);
+            setBoard(' ', this->row, this->col, 'n', -1000);
+        }else{}
+        this->row = r; //change the current head row
+        this->col = c; //change the current head col
     }
-    return 'A';
+    return 'B';
 }
 
 //Function which decides as to who should move

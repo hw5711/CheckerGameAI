@@ -19,6 +19,8 @@ class Checker {
 public:
     Board board[8][8];
     int heuristic_value;
+    int row; //head row
+    int col; // head col
 
     Checker();
 

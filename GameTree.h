@@ -29,7 +29,7 @@ public:
 
     void create_node(char);
 
-    void set_heuristic_value(int);
+    void set_heuristic_value(int, int, int);
 
     int get_heuristic_value();
 
