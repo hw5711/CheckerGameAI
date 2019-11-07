@@ -317,7 +317,7 @@ int GameTree::evaluation() { //
             }
         }
     }
-    set_heuristic_value(value);
+    //set_heuristic_value(value);
     return value;
 }
 
@@ -359,8 +359,6 @@ bool GameTree::threaten(int i, int j, Checker checker, char player){
     return false;
 }
 
-
-}
 /////////////////////////////////////
 ///       HURSH'S EVALUATION      ///
 /////////////////////////////////////

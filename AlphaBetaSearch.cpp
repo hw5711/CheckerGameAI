@@ -19,7 +19,7 @@ int alphabeta(GameTree *node, int depth, char player, int alpha, int beta) {
             if (beta <= alpha)
                 break;
         }
-        node->set_heuristic_value(bestVal);
+        //node->set_heuristic_value(bestVal);
         return bestVal;
     } else {
         int bestVal = +100, value;
@@ -32,7 +32,7 @@ int alphabeta(GameTree *node, int depth, char player, int alpha, int beta) {
             if (beta < alpha)
                 break;
         }
-        node->set_heuristic_value(bestVal);
+        //node->set_heuristic_value(bestVal);
         return bestVal;
     }
 }

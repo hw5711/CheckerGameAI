@@ -28,9 +28,9 @@ public:
 
     Checker(Checker *);
 
-    char move_A(int, int);
+    char move_A(int, int, char);
 
-    char move_B(int, int);
+    char move_B(int, int, char);
 
     char move(int, int, char);
 
@@ -39,11 +39,11 @@ public:
 
     void setBoard(char, int, int, char, int);
 
-    void operator=(Checker);
+ //   void operator=(Checker);
 
     void displayBoard();
 
-    bool checkLegealMove(char player, int hole);
+    //bool checkLegealMove(char player, int hole);
 
     char getPlayer(int, int);
 

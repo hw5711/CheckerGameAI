@@ -27,7 +27,7 @@ void MinMax() {
     char win = ck->checkWin();
     char player = 'A';
     int start_s = clock();
-    int shift = 0;
+    int shift = 1;
     while (win == 'N') {
         steps++;
         GameTree *head = new GameTree(player);
@@ -37,18 +37,21 @@ void MinMax() {
         int evaluation1 = 1;
         int evaluation2 =2;
 
-        if(shift %2 == 0) {
-            MinMaxAB(head, 0, player, 10000, -10000, evaluation1);
+        if(shift %2 == 1) {
+            cout<<"test 2";
+            MinMaxAB(head, 1, player, 10000, -10000, evaluation1);
         }else{
-            MinMaxAB(head, 0, player, 10000, -10000, evaluation2);
+            cout<<"test 3";
+            MinMaxAB(head, 1, player, 10000, -10000, evaluation2);
         }
         hole.heuristic_value = head->board_status.heuristic_value; // need to return new place and heuristic_value
         hole.row = head->board_status.row;
         hole.col = head->board_status.col;
-        cout << "hole row # " << hole.row <<  "hole col # "<< hole.col << endl;
+        cout << "MOVE TO :hole row # " << hole.row <<  "\nhole col # "<< hole.col << endl;
         player = ck->move(hole.row, hole.col, player);
         ck->displayBoard();
         win = ck->checkWin();
+        shift++;
     }
     int stop_s = clock();
     int execution_time = stop_s - start_s;
@@ -98,9 +101,9 @@ void print(char win, int execution_time) {
     else if (win == 'T')
         cout << "Game tied!! " << endl;
 
-    cout << "\n\t\t\tGame Ends-*\n" << endl;
+   // cout << "\n\t\t\tGame Ends-*\n" << endl;
 
-    cout << "Execution time taken is : " << (execution_time) / double(CLOCKS_PER_SEC) << " seconds" << endl;
+   // cout << "Execution time taken is : " << (execution_time) / double(CLOCKS_PER_SEC) << " seconds" << endl;
 }
 
 void Statistics_print() {
