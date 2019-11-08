@@ -147,7 +147,7 @@ void GameTree::add_all_children() {
                         if(*(location+k)!= -1){
                             children[children_num] = new GameTree(p);
                             children[children_num]->board_status = this->board_status;
-                            children[children_num]->board_status.move(*(location+k), *(location+k+1),'A');
+                            children[children_num]->board_status.move(row,col, *(location+k), *(location+k+1),'A');
                             children_num++;
                         }
                     }
@@ -157,7 +157,7 @@ void GameTree::add_all_children() {
                         if(*(location+k)!= -1){
                             children[children_num] = new GameTree(p);
                             children[children_num]->board_status = this->board_status;
-                            children[children_num]->board_status.move(*(location+k), *(location+k+1),'A');
+                            children[children_num]->board_status.move(row, col,*(location+k), *(location+k+1),'A');
                             children_num++;
                         }
                     }
@@ -171,7 +171,7 @@ void GameTree::add_all_children() {
                         if(*(location+k)!= -1){
                             children[children_num] = new GameTree(p);
                             children[children_num]->board_status = this->board_status;
-                            children[children_num]->board_status.move(*(location+k), *(location+k+1),'B');
+                            children[children_num]->board_status.move(row, col, *(location+k), *(location+k+1),'B');
                             children_num++;
                         }
                     }
@@ -181,7 +181,7 @@ void GameTree::add_all_children() {
                         if(*(location+k)!= -1){
                             children[children_num] = new GameTree(p);
                             children[children_num]->board_status = this->board_status;
-                            children[children_num]->board_status.move(*(location+k), *(location+k+1),'B');
+                            children[children_num]->board_status.move(row, col, *(location+k), *(location+k+1),'B');
                             children_num++;
                         }
                     }
