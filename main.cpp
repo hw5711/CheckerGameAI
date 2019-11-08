@@ -25,17 +25,20 @@ void MinMax() {
     cout << "Initial board " << endl;
     ck->displayBoard();
     char win = ck->checkWin();
+    //cout <<" test 4: "<< win;
     char player = 'A';
     int start_s = clock();
     int shift = 1;
     while (win == 'N') {
         steps++;
         GameTree *head = new GameTree(player);
-        head->copyBoardStatus(ck);
+        head->copyBoardStatus(ck); //store current node info
+        cout <<" \ntest 5: "<< head->board_status.row;
         cout << "*****Turn*****" << player << endl;
+
         Step hole;
         int evaluation1 = 1;
-        int evaluation2 =2;
+        int evaluation2 = 2;
 
         if(shift %2 == 1) {
             cout<<"test 2";
@@ -44,11 +47,15 @@ void MinMax() {
             cout<<"test 3";
             MinMaxAB(head, 1, player, 10000, -10000, evaluation2);
         }
+
         hole.heuristic_value = head->board_status.heuristic_value; // need to return new place and heuristic_value
-        hole.row = head->board_status.row;
-        hole.col = head->board_status.col;
+        cout <<" \ntest 4: "<< hole.heuristic_value;
+        int *addr = NULL;
+        addr = head->getChildLocation(ck);
+        hole.row = *(addr+2);
+        hole.col = *(addr+3);
         cout << "MOVE TO :hole row # " << hole.row <<  "\nhole col # "<< hole.col << endl;
-        player = ck->move(hole.row, hole.col, player);
+        player = ck->move(*addr, *(addr+1),*(addr+2),*(addr+3), player);
         ck->displayBoard();
         win = ck->checkWin();
         shift++;
@@ -93,16 +100,13 @@ void AlphaBeta() {
 void print(char win, int execution_time) {
     cout << "The result of the game is : " << win << endl;
     cout << endl;
-
     if (win == 'A')
         cout << "Player A won! Congrats " << endl;
     else if (win == 'B')
         cout << "Player B won! Congrats " << endl;
     else if (win == 'T')
         cout << "Game tied!! " << endl;
-
    // cout << "\n\t\t\tGame Ends-*\n" << endl;
-
    // cout << "Execution time taken is : " << (execution_time) / double(CLOCKS_PER_SEC) << " seconds" << endl;
 }
 

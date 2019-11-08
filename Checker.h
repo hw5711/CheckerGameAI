@@ -12,6 +12,7 @@ struct Board{
     int row;
     int col;
     char role;
+    int id;
     int heuristic_value;
 };
 
@@ -19,8 +20,6 @@ class Checker {
 public:
     Board board[8][8];
     int heuristic_value;
-    int row; //head row
-    int col; // head col
 
     Checker();
 
@@ -28,16 +27,16 @@ public:
 
     Checker(Checker *);
 
-    char move_A(int, int, char);
+    char move_A(int, int, int, int, char);
 
-    char move_B(int, int, char);
+    char move_B(int, int, int, int, char);
 
-    char move(int, int, char);
+    char move(int, int, int, int, char);
 
     // int evaluation();
     char checkWin();
 
-    void setBoard(char, int, int, char, int);
+    void setBoard(char, int, int, char,int, int);
 
  //   void operator=(Checker);
 
@@ -46,6 +45,8 @@ public:
     //bool checkLegealMove(char player, int hole);
 
     char getPlayer(int, int);
+
+    char getRole(int, int);
 
     int get_heuristic_value_board();
 

@@ -10,48 +10,54 @@ using namespace std;
 
 //initializing the board
 Checker::Checker() {
+    int a1=1;
+    int a2=1;
+    int a3=1;
+    int b1=1;
+    int b2=1;
+    int b3=1;
     for(int i = 0; i < 8; i++){
         for( int j = 0; j < 8; j++){
             //set player A side board
             if(i == 0 && j%2 == 0){ //A side 1st row
-                setBoard('A',i,j,'m',-1000);
+                setBoard('A',i,j,'m',a1++,-1000);
             }else if(i == 0 && j%2 != 0){
-                setBoard(' ', i, j, 'n', -1000);
+                setBoard(' ', i, j, 'n',0, -1000);
             }else{}
 
             if(i == 1 && j%2 != 0){ //A side 2nd row
-                setBoard('A',i,j,'m',-1000);
+                setBoard('A',i,j,'m',a2++,-1000);
             }else if(i == 1 && j%2 == 0){
-                setBoard(' ',i,j,'n',-1000);
+                setBoard(' ',i,j,'n',0,-1000);
             }else{}
 
             if(i == 2 && j%2 == 0){ //A side 3rd row
-                setBoard('A',i,j,'m',-1000);
+                setBoard('A',i,j,'m',a3++,-1000);
             }else if (i == 2 && j%2 != 0){
-                setBoard(' ',i,j,'n',-1000);
+                setBoard(' ',i,j,'n',0,-1000);
             }else{}
 
             //set middle 2 lines board
             if(i == 3 || i == 4 ){
-                setBoard(' ',i,j,'n',-1000);
+                setBoard(' ',i,j,'n',0,-1000);
             }
             //set player B side board
             if(i == 5 && j%2 != 0){ //A side 1st row
-                setBoard('B',i,j,'m',-1000);
+                setBoard('B',i,j,'m',b1++,-1000);
             }else if (i == 5 && j%2 == 0) {
-                setBoard(' ',i,j,'n',-1000); // N means not possessed by both playler
+                setBoard(' ',i,j,'n',0,-1000); // N means not possessed by both playler
             }else{}
 
             if(i == 6 && j%2 == 0){ //A side 2nd row
-                setBoard('B',i,j,'m',-1000);
+                setBoard('B',i,j,'m',b2++,-1000);
             }else if(i == 6 && j%2 != 0){
-                setBoard(' ',i,j,'n',-1000);
+                setBoard(' ',i,j,'n',0,-1000);
             }else{}
 
             if(i == 7 && j%2 != 0){ //A side 3rd row
-                setBoard('B',i,j,'m',-1000);
+                setBoard('B',i,j,'m',b3++,-1000);
             }else if(i == 7 && j%2 == 0){
-                setBoard(' ',i,j,'n',-1000);
+                setBoard(' ',i,j,'n',0,-1000);
             }else{}
         }
     }
@@ -72,110 +78,142 @@ Checker::Checker(Checker *b) {
 }
 
 //constructor to set the board values, mainly used for testing
-void Checker::setBoard(char p, int r, int c, char ro, int he) {
+void Checker::setBoard(char p, int r, int c, char ro, int i, int he) {
     this->board[r][c].player = p;
     this->board[r][c].row = r;
     this->board[r][c].col = c;
     this->board[r][c].role = ro;
+    this->board[r][c].id = i;
     this->board[r][c].heuristic_value = he;
 }
 
 //Function to move for the A player
-char Checker::move_A(int r, int c, char player) {
-    int row_diff = abs(r-this->row);
-    int col_diff = abs(c-this->col);
+char Checker::move_A(int before_r, int before_c, int r, int c, char player) {
+    int id = this->board[before_r][before_c].id;
+    int row_diff = abs(r-before_r);
+    int col_diff = abs(c-before_c);
     if(row_diff == 1 && col_diff ==1){
         char role = this->board[r][c].role;
         //char player = this->board[r][c].player;
-        setBoard(player,r,c,role,-1000); // set the moving place
-        setBoard(' ',this->row,this->col,'n',-1000); //set current place as empty
-        this->row = r; //change the current head row
-        this->col = c; //change the current head col
+        setBoard(player,r,c,role,id,-1000); // set the moving place
+        setBoard(' ',before_r,before_c,'n',0,-1000); //set current place as empty
+        before_r = r; //change the current head row
+        before_c = c; //change the current head col
     }else{ // eat enemy
         char role = this->board[r][c].role;
         //char player = this->board[r][c].player;
-        setBoard(' ',r,c,'n',-1000);
-        if(r > this->row && c > this->col) {
-            setBoard(player, r, c, role, -1000);
-            setBoard(' ', this->row+1, this->col+1, 'n', -1000);
-            setBoard(' ', this->row, this->col, 'n', -1000);
+        setBoard(' ',r,c,'n',0,-1000);
+        if(r >before_r && c > before_c) {
+            int en_id = this->board[before_r+1][before_c+1].id;
+            setBoard(player, r, c, role,id, -1000);
+            setBoard(' ', before_r+1, before_c+1, 'n',en_id, -1000);
+            setBoard(' ', before_r, before_c, 'n',0, -1000);
         }
-        else if(r > this->row && c < this->col){
-            setBoard(player, r, c, role, -1000);
-            setBoard(' ', this->row+1, this->col-1, 'n', -1000);
-            setBoard(' ', this->row, this->col, 'n', -1000);
+        else if(r > before_r && c < before_c){
+            int en_id = this->board[before_r+1][before_c-1].id;
+            setBoard(player, r, c, role,id, -1000);
+            setBoard(' ', before_r+1, before_c-1,en_id, 'n', -1000);
+            setBoard(' ', before_r, before_c, 'n',0, -1000);
         }
-        else if(r < this->row && c > this->col){
-            setBoard(player, r, c, role, -1000);
-            setBoard(' ', this->row-1, this->col+1, 'n', -1000);
-            setBoard(' ', this->row, this->col, 'n', -1000);
+        else if(r < before_r && c >before_c){
+            int en_id = this->board[before_r-1][before_c+1].id;
+            setBoard(player, r, c, role,id, -1000);
+            setBoard(' ', before_r-1, before_c+1, 'n',en_id, -1000);
+            setBoard(' ', before_r, before_c, 'n',0, -1000);
         }
-        else if(r < this->row && c < this->col){
-            setBoard(player, r, c, role, -1000);
-            setBoard(' ', this->row-1, this->col-1, 'n', -1000);
-            setBoard(' ', this->row, this->col, 'n', -1000);
+        else if(r <before_r && c < before_c){
+            int en_id = this->board[before_r-1][before_c-1].id;
+            setBoard(player, r, c, role,id, -1000);
+            setBoard(' ', before_r-1, before_c-1, 'n', en_id,-1000);
+            setBoard(' ', before_r, before_c, 'n',0, -1000);
         }else{}
-        this->row = r; //change the current head row
-        this->col = c; //change the current head col
+        before_r = r; //change the current head row
+        before_c = c; //change the current head col
     }
     //update king role
     for(int i = 0; i < 8; i++){
         for(int j = 0; j < 8; j++) {
+            if(i==0 && getPlayer(i,j) == 'B'){
+                int id = this->board[i][j].id;
+                setBoard('B',i,j,'k',id,-1000);
+            }
+            if(i==7 && getPlayer(i,j) == 'A'){
+                int id = this->board[i][j].id;
+                setBoard('A',i,j,'k',id,-1000);
+            }
         }
     }
     return 'B';
 }
 
 //Function to move for the B player
-char Checker::move_B(int r, int c, char player) {
-    int row_diff = abs(r-this->row);
-    int col_diff = abs(c-this->col);
+char Checker::move_B(int before_r, int before_c,int r, int c, char player) {
+    int id = this->board[before_r][before_c].id;
+    int row_diff = abs(r-before_r);
+    int col_diff = abs(c-before_c);
     if(row_diff == 1 && col_diff ==1){
         char role = this->board[r][c].role;
         //char player = this->board[r][c].player;
-        setBoard(player,r,c,role,-1000); // set the moving place
-        setBoard(' ',this->row,this->col,'n',-1000); //set current place as empty
-        this->row = r; //change the current head row
-        this->col = c; //change the current head col
+        setBoard(player,r,c,role,id,-1000); // set the moving place
+        setBoard(' ',before_r,before_c,'n',0,-1000); //set current place as empty
+        before_r = r; //change the current head row
+        before_c = c; //change the current head col
     }else{ // eat enemy
         char role = this->board[r][c].role;
         //char player = this->board[r][c].player;
-        setBoard(' ',r,c,'n',-1000);
-        if(r > this->row && c > this->col) {
-            setBoard(player, r, c, role, -1000);
-            setBoard(' ', this->row+1, this->col+1, 'n', -1000);
-            setBoard(' ', this->row, this->col, 'n', -1000);
+        setBoard(' ',r,c,'n',0,-1000);
+        if(r >before_r && c > before_c) {
+            int en_id = this->board[before_r+1][before_c+1].id;
+            setBoard(player, r, c, role,id, -1000);
+            setBoard(' ', before_r+1, before_c+1, 'n',en_id, -1000);
+            setBoard(' ', before_r, before_c, 'n',0, -1000);
         }
-        else if(r > this->row && c < this->col){
-            setBoard(player, r, c, role, -1000);
-            setBoard(' ', this->row+1, this->col-1, 'n', -1000);
-            setBoard(' ', this->row, this->col, 'n', -1000);
+        else if(r > before_r && c < before_c){
+            int en_id = this->board[before_r+1][before_c-1].id;
+            setBoard(player, r, c, role,id, -1000);
+            setBoard(' ', before_r+1, before_c-1,en_id, 'n', -1000);
+            setBoard(' ', before_r, before_c, 'n',0, -1000);
         }
-        else if(r < this->row && c > this->col){
-            setBoard(player, r, c, role, -1000);
-            setBoard(' ', this->row-1, this->col+1, 'n', -1000);
-            setBoard(' ', this->row, this->col, 'n', -1000);
+        else if(r < before_r && c >before_c){
+            int en_id = this->board[before_r-1][before_c+1].id;
+            setBoard(player, r, c, role,id, -1000);
+            setBoard(' ', before_r-1, before_c+1, 'n',en_id, -1000);
+            setBoard(' ', before_r, before_c, 'n',0, -1000);
         }
-        else if(r < this->row && c < this->col){
-            setBoard(player, r, c, role, -1000);
-            setBoard(' ', this->row-1, this->col-1, 'n', -1000);
-            setBoard(' ', this->row, this->col, 'n', -1000);
+        else if(r <before_r && c < before_c){
+            int en_id = this->board[before_r-1][before_c-1].id;
+            setBoard(player, r, c, role,id, -1000);
+            setBoard(' ', before_r-1, before_c-1, 'n', en_id,-1000);
+            setBoard(' ', before_r, before_c, 'n',0, -1000);
         }else{}
-        this->row = r; //change the current head row
-        this->col = c; //change the current head col
+        before_r = r; //change the current head row
+        before_c = c; //change the current head col
+    }
+    //update king role
+    for(int i = 0; i < 8; i++){
+        for(int j = 0; j < 8; j++) {
+            if(i==0 && getPlayer(i,j) == 'B'){
+                int id = this->board[i][j].id;
+                setBoard('B',i,j,'k',id,-1000);
+            }
+            if(i==7 && getPlayer(i,j) == 'A'){
+                int id = this->board[i][j].id;
+                setBoard('A',i,j,'k',id,-1000);
+            }
+        }
     }
     return 'A';
 }
 
 //Function which decides as to who should move
 /*** will perform move and change role, board ***/
-char Checker::move(int r, int c, char player) {
+char Checker::move(int before_r, int before_c, int r, int c, char player) {
     char v;
     if (player == 'A') {
-        v = move_A(r, c, player);
+        v = move_A(before_r, before_c, r, c, player);
     }
     else{
-        v = move_B(r, c, player);
+        v = move_B(before_r, before_c, r, c, player);
     }
     return v;
 }
@@ -211,13 +249,18 @@ char Checker::getPlayer(int r, int c) {
     return this->board[r][c].player;
 }
 
+
+char Checker::getRole(int r, int c) {
+    return this->board[r][c].role;
+}
+
 //Function to display the board
 void Checker::displayBoard() {
     cout << "***** DISPLAY BOARD *****\n";
 //    cout << "xxxx|" << getPlayer(0,0) << "| ";
     for(int i = 0; i < 8; i++){
         for( int j = 0; j < 8; j++) {
-            cout << "|" << getPlayer(i,j) << "| ";
+            cout << "|" << getPlayer(i,j) << getRole(i,j) << "| ";
         }
         cout << endl;
     }

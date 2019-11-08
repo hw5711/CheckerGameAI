@@ -7,13 +7,6 @@
 
 using namespace std;
 
-//struct StepInfo{
-//    int heuristic_value;
-//    int row;
-//    int col;
-//    char role;
-//};
-
 class GameTree {
 
 public:
@@ -21,7 +14,9 @@ public:
     char player;
     Checker board_status; //contains board status including each location info
     int number_of_children;
-    GameTree *children[4]; // one step has 4 directions choices(man+king)
+    GameTree *children[48]; // one step has 4 directions choices(man+king)
+    int row;//the row hold the best heuristic value
+    int col;//the col hold the best heuristic value
 
     GameTree();
 
@@ -43,11 +38,11 @@ public:
 
     int evaluation();
 
-    int get_hole_number();
-
     void copyBoardStatus(Checker kb);
 
     bool threaten(int, int, Checker, char);
+
+    int *getChildLocation(Checker);
 };
 
 

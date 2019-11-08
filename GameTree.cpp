@@ -11,8 +11,8 @@ extern int nodes_generated, nodes_expanded;
 GameTree::GameTree() {
 //    board_status.board.heuristic_value = -1000;
     player = 'n';
-    number_of_children = 0;
-    for (int i = 0; i < 4; i++) { // each node can have at most 4 children(directions)
+    //number_of_children = 0;
+    for (int i = 0; i < 48; i++) { // each node can have at most 4 children(directions)
         children[i] = NULL;
     }
 }
@@ -20,8 +20,8 @@ GameTree::GameTree() {
 GameTree::GameTree(char p) {
     player = p;
 //    board_status.board.heuristic_value = -1000;
-    number_of_children = 0;
-    for (int i = 0; i < 4; i++) { // go through all board
+    //number_of_children = 0;
+    for (int i = 0; i < 48; i++) { // go through all board
         children[i] = NULL;
     }
 }
@@ -32,8 +32,8 @@ void GameTree::create_node(char p) {
 
 void GameTree::set_heuristic_value(int value, int r, int c) {
     this->board_status.heuristic_value = value;
-    this->board_status.row = r;
-    this->board_status.col = c;
+    this->row = r;
+    this->col = c;
 }
 
 
@@ -196,7 +196,7 @@ bool GameTree::deepenough(int depth) {
     if (board_status.get_heuristic_value_board() != -1000)
         return board_status.get_heuristic_value_board();
     //if the depth is greater than 3 or a player has won the game then it is deep enough.
-    if (depth >= 3 || board_status.checkWin() != 'N'){
+    if (depth >= 2 || board_status.checkWin() != 'N'){
         return true;
     } else {
         nodes_expanded++;
@@ -215,17 +215,18 @@ void GameTree::print(GameTree *node, int nestLevel) {
     }
 }
 
-int GameTree::get_hole_number() {
-    for (int i = 0; i < 6; i++) {
-        if (children[i] == NULL)
-            continue;
-        if (children[i]->board_status.get_heuristic_value_board() == board_status.get_heuristic_value_board()) {
-            cout << "hole #" << i;
-            return i;
-        }
-    }
-    return -1;
-}
+//int GameTree::get_hole_number() {
+//    for (int i = 0; i < 6; i++) {
+//        if (children[i] == NULL) {
+//            continue;
+//        }
+//        if (children[i]->board_status.get_heuristic_value_board() == board_status.get_heuristic_value_board()) {
+//            cout << "hole #" << i;
+//            return i;
+//        }
+//    }
+//    return -1;
+//}
 
 /////////////////////////////////////
 ///       BURAK'S EVALUATION      ///
@@ -325,8 +326,8 @@ void GameTree::copyBoardStatus(Checker kb) {
     for(int i=0; i<8; i++){
         for(int j=0; j<8; j++){
             this->board_status.board[i][j] = kb.board[i][i];
-            this->board_status.row = kb.row;
-            this->board_status.col = kb.col;
+//            this->board_status.row = kb.row;
+//            this->board_status.col = kb.col;
             this->board_status.heuristic_value = kb.heuristic_value;
         }
     }
@@ -436,3 +437,21 @@ bool GameTree::threaten(int i, int j, Checker checker, char player){
 //     set_heuristic_value(value);
 //     return value;
 
+
+int * GameTree::getChildLocation(Checker child){
+    int *ptr = NULL;
+    //Checker cur_board = this->board_status;
+    for(int i=0; i<8; i++){
+        for(int j=0; j<8; j++){
+            if(this->board_status.board[i][j].id != child.board[i][j].id && this->board_status.board[i][j].player != ' '){
+                *(ptr) = i;
+                *(ptr+1) = j;
+            }
+            else if(this->board_status.board[i][j].id != child.board[i][j].id && child.board[i][j].player != ' '){
+                *(ptr+2) = i;
+                *(ptr+3) = j;
+            }else{}
+        }
+    }
+    return ptr; //store location before and after move of each child
+}

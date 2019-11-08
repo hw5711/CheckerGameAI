@@ -9,12 +9,12 @@ Obj MinMaxAB(GameTree *board, int depth, char player, int UseT, int PassT, int E
     Obj obj;
     int newVal;
     char NewPlayer;
-    cout<<"test1: ";
+    //cout<<"test1: " << board->board_status.row;
     if (board->deepenough(depth)) {
         obj.heuristic_value = board->evaluation();//will generate moved location
         cout<<"\nEvaluation value is : "<< obj.heuristic_value<<endl;
-        obj.row = board->board_status.row;
-        obj.col = board->board_status.col;
+//        obj.row = board->board_status.row;
+//        obj.col = board->board_status.col;
 
         if (player == 'B')
             obj.heuristic_value = -obj.heuristic_value;
@@ -25,10 +25,10 @@ Obj MinMaxAB(GameTree *board, int depth, char player, int UseT, int PassT, int E
 
     Obj obj1;
     obj1.heuristic_value = 0;
-    obj1.row = board->board_status.row;
-    obj1.col = board->board_status.col;
+    obj1.row = 0;
+    obj1.col = 0;
 
-    for (int i = 0; i < 4; i++) { // need to update
+    for (int i = 0; i < 48; i++) { // need to update
         if (board->children[i] == NULL)
             continue;
         if (player == 'A')
@@ -49,6 +49,6 @@ Obj MinMaxAB(GameTree *board, int depth, char player, int UseT, int PassT, int E
         }
     }
     obj1.heuristic_value = PassT;
-    //board->set_heuristic_value(obj1);
+    //board->set_heuristic_value(obj.heuristic_value, obj.row, obj.col);
     return obj1;
 }
