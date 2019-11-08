@@ -33,7 +33,7 @@ void MinMax() {
         steps++;
         GameTree *head = new GameTree(player);
         head->copyBoardStatus(ck); //store current node info
-        cout <<" \ntest 5: "<< head->board_status.row;
+        //cout <<" \ntest 5: "<< head->board_status.row;
         cout << "*****Turn*****" << player << endl;
 
         Step hole;
@@ -83,10 +83,12 @@ void AlphaBeta() {
         //head will contain best heristic value and location
         Step hole;
         hole.heuristic_value = head->board_status.heuristic_value; // need to return new place and heuristic_value
-        hole.row = head->board_status.row;
-        hole.col = head->board_status.col;
-
-        player = ck->move(hole.row, hole.col, player);
+        int *addr = NULL;
+        addr = head->getChildLocation(ck);
+        hole.row = *(addr+2);
+        hole.col = *(addr+3);
+        cout << "MOVE TO :hole row # " << hole.row <<  "\nhole col # "<< hole.col << endl;
+        player = ck->move(*addr, *(addr+1),*(addr+2),*(addr+3), player);
         ck->displayBoard();
         win = ck->checkWin();
     }
