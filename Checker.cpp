@@ -260,7 +260,12 @@ void Checker::displayBoard() {
 //    cout << "xxxx|" << getPlayer(0,0) << "| ";
     for(int i = 0; i < 8; i++){
         for( int j = 0; j < 8; j++) {
+            if(getPlayer(i,j) != ' '){
             cout << "|" << getPlayer(i,j) << getRole(i,j) << "| ";
+            }
+            else{
+                cout << " - ";
+            }
         }
         cout << endl;
     }

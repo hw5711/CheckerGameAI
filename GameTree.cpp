@@ -11,7 +11,9 @@ extern int nodes_generated, nodes_expanded;
 GameTree::GameTree() {
 //    board_status.board.heuristic_value = -1000;
     player = 'n';
-    //number_of_children = 0;
+    number_of_children = 0;
+    row = -1;
+    col = -1;
     for (int i = 0; i < 48; i++) { // each node can have at most 4 children(directions)
         children[i] = NULL;
     }
@@ -20,7 +22,9 @@ GameTree::GameTree() {
 GameTree::GameTree(char p) {
     player = p;
 //    board_status.board.heuristic_value = -1000;
-    //number_of_children = 0;
+    number_of_children = 0;
+    row = -1;
+    col = -1;
     for (int i = 0; i < 48; i++) { // go through all board
         children[i] = NULL;
     }
@@ -196,7 +200,7 @@ bool GameTree::deepenough(int depth) {
     if (board_status.get_heuristic_value_board() != -1000)
         return board_status.get_heuristic_value_board();
     //if the depth is greater than 3 or a player has won the game then it is deep enough.
-    if (depth >= 2 || board_status.checkWin() != 'N'){
+    if (depth >= 1 || board_status.checkWin() != 'N'){
         return true;
     } else {
         nodes_expanded++;
@@ -325,9 +329,7 @@ int GameTree::evaluation() { //
 void GameTree::copyBoardStatus(Checker kb) {
     for(int i=0; i<8; i++){
         for(int j=0; j<8; j++){
-            this->board_status.board[i][j] = kb.board[i][i];
-//            this->board_status.row = kb.row;
-//            this->board_status.col = kb.col;
+            this->board_status.board[i][j] = kb.board[i][j];
             this->board_status.heuristic_value = kb.heuristic_value;
         }
     }
