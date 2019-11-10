@@ -93,14 +93,14 @@ char Checker::move_A(int before_r, int before_c, int r, int c, char player) {
     int row_diff = abs(r-before_r);
     int col_diff = abs(c-before_c);
     if(row_diff == 1 && col_diff ==1){
-        char role = this->board[r][c].role;
+        char role = this->board[before_r][before_c].role;
         //char player = this->board[r][c].player;
         setBoard(player,r,c,role,id,-1000); // set the moving place
         setBoard(' ',before_r,before_c,'n',0,-1000); //set current place as empty
         before_r = r; //change the current head row
         before_c = c; //change the current head col
     }else{ // eat enemy
-        char role = this->board[r][c].role;
+        char role = this->board[before_r][before_c].role;
         //char player = this->board[r][c].player;
         setBoard(' ',r,c,'n',0,-1000);
         if(r >before_r && c > before_c) {
@@ -152,14 +152,14 @@ char Checker::move_B(int before_r, int before_c,int r, int c, char player) {
     int row_diff = abs(r-before_r);
     int col_diff = abs(c-before_c);
     if(row_diff == 1 && col_diff ==1){
-        char role = this->board[r][c].role;
+        char role = this->board[before_r][before_c].role;
         //char player = this->board[r][c].player;
         setBoard(player,r,c,role,id,-1000); // set the moving place
         setBoard(' ',before_r,before_c,'n',0,-1000); //set current place as empty
         before_r = r; //change the current head row
         before_c = c; //change the current head col
     }else{ // eat enemy
-        char role = this->board[r][c].role;
+        char role = this->board[before_r][before_c].role;
         //char player = this->board[r][c].player;
         setBoard(' ',r,c,'n',0,-1000);
         if(r >before_r && c > before_c) {

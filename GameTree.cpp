@@ -238,7 +238,7 @@ Location GameTree::jump(int i, int j, Checker checker, char player){
 void GameTree::add_all_children(char player) {
     //go through the every potential locations of enemy and store it to created children array
     //if it's available, add it into the child list
-    cout<<"\ntest add all children1: " << player << endl;
+   // cout<<"\ntest add all children1: " << player << endl;
     Location location;
     int children_num = 0;
     for(int i = 0; i < 8; i++){
@@ -300,7 +300,7 @@ void GameTree::add_all_children(char player) {
 //                this->board_status.displayBoard();
 //                cout << endl;
                 if (available_to_jump(location) == true) {
-                    cout<<"\ncurrent ture situation-B : "<< i<<","<<j<<endl;
+//                    cout<<"\ncurrent ture situation-B : "<< i<<","<<j<<endl;
                     if (this->board_status.board[i][j].role == 'm') {
                             if (location.l1 != -2 && location.l2 != -2) {
                                 children[children_num] = new GameTree(p);
@@ -345,14 +345,14 @@ void GameTree::add_all_children(char player) {
                 }else{}
             }
         }
-    cout << "\ntest11--add all children(number): " << children_num << endl;
+   // cout << "\ntest11--add all children(number): " << children_num << endl;
     }
 
 bool GameTree::deepenough(int depth, char player) {
 //    if (this->board_status.get_heuristic_value_board() != -1000)
 //        return board_status.get_heuristic_value_board();
     //if the depth is greater than 3 or a player has won the game then it is deep enough.
-    //cout<<"\ntest 8---deepenough: "<< this->board_status.checkWin()<<endl;
+    cout<<"\ntest 8---deepenough: "<< this->board_status.checkWin()<<endl;
     if (depth >= 3 || this->board_status.checkWin() != 'N'){
         return true;
     } else {
@@ -379,6 +379,7 @@ void GameTree::print(GameTree *node, int nestLevel) {
 int GameTree::evaluation( char player) {
     int value=0;
     if (player == 'A') {
+        cout<<"test -- evaluationA: "<<endl;
         //check piece
         for (int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
@@ -393,8 +394,7 @@ int GameTree::evaluation( char player) {
                 }else{}
             }
         }
-        cout<<"\ntest--evaluation1: "<< value<<endl;
-
+//        cout<<"\ntest--evaluation1: "<< value<<endl;
         //check side
         for (int i = 4; i < 8; i++) {
             for (int j = 4; j < 8; j++) {
@@ -403,7 +403,7 @@ int GameTree::evaluation( char player) {
                 }
             }
         }
-        cout<<"\ntest--evaluation2: "<< value<<endl;
+//        cout<<"\ntest--evaluation2: "<< value<<endl;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 if (board_status.board[i][j].player == 'B') {
@@ -411,7 +411,7 @@ int GameTree::evaluation( char player) {
                 }
             }
         }
-        cout<<"\ntest--evaluation3: "<< value<<endl;
+//        cout<<"\ntest--evaluation3: "<< value<<endl;
         //threatened
         for (int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
@@ -422,9 +422,10 @@ int GameTree::evaluation( char player) {
                 }else{}
             }
         }
-        cout<<"\ntest--evaluation4: "<< value<<endl;
+//        cout<<"\ntest--evaluation4: "<< value<<endl;
 
     } else if (player == 'B') {
+        cout<<"test -- evaluationB : "<<endl;
         //check piece
         for (int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
@@ -439,7 +440,7 @@ int GameTree::evaluation( char player) {
                 }else{}
             }
         }
-
+        cout<<"\ntest--evaluation1: "<< value<<endl;
         //check side
         for (int i = 4; i < 8; i++) {
             for (int j = 4; j < 8; j++) {
@@ -448,6 +449,7 @@ int GameTree::evaluation( char player) {
                 }
             }
         }
+//        cout<<"\ntest--evaluation2: "<< value<<endl;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 if (board_status.board[i][j].player == 'A') {
@@ -455,7 +457,7 @@ int GameTree::evaluation( char player) {
                 }
             }
         }
-
+//        cout<<"\ntest--evaluation3: "<< value<<endl;
         //threatened
         for (int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
@@ -466,7 +468,7 @@ int GameTree::evaluation( char player) {
                 }else{}
             }
         }
-
+//        cout<<"\ntest--evaluation4: "<< value<<endl;
     }
 
     //set_heuristic_value(value);
