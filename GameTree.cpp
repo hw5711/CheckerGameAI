@@ -43,21 +43,22 @@ void GameTree::set_heuristic_value(int value, int r, int c) {
 
 //test if can jump more than once and return the new location
 int * GameTree::jump(int i, int j, Checker checker, char player){
-    int *ptr = NULL;
-    int arr[8]={-1,-1,-1,-1,-1,-1,-1,-1};
+//    cout << "\ntest 5 jump :"<< i << ","<<j<<"role: "<<checker.board[i][j].role<<endl;
+    int arr[8]={-2,-2,-2,-2,-2,-2,-2,-2};
     char p = (player == 'A')? 'B' : 'A';
-    if(checker.board[i][j].role == 'm'){
-        int arr[4]={-1,-1,-1,-1};
-
+    if(checker.board[i][j].role == 'm' && checker.board[i][j].player == player){
+//        arr[4]={-1,-1,-1,-1};
         if(i+1<=7 && j-1>=0){ //check down left first
             if(checker.board[i+1][j-1].player == ' '){
                 arr[0] = i+1;
                 arr[1] = j-1;
+//                cout<<"fit condition " << i+1 << " % " << j-1 << endl;
             }
             else if(checker.board[i+1][j-1].player == p){//check down right first
-                if(i+2<=7 && j-2<=7 && checker.board[i+2][j-2].player == ' '){
+                if(i+2<=7 && j-2>=0 && checker.board[i+2][j-2].player == ' '){
                     arr[0] = i+2;
                     arr[1] = j-2;
+//                    cout<<"fit condition " << i+2 << " % " << j-2 << endl;
                 }
             }else{}
         }
@@ -66,26 +67,30 @@ int * GameTree::jump(int i, int j, Checker checker, char player){
             if(checker.board[i+1][j+1].player == ' '){
                 arr[2] = i+1;
                 arr[3] = j+1;
+//                cout<<"fit condition " << i+1 << " % " << j+1 << endl;
             }
             else if(checker.board[i+1][j+1].player == p){//check down right first
-                if(i+2<=7 && j+2<=7 && checker.board[i+2][j-2].player == ' '){
+                if(i+2<=7 && j+2<=7 && checker.board[i+2][j+2].player == ' '){
                     arr[2] = i+2;
-                    arr[3] = j-2;
+                    arr[3] = j+2;
+//                    cout<<"fit condition " << i+2 << " % " << j+2 << endl;
                 }
             }else{}
         }
-    }else{
-        int arr[8]={-1,-1,-1,-1,-1,-1,-1,-1};
+    }else if(checker.board[i][j].role == 'k' && checker.board[i][j].player == player){
+       // int arr[8]={-1,-1,-1,-1,-1,-1,-1,-1};
 
         if(i+1<=7 && j-1>=0){ //check down left first
             if(checker.board[i+1][j-1].player == ' '){
                 arr[0] = i+1;
                 arr[1] = j-1;
+//                cout<<"fit condition " << i+1 << " % " << j-1 << endl;
             }
             else if(checker.board[i+1][j-1].player == p){//check down right first
-                if(i+2<=7 && j-2<=7 && checker.board[i+2][j-2].player == ' '){
+                if(i+2<=7 && j-2>=0 && checker.board[i+2][j-2].player == ' '){
                     arr[0] = i+2;
                     arr[1] = j-2;
+//                    cout<<"fit condition " << i+2 << " % " << j-2 << endl;
                 }
             }else{}
         }
@@ -94,11 +99,13 @@ int * GameTree::jump(int i, int j, Checker checker, char player){
             if(checker.board[i+1][j+1].player == ' '){
                 arr[2] = i+1;
                 arr[3] = j+1;
+//                cout<<"fit condition " << i+1 << " % " << j+1 << endl;
             }
             else if(checker.board[i+1][j+1].player == p){//check down right first
-                if(i+2<=7 && j+2<=7 && checker.board[i+2][j-2].player == ' '){
+                if(i+2<=7 && j+2<=7 && checker.board[i+2][j+2].player == ' '){
                     arr[2] = i+2;
-                    arr[3] = j-2;
+                    arr[3] = j+2;
+//                    cout<<"fit condition " << i+2 << " % " << j+2 << endl;
                 }
             }else{}
         }
@@ -107,11 +114,13 @@ int * GameTree::jump(int i, int j, Checker checker, char player){
             if(checker.board[i-1][j-1].player == ' '){
                 arr[4] = i-1;
                 arr[5] = j-1;
+//                cout<<"fit condition " << i-1 << " % " << j-1 << endl;
             }
             else if(checker.board[i-1][j-1].player == p){//check down right first
                 if(i-2>=0 && j-2>=0 && checker.board[i-2][j-2].player == ' '){
                     arr[4] = i-2;
                     arr[5] = j-2;
+//                    cout<<"fit condition " << i-2 << " % " << j-2 << endl;
                 }
             }else{}
         }
@@ -120,17 +129,21 @@ int * GameTree::jump(int i, int j, Checker checker, char player){
             if(checker.board[i-1][j+1].player == ' '){
                 arr[6] = i-1;
                 arr[7] = j+1;
+//                cout<<"fit condition " << i-1 << " % " << j+1 << endl;
             }
             else if(checker.board[i-1][j+1].player == p){//check down right first
                 if(i-2>=0 && j+2<=7 && checker.board[i-2][j+2].player == ' '){
                     arr[6] = i-2;
                     arr[7] = j+2;
+//                    cout<<"fit condition " << i-2 << " % " << j+2 << endl;
                 }
             }else{}
         }
-    }
-    ptr = arr;
-    return ptr;
+    }else if(checker.board[i][j].role == 'n' && checker.board[i][j].player == player){}
+    else{}
+//    cout<<"\ntest9---jump: "<< arr[0]<<"--/"<<arr[1]<<"--/" <<arr[2]
+//        <<"--/"<<arr[3]<<"--/" <<arr[4]<<"--/"<<arr[5]<<"--/" <<arr[6]<<"--/"<<arr[7];
+    return arr;
     }
 
 
@@ -138,20 +151,27 @@ int * GameTree::jump(int i, int j, Checker checker, char player){
 void GameTree::add_all_children() {
     //go through the every potential locations of enemy and store it to created children array
     //if it's available, add it into the child list
-    int *location = NULL;
+    int *location = NULL; //stores 8 places of available jumps
+    cout << "test 4--- add all children \n";
     int children_num = 0;
     for(int i = 0; i < 8; i++){
         for(int j = 0; j < 8; j++){
-
             if(this->board_status.board[i][j].player == 'A'){
                 char p = (player == 'A') ? 'B' : 'A';
                 location = jump(i,j,this->board_status,'A');
+//                cout<<"\ntest10---add-all-children: "<< location[0]<<"--/"<<location[1]<<"--/" <<location[2]
+//                    <<"--/"<<location[3]<<"--/" <<location[4]<<"--/"<<location[5]<<"--/" <<location[6]<<"--/"<<location[7];
+                if(available_to_jump(location) == true){
+                    continue;
+                }
+                cout<<"\ntest11--add all children(number): "<< children_num<<endl;
+                //use location to perform jumps and generate children
                 if(this->board_status.board[i][j].role == 'm'){
                     for(int k=0; k<4; k+=2){
                         if(*(location+k)!= -1){
                             children[children_num] = new GameTree(p);
                             children[children_num]->board_status = this->board_status;
-                            children[children_num]->board_status.move(row,col, *(location+k), *(location+k+1),'A');
+                            children[children_num]->board_status.move(i,j, *(location+k), *(location+k+1),'A');
                             children_num++;
                         }
                     }
@@ -161,7 +181,7 @@ void GameTree::add_all_children() {
                         if(*(location+k)!= -1){
                             children[children_num] = new GameTree(p);
                             children[children_num]->board_status = this->board_status;
-                            children[children_num]->board_status.move(row, col,*(location+k), *(location+k+1),'A');
+                            children[children_num]->board_status.move(i, j,*(location+k), *(location+k+1),'A');
                             children_num++;
                         }
                     }
@@ -175,7 +195,7 @@ void GameTree::add_all_children() {
                         if(*(location+k)!= -1){
                             children[children_num] = new GameTree(p);
                             children[children_num]->board_status = this->board_status;
-                            children[children_num]->board_status.move(row, col, *(location+k), *(location+k+1),'B');
+                            children[children_num]->board_status.move(i, j, *(location+k), *(location+k+1),'B');
                             children_num++;
                         }
                     }
@@ -185,7 +205,7 @@ void GameTree::add_all_children() {
                         if(*(location+k)!= -1){
                             children[children_num] = new GameTree(p);
                             children[children_num]->board_status = this->board_status;
-                            children[children_num]->board_status.move(row, col, *(location+k), *(location+k+1),'B');
+                            children[children_num]->board_status.move(i, j, *(location+k), *(location+k+1),'B');
                             children_num++;
                         }
                     }
@@ -197,10 +217,11 @@ void GameTree::add_all_children() {
 }
 
 bool GameTree::deepenough(int depth) {
-    if (board_status.get_heuristic_value_board() != -1000)
-        return board_status.get_heuristic_value_board();
+//    if (this->board_status.get_heuristic_value_board() != -1000)
+//        return board_status.get_heuristic_value_board();
     //if the depth is greater than 3 or a player has won the game then it is deep enough.
-    if (depth >= 1 || board_status.checkWin() != 'N'){
+    cout<<"\ntest 8---deepenough: "<< this->board_status.checkWin()<<endl;
+    if (depth >= 2 || this->board_status.checkWin() != 'N'){
         return true;
     } else {
         nodes_expanded++;
@@ -218,19 +239,6 @@ void GameTree::print(GameTree *node, int nestLevel) {
         print(node->children[i], nestLevel + 1);
     }
 }
-
-//int GameTree::get_hole_number() {
-//    for (int i = 0; i < 6; i++) {
-//        if (children[i] == NULL) {
-//            continue;
-//        }
-//        if (children[i]->board_status.get_heuristic_value_board() == board_status.get_heuristic_value_board()) {
-//            cout << "hole #" << i;
-//            return i;
-//        }
-//    }
-//    return -1;
-//}
 
 /////////////////////////////////////
 ///       BURAK'S EVALUATION      ///
@@ -439,7 +447,6 @@ bool GameTree::threaten(int i, int j, Checker checker, char player){
 //     set_heuristic_value(value);
 //     return value;
 
-
 int * GameTree::getChildLocation(Checker child){
     int *ptr = NULL;
     //Checker cur_board = this->board_status;
@@ -456,4 +463,14 @@ int * GameTree::getChildLocation(Checker child){
         }
     }
     return ptr; //store location before and after move of each child
+}
+
+bool GameTree::available_to_jump(int *arr){
+
+    for(int count=0; count<8; count++){
+        if(arr[count] != -2){
+            return true;
+        }
+    }
+    return false;
 }

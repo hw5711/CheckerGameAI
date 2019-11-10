@@ -50,7 +50,7 @@ void MinMax() {
         hole.heuristic_value = head->board_status.heuristic_value; // need to return new place and heuristic_value
         cout <<" \ntest 4: "<< hole.heuristic_value;
         int *addr = NULL;
-        addr = head->getChildLocation(ck);　　　
+        addr = head->getChildLocation(ck);
         hole.row = *(addr+2);
         hole.col = *(addr+3);
         cout << "MOVE TO :hole row # " << hole.row <<  "\nhole col # "<< hole.col << endl;

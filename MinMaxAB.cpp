@@ -9,14 +9,13 @@ Obj MinMaxAB(GameTree *board, int depth, char player, int UseT, int PassT, int E
     Obj obj;
     int newVal;
     char NewPlayer;
-    //cout<<"test1: " << board->board_status.row;
-    if (board->deepenough(depth)) {
+//    cout<<"test1: " << board->
+        if (board->deepenough(depth)) {
         obj.heuristic_value = board->evaluation();//will generate moved location
         cout<<"\nEvaluation value is : "<< obj.heuristic_value<<endl;
-
-        if (player == 'B')
+        if (player == 'B') {
             obj.heuristic_value = -obj.heuristic_value;
-
+        }
         board->set_heuristic_value(obj.heuristic_value, obj.row, obj.col);
         return obj;
     }

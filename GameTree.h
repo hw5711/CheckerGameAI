@@ -43,6 +43,8 @@ public:
     bool threaten(int, int, Checker, char);
 
     int *getChildLocation(Checker);
+
+    bool available_to_jump(int *);
 };
 
 
