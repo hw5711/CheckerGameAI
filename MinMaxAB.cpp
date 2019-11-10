@@ -5,25 +5,23 @@
 using namespace std;
 
 
-Obj MinMaxAB(GameTree *board, int depth, char player, int UseT, int PassT, int EF) {
-    Obj obj;
+int MinMaxAB(GameTree *board, int depth, char player, int UseT, int PassT, int EF) {
+    int obj;
     int newVal;
     char NewPlayer;
-//    cout<<"test1: " << board->
-        if (board->deepenough(depth,player)) {
-        obj.heuristic_value = board->evaluation();//will generate moved location
-        cout<<"\nEvaluation value is : "<< obj.heuristic_value<<endl;
+   // cout<<"test--MINMAXAB: "<< player << endl;
+    if (board->deepenough(depth,player)) {
+        obj = board->evaluation(player);//will generate moved location
+       // cout<<"\nEvaluation value is : "<<obj<<endl;
         if (player == 'B') {
-            obj.heuristic_value = -obj.heuristic_value;
+            obj = -obj;
         }
-        board->set_heuristic_value(obj.heuristic_value, obj.row, obj.col);
+        board->set_heuristic_value(obj);
+        cout<<"\ntest minimaxab --- obj: "<< obj<< endl;
         return obj;
     }
-
-    Obj obj1;
-    obj1.heuristic_value = 0;
-    obj1.row = 0;
-    obj1.col = 0;
+    int obj1 = 0;
+   // obj1.heuristic_value = 0;
 
     for (int i = 0; i < 48; i++) { // need to update
         if (board->children[i] == NULL)
@@ -34,18 +32,19 @@ Obj MinMaxAB(GameTree *board, int depth, char player, int UseT, int PassT, int E
             NewPlayer = 'A';
 
         obj1 = MinMaxAB(board->children[i], depth + 1, NewPlayer, -PassT, -UseT, EF);
-        newVal = -obj1.heuristic_value;
+
+        newVal = -obj1;
 
         if (newVal > PassT) {
-            board->set_heuristic_value(obj.heuristic_value, obj.row, obj.col);
+            board->set_heuristic_value(obj);
             PassT = newVal;
         }
         if (PassT >= UseT) {
-            obj1.heuristic_value = PassT;
+            obj1 = PassT;
             return obj1;
         }
     }
-    obj1.heuristic_value = PassT;
+    obj1 = PassT;
     //board->set_heuristic_value(obj.heuristic_value, obj.row, obj.col);
     return obj1;
 }

@@ -40,10 +40,8 @@ void MinMax() {
         int evaluation2 = 2;
 
         if(shift %2 == 1) {
-            cout<<"test 2";
             MinMaxAB(head, 1, player, 10000, -10000, evaluation1);
         }else{
-            cout<<"test 3";
             MinMaxAB(head, 1, player, 10000, -10000, evaluation2);
         }
 

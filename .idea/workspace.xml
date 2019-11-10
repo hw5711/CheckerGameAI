@@ -17,11 +17,13 @@
       <change beforePath="$PROJECT_DIR$/GameTree.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/GameTree.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GameTree.h" beforeDir="false" afterPath="$PROJECT_DIR$/GameTree.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MinMaxAB.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/MinMaxAB.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinMaxAB.h" beforeDir="false" afterPath="$PROJECT_DIR$/MinMaxAB.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/main.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CheckerGameAI" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CheckerGameAI" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +78,7 @@
       <workItem from="1572211553446" duration="230000" />
       <workItem from="1572211821581" duration="148000" />
       <workItem from="1572211990539" duration="64000" />
-      <workItem from="1572212220753" duration="108676000" />
+      <workItem from="1572212220753" duration="120382000" />
     </task>
     <servers />
   </component>
