@@ -12,8 +12,7 @@ GameTree::GameTree() {
 //    board_status.board.heuristic_value = -1000;
     player = 'n';
     number_of_children = 0;
-    row = -1;
-    col = -1;
+
     for (int i = 0; i < 48; i++) { // each node can have at most 4 children(directions)
         children[i] = NULL;
     }
@@ -23,8 +22,7 @@ GameTree::GameTree(char p) {
     player = p;
 //    board_status.board.heuristic_value = -1000;
     number_of_children = 0;
-    row = -1;
-    col = -1;
+
     for (int i = 0; i < 48; i++) { // go through all board
         children[i] = NULL;
     }
@@ -352,7 +350,7 @@ bool GameTree::deepenough(int depth, char player) {
 //    if (this->board_status.get_heuristic_value_board() != -1000)
 //        return board_status.get_heuristic_value_board();
     //if the depth is greater than 3 or a player has won the game then it is deep enough.
-    cout<<"\ntest 8---deepenough: "<< this->board_status.checkWin()<<endl;
+   // cout<<"\ntest 8---deepenough: "<< this->board_status.checkWin()<<endl;
     if (depth >= 3 || this->board_status.checkWin() != 'N'){
         return true;
     } else {
@@ -379,7 +377,7 @@ void GameTree::print(GameTree *node, int nestLevel) {
 int GameTree::evaluation( char player) {
     int value=0;
     if (player == 'A') {
-        cout<<"test -- evaluationA: "<<endl;
+//        cout<<"test -- evaluationA: "<<endl;
         //check piece
         for (int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
@@ -425,7 +423,7 @@ int GameTree::evaluation( char player) {
 //        cout<<"\ntest--evaluation4: "<< value<<endl;
 
     } else if (player == 'B') {
-        cout<<"test -- evaluationB : "<<endl;
+//        cout<<"test -- evaluationB : "<<endl;
         //check piece
         for (int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
@@ -440,7 +438,7 @@ int GameTree::evaluation( char player) {
                 }else{}
             }
         }
-        cout<<"\ntest--evaluation1: "<< value<<endl;
+//        cout<<"\ntest--evaluation1: "<< value<<endl;
         //check side
         for (int i = 4; i < 8; i++) {
             for (int j = 4; j < 8; j++) {
@@ -588,22 +586,27 @@ bool GameTree::threaten(int i, int j, Checker checker, char player){
 //     set_heuristic_value(value);
 //     return value;
 
-int * GameTree::getChildLocation(Checker child){
-    int *ptr = NULL;
+void GameTree::getChildLocation(Checker child){
+    Add address;
     //Checker cur_board = this->board_status;
+//    cout<<'\n get Child location1(child board) \n';
+//    child.displayBoard();
+//    cout<<'\n get Child location1(father board) \n';
+//    this->board_status.displayBoard();
+//    cout << endl;
     for(int i=0; i<8; i++){
         for(int j=0; j<8; j++){
             if(this->board_status.board[i][j].id != child.board[i][j].id && this->board_status.board[i][j].player != ' '){
-                *(ptr) = i;
-                *(ptr+1) = j;
+                address.row_before= i;
+                address.col_before = j;
             }
-            else if(this->board_status.board[i][j].id != child.board[i][j].id && child.board[i][j].player != ' '){
-                *(ptr+2) = i;
-                *(ptr+3) = j;
-            }else{}
+           if(this->board_status.board[i][j].id != child.board[i][j].id && child.board[i][j].player != ' '){
+               address.row_after = i;
+               address.col_after = j;
+            }
         }
     }
-    return ptr; //store location before and after move of each child
+    this->address = address; //store location before and after move of each child
 }
 
 bool GameTree::available_to_jump(Location location){
@@ -625,4 +628,18 @@ bool GameTree::available_to_jump(Location location){
     }
 
     return false;
+}
+
+int GameTree::getBeforeRow(){
+    return this->address.row_before;
+}
+
+int GameTree::getBeforeCol(){
+    return this->address.col_before;
+}
+int GameTree::getAfterRow(){
+    return this->address.row_after;
+}
+int GameTree::getAfterCol(){
+    return this->address.col_after;
 }

@@ -18,6 +18,12 @@ struct Location{
     int l8;
 };
 
+struct Add{
+    int row_before;
+    int col_before;
+    int row_after;
+    int col_after;
+};
 
 class GameTree {
 
@@ -27,8 +33,9 @@ public:
     Checker board_status; //contains board status including each location info
     int number_of_children;
     GameTree *children[48]; // one step has 4 directions choices(man+king)
-    int row;//the row hold the best heuristic value
-    int col;//the col hold the best heuristic value
+//    int row;//the row hold the best heuristic value
+//    int col;//the col hold the best heuristic value
+    Add address;
 
     GameTree();
 
@@ -54,9 +61,17 @@ public:
 
     bool threaten(int, int, Checker, char);
 
-    int *getChildLocation(Checker);
+    void getChildLocation(Checker);
 
     bool available_to_jump(Location);
+
+    int getBeforeRow();
+
+    int getBeforeCol();
+
+    int getAfterRow();
+
+    int getAfterCol();
 };
 
 

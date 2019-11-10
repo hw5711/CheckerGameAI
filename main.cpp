@@ -46,13 +46,12 @@ void MinMax() {
         }
 
         hole.heuristic_value = head->board_status.heuristic_value; // need to return new place and heuristic_value
-        cout <<" \ntest 4: "<< hole.heuristic_value;
-        int *addr = NULL;
-        addr = head->getChildLocation(ck);
-        hole.row = *(addr+2);
-        hole.col = *(addr+3);
-        cout << "MOVE TO :hole row # " << hole.row <<  "\nhole col # "<< hole.col << endl;
-        player = ck->move(*addr, *(addr+1),*(addr+2),*(addr+3), player);
+//        cout <<" \ntest 4: "<< hole.heuristic_value;
+//        Address addr;
+        head->getChildLocation(ck);
+        cout << "\nMOVE FROM :hole row # " << head->getBeforeRow() <<  "--- hole col # "<< head->getBeforeCol() << endl;
+        cout << "MOVE TO :hole row # " << head->getAfterRow() <<  " --- hole col # "<< head->getAfterCol() << endl;
+        player = ck->move(head->getBeforeRow(), head->getBeforeCol(),head->getAfterRow(),head->getAfterCol(), player);
         ck->displayBoard();
         win = ck->checkWin();
         shift++;
@@ -80,12 +79,10 @@ void AlphaBeta() {
         //head will contain best heristic value and location
         Step hole;
         hole.heuristic_value = head->board_status.heuristic_value; // need to return new place and heuristic_value
-        int *addr = NULL;
-        addr = head->getChildLocation(ck);
-        hole.row = *(addr+2);
-        hole.col = *(addr+3);
-        cout << "MOVE TO :hole row # " << hole.row <<  "\nhole col # "<< hole.col << endl;
-        player = ck->move(*addr, *(addr+1),*(addr+2),*(addr+3), player);
+        head->getChildLocation(ck);
+        cout << "\nMOVE FROM :hole row # " << head->getBeforeRow() <<  "\nhole col # "<< head->getBeforeCol() << endl;
+        cout << "MOVE TO :hole row # " << head->getAfterRow() <<  "\nhole col # "<< head->getAfterCol() << endl;
+        player = ck->move(head->getBeforeRow(), head->getBeforeCol(),head->getAfterRow(),head->getAfterCol(), player);
         ck->displayBoard();
         win = ck->checkWin();
     }
