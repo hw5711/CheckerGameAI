@@ -6,7 +6,7 @@
 using namespace std;
 
 int alphabeta(GameTree *node, int depth, char player, int alpha, int beta) {
-    if (node->deepenough(depth)) //node is a leaf node)
+    if (node->deepenough(depth, player)) //node is a leaf node)
         return node->evaluation();
     if (player == 'A') {
         int bestVal = -100, value;

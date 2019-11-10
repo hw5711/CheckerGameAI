@@ -42,38 +42,40 @@ void GameTree::set_heuristic_value(int value, int r, int c) {
 
 
 //test if can jump more than once and return the new location
-int * GameTree::jump(int i, int j, Checker checker, char player){
-//    cout << "\ntest 5 jump :"<< i << ","<<j<<"role: "<<checker.board[i][j].role<<endl;
-    int arr[8]={-2,-2,-2,-2,-2,-2,-2,-2};
+Location GameTree::jump(int i, int j, Checker checker, char player){
+    Location location;
+    location.l1 = -2;
+    location.l2 = -2;
+    location.l3 = -2;
+    location.l4 = -2;
+    location.l5 = -2;
+    location.l6 = -2;
+    location.l7 = -2;
+    location.l8 = -2;
     char p = (player == 'A')? 'B' : 'A';
     if(checker.board[i][j].role == 'm' && checker.board[i][j].player == player){
-//        arr[4]={-1,-1,-1,-1};
         if(i+1<=7 && j-1>=0){ //check down left first
             if(checker.board[i+1][j-1].player == ' '){
-                arr[0] = i+1;
-                arr[1] = j-1;
-//                cout<<"fit condition " << i+1 << " % " << j-1 << endl;
+                location.l1 = i+1;
+                location.l2 = j-1;
             }
             else if(checker.board[i+1][j-1].player == p){//check down right first
                 if(i+2<=7 && j-2>=0 && checker.board[i+2][j-2].player == ' '){
-                    arr[0] = i+2;
-                    arr[1] = j-2;
-//                    cout<<"fit condition " << i+2 << " % " << j-2 << endl;
+                    location.l1 = i+2;
+                    location.l2 = j-2;
                 }
             }else{}
         }
 
         if(i+1<=7 && j+1<=7){ //check down right first
             if(checker.board[i+1][j+1].player == ' '){
-                arr[2] = i+1;
-                arr[3] = j+1;
-//                cout<<"fit condition " << i+1 << " % " << j+1 << endl;
+                location.l3 = i+1;
+                location.l4 = j+1;
             }
             else if(checker.board[i+1][j+1].player == p){//check down right first
                 if(i+2<=7 && j+2<=7 && checker.board[i+2][j+2].player == ' '){
-                    arr[2] = i+2;
-                    arr[3] = j+2;
-//                    cout<<"fit condition " << i+2 << " % " << j+2 << endl;
+                    location.l3 = i+2;
+                    location.l4 = j+2;
                 }
             }else{}
         }
@@ -82,141 +84,175 @@ int * GameTree::jump(int i, int j, Checker checker, char player){
 
         if(i+1<=7 && j-1>=0){ //check down left first
             if(checker.board[i+1][j-1].player == ' '){
-                arr[0] = i+1;
-                arr[1] = j-1;
-//                cout<<"fit condition " << i+1 << " % " << j-1 << endl;
+                location.l1 = i+1;
+                location.l2 = j-1;
             }
             else if(checker.board[i+1][j-1].player == p){//check down right first
                 if(i+2<=7 && j-2>=0 && checker.board[i+2][j-2].player == ' '){
-                    arr[0] = i+2;
-                    arr[1] = j-2;
-//                    cout<<"fit condition " << i+2 << " % " << j-2 << endl;
+                    location.l1 = i+2;
+                    location.l2 = j-2;
                 }
             }else{}
         }
 
         if(i+1<=7 && j+1<=7){ //check down right first
             if(checker.board[i+1][j+1].player == ' '){
-                arr[2] = i+1;
-                arr[3] = j+1;
-//                cout<<"fit condition " << i+1 << " % " << j+1 << endl;
+                location.l3 = i+1;
+                location.l4 = j+1;
             }
             else if(checker.board[i+1][j+1].player == p){//check down right first
                 if(i+2<=7 && j+2<=7 && checker.board[i+2][j+2].player == ' '){
-                    arr[2] = i+2;
-                    arr[3] = j+2;
-//                    cout<<"fit condition " << i+2 << " % " << j+2 << endl;
+                    location.l3 = i+2;
+                    location.l4 = j+2;
                 }
             }else{}
         }
 
         if(i-1>=0 && j-1>=0){ //check up left first
             if(checker.board[i-1][j-1].player == ' '){
-                arr[4] = i-1;
-                arr[5] = j-1;
-//                cout<<"fit condition " << i-1 << " % " << j-1 << endl;
+                location.l5 = i-1;
+                location.l6 = j-1;
             }
             else if(checker.board[i-1][j-1].player == p){//check down right first
                 if(i-2>=0 && j-2>=0 && checker.board[i-2][j-2].player == ' '){
-                    arr[4] = i-2;
-                    arr[5] = j-2;
-//                    cout<<"fit condition " << i-2 << " % " << j-2 << endl;
+                    location.l5 = i-2;
+                    location.l6 = j-2;
                 }
             }else{}
         }
 
         if(i-1>=0 && j+1<=7){ //check up right first
             if(checker.board[i-1][j+1].player == ' '){
-                arr[6] = i-1;
-                arr[7] = j+1;
-//                cout<<"fit condition " << i-1 << " % " << j+1 << endl;
+                location.l7 = i-1;
+                location.l8 = j+1;
             }
             else if(checker.board[i-1][j+1].player == p){//check down right first
                 if(i-2>=0 && j+2<=7 && checker.board[i-2][j+2].player == ' '){
-                    arr[6] = i-2;
-                    arr[7] = j+2;
-//                    cout<<"fit condition " << i-2 << " % " << j+2 << endl;
+                    location.l7 = i-2;
+                    location.l8 = j+2;
                 }
             }else{}
         }
     }else if(checker.board[i][j].role == 'n' && checker.board[i][j].player == player){}
     else{}
-//    cout<<"\ntest9---jump: "<< arr[0]<<"--/"<<arr[1]<<"--/" <<arr[2]
-//        <<"--/"<<arr[3]<<"--/" <<arr[4]<<"--/"<<arr[5]<<"--/" <<arr[6]<<"--/"<<arr[7];
-    return arr;
+    return location;
     }
 
 
 //find a right position, store it into the children array and move
-void GameTree::add_all_children() {
+void GameTree::add_all_children(char player) {
     //go through the every potential locations of enemy and store it to created children array
     //if it's available, add it into the child list
-    int *location = NULL; //stores 8 places of available jumps
+    Location location;
     cout << "test 4--- add all children \n";
     int children_num = 0;
     for(int i = 0; i < 8; i++){
         for(int j = 0; j < 8; j++){
-            if(this->board_status.board[i][j].player == 'A'){
-                char p = (player == 'A') ? 'B' : 'A';
+            if(player == 'A'){
+                char p = 'B';
                 location = jump(i,j,this->board_status,'A');
-//                cout<<"\ntest10---add-all-children: "<< location[0]<<"--/"<<location[1]<<"--/" <<location[2]
-//                    <<"--/"<<location[3]<<"--/" <<location[4]<<"--/"<<location[5]<<"--/" <<location[6]<<"--/"<<location[7];
-                if(available_to_jump(location) == true){
-                    continue;
-                }
-                cout<<"\ntest11--add all children(number): "<< children_num<<endl;
-                //use location to perform jumps and generate children
-                if(this->board_status.board[i][j].role == 'm'){
-                    for(int k=0; k<4; k+=2){
-                        if(*(location+k)!= -1){
+
+                if(available_to_jump(location) == true) {
+                    cout<<"\ncurrent ture situation "<< i<<","<<j<<endl;
+
+                    //use location to perform jumps and generate children
+                    if (this->board_status.board[i][j].role == 'm') {
+                        if(location.l1 != -2 && location.l2 != -2){
                             children[children_num] = new GameTree(p);
                             children[children_num]->board_status = this->board_status;
-                            children[children_num]->board_status.move(i,j, *(location+k), *(location+k+1),'A');
+                            children[children_num]->board_status.move(i, j, location.l1, location.l2,'A');
                             children_num++;
+//                            cout << "\ntest11--add all children(number): " << children_num << endl;
                         }
-                    }
-                }
-                else if(this->board_status.board[i][j].role == 'k'){
-                    for(int k=0; k<8; k+=2){
-                        if(*(location+k)!= -1){
+                        if(location.l3 != -2 && location.l4 != -2){
                             children[children_num] = new GameTree(p);
                             children[children_num]->board_status = this->board_status;
-                            children[children_num]->board_status.move(i, j,*(location+k), *(location+k+1),'A');
+                            children[children_num]->board_status.move(i, j, location.l3, location.l4,'A');
+                            children_num++;
+//                            cout << "\ntest11--add all children(number): " << children_num << endl;
+                        }
+
+                    } else if (this->board_status.board[i][j].role == 'k') {
+                        if(location.l1 != -2 && location.l2 != -2){
+                            children[children_num] = new GameTree(p);
+                            children[children_num]->board_status = this->board_status;
+                            children[children_num]->board_status.move(i, j, location.l1, location.l2,'A');
+                            children_num++;
+//                            cout << "\ntest11--add all children(number): " << children_num << endl;
+                        }
+                        if(location.l3 != -2 && location.l4 != -2){
+                            children[children_num] = new GameTree(p);
+                            children[children_num]->board_status = this->board_status;
+                            children[children_num]->board_status.move(i, j, location.l3, location.l4,'A');
                             children_num++;
                         }
-                    }
+                        if(location.l5 != -2 && location.l6 != -2){
+                            children[children_num] = new GameTree(p);
+                            children[children_num]->board_status = this->board_status;
+                            children[children_num]->board_status.move(i, j, location.l5, location.l6,'A');
+                            children_num++;
+                        }
+                        if(location.l7 != -2 && location.l8 != -2){
+                            children[children_num] = new GameTree(p);
+                            children[children_num]->board_status = this->board_status;
+                            children[children_num]->board_status.move(i, j, location.l7, location.l8,'A');
+                            children_num++;
+                        }
+                    }else {}
                 }
             }
-            else{
-                char p = (player == 'A') ? 'B' : 'A';
-                location = jump(i,j,this->board_status,'B');
-                if(this->board_status.board[i][j].role == 'm'){
-                    for(int k=0; k<4; k+=2){
-                        if(*(location+k)!= -1){
-                            children[children_num] = new GameTree(p);
-                            children[children_num]->board_status = this->board_status;
-                            children[children_num]->board_status.move(i, j, *(location+k), *(location+k+1),'B');
-                            children_num++;
+            else if(player == 'B') {
+                char p = 'A';
+                location = jump(i, j, this->board_status, 'B');
+                if (available_to_jump(location) == true) {
+                    if (this->board_status.board[i][j].role == 'm') {
+                            if (location.l1 != -2 && location.l2 != -2) {
+                                children[children_num] = new GameTree(p);
+                                children[children_num]->board_status = this->board_status;
+                                children[children_num]->board_status.move(i, j, location.l1, location.l2, 'B');
+                                children_num++;
+                            }
+                            if (location.l3 != -2 && location.l4 != -2) {
+                                children[children_num] = new GameTree(p);
+                                children[children_num]->board_status = this->board_status;
+                                children[children_num]->board_status.move(i, j, location.l3, location.l4, 'B');
+                                children_num++;
+                            }
+                        } else if (this->board_status.board[i][j].role == 'k') {
+                            if (location.l1 != -2 && location.l2 != -2) {
+                                children[children_num] = new GameTree(p);
+                                children[children_num]->board_status = this->board_status;
+                                children[children_num]->board_status.move(i, j, location.l1, location.l2, 'B');
+                                children_num++;
+                            }
+                            if (location.l3 != -2 && location.l4 != -2) {
+                                children[children_num] = new GameTree(p);
+                                children[children_num]->board_status = this->board_status;
+                                children[children_num]->board_status.move(i, j, location.l3, location.l4, 'B');
+                                children_num++;
+                            }
+                            if (location.l5 != -2 && location.l6 != -2) {
+                                children[children_num] = new GameTree(p);
+                                children[children_num]->board_status = this->board_status;
+                                children[children_num]->board_status.move(i, j, location.l5, location.l6, 'B');
+                                children_num++;
+                            }
+                            if (location.l7 != -2 && location.l8 != -2) {
+                                children[children_num] = new GameTree(p);
+                                children[children_num]->board_status = this->board_status;
+                                children[children_num]->board_status.move(i, j, location.l7, location.l8, 'B');
+                                children_num++;
+                            }
                         }
+                        else{}
                     }
-                }
-                else if(this->board_status.board[i][j].role == 'k'){
-                    for(int k=0; k<8; k+=2){
-                        if(*(location+k)!= -1){
-                            children[children_num] = new GameTree(p);
-                            children[children_num]->board_status = this->board_status;
-                            children[children_num]->board_status.move(i, j, *(location+k), *(location+k+1),'B');
-                            children_num++;
-                        }
-                    }
-                }
+                }else{}
             }
         }
+    cout << "\ntest11--add all children(number): " << children_num << endl;
     }
 
-}
-
-bool GameTree::deepenough(int depth) {
+bool GameTree::deepenough(int depth, char player) {
 //    if (this->board_status.get_heuristic_value_board() != -1000)
 //        return board_status.get_heuristic_value_board();
     //if the depth is greater than 3 or a player has won the game then it is deep enough.
@@ -225,7 +261,7 @@ bool GameTree::deepenough(int depth) {
         return true;
     } else {
         nodes_expanded++;
-        add_all_children();
+        add_all_children(player);
         return false;
     }
 }
@@ -465,12 +501,23 @@ int * GameTree::getChildLocation(Checker child){
     return ptr; //store location before and after move of each child
 }
 
-bool GameTree::available_to_jump(int *arr){
+bool GameTree::available_to_jump(Location location){
 
-    for(int count=0; count<8; count++){
-        if(arr[count] != -2){
-            return true;
-        }
+    if(location.l1 != -2 && location.l2){
+        return true;
     }
+
+    if(location.l3 != -2 && location.l4){
+        return true;
+    }
+
+    if(location.l5 != -2 && location.l6){
+        return true;
+    }
+
+    if(location.l7 != -2 && location.l8){
+        return true;
+    }
+
     return false;
 }

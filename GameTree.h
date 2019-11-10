@@ -7,6 +7,18 @@
 
 using namespace std;
 
+struct Location{
+    int l1;
+    int l2;
+    int l3;
+    int l4;
+    int l5;
+    int l6;
+    int l7;
+    int l8;
+};
+
+
 class GameTree {
 
 public:
@@ -28,11 +40,11 @@ public:
 
     int get_heuristic_value();
 
-    void add_all_children();
+    void add_all_children(char);
 
-    bool deepenough(int);
+    bool deepenough(int, char);
 
-    int* jump(int, int, Checker, char);
+    Location jump(int, int, Checker, char);
 
     void print(GameTree *, int);
 
@@ -44,7 +56,7 @@ public:
 
     int *getChildLocation(Checker);
 
-    bool available_to_jump(int *);
+    bool available_to_jump(Location);
 };
 
 
