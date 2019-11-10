@@ -33,8 +33,8 @@ public:
     Checker board_status; //contains board status including each location info
     int number_of_children;
     GameTree *children[48]; // one step has 4 directions choices(man+king)
-//    int row;//the row hold the best heuristic value
-//    int col;//the col hold the best heuristic value
+    int row;//the row hold the best heuristic value
+    int col;//the col hold the best heuristic value
     Add address;
 
     GameTree();
@@ -43,7 +43,7 @@ public:
 
     void create_node(char);
 
-    void set_heuristic_value(int);
+    void set_heuristic_value(int, int, int);
 
     int get_heuristic_value();
 

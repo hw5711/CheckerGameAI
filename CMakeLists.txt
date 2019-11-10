@@ -14,4 +14,4 @@ add_executable(CheckerGameAI
         GameTree.h
         main.cpp
         MinMaxAB.cpp
-        MinMaxAB.h)
+        MinMaxAB.h Object.h)

@@ -106,6 +106,9 @@
 		<Unit filename="/Users/huanwu/Desktop/myVersion/CheckerGameAI/MinMaxAB.h">
 			<Option target="CheckerGameAI"/>
 		</Unit>
+		<Unit filename="/Users/huanwu/Desktop/myVersion/CheckerGameAI/Object.h">
+			<Option target="CheckerGameAI"/>
+		</Unit>
 		<Unit filename="/Users/huanwu/Desktop/myVersion/CheckerGameAI/main.cpp">
 			<Option target="CheckerGameAI"/>
 		</Unit>

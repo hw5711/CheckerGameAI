@@ -5,6 +5,8 @@
 #include "Checker.h"
 #include "AlphaBetaSearch.h"
 #include "MinMaxAB.h"
+#include "Object.h"
+
 
 using namespace std;
 
@@ -12,7 +14,6 @@ struct Step{
     int heuristic_value;
     int row;
     int col;
-    char role; //k is king, m is man, e is empty
 };
 
 void print(char, int);
@@ -21,34 +22,43 @@ int nodes_generated, nodes_expanded, steps;
 
 //MinmaxAB vs MinmaxAB
 void MinMax() {
-    Checker *ck = new Checker();
+    Checker *ck = new Checker(); // ck is the board to be displayed
     cout << "Initial board " << endl;
-    ck->displayBoard();
+    //ck->displayBoard();
     char win = ck->checkWin();
     //cout <<" test 4: "<< win;
     char player = 'A';
     int start_s = clock();
     int shift = 1;
+
+    Object useVal(1000,-1,-1);
+    Object passVal(-1000,-1,-1);
+
     while (win == 'N') {
         steps++;
         GameTree *head = new GameTree(player);
         head->copyBoardStatus(ck); //store current node info
         cout << "*****Turn*****" << player << endl;
-
         Step hole;
         int evaluation1 = 1;
         int evaluation2 = 2;
 
         if(shift %2 == 1) {
-            MinMaxAB(head, 1, player, 10000, -10000, evaluation1);
+            MinMaxAB(head, 1, player, useVal, passVal, evaluation1);
         }else{
-            MinMaxAB(head, 1, player, 10000, -10000, evaluation2);
+            MinMaxAB(head, 1, player, useVal, passVal, evaluation2);
         }
-
+        cout<<"\ntest minimax- check differences move:";
+//        head->board_status.displayBoard();
+//        cout<<"\n2";
+//        ck->displayBoard();
+/* This heuristic_value should contains location info **/
         hole.heuristic_value = head->board_status.heuristic_value; // need to return new place and heuristic_value
-//        cout <<" \ntest 4: "<< hole.heuristic_value;
-//        Address addr;
+        hole.row = head->row;
+        hole.col = head->col;
+        cout<<"*** "<< hole.row << " *** "<<hole.col<<endl;
         head->getChildLocation(ck);
+
         cout << "\nMOVE FROM :hole row # " << head->getBeforeRow() <<  "--- hole col # "<< head->getBeforeCol() << endl;
         cout << "MOVE TO :hole row # " << head->getAfterRow() <<  " --- hole col # "<< head->getAfterCol() << endl;
         player = ck->move(head->getBeforeRow(), head->getBeforeCol(),head->getAfterRow(),head->getAfterCol(), player);

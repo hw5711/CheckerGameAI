@@ -10,19 +10,21 @@ extern int nodes_generated, nodes_expanded;
 
 GameTree::GameTree() {
 //    board_status.board.heuristic_value = -1000;
-    player = 'n';
-    number_of_children = 0;
-
+    this->player = 'n';
+    this->number_of_children = 0;
+    this->row = -1;
+    this->col = -1;
     for (int i = 0; i < 48; i++) { // each node can have at most 4 children(directions)
         children[i] = NULL;
     }
 }
 
 GameTree::GameTree(char p) {
-    player = p;
+    this->player = p;
 //    board_status.board.heuristic_value = -1000;
-    number_of_children = 0;
-
+    this->number_of_children = 0;
+    this->row = -1;
+    this->col = -1;
     for (int i = 0; i < 48; i++) { // go through all board
         children[i] = NULL;
     }
@@ -32,8 +34,10 @@ void GameTree::create_node(char p) {
     children[number_of_children++] = new GameTree(p);
 }
 
-void GameTree::set_heuristic_value(int value) {
+void GameTree::set_heuristic_value(int value, int r, int c) {
     this->board_status.heuristic_value = value;
+    this->row = r;
+    this->col = c;
 }
 
 //test if can jump more than once and return the new location

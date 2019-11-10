@@ -17,10 +17,12 @@ CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.o: ../Checker.h
 CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.o: ../GameTree.h
 CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.o: ../MinMaxAB.cpp
 CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.o: ../MinMaxAB.h
+CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.o: ../Object.h
 
 CMakeFiles/CheckerGameAI.dir/main.cpp.o: ../AlphaBetaSearch.h
 CMakeFiles/CheckerGameAI.dir/main.cpp.o: ../Checker.h
 CMakeFiles/CheckerGameAI.dir/main.cpp.o: ../GameTree.h
 CMakeFiles/CheckerGameAI.dir/main.cpp.o: ../MinMaxAB.h
+CMakeFiles/CheckerGameAI.dir/main.cpp.o: ../Object.h
 CMakeFiles/CheckerGameAI.dir/main.cpp.o: ../main.cpp
 
