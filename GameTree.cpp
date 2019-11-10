@@ -347,7 +347,7 @@ void GameTree::add_all_children(char player) {
                 }else{}
             }
         }
-   // cout << "\ntest11--add all children(number): " << children_num << endl;
+    cout << "\ntest11--add all children(number): " << children_num << endl;
     }
 
 bool GameTree::deepenough(int depth, char player) {
@@ -355,7 +355,7 @@ bool GameTree::deepenough(int depth, char player) {
 //        return board_status.get_heuristic_value_board();
     //if the depth is greater than 3 or a player has won the game then it is deep enough.
    // cout<<"\ntest 8---deepenough: "<< this->board_status.checkWin()<<endl;
-    if (depth >= 3 || this->board_status.checkWin() != 'N'){
+    if (depth >= 2 || this->board_status.checkWin() != 'N'){
         return true;
     } else {
         nodes_expanded++;

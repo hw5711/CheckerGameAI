@@ -6,26 +6,23 @@ using namespace std;
 
 Object MinMaxAB(GameTree *board, int depth, char player, Object useVal, Object passVal, int EF) {
     Object obj;
-    Object newVal;
     char NewPlayer;
-
 //    cout<<"test--MINMAXAB: "<< player << endl;
 //    board->board_status.displayBoard();
     if (board->deepenough(depth,player)) {
-        obj.value = board->evaluation(player);//will generate moved location
-        obj.row = board->row;
-        obj.col = board->col;
+        obj.setValue(board->evaluation(player));//will generate moved location
+        obj.setRow(board->row);
+        obj.setCol(board->col);
         // cout<<"\nEvaluation value is : "<<obj<<endl;
         if (player == 'B') {
             obj.setValue(-obj.getValue());
         }
+        cout<<"\ntest minimaxab --- obj location: "<< obj.getRow()<< "  /" << obj.getCol()<<endl;
+        board->board_status.displayBoard();
         board->set_heuristic_value(obj.getValue(), obj.getRow(), obj.getCol());
-//        cout<<"\ntest minimaxab --- obj: "<< obj<< endl;
         return obj;
     }
     Object obj1(0,-1,-1);
-
-   // obj1.heuristic_value = 0;
 
     for (int i = 0; i < 48; i++) { // need to update
         if (board->children[i] == NULL)
@@ -71,6 +68,6 @@ Object MinMaxAB(GameTree *board, int depth, char player, Object useVal, Object p
     obj1.setValue(passVal.getValue());
     obj1.setRow(passVal.getRow());
     obj1.setCol(passVal.getCol());
-    //board->set_heuristic_value(obj.heuristic_value, obj.row, obj.col);
+//    board->set_heuristic_value(obj.getValue(), obj.getRow(), obj.getCol());
     return obj1;
 }

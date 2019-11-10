@@ -59,9 +59,9 @@ void MinMax() {
         cout<<"*** "<< hole.row << " *** "<<hole.col<<endl;
         head->getChildLocation(ck);
 
-        cout << "\nMOVE FROM :hole row # " << head->getBeforeRow() <<  "--- hole col # "<< head->getBeforeCol() << endl;
-        cout << "MOVE TO :hole row # " << head->getAfterRow() <<  " --- hole col # "<< head->getAfterCol() << endl;
-        player = ck->move(head->getBeforeRow(), head->getBeforeCol(),head->getAfterRow(),head->getAfterCol(), player);
+        //cout << "\nMOVE FROM :hole row # " << head->getBeforeRow() <<  "--- hole col # "<< head->getBeforeCol() << endl;
+       // cout << "MOVE TO :hole row # " << head->getAfterRow() <<  " --- hole col # "<< head->getAfterCol() << endl;
+        player = ck->move(head->getBeforeRow(), head->getBeforeCol(),hole.row, hole.col, player);
         ck->displayBoard();
         win = ck->checkWin();
         shift++;
