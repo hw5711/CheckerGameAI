@@ -16,11 +16,18 @@ struct Board{
     int heuristic_value;
 };
 
+struct Address{
+    int row_before;
+    int col_before;
+    int row_after;
+    int col_after;
+};
+
 class Checker {
 public:
     Board board[8][8];
     int heuristic_value;
-
+    Address address;
     Checker();
 
     Checker(int[], int[], int, int);
@@ -51,6 +58,8 @@ public:
     int get_heuristic_value_board();
 
     void set_heuristic_value_board(int);
+
+    void getChildLocation(Checker);
 };
 
 

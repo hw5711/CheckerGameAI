@@ -36,6 +36,9 @@ public:
     int row;//the row hold the best heuristic value
     int col;//the col hold the best heuristic value
     Add address;
+    Checker heuristic_board;
+
+    const Checker &getHeuristicBoard() const;
 
     GameTree();
 
@@ -43,7 +46,7 @@ public:
 
     void create_node(char);
 
-    void set_heuristic_value(int);
+    void set_heuristic_value(int, Checker);
 
     int get_heuristic_value();
 

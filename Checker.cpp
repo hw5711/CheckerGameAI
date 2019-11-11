@@ -280,3 +280,21 @@ int Checker::get_heuristic_value_board(){
 void Checker::set_heuristic_value_board(int v){
     this->heuristic_value = v;
 }
+
+void Checker::getChildLocation(Checker child){
+    Address address;
+
+    for(int i=0; i<8; i++){
+        for(int j=0; j<8; j++){
+            if(this->board[i][j].id != child.board[i][j].id && this->board[i][j].player != ' '){
+                address.row_before= i;
+                address.col_before = j;
+            }
+            if(this->board[i][j].id != child.board[i][j].id && child.board[i][j].player != ' '){
+                address.row_after = i;
+                address.col_after = j;
+            }
+        }
+    }
+    this->address = address; //store location before and after move of each child
+}

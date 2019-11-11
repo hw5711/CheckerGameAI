@@ -34,9 +34,9 @@ void GameTree::create_node(char p) {
     children[number_of_children++] = new GameTree(p);
 }
 
-void GameTree::set_heuristic_value(int value) {
+void GameTree::set_heuristic_value(int value, Checker k) {
     this->board_status.heuristic_value = value;
-
+    this->heuristic_board = k;
 }
 
 //test if can jump more than once and return the new location
@@ -345,7 +345,6 @@ void GameTree::add_all_children(char player) {
                 }else{}
             }
         }
-    cout << "\ntest11--add all children(number): " << children_num << endl;
     }
 
 bool GameTree::deepenough(int depth, char player) {
@@ -590,12 +589,7 @@ bool GameTree::threaten(int i, int j, Checker checker, char player){
 
 void GameTree::getChildLocation(Checker child){
     Add address;
-    //Checker cur_board = this->board_status;
-//    cout<<'\n get Child location1(child board) \n';
-//    child.displayBoard();
-//    cout<<'\n get Child location1(father board) \n';
-//    this->board_status.displayBoard();
-//    cout << endl;
+
     for(int i=0; i<8; i++){
         for(int j=0; j<8; j++){
             if(this->board_status.board[i][j].id != child.board[i][j].id && this->board_status.board[i][j].player != ' '){
@@ -644,4 +638,8 @@ int GameTree::getAfterRow(){
 }
 int GameTree::getAfterCol(){
     return this->address.col_after;
+}
+
+const Checker &GameTree::getHeuristicBoard() const {
+    return heuristic_board;
 }

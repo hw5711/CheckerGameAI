@@ -12,6 +12,7 @@ using namespace std;
 
 struct Step{
     int heuristic_value;
+    Checker b;
     int row;
     int col;
 };
@@ -48,27 +49,27 @@ void MinMax() {
         }else{
             MinMaxAB(head, 1, player, useVal, passVal, evaluation2);
         }
-        cout<<"\ntest minimax- check differences move:";
 //        head->board_status.displayBoard();
-//        cout<<"\n2";
 //        ck->displayBoard();
 /* This heuristic_value should contains location info **/
         hole.heuristic_value = head->board_status.heuristic_value; // need to return new place and heuristic_value
-        hole.row = head->row;
-        hole.col = head->col;
-        cout<<"*** "<< hole.row << " *** "<<hole.col<<endl;
-        head->getChildLocation(ck);
-
-        //cout << "\nMOVE FROM :hole row # " << head->getBeforeRow() <<  "--- hole col # "<< head->getBeforeCol() << endl;
-       //  cout << "MOVE TO :hole row # " << head->getAfterRow() <<  " --- hole col # "<< head->getAfterCol() << endl;
-        player = ck->move(head->getBeforeRow(), head->getBeforeCol(),hole.row, hole.col, player);
-        ck->displayBoard();
+        hole.b = head->getHeuristicBoard();
+       // cout<<"display head:";
+        //hole.b.displayBoard();
+       // ck->getChildLocation(hole.b);
+       // cout<<"display ck:";
+       // ck->displayBoard();
+        cout<<"\n*** ROLE *** "<< player;
+        cout << "\nMOVE FROM :hole row # " << ck->address.row_before <<  "--- hole col # "<< ck->address.col_before << endl;
+        cout << "MOVE TO :hole row # " << ck->address.row_after <<  " --- hole col # "<< ck->address.col_after << endl;
+        player = ck->move(head->getBeforeRow(), head->getBeforeCol(),head->getAfterRow(), head->getAfterCol(), player);
+        //ck->displayBoard();
         win = ck->checkWin();
         shift++;
     }
     int stop_s = clock();
     int execution_time = stop_s - start_s;
-    ck->displayBoard();
+   // ck->displayBoard();
     print(win, execution_time);
 }
 
