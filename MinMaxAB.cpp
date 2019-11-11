@@ -30,16 +30,7 @@ Object MinMaxAB(GameTree *board, int depth, char player, Object useVal, Object p
         else
             NewPlayer = 'A';
 
-        Object passVal1;
-        Object useVal1;
-
-        passVal1.setTempBoard(useVal.getTempBoard());
-        useVal1.setTempBoard(passVal.getTempBoard());
-
-        passVal1.setValue(-useVal.getValue());
-        useVal1.setValue(-passVal.getValue());
-
-        obj1 = MinMaxAB(board->children[i], depth + 1, NewPlayer, passVal1, useVal1, EF);
+        obj1 = MinMaxAB(board->children[i], depth + 1, NewPlayer, passVal.operator-(passVal),useVal.operator-(useVal), EF);
 
         Object newVal(-obj1.getValue(), obj1.getTempBoard());
 
@@ -48,7 +39,7 @@ Object MinMaxAB(GameTree *board, int depth, char player, Object useVal, Object p
             passVal.setValue(newVal.getValue());
             passVal.setTempBoard(newVal.getTempBoard());
         }
-        if (passVal.getValue() >= useVal1.getValue()) {
+        if (passVal.getValue() >= useVal.getValue()) {
             obj1.setValue(passVal.getValue());
             obj1.setTempBoard(passVal.getTempBoard());
             return obj1;

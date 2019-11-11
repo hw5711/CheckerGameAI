@@ -39,6 +39,12 @@ public:
         return value;
     }
 
+    Object operator-(Object obj){
+        Object newObj;
+        newObj.setValue(-obj.value);
+        newObj.setTempBoard(obj.getTempBoard());
+        return newObj;
+    }
 };
 
 #endif //CHECKERGAMEAI_OBJECT_H
