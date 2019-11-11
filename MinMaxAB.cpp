@@ -8,17 +8,12 @@ Object MinMaxAB(GameTree *board, int depth, char player, Object useVal, Object p
     cout<<"\nuse value :" << useVal.getValue() << " %pass value: "<< passVal.getValue()<<endl;
     Object obj;
     char NewPlayer;
-    passVal.setTempBoard(board->board_status);
-//    cout<<"test--MINMAXAB: "<< player << endl;
-//    board->board_status.displayBoard();
     if (board->deepenough(depth,player)) {
         obj.setValue(board->evaluation(player));
         obj.setTempBoard(board->board_status);
-//         cout<<"\nEvaluation value is : "<<obj<<endl;
         if (player == 'B') {
             obj.setValue(-obj.getValue());
         }
-        //board->board_status.displayBoard();
         board->set_heuristic_value(obj.getValue(), obj.getTempBoard());
         Checker k = obj.getTempBoard();
         cout<<"\ntest minimaxab -0: value is :" << player << "% "<<board->board_status.heuristic_value<<" %% "<<obj.getValue()<<endl;
@@ -35,23 +30,21 @@ Object MinMaxAB(GameTree *board, int depth, char player, Object useVal, Object p
         else
             NewPlayer = 'A';
 
-        Object passVal1(passVal.getValue(),passVal.getTempBoard());
-        Object useVal1(useVal.getValue(), useVal.getTempBoard());
+        Object passVal1;
+        Object useVal1;
 
-        int temp = passVal1.getValue();
-        passVal1.setValue(-useVal1.getValue());
-        useVal1.setValue(-temp);
+        passVal1.setTempBoard(useVal.getTempBoard());
+        useVal1.setTempBoard(passVal.getTempBoard());
 
-//        Checker tempChecker = passVal1.getTempBoard();
-//        passVal1.setTempBoard(useVal1.getTempBoard());
-//        useVal1.setTempBoard(tempChecker);
+        passVal1.setValue(-useVal.getValue());
+        useVal1.setValue(-passVal.getValue());
 
-        obj1 = MinMaxAB(board->children[i], depth + 1, NewPlayer, useVal1, passVal1, EF);
+        obj1 = MinMaxAB(board->children[i], depth + 1, NewPlayer, passVal1, useVal1, EF);
 
         Object newVal(-obj1.getValue(), obj1.getTempBoard());
 
         if (newVal.getValue() > passVal.getValue()) {
-            board->set_heuristic_value(i, newVal.getTempBoard());
+            board->set_heuristic_value(board->children[i]->board_status.heuristic_value,board->children[i]->heuristic_board);
             passVal.setValue(newVal.getValue());
             passVal.setTempBoard(newVal.getTempBoard());
         }

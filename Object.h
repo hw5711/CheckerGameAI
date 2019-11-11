@@ -22,8 +22,8 @@ public:
 
 
     Object() {
-        this->value = 0;
-        this->tempBoard;
+//        this->value = 0;
+//        this->tempBoard
     }
 
     Object(int value, Checker b) {

@@ -52,11 +52,7 @@ void MinMax() {
 /* This heuristic_value should contains location info **/
         hole.heuristic_value = head->board_status.heuristic_value; // need to return new place and heuristic_value
         hole.b = head->getHeuristicBoard();
-       // cout<<"display head:";
-        //hole.b.displayBoard();
         ck->getChildLocation(hole.b);
-       // cout<<"display ck:";
-       // ck->displayBoard();
         cout<<"\n*** ROLE *** "<< player;
         cout << "\nMOVE FROM :hole row # " << ck->address.row_before <<  "--- hole col # "<< ck->address.col_before << endl;
         cout << "MOVE TO :hole row # " << ck->address.row_after <<  " --- hole col # "<< ck->address.col_after << endl;
