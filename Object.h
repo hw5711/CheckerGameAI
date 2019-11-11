@@ -10,45 +10,35 @@ class Object {
 public:
 
     int value;
-    int row;
-    int col;
+    Checker tempBoard;
+
+    void setTempBoard(const Checker &tempBoard) {
+        Object::tempBoard = tempBoard;
+    }
+
+    const Checker &getTempBoard() const {
+        return tempBoard;
+    }
 
 
     Object() {
         this->value = 0;
-        this->row = 0;
-        this->col = 0;
+        this->tempBoard;
     }
 
-    Object(int value, int row, int col) {
+    Object(int value, Checker b) {
         this->value = value;
-        this->row = row;
-        this->col = col;
+        this->tempBoard = b;
     }
 
     void setValue(int value) {
         Object::value = value;
     }
 
-    void setRow(int row) {
-        Object::row = row;
-    }
-
-    void setCol(int col) {
-        Object::col = col;
-    }
-
     int getValue() const {
         return value;
     }
 
-    int getRow() const {
-        return row;
-    }
-
-    int getCol() const {
-        return col;
-    }
 };
 
 #endif //CHECKERGAMEAI_OBJECT_H

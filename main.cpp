@@ -31,8 +31,8 @@ void MinMax() {
     int start_s = clock();
     int shift = 1;
 
-    Object useVal(1000,-1,-1);
-    Object passVal(-1000,-1,-1);
+    Object useVal(1000,new Checker);
+    Object passVal(-1000,new Checker);
 
     while (win == 'N') {
         steps++;
@@ -60,7 +60,7 @@ void MinMax() {
         head->getChildLocation(ck);
 
         //cout << "\nMOVE FROM :hole row # " << head->getBeforeRow() <<  "--- hole col # "<< head->getBeforeCol() << endl;
-       // cout << "MOVE TO :hole row # " << head->getAfterRow() <<  " --- hole col # "<< head->getAfterCol() << endl;
+       //  cout << "MOVE TO :hole row # " << head->getAfterRow() <<  " --- hole col # "<< head->getAfterCol() << endl;
         player = ck->move(head->getBeforeRow(), head->getBeforeCol(),hole.row, hole.col, player);
         ck->displayBoard();
         win = ck->checkWin();

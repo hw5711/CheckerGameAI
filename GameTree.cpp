@@ -34,10 +34,9 @@ void GameTree::create_node(char p) {
     children[number_of_children++] = new GameTree(p);
 }
 
-void GameTree::set_heuristic_value(int value, int r, int c) {
+void GameTree::set_heuristic_value(int value) {
     this->board_status.heuristic_value = value;
-    this->row = r;
-    this->col = c;
+
 }
 
 //test if can jump more than once and return the new location
@@ -251,7 +250,6 @@ void GameTree::add_all_children(char player) {
 
                 if(available_to_jump(location) == true) {
                     //cout<<"\ncurrent ture situation -A:"<< i<<","<<j<<endl;
-
                     //use location to perform jumps and generate children
                     if (this->board_status.board[i][j].role == 'm') {
                         if(location.l1 != -2 && location.l2 != -2){
