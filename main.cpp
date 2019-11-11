@@ -49,20 +49,18 @@ void MinMax() {
         }else{
             MinMaxAB(head, 1, player, useVal, passVal, evaluation2);
         }
-//        head->board_status.displayBoard();
-//        ck->displayBoard();
 /* This heuristic_value should contains location info **/
         hole.heuristic_value = head->board_status.heuristic_value; // need to return new place and heuristic_value
         hole.b = head->getHeuristicBoard();
        // cout<<"display head:";
         //hole.b.displayBoard();
-       // ck->getChildLocation(hole.b);
+        ck->getChildLocation(hole.b);
        // cout<<"display ck:";
        // ck->displayBoard();
         cout<<"\n*** ROLE *** "<< player;
         cout << "\nMOVE FROM :hole row # " << ck->address.row_before <<  "--- hole col # "<< ck->address.col_before << endl;
         cout << "MOVE TO :hole row # " << ck->address.row_after <<  " --- hole col # "<< ck->address.col_after << endl;
-        player = ck->move(head->getBeforeRow(), head->getBeforeCol(),head->getAfterRow(), head->getAfterCol(), player);
+        player = ck->move(ck->address.row_before, ck->address.col_before,ck->address.row_after, ck->address.col_after, player);
         //ck->displayBoard();
         win = ck->checkWin();
         shift++;
@@ -90,10 +88,14 @@ void AlphaBeta() {
         //head will contain best heristic value and location
         Step hole;
         hole.heuristic_value = head->board_status.heuristic_value; // need to return new place and heuristic_value
-        head->getChildLocation(ck);
-        cout << "\nMOVE FROM :hole row # " << head->getBeforeRow() <<  "\nhole col # "<< head->getBeforeCol() << endl;
-        cout << "MOVE TO :hole row # " << head->getAfterRow() <<  "\nhole col # "<< head->getAfterCol() << endl;
-        player = ck->move(head->getBeforeRow(), head->getBeforeCol(),head->getAfterRow(),head->getAfterCol(), player);
+        ck->getChildLocation(hole.b);
+        // cout<<"display ck:";
+        // ck->displayBoard();
+        cout<<"\n*** ROLE *** "<< player;
+        cout << "\nMOVE FROM :hole row # " << ck->address.row_before <<  "--- hole col # "<< ck->address.col_before << endl;
+        cout << "MOVE TO :hole row # " << ck->address.row_after <<  " --- hole col # "<< ck->address.col_after << endl;
+        player = ck->move(ck->address.row_before, ck->address.col_before,ck->address.row_after, ck->address.col_after, player);
+        //ck->displayBoard();
         ck->displayBoard();
         win = ck->checkWin();
     }

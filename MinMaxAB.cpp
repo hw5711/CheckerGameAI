@@ -5,12 +5,14 @@
 using namespace std;
 
 Object MinMaxAB(GameTree *board, int depth, char player, Object useVal, Object passVal, int EF) {
+    cout<<"\nuse value :" << useVal.getValue() << " %pass value: "<< passVal.getValue()<<endl;
     Object obj;
     char NewPlayer;
+    passVal.setTempBoard(board->board_status);
 //    cout<<"test--MINMAXAB: "<< player << endl;
 //    board->board_status.displayBoard();
     if (board->deepenough(depth,player)) {
-        obj.setValue(board->evaluation(player));//will generate moved location
+        obj.setValue(board->evaluation(player));
         obj.setTempBoard(board->board_status);
 //         cout<<"\nEvaluation value is : "<<obj<<endl;
         if (player == 'B') {
@@ -48,22 +50,19 @@ Object MinMaxAB(GameTree *board, int depth, char player, Object useVal, Object p
 
         Object newVal(-obj1.getValue(), obj1.getTempBoard());
 
-        if (newVal.getValue() > passVal1.getValue()) {
+        if (newVal.getValue() > passVal.getValue()) {
             board->set_heuristic_value(i, newVal.getTempBoard());
-            passVal1.setValue(newVal.getValue());
-            passVal1.setTempBoard(newVal.getTempBoard());
-
+            passVal.setValue(newVal.getValue());
+            passVal.setTempBoard(newVal.getTempBoard());
         }
-        if (passVal1.getValue() >= useVal1.getValue()) {
-            obj1.setValue(passVal1.getValue());
-            obj1.setTempBoard(passVal1.getTempBoard());
-
+        if (passVal.getValue() >= useVal1.getValue()) {
+            obj1.setValue(passVal.getValue());
+            obj1.setTempBoard(passVal.getTempBoard());
             return obj1;
         }
     }
     obj1.setValue(passVal.getValue());
     obj1.setTempBoard(passVal.getTempBoard());
-
-//    board->set_heuristic_value(obj.getValue(), obj.getRow(), obj.getCol());
+    cout<<"\nChildren use value :" << useVal.getValue() << " %pass value: "<< passVal.getValue()<<endl;
     return obj1;
 }
