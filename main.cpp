@@ -63,7 +63,7 @@ void MinMax() {
     }
     int stop_s = clock();
     int execution_time = stop_s - start_s;
-   // ck->displayBoard();
+    ck->displayBoard();
     print(win, execution_time);
 }
 
@@ -91,7 +91,7 @@ void AlphaBeta() {
         cout << "\nMOVE FROM :hole row # " << ck->address.row_before <<  "--- hole col # "<< ck->address.col_before << endl;
         cout << "MOVE TO :hole row # " << ck->address.row_after <<  " --- hole col # "<< ck->address.col_after << endl;
         player = ck->move(ck->address.row_before, ck->address.col_before,ck->address.row_after, ck->address.col_after, player);
-        //ck->displayBoard();
+        ck->displayBoard();
         ck->displayBoard();
         win = ck->checkWin();
     }

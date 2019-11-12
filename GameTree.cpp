@@ -463,7 +463,7 @@ int GameTree::evaluation( char player) {
                 }else{}
             }
         }
-//        cout<<"\ntest--evaluation4: "<< value<<endl;
+        cout<<"\ntest--evaluation : "<< value<<endl;
     }
 
     //set_heuristic_value(value);
