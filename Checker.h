@@ -36,11 +36,11 @@ public:
 
     //Checker(const Checker &);
 
-    char move_A(int, int, int, int, char);
+    char move_A(char , int , int , int);
 
-    char move_B(int, int, int, int, char);
+    char move_B(char , int , int , int );
 
-    char move(int, int, int, int, char);
+    char move(char , int , int , int );
 
     // int evaluation();
     char checkWin();
@@ -63,7 +63,7 @@ public:
 
     void set_heuristic_value_board(int);
 
-    void getChildLocation(char, int, int, int);
+    //void getChildLocation(char, int, int, int);
 
     int getHeuristicValue() const;
 

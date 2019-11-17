@@ -6,13 +6,10 @@ using namespace std;
 
 //use value is min, pass value is max
 Object MinMaxAB(GameTree *board, int depth, char player, Object useVal, Object passVal, int EF) {
-    cout<<"\nSHOULD INVERT :use value :" << useVal.value << " %pass value: "<< passVal.value<<endl;
-
+   // cout<<"\nSHOULD INVERT :use value :" << useVal.value << " %pass value: "<< passVal.value<<endl;
     /***************************************************************/
     /*** object should carry the first layer child location ***/
     /***************************************************************/
-
-    cout<<"\nplayer: "<< player << endl;
     Object obj;
     char NewPlayer;
     if (board->deepenough(depth,player)) { // if search to the bottom child
@@ -60,11 +57,13 @@ Object MinMaxAB(GameTree *board, int depth, char player, Object useVal, Object p
         negUse.setCol(passVal.getCol());
 
         obj1 = MinMaxAB(board->children[i], depth + 1, NewPlayer, negPass, negUse, EF);
+        //cout<<"\n3MinMaxAB- id, row, col :"<< obj1.getId() <<"%"<< obj1.getRow() <<"%"<<obj1.getCol()<<endl;
         Object newVal(-obj1.getValue(), obj1.getTempBoard(), obj1.getId(), obj1.getRow(), obj1.getCol());
 
         if (newVal.getValue() > passVal.getValue()) {
-           // cout<<"\n2MinMaxAB- id, row, col :"<< board->id <<"%"<< board->row <<"%"<< board->col<<endl;
-            board->set_heuristic_value(newVal.getValue(),newVal.getTempBoard(),newVal.getId(), newVal.getRow() ,newVal.getCol() );
+//            cout<<"\nnew pass > pass vale\n";
+//            cout<<"\n2MinMaxAB- id, row, col :"<< newVal.getId() <<"%"<< newVal.getRow() <<"%"<<newVal.getCol()<<endl;
+            board->children[i]->set_heuristic_value(newVal.getValue(),newVal.getTempBoard(),newVal.getId(), newVal.getRow() ,newVal.getCol() );
             passVal.setValue(newVal.getValue());
             passVal.setTempBoard(newVal.getTempBoard());
             passVal.setId(newVal.getId());
@@ -72,19 +71,29 @@ Object MinMaxAB(GameTree *board, int depth, char player, Object useVal, Object p
             passVal.setCol(newVal.getCol());
         }
         if (passVal.getValue() >= useVal.getValue()) {
+//            cout<<"\nmeet pass >= use vale\n";
             obj1.setValue(passVal.getValue());
             obj1.setTempBoard(passVal.getTempBoard());
             obj1.setId(passVal.getId());
             obj1.setRow(passVal.getRow());
             obj1.setCol(passVal.getCol());
+//            cout<<"\n5MinMaxAB- before return :id, row, col :"<< obj1.getId()
+//            <<"%"<< obj1.getRow() <<"%"<<obj1.getCol()<<endl;
             return obj1;
         }
     }
+
     obj1.setValue(passVal.getValue());
     obj1.setTempBoard(passVal.getTempBoard());
     obj1.setId(passVal.getId());
     obj1.setRow(passVal.getRow());
     obj1.setCol(passVal.getCol());
-
+//    cout<<"\n6MinMaxAB- before return :id, row, col :"<< obj1.getId()
+//        <<"%"<< obj1.getRow() <<"%"<<obj1.getCol()<<endl;
+    board->setId(obj1.getId());
+    board->setRow(obj1.getRow());
+    board->setCol(obj1.getCol());
+//    cout<<"\n7MinMaxAB- before return :id, row, col :"<< board->getId()
+//        <<"%"<< board->getRow() <<"%"<<board->getCol()<<endl;
     return obj1;
 }

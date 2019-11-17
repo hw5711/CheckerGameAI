@@ -44,20 +44,18 @@ void MinMax() {
         cout << "*****Turn*****" << player << endl;
         int evaluation1 = 1;
         int evaluation2 = 2;
+        Object v;
 
         if(shift %2 == 1) {
-            MinMaxAB(head, 1, player, useVal, passVal, evaluation1);
+            v = MinMaxAB(head, 1, player, useVal, passVal, evaluation1);
         }else{
-            MinMaxAB(head, 1, player, useVal, passVal, evaluation2);
+            v = MinMaxAB(head, 1, player, useVal, passVal, evaluation2);
         }
         /* This heuristic_value should contains location info **/
-        ck.getChildLocation(player, head->id, head->row, head->col);
+        cout << "\nmain - id, row, col :" <<  v.getId() << "%"<< v.getRow() << "%"<< v.getCol()<<endl;
 
-        cout<<"\n*** ROLE *** "<< player;
-        cout << "\nMOVE FROM :hole row # " << ck.address.row_before <<  "--- hole col # "<< ck.address.col_before << endl;
-        cout << "MOVE TO :hole row # " << ck.address.row_after <<  " --- hole col # "<< ck.address.col_after << endl;
-        player = ck.move(ck.address.row_before, ck.address.col_before,ck.address.row_after, ck.address.col_after, player);
-       // ck->displayBoard();
+        player = ck.move(player, v.getId(), v.getRow(), v.getCol());
+        ck.displayBoard();
         win = ck.checkWin();
         shift++;
     }
@@ -82,13 +80,11 @@ void AlphaBeta() {
         cout << "*****Turn*****" << player << endl;
         alphabeta(head, 0, player, 1000, -1000);
 
-        ck.getChildLocation(player, head->id, head->row, head->col);
+//        ck.getChildLocation(player, head->id, head->row, head->col);
         // cout<<"display ck:";
         // ck->displayBoard();
-        cout<<"\n*** ROLE *** "<< player;
-        cout << "\nMOVE FROM :hole row # " << ck.address.row_before <<  "--- hole col # "<< ck.address.col_before << endl;
-        cout << "MOVE TO :hole row # " << ck.address.row_after <<  " --- hole col # "<< ck.address.col_after << endl;
-        player = ck.move(ck.address.row_before, ck.address.col_before,ck.address.row_after, ck.address.col_after, player);
+
+//        player = ck.move(ck.address.row_before, ck.address.col_before,ck.address.row_after, ck.address.col_after, player);
         // ck->displayBoard();
         win = ck.checkWin();
     }

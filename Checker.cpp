@@ -114,8 +114,20 @@ void Checker::setBoard(char p, int r, int c, char ro, int i, int he) {
 }
 
 //Function to move for the A player
-char Checker::move_A(int before_r, int before_c, int r, int c, char player) {
-    int id = board[before_r][before_c].id;
+char Checker::move_A(char player, int id, int r, int c) {
+
+    int before_r = -1;
+    int before_c = -1;
+
+    for(int i=0; i<8; i++){
+        for(int j=0; j<8; j++){
+            if(board[i][j].player == player && board[i][j].id == id){
+                before_r = i;
+                before_c = j;
+            }
+        }
+    }
+
     int row_diff = abs(r-before_r);
     int col_diff = abs(c-before_c);
     if(row_diff == 1 && col_diff ==1){
@@ -169,12 +181,29 @@ char Checker::move_A(int before_r, int before_c, int r, int c, char player) {
             }
         }
     }
+//    cout<<"\n*** MOVE ROLE *** "<< player;
+//    cout << "\nMOVE FROM :hole row # " << before_r
+//         <<  "--- hole col # "<< before_c << endl;
+//    cout << "MOVE TO :hole row # " << r
+//         <<  " --- hole col # "<< c<< endl;
     return 'B';
 }
 
 //Function to move for the B player
-char Checker::move_B(int before_r, int before_c,int r, int c, char player) {
-    int id = board[before_r][before_c].id;
+char Checker::move_B(char player, int id, int r, int c) {
+
+    int before_r = -1;
+    int before_c = -1;
+
+    for(int i=0; i<8; i++){
+        for(int j=0; j<8; j++){
+            if(board[i][j].player == player && board[i][j].id == id){
+                before_r = i;
+                before_c = j;
+            }
+        }
+    }
+
     int row_diff = abs(r-before_r);
     int col_diff = abs(c-before_c);
     if(row_diff == 1 && col_diff ==1){
@@ -228,18 +257,24 @@ char Checker::move_B(int before_r, int before_c,int r, int c, char player) {
             }
         }
     }
+//
+//    cout<<"\n*** MOVE ROLE *** "<< player;
+//    cout << "\nMOVE FROM :hole row # " << before_r
+//         <<  "--- hole col # "<< before_c << endl;
+//    cout << "MOVE TO :hole row # " << r
+//         <<  " --- hole col # "<< c<< endl;
     return 'A';
 }
 
 //Function which decides as to who should move
 /*** will perform move and change role, board ***/
-char Checker::move(int before_r, int before_c, int r, int c, char player) {
+char Checker::move(char player, int id, int row, int col) {
     char v;
     if (player == 'A') {
-        v = move_A(before_r, before_c, r, c, player);
+        v = move_A( player,  id,  row,  col);
     }
     else{
-        v = move_B(before_r, before_c, r, c, player);
+        v = move_B( player,  id,  row,  col);
     }
     return v;
 }
@@ -311,22 +346,22 @@ void Checker::set_heuristic_value_board(int v){
     heuristic_value = v;
 }
 
-void Checker::getChildLocation(char player, int id, int row, int col){
-
-    Address address;
-
-    for(int i=0; i<8; i++){
-        for(int j=0; j<8; j++){
-            if(board[i][j].player == player && board[i][j].id == id){
-                address.row_before= i;
-                address.col_before = j;
-                address.row_after = row;
-                address.col_after = col;
-            }
-        }
-    }
-   address = address; //store location before and after move of each child
-}
+//void Checker::getChildLocation(char player, int id, int row, int col){
+//
+//    Address address;
+//
+//    for(int i=0; i<8; i++){
+//        for(int j=0; j<8; j++){
+//            if(board[i][j].player == player && board[i][j].id == id){
+//                address.row_before= i;
+//                address.col_before = j;
+//                address.row_after = row;
+//                address.col_after = col;
+//            }
+//        }
+//    }
+//   address = address; //store location before and after move of each child
+//}
 
 int Checker::getHeuristicValue() const {
     return heuristic_value;

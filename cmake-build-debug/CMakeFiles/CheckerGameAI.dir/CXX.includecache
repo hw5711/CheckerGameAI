@@ -12,6 +12,14 @@ stdio.h
 iostream
 -
 
+/Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.cpp
+GameTree.h
+/Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.h
+cstdlib
+-
+ctime
+-
+
 /Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.h
 stdio.h
 -
@@ -21,22 +29,6 @@ Checker.h
 /Users/huanwu/Desktop/myVersion/CheckerGameAI/Checker.h
 Object.h
 /Users/huanwu/Desktop/myVersion/CheckerGameAI/Object.h
-
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/MinMaxAB.cpp
-MinMaxAB.h
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/MinMaxAB.h
-iostream
--
-
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/MinMaxAB.h
-GameTree.h
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.h
-Object.h
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/Object.h
-stdio.h
--
-iostream
--
 
 /Users/huanwu/Desktop/myVersion/CheckerGameAI/Object.h
 

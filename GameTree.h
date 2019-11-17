@@ -37,6 +37,7 @@ public:
     int row;// to strore the second child move to location of this board
     int col;// to strore the second child move to location of this board
     int id;
+
     Add address;
     Checker heuristic_board; //store it's best children
 
@@ -72,7 +73,17 @@ public:
 
     int getRow() const;
 
+    void setRow(int row);
+
     int getCol() const;
+
+    void setCol(int col);
+
+    int getId() const;
+
+    void setId(int id);
+
+
 };
 
 
