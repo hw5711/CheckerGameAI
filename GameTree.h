@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include<iostream>
 #include"Checker.h"
+#include"Object.h"
 
 using namespace std;
 
@@ -33,12 +34,11 @@ public:
     Checker board_status; //contains board status including each location info
     int number_of_children;
     GameTree *children[48]; // one step has 4 directions choices(man+king)
-    int row;//the row hold the best heuristic value
-    int col;//the col hold the best heuristic value
+    int row;// to strore the second child move to location of this board
+    int col;// to strore the second child move to location of this board
+    int id;
     Add address;
-    Checker heuristic_board;
-
-    const Checker &getHeuristicBoard() const;
+    Checker heuristic_board; //store it's best children
 
     GameTree();
 
@@ -48,9 +48,13 @@ public:
 
     void set_heuristic_value(int, Checker);
 
+    const Checker &getHeuristicBoard() const;
+
     int get_heuristic_value();
 
     void add_all_children(char);
+
+    void add_all_children2(char);
 
     bool deepenough(int, char);
 
@@ -64,17 +68,11 @@ public:
 
     bool threaten(int, int, Checker, char);
 
-    void getChildLocation(Checker);
-
     bool available_to_jump(Location);
 
-    int getBeforeRow();
+    int getRow() const;
 
-    int getBeforeCol();
-
-    int getAfterRow();
-
-    int getAfterCol();
+    int getCol() const;
 };
 
 

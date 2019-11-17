@@ -5,6 +5,7 @@ CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.o: ../AlphaBetaSearch.cpp
 CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.o: ../AlphaBetaSearch.h
 CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.o: ../Checker.h
 CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.o: ../GameTree.h
+CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.o: ../Object.h
 
 CMakeFiles/CheckerGameAI.dir/Checker.cpp.o: ../Checker.cpp
 CMakeFiles/CheckerGameAI.dir/Checker.cpp.o: ../Checker.h
@@ -12,6 +13,7 @@ CMakeFiles/CheckerGameAI.dir/Checker.cpp.o: ../Checker.h
 CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o: ../Checker.h
 CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o: ../GameTree.cpp
 CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o: ../GameTree.h
+CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o: ../Object.h
 
 CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.o: ../Checker.h
 CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.o: ../GameTree.h

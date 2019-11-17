@@ -28,6 +28,8 @@ public:
     Board board[8][8];
     int heuristic_value;
     Address address;
+
+
     Checker();
 
     Checker(int[], int[], int, int);
@@ -55,11 +57,21 @@ public:
 
     char getRole(int, int);
 
+    int getId(int, int);
+
     int get_heuristic_value_board();
 
     void set_heuristic_value_board(int);
 
-    void getChildLocation(Checker);
+    void getChildLocation(char, int, int, int);
+
+    int getHeuristicValue() const;
+
+    void setHeuristicValue(int heuristicValue);
+
+    const Address &getAddress() const;
+
+    void setAddress(const Address &address);
 };
 
 

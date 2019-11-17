@@ -23,10 +23,12 @@ int nodes_generated, nodes_expanded, steps;
 
 //MinmaxAB vs MinmaxAB
 void MinMax() {
-    Checker *ck = new Checker(); // ck is the board to be displayed
+    Checker ck = new Checker(); // ck is the board to be displayed
     cout << "Initial board " << endl;
-    //ck->displayBoard();
-    char win = ck->checkWin();
+    cout<<"!!!" << ck.get_heuristic_value_board();
+    cout<<endl;
+    ck.displayBoard();
+    char win = ck.checkWin();
     //cout <<" test 4: "<< win;
     char player = 'A';
     int start_s = clock();
@@ -38,7 +40,12 @@ void MinMax() {
     while (win == 'N') {
         steps++;
         GameTree *head = new GameTree(player);
-        head->copyBoardStatus(ck); //store current node info
+        cout<<"\n main- before copy-ck\n";
+        ck.displayBoard();
+        head->copyBoardStatus(ck);
+        //store current node inf0
+        cout<<"\n main- after copy\n";
+        head->board_status.displayBoard();
         cout << "*****Turn*****" << player << endl;
         Step hole;
         int evaluation1 = 1;
@@ -50,20 +57,21 @@ void MinMax() {
             MinMaxAB(head, 1, player, useVal, passVal, evaluation2);
         }
 /* This heuristic_value should contains location info **/
-        hole.heuristic_value = head->board_status.heuristic_value; // need to return new place and heuristic_value
-        hole.b = head->getHeuristicBoard();
-        ck->getChildLocation(hole.b);
+        //hole.heuristic_value = head->board_status.heuristic_value; // need to return new place and heuristic_value
+        //hole.b = head->getHeuristicBoard();
+        ck.getChildLocation(player, head->id, head->row, head->col);
+
         cout<<"\n*** ROLE *** "<< player;
-        cout << "\nMOVE FROM :hole row # " << ck->address.row_before <<  "--- hole col # "<< ck->address.col_before << endl;
-        cout << "MOVE TO :hole row # " << ck->address.row_after <<  " --- hole col # "<< ck->address.col_after << endl;
-        player = ck->move(ck->address.row_before, ck->address.col_before,ck->address.row_after, ck->address.col_after, player);
-        //ck->displayBoard();
-        win = ck->checkWin();
+        cout << "\nMOVE FROM :hole row # " << ck.address.row_before <<  "--- hole col # "<< ck.address.col_before << endl;
+        cout << "MOVE TO :hole row # " << ck.address.row_after <<  " --- hole col # "<< ck.address.col_after << endl;
+        player = ck.move(ck.address.row_before, ck.address.col_before,ck.address.row_after, ck.address.col_after, player);
+       // ck->displayBoard();
+        win = ck.checkWin();
         shift++;
     }
     int stop_s = clock();
     int execution_time = stop_s - start_s;
-    ck->displayBoard();
+    ck.displayBoard();
     print(win, execution_time);
 }
 
@@ -81,17 +89,14 @@ void AlphaBeta() {
         head->copyBoardStatus(ck);
         cout << "*****Turn*****" << player << endl;
         alphabeta(head, 0, player, 1000, -1000);
-        //head will contain best heristic value and location
-        Step hole;
-        hole.heuristic_value = head->board_status.heuristic_value; // need to return new place and heuristic_value
-        ck->getChildLocation(hole.b);
+
+        ck->getChildLocation(player, head->id, head->row, head->col);
         // cout<<"display ck:";
         // ck->displayBoard();
         cout<<"\n*** ROLE *** "<< player;
         cout << "\nMOVE FROM :hole row # " << ck->address.row_before <<  "--- hole col # "<< ck->address.col_before << endl;
         cout << "MOVE TO :hole row # " << ck->address.row_after <<  " --- hole col # "<< ck->address.col_after << endl;
         player = ck->move(ck->address.row_before, ck->address.col_before,ck->address.row_after, ck->address.col_after, player);
-        ck->displayBoard();
         ck->displayBoard();
         win = ck->checkWin();
     }

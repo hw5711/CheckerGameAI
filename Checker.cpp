@@ -10,58 +10,84 @@ using namespace std;
 
 //initializing the board
 Checker::Checker() {
-    int a1=1;
-    int a2=1;
-    int a3=1;
-    int b1=1;
-    int b2=1;
-    int b3=1;
+    int id_num = 1;
+    int id_num_otherplayer = 1;
     for(int i = 0; i < 8; i++){
         for( int j = 0; j < 8; j++){
             //set player A side board
             if(i == 0 && j%2 == 0){ //A side 1st row
-                setBoard('A',i,j,'m',a1++,-1000);
-            }else if(i == 0 && j%2 != 0){
+                setBoard('A',i,j,'m',id_num,-1000);
+                id_num++;
+                continue;
+            }
+
+            if(i == 0 && j%2 != 0){
                 setBoard(' ', i, j, 'n',0, -1000);
-            }else{}
+                continue;
+            }
 
             if(i == 1 && j%2 != 0){ //A side 2nd row
-                setBoard('A',i,j,'m',a2++,-1000);
-            }else if(i == 1 && j%2 == 0){
+                setBoard('A',i,j,'m',id_num,-1000);
+                id_num++;
+                continue;
+            }
+
+            if(i == 1 && j%2 == 0){
                 setBoard(' ',i,j,'n',0,-1000);
-            }else{}
+                continue;
+            }
 
             if(i == 2 && j%2 == 0){ //A side 3rd row
-                setBoard('A',i,j,'m',a3++,-1000);
-            }else if (i == 2 && j%2 != 0){
+                setBoard('A',i,j,'m',id_num,-1000);
+                id_num++;
+                continue;
+            }
+            if (i == 2 && j%2 != 0){
                 setBoard(' ',i,j,'n',0,-1000);
-            }else{}
+                continue;
+            }
 
             //set middle 2 lines board
             if(i == 3 || i == 4 ){
                 setBoard(' ',i,j,'n',0,-1000);
+                continue;
             }
             //set player B side board
             if(i == 5 && j%2 != 0){ //A side 1st row
-                setBoard('B',i,j,'m',b1++,-1000);
-            }else if (i == 5 && j%2 == 0) {
+                setBoard('B',i,j,'m',id_num_otherplayer,-1000);
+                id_num_otherplayer++;
+                continue;
+            }
+
+            if (i == 5 && j%2 == 0) {
                 setBoard(' ',i,j,'n',0,-1000); // N means not possessed by both playler
-            }else{}
+                continue;
+            }
 
             if(i == 6 && j%2 == 0){ //A side 2nd row
-                setBoard('B',i,j,'m',b2++,-1000);
-            }else if(i == 6 && j%2 != 0){
+                setBoard('B',i,j,'m',id_num_otherplayer,-1000);
+                id_num_otherplayer++;
+                continue;
+            }
+
+            if(i == 6 && j%2 != 0){
                 setBoard(' ',i,j,'n',0,-1000);
-            }else{}
+                continue;
+            }
 
             if(i == 7 && j%2 != 0){ //A side 3rd row
-                setBoard('B',i,j,'m',b3++,-1000);
-            }else if(i == 7 && j%2 == 0){
+                setBoard('B',i,j,'m',id_num_otherplayer,-1000);
+                id_num_otherplayer++;
+                continue;
+            }
+
+            if(i == 7 && j%2 == 0){
                 setBoard(' ',i,j,'n',0,-1000);
-            }else{}
+                continue;
+            }
         }
     }
-    this->heuristic_value = -1000;
+    set_heuristic_value_board( -1000);
 }
 
 //copy constructor to copy the value of the board from one var to another
@@ -254,6 +280,10 @@ char Checker::getRole(int r, int c) {
     return this->board[r][c].role;
 }
 
+int Checker::getId(int r, int c) {
+    return this->board[r][c].id;
+}
+
 //Function to display the board
 void Checker::displayBoard() {
     cout << "***** DISPLAY BOARD *****\n";
@@ -261,7 +291,7 @@ void Checker::displayBoard() {
     for(int i = 0; i < 8; i++){
         for( int j = 0; j < 8; j++) {
             if(getPlayer(i,j) != ' '){
-            cout << "|" << getPlayer(i,j) << getRole(i,j) << "| ";
+            cout << "|" << getPlayer(i,j) << getRole(i,j) << getId(i,j) << "| ";
             }
             else{
                 cout << " - ";
@@ -281,20 +311,35 @@ void Checker::set_heuristic_value_board(int v){
     this->heuristic_value = v;
 }
 
-void Checker::getChildLocation(Checker child){
+void Checker::getChildLocation(char player, int id, int row, int col){
+
     Address address;
 
     for(int i=0; i<8; i++){
         for(int j=0; j<8; j++){
-            if(this->board[i][j].id != child.board[i][j].id && this->board[i][j].player != ' '){
+            if(this->board[i][j].player == player && this->board[i][j].id == id){
                 address.row_before= i;
                 address.col_before = j;
-            }
-            if(this->board[i][j].id != child.board[i][j].id && child.board[i][j].player != ' '){
-                address.row_after = i;
-                address.col_after = j;
+                address.row_after = row;
+                address.col_after = col;
             }
         }
     }
     this->address = address; //store location before and after move of each child
+}
+
+int Checker::getHeuristicValue() const {
+    return heuristic_value;
+}
+
+void Checker::setHeuristicValue(int heuristicValue) {
+    heuristic_value = heuristicValue;
+}
+
+const Address &Checker::getAddress() const {
+    return address;
+}
+
+void Checker::setAddress(const Address &address) {
+    Checker::address = address;
 }

@@ -6,6 +6,7 @@ CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.o
  /Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBetaSearch.h
  /Users/huanwu/Desktop/myVersion/CheckerGameAI/Checker.h
  /Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.h
+ /Users/huanwu/Desktop/myVersion/CheckerGameAI/Object.h
 CMakeFiles/CheckerGameAI.dir/Checker.cpp.o
  /Users/huanwu/Desktop/myVersion/CheckerGameAI/Checker.cpp
  /Users/huanwu/Desktop/myVersion/CheckerGameAI/Checker.h
@@ -13,6 +14,7 @@ CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o
  /Users/huanwu/Desktop/myVersion/CheckerGameAI/Checker.h
  /Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.cpp
  /Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.h
+ /Users/huanwu/Desktop/myVersion/CheckerGameAI/Object.h
 CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.o
  /Users/huanwu/Desktop/myVersion/CheckerGameAI/Checker.h
  /Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.h

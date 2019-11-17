@@ -13,11 +13,15 @@
   <component name="ChangeListManager">
     <list default="true" id="1049f50a-b802-4356-8d39-63554f1d0167" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Checker.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Checker.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Checker.h" beforeDir="false" afterPath="$PROJECT_DIR$/Checker.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GameTree.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/GameTree.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameTree.h" beforeDir="false" afterPath="$PROJECT_DIR$/GameTree.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MinMaxAB.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/MinMaxAB.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/Checker.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/Checker.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/main.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CheckerGameAI" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CheckerGameAI" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
@@ -40,6 +44,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -74,7 +79,8 @@
       <workItem from="1572211553446" duration="230000" />
       <workItem from="1572211821581" duration="148000" />
       <workItem from="1572211990539" duration="64000" />
-      <workItem from="1572212220753" duration="144901000" />
+      <workItem from="1572212220753" duration="146889000" />
+      <workItem from="1573582409031" duration="15996000" />
     </task>
     <servers />
   </component>
