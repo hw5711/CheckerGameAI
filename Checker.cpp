@@ -91,64 +91,64 @@ Checker::Checker() {
 }
 
 //copy constructor to copy the value of the board from one var to another
-Checker::Checker(Checker *b) {
-    for (int i = 0; i < 8; i++) {
-        for(int j = 0; j < 8; j++) {
-            this->board[i][j].player = b->board[i][j].player;
-            this->board[i][j].row = b->board[i][j].row;
-            this->board[i][j].col = b->board[i][j].col;
-            this->board[i][j].role = b->board[i][j].role;
-            this->board[i][j].heuristic_value = b->board[i][j].heuristic_value;
-        }
-    }
-}
+//Checker::Checker(const Checker &b) {
+//    for (int i = 0; i < 8; i++) {
+//        for(int j = 0; j < 8; j++) {
+//            board[i][j].player = b.board[i][j].player;
+//            board[i][j].row = b.board[i][j].row;
+//            board[i][j].col = b.board[i][j].col;
+//            board[i][j].role = b.board[i][j].role;
+//            board[i][j].heuristic_value = b.board[i][j].heuristic_value;
+//        }
+//    }
+//}
 
 //constructor to set the board values, mainly used for testing
 void Checker::setBoard(char p, int r, int c, char ro, int i, int he) {
-    this->board[r][c].player = p;
-    this->board[r][c].row = r;
-    this->board[r][c].col = c;
-    this->board[r][c].role = ro;
-    this->board[r][c].id = i;
-    this->board[r][c].heuristic_value = he;
+    board[r][c].player = p;
+    board[r][c].row = r;
+    board[r][c].col = c;
+    board[r][c].role = ro;
+    board[r][c].id = i;
+    board[r][c].heuristic_value = he;
 }
 
 //Function to move for the A player
 char Checker::move_A(int before_r, int before_c, int r, int c, char player) {
-    int id = this->board[before_r][before_c].id;
+    int id = board[before_r][before_c].id;
     int row_diff = abs(r-before_r);
     int col_diff = abs(c-before_c);
     if(row_diff == 1 && col_diff ==1){
-        char role = this->board[before_r][before_c].role;
-        //char player = this->board[r][c].player;
+        char role = board[before_r][before_c].role;
+        //char player = board[r][c].player;
         setBoard(player,r,c,role,id,-1000); // set the moving place
         setBoard(' ',before_r,before_c,'n',0,-1000); //set current place as empty
         before_r = r; //change the current head row
         before_c = c; //change the current head col
     }else{ // eat enemy
-        char role = this->board[before_r][before_c].role;
-        //char player = this->board[r][c].player;
+        char role = board[before_r][before_c].role;
+        //char player =board[r][c].player;
         setBoard(' ',r,c,'n',0,-1000);
         if(r >before_r && c > before_c) {
-            int en_id = this->board[before_r+1][before_c+1].id;
+            int en_id = board[before_r+1][before_c+1].id;
             setBoard(player, r, c, role,id, -1000);
             setBoard(' ', before_r+1, before_c+1, 'n',en_id, -1000);
             setBoard(' ', before_r, before_c, 'n',0, -1000);
         }
         else if(r > before_r && c < before_c){
-            int en_id = this->board[before_r+1][before_c-1].id;
+            int en_id = board[before_r+1][before_c-1].id;
             setBoard(player, r, c, role,id, -1000);
             setBoard(' ', before_r+1, before_c-1,en_id, 'n', -1000);
             setBoard(' ', before_r, before_c, 'n',0, -1000);
         }
         else if(r < before_r && c >before_c){
-            int en_id = this->board[before_r-1][before_c+1].id;
+            int en_id = board[before_r-1][before_c+1].id;
             setBoard(player, r, c, role,id, -1000);
             setBoard(' ', before_r-1, before_c+1, 'n',en_id, -1000);
             setBoard(' ', before_r, before_c, 'n',0, -1000);
         }
         else if(r <before_r && c < before_c){
-            int en_id = this->board[before_r-1][before_c-1].id;
+            int en_id = board[before_r-1][before_c-1].id;
             setBoard(player, r, c, role,id, -1000);
             setBoard(' ', before_r-1, before_c-1, 'n', en_id,-1000);
             setBoard(' ', before_r, before_c, 'n',0, -1000);
@@ -160,11 +160,11 @@ char Checker::move_A(int before_r, int before_c, int r, int c, char player) {
     for(int i = 0; i < 8; i++){
         for(int j = 0; j < 8; j++) {
             if(i==0 && getPlayer(i,j) == 'B'){
-                int id = this->board[i][j].id;
+                int id = board[i][j].id;
                 setBoard('B',i,j,'k',id,-1000);
             }
             if(i==7 && getPlayer(i,j) == 'A'){
-                int id = this->board[i][j].id;
+                int id = board[i][j].id;
                 setBoard('A',i,j,'k',id,-1000);
             }
         }
@@ -174,40 +174,40 @@ char Checker::move_A(int before_r, int before_c, int r, int c, char player) {
 
 //Function to move for the B player
 char Checker::move_B(int before_r, int before_c,int r, int c, char player) {
-    int id = this->board[before_r][before_c].id;
+    int id = board[before_r][before_c].id;
     int row_diff = abs(r-before_r);
     int col_diff = abs(c-before_c);
     if(row_diff == 1 && col_diff ==1){
-        char role = this->board[before_r][before_c].role;
-        //char player = this->board[r][c].player;
+        char role = board[before_r][before_c].role;
+        //char player = board[r][c].player;
         setBoard(player,r,c,role,id,-1000); // set the moving place
         setBoard(' ',before_r,before_c,'n',0,-1000); //set current place as empty
         before_r = r; //change the current head row
         before_c = c; //change the current head col
     }else{ // eat enemy
-        char role = this->board[before_r][before_c].role;
-        //char player = this->board[r][c].player;
+        char role = board[before_r][before_c].role;
+        //char player = board[r][c].player;
         setBoard(' ',r,c,'n',0,-1000);
         if(r >before_r && c > before_c) {
-            int en_id = this->board[before_r+1][before_c+1].id;
+            int en_id = board[before_r+1][before_c+1].id;
             setBoard(player, r, c, role,id, -1000);
             setBoard(' ', before_r+1, before_c+1, 'n',en_id, -1000);
             setBoard(' ', before_r, before_c, 'n',0, -1000);
         }
         else if(r > before_r && c < before_c){
-            int en_id = this->board[before_r+1][before_c-1].id;
+            int en_id = board[before_r+1][before_c-1].id;
             setBoard(player, r, c, role,id, -1000);
             setBoard(' ', before_r+1, before_c-1,en_id, 'n', -1000);
             setBoard(' ', before_r, before_c, 'n',0, -1000);
         }
         else if(r < before_r && c >before_c){
-            int en_id = this->board[before_r-1][before_c+1].id;
+            int en_id = board[before_r-1][before_c+1].id;
             setBoard(player, r, c, role,id, -1000);
             setBoard(' ', before_r-1, before_c+1, 'n',en_id, -1000);
             setBoard(' ', before_r, before_c, 'n',0, -1000);
         }
         else if(r <before_r && c < before_c){
-            int en_id = this->board[before_r-1][before_c-1].id;
+            int en_id = board[before_r-1][before_c-1].id;
             setBoard(player, r, c, role,id, -1000);
             setBoard(' ', before_r-1, before_c-1, 'n', en_id,-1000);
             setBoard(' ', before_r, before_c, 'n',0, -1000);
@@ -219,11 +219,11 @@ char Checker::move_B(int before_r, int before_c,int r, int c, char player) {
     for(int i = 0; i < 8; i++){
         for(int j = 0; j < 8; j++) {
             if(i==0 && getPlayer(i,j) == 'B'){
-                int id = this->board[i][j].id;
+                int id = board[i][j].id;
                 setBoard('B',i,j,'k',id,-1000);
             }
             if(i==7 && getPlayer(i,j) == 'A'){
-                int id = this->board[i][j].id;
+                int id = board[i][j].id;
                 setBoard('A',i,j,'k',id,-1000);
             }
         }
@@ -272,16 +272,16 @@ char Checker::checkWin() {
 }
 
 char Checker::getPlayer(int r, int c) {
-    return this->board[r][c].player;
+    return board[r][c].player;
 }
 
 
 char Checker::getRole(int r, int c) {
-    return this->board[r][c].role;
+    return board[r][c].role;
 }
 
 int Checker::getId(int r, int c) {
-    return this->board[r][c].id;
+    return board[r][c].id;
 }
 
 //Function to display the board
@@ -304,11 +304,11 @@ void Checker::displayBoard() {
 
 
 int Checker::get_heuristic_value_board(){
-    return this->heuristic_value;
+    return heuristic_value;
 }
 
 void Checker::set_heuristic_value_board(int v){
-    this->heuristic_value = v;
+    heuristic_value = v;
 }
 
 void Checker::getChildLocation(char player, int id, int row, int col){
@@ -317,7 +317,7 @@ void Checker::getChildLocation(char player, int id, int row, int col){
 
     for(int i=0; i<8; i++){
         for(int j=0; j<8; j++){
-            if(this->board[i][j].player == player && this->board[i][j].id == id){
+            if(board[i][j].player == player && board[i][j].id == id){
                 address.row_before= i;
                 address.col_before = j;
                 address.row_after = row;
@@ -325,7 +325,7 @@ void Checker::getChildLocation(char player, int id, int row, int col){
             }
         }
     }
-    this->address = address; //store location before and after move of each child
+   address = address; //store location before and after move of each child
 }
 
 int Checker::getHeuristicValue() const {

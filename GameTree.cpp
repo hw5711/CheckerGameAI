@@ -35,9 +35,13 @@ void GameTree::create_node(char p) {
     children[number_of_children++] = new GameTree(p);
 }
 
-void GameTree::set_heuristic_value(int value, Checker k) {
+void GameTree::set_heuristic_value(int value, Checker k, int id, int row, int col) {
     this->board_status.heuristic_value = value;
     this->heuristic_board = k;
+    this->id = id;
+    this->row = row;
+    this->col = col;
+
 }
 
 //test if can jump more than once and return the new location
@@ -477,19 +481,6 @@ int GameTree::evaluation( char player) {
 }
 
 void GameTree::copyBoardStatus(Checker kb) {
-    for(int i=0; i<8; i++){
-        for(int j=0; j<8; j++){
-//            this->board_status.board[i][j].player = kb.board[i][j].player;
-//            this->board_status.board[i][j].row = kb.board[i][j].row;
-//            this->board_status.board[i][j].col = kb.board[i][j].col;
-//            this->board_status.board[i][j].role = kb.board[i][j].role;
-//            this->board_status.board[i][j].id = kb.board[i][j].id;
-//            this->board_status.board[i][j].heuristic_value = kb.board[i][j].heuristic_value;
-
-        }
-    }
-    cout<<"\ninside\n";
-    kb.displayBoard();
     this->board_status = kb;
     this->board_status.heuristic_value = kb.heuristic_value;
     this->board_status.address = kb.address;
@@ -637,7 +628,7 @@ void GameTree::add_all_children2(char player) {
                 location = jump(i,j,this->board_status,'A');
 
                 if(available_to_jump(location) == true) {
-                    //cout<<"\ncurrent ture situation -A:"<< i<<","<<j<<endl;
+                    cout<<"\nAdd all child 2 --current ture situation -A:"<< i<<","<<j<<endl;
                     //use location to perform jumps and generate children
                     if (this->board_status.board[i][j].role == 'm') {
                         if(location.l1 != -2 && location.l2 != -2){
@@ -673,9 +664,9 @@ void GameTree::add_all_children2(char player) {
                             children[children_num]->row = location.l1;
                             children[children_num]->col = location.l2;
                             children[children_num]->id = this->board_status.board[i][j].id;
-                            cout<<"\nadd all children2, child info(num, id, row, col) : "<<children_num<<" -- "
-                                <<children[children_num]->id <<" %%  "<< children[children_num]->row << " %% "
-                                << children[children_num]->col<<endl;
+//                            cout<<"\nadd all children2, child info(num, id, row, col) : "<<children_num<<" -- "
+//                                <<children[children_num]->id <<" %%  "<< children[children_num]->row << " %% "
+//                                << children[children_num]->col<<endl;
                             children_num++;
                         }
                         if(location.l3 != -2 && location.l4 != -2){
@@ -685,9 +676,9 @@ void GameTree::add_all_children2(char player) {
                             children[children_num]->row = location.l3;
                             children[children_num]->col = location.l4;
                             children[children_num]->id = this->board_status.board[i][j].id;
-                            cout<<"\nadd all children2, child info(num, id, row, col) : "<<children_num<<" -- "
-                                <<children[children_num]->id <<" %%  "<< children[children_num]->row << " %% "
-                                << children[children_num]->col<<endl;
+//                            cout<<"\nadd all children2, child info(num, id, row, col) : "<<children_num<<" -- "
+//                                <<children[children_num]->id <<" %%  "<< children[children_num]->row << " %% "
+//                                << children[children_num]->col<<endl;
                             children_num++;
                         }
                         if(location.l5 != -2 && location.l6 != -2){
@@ -697,9 +688,9 @@ void GameTree::add_all_children2(char player) {
                             children[children_num]->row = location.l5;
                             children[children_num]->col = location.l6;
                             children[children_num]->id = this->board_status.board[i][j].id;
-                            cout<<"\nadd all children2, child info(num, id, row, col) : "<<children_num<<" -- "
-                                <<children[children_num]->id <<" %%  "<< children[children_num]->row << " %% "
-                                << children[children_num]->col<<endl;
+//                            cout<<"\nadd all children2, child info(num, id, row, col) : "<<children_num<<" -- "
+//                                <<children[children_num]->id <<" %%  "<< children[children_num]->row << " %% "
+//                                << children[children_num]->col<<endl;
                             children_num++;
                         }
                         if(location.l7 != -2 && location.l8 != -2){
@@ -709,9 +700,9 @@ void GameTree::add_all_children2(char player) {
                             children[children_num]->row = location.l7;
                             children[children_num]->col = location.l8;
                             children[children_num]->id = this->board_status.board[i][j].id;
-                            cout<<"\nadd all children2, child info(num, id, row, col) : "<<children_num<<" -- "
-                                <<children[children_num]->id <<" %%  "<< children[children_num]->row << " %% "
-                                << children[children_num]->col<<endl;
+//                            cout<<"\nadd all children2, child info(num, id, row, col) : "<<children_num<<" -- "
+//                                <<children[children_num]->id <<" %%  "<< children[children_num]->row << " %% "
+//                                << children[children_num]->col<<endl;
                             children_num++;
                         }
                     }else {}
@@ -721,7 +712,7 @@ void GameTree::add_all_children2(char player) {
                 char p = 'A';
                 location = jump(i, j, this->board_status, 'B');
                 if (available_to_jump(location) == true) {
-//                    cout<<"\ncurrent ture situation-B : "<< i<<","<<j<<endl;
+                    cout<<"\nADD ALL CHILD2 --current ture situation-B : "<< i<<","<<j<<endl;
                     if (this->board_status.board[i][j].role == 'm') {
                         if (location.l1 != -2 && location.l2 != -2) {
                             children[children_num] = new GameTree(p);

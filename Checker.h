@@ -32,9 +32,9 @@ public:
 
     Checker();
 
-    Checker(int[], int[], int, int);
+    //Checker(int[], int[], int, int);
 
-    Checker(Checker *);
+    //Checker(const Checker &);
 
     char move_A(int, int, int, int, char);
 

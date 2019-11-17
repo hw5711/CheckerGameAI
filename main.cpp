@@ -23,31 +23,25 @@ int nodes_generated, nodes_expanded, steps;
 
 //MinmaxAB vs MinmaxAB
 void MinMax() {
-    Checker ck = new Checker(); // ck is the board to be displayed
+    Checker ck ; // ck is the board to be displayed
     cout << "Initial board " << endl;
-    cout<<"!!!" << ck.get_heuristic_value_board();
-    cout<<endl;
-    ck.displayBoard();
+   //ck.displayBoard();
     char win = ck.checkWin();
     //cout <<" test 4: "<< win;
     char player = 'A';
     int start_s = clock();
     int shift = 1;
 
-    Object useVal(1000,new Checker);
-    Object passVal(-1000,new Checker);
+    Checker ck1;
+    Checker ck2;
+    Object useVal(1000,ck1,0,-1,-1);
+    Object passVal(-1000,ck2,0,-1,-1);
 
     while (win == 'N') {
         steps++;
         GameTree *head = new GameTree(player);
-        cout<<"\n main- before copy-ck\n";
-        ck.displayBoard();
         head->copyBoardStatus(ck);
-        //store current node inf0
-        cout<<"\n main- after copy\n";
-        head->board_status.displayBoard();
         cout << "*****Turn*****" << player << endl;
-        Step hole;
         int evaluation1 = 1;
         int evaluation2 = 2;
 
@@ -56,9 +50,7 @@ void MinMax() {
         }else{
             MinMaxAB(head, 1, player, useVal, passVal, evaluation2);
         }
-/* This heuristic_value should contains location info **/
-        //hole.heuristic_value = head->board_status.heuristic_value; // need to return new place and heuristic_value
-        //hole.b = head->getHeuristicBoard();
+        /* This heuristic_value should contains location info **/
         ck.getChildLocation(player, head->id, head->row, head->col);
 
         cout<<"\n*** ROLE *** "<< player;
@@ -77,10 +69,10 @@ void MinMax() {
 
 //AlphaBeta vs AlphaBeta
 void AlphaBeta() {
-    Checker *ck = new Checker();
+    Checker ck;
     cout << "Initial board " << endl;
-    ck->displayBoard();
-    char win = ck->checkWin();
+    //ck->displayBoard();
+    char win = ck.checkWin();
     char player = 'A';
     int start_s = clock();
     while (win == 'N') {
@@ -90,15 +82,15 @@ void AlphaBeta() {
         cout << "*****Turn*****" << player << endl;
         alphabeta(head, 0, player, 1000, -1000);
 
-        ck->getChildLocation(player, head->id, head->row, head->col);
+        ck.getChildLocation(player, head->id, head->row, head->col);
         // cout<<"display ck:";
         // ck->displayBoard();
         cout<<"\n*** ROLE *** "<< player;
-        cout << "\nMOVE FROM :hole row # " << ck->address.row_before <<  "--- hole col # "<< ck->address.col_before << endl;
-        cout << "MOVE TO :hole row # " << ck->address.row_after <<  " --- hole col # "<< ck->address.col_after << endl;
-        player = ck->move(ck->address.row_before, ck->address.col_before,ck->address.row_after, ck->address.col_after, player);
-        ck->displayBoard();
-        win = ck->checkWin();
+        cout << "\nMOVE FROM :hole row # " << ck.address.row_before <<  "--- hole col # "<< ck.address.col_before << endl;
+        cout << "MOVE TO :hole row # " << ck.address.row_after <<  " --- hole col # "<< ck.address.col_after << endl;
+        player = ck.move(ck.address.row_before, ck.address.col_before,ck.address.row_after, ck.address.col_after, player);
+        // ck->displayBoard();
+        win = ck.checkWin();
     }
     int stop_s = clock();
     int execution_time = stop_s - start_s;

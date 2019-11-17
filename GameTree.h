@@ -46,7 +46,7 @@ public:
 
     void create_node(char);
 
-    void set_heuristic_value(int, Checker);
+    void set_heuristic_value(int, Checker, int, int ,int);
 
     const Checker &getHeuristicBoard() const;
 

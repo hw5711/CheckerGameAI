@@ -11,6 +11,13 @@ public:
 
     int value;
     Checker tempBoard;
+    int row;
+    int col;
+    int id;
+
+    Object(){
+
+    }
 
     void setTempBoard(const Checker &tempBoard) {
         Object::tempBoard = tempBoard;
@@ -20,15 +27,12 @@ public:
         return tempBoard;
     }
 
-
-    Object() {
-//        this->value = 0;
-//        this->tempBoard
-    }
-
-    Object(int value, Checker b) {
+    Object(int value, Checker b, int id, int r, int c ) {
         this->value = value;
         this->tempBoard = b;
+        this->id = id;
+        this->row = r;
+        this->col = c;
     }
 
     void setValue(int value) {
@@ -43,7 +47,35 @@ public:
         Object newObj;
         newObj.setValue(-obj.value);
         newObj.setTempBoard(obj.getTempBoard());
+        newObj.setId(obj.id);
+        newObj.setRow(obj.row);
+        newObj.setCol(obj.col);
         return newObj;
+    }
+
+    int getRow() const {
+        return row;
+    }
+
+    void setRow(int row) {
+        Object::row = row;
+    }
+
+    int getCol() const {
+        return col;
+    }
+
+    void setCol(int col) {
+        Object::col = col;
+    }
+
+
+    int getId() const {
+        return id;
+    }
+
+    void setId(int id) {
+        Object::id = id;
     }
 };
 
