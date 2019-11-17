@@ -25,9 +25,8 @@ int nodes_generated, nodes_expanded, steps;
 void MinMax() {
     Checker ck ; // ck is the board to be displayed
     cout << "Initial board " << endl;
-   //ck.displayBoard();
+    ck.displayBoard();
     char win = ck.checkWin();
-    //cout <<" test 4: "<< win;
     char player = 'A';
     int start_s = clock();
     int shift = 1;
@@ -41,21 +40,20 @@ void MinMax() {
         steps++;
         GameTree *head = new GameTree(player);
         head->copyBoardStatus(ck);
-        cout << "*****Turn*****" << player << endl;
+        cout << "*****Turn*****" << player;
         int evaluation1 = 1;
         int evaluation2 = 2;
         Object v;
-
         if(shift %2 == 1) {
             v = MinMaxAB(head, 1, player, useVal, passVal, evaluation1);
         }else{
             v = MinMaxAB(head, 1, player, useVal, passVal, evaluation2);
         }
-        /* This heuristic_value should contains location info **/
-        cout << "\nmain - id, row, col :" <<  v.getId() << "%"<< v.getRow() << "%"<< v.getCol()<<endl;
-
+        cout<<"\n*** MOVE PLAYER *** "<< player << v.getId();
+        cout << "   MOVE TO : row # " << v.getRow()
+             <<  " ---  col # "<< v.getCol() << endl;
         player = ck.move(player, v.getId(), v.getRow(), v.getCol());
-        ck.displayBoard();
+        //ck.displayBoard();
         win = ck.checkWin();
         shift++;
     }
@@ -69,7 +67,7 @@ void MinMax() {
 void AlphaBeta() {
     Checker ck;
     cout << "Initial board " << endl;
-    //ck->displayBoard();
+    ck.displayBoard();
     char win = ck.checkWin();
     char player = 'A';
     int start_s = clock();
@@ -90,7 +88,7 @@ void AlphaBeta() {
     }
     int stop_s = clock();
     int execution_time = stop_s - start_s;
-    //ck->displayBoard();
+    ck.displayBoard();
     print(win, execution_time);
 }
 

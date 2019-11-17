@@ -16,7 +16,6 @@
       <change beforePath="$PROJECT_DIR$/Checker.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Checker.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Checker.h" beforeDir="false" afterPath="$PROJECT_DIR$/Checker.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GameTree.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/GameTree.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameTree.h" beforeDir="false" afterPath="$PROJECT_DIR$/GameTree.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MinMaxAB.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/MinMaxAB.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/CXX.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/Checker.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/Checker.cpp.o" afterDir="false" />
@@ -80,7 +79,7 @@
       <workItem from="1572211821581" duration="148000" />
       <workItem from="1572211990539" duration="64000" />
       <workItem from="1572212220753" duration="146889000" />
-      <workItem from="1573582409031" duration="23746000" />
+      <workItem from="1573582409031" duration="25950000" />
     </task>
     <servers />
   </component>

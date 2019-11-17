@@ -35,7 +35,6 @@ Object MinMaxAB(GameTree *board, int depth, char player, Object useVal, Object p
         if (board->children[i] == NULL) {
             continue;
         }
-
         cout<<endl;
         if (player == 'A')
             NewPlayer = 'B';

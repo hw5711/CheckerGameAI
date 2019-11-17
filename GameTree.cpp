@@ -389,13 +389,13 @@ int GameTree::evaluation( char player) {
         for (int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
                 if(board_status.board[i][j].role == 'm' && board_status.board[i][j].player == 'A'){
-                    value +=10;
+                    value +=11;
                 }else if (board_status.board[i][j].role == 'k' && board_status.board[i][j].player == 'A'){
-                    value +=20;
+                    value +=23;
                 }else if (board_status.board[i][j].role == 'm' && board_status.board[i][j].player == 'B'){
-                    value -=10;
+                    value -=15;
                 }else if (board_status.board[i][j].role == 'k' && board_status.board[i][j].player == 'B'){
-                    value -=20;
+                    value -=27;
                 }else{}
             }
         }
@@ -404,7 +404,7 @@ int GameTree::evaluation( char player) {
         for (int i = 4; i < 8; i++) {
             for (int j = 4; j < 8; j++) {
                 if (board_status.board[i][j].player == 'A') {
-                    value += 4;
+                    value += 5;
                 }
             }
         }
@@ -412,7 +412,7 @@ int GameTree::evaluation( char player) {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 if (board_status.board[i][j].player == 'B') {
-                    value -= 4;
+                    value -= 3;
                 }
             }
         }
@@ -421,9 +421,9 @@ int GameTree::evaluation( char player) {
         for (int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
                 if(threaten(i,j, board_status,'A')){
-                    value +=10;
+                    value +=18;
                 }else if(threaten(i,j, board_status,'B')){
-                    value -=10;
+                    value -=13;
                 }else{}
             }
         }
@@ -712,7 +712,7 @@ void GameTree::add_all_children2(char player) {
                 char p = 'A';
                 location = jump(i, j, this->board_status, 'B');
                 if (available_to_jump(location) == true) {
-                    cout<<"\nADD ALL CHILD2 --current ture situation-B : "<< i<<","<<j<<endl;
+//                    cout<<"\nADD ALL CHILD2 --current ture situation-B : "<< i<<","<<j<<endl;
                     if (this->board_status.board[i][j].role == 'm') {
                         if (location.l1 != -2 && location.l2 != -2) {
                             children[children_num] = new GameTree(p);

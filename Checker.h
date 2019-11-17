@@ -72,6 +72,8 @@ public:
     const Address &getAddress() const;
 
     void setAddress(const Address &address);
+
+    int getPlayerNum(char);
 };
 
 

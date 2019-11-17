@@ -165,8 +165,8 @@ char Checker::move_A(char player, int id, int r, int c) {
             setBoard(' ', before_r-1, before_c-1, 'n', en_id,-1000);
             setBoard(' ', before_r, before_c, 'n',0, -1000);
         }else{}
-        before_r = r; //change the current head row
-        before_c = c; //change the current head col
+//        before_r = r; //change the current head row
+//        before_c = c; //change the current head col
     }
     //update king role
     for(int i = 0; i < 8; i++){
@@ -181,10 +181,8 @@ char Checker::move_A(char player, int id, int r, int c) {
             }
         }
     }
-//    cout<<"\n*** MOVE ROLE *** "<< player;
-//    cout << "\nMOVE FROM :hole row # " << before_r
-//         <<  "--- hole col # "<< before_c << endl;
-//    cout << "MOVE TO :hole row # " << r
+//    cout<<"\n*** MOVE PLAYER *** "<< player << id;
+//    cout << "   MOVE TO :hole row # " << r
 //         <<  " --- hole col # "<< c<< endl;
     return 'B';
 }
@@ -241,8 +239,8 @@ char Checker::move_B(char player, int id, int r, int c) {
             setBoard(' ', before_r-1, before_c-1, 'n', en_id,-1000);
             setBoard(' ', before_r, before_c, 'n',0, -1000);
         }else{}
-        before_r = r; //change the current head row
-        before_c = c; //change the current head col
+//        before_r = r; //change the current head row
+//        before_c = c; //change the current head col
     }
     //update king role
     for(int i = 0; i < 8; i++){
@@ -257,11 +255,9 @@ char Checker::move_B(char player, int id, int r, int c) {
             }
         }
     }
-//
-//    cout<<"\n*** MOVE ROLE *** "<< player;
-//    cout << "\nMOVE FROM :hole row # " << before_r
-//         <<  "--- hole col # "<< before_c << endl;
-//    cout << "MOVE TO :hole row # " << r
+
+//    cout<<"\n*** MOVE PLAYER *** "<< player << id;
+//    cout << "   MOVE TO :hole row # " << r
 //         <<  " --- hole col # "<< c<< endl;
     return 'A';
 }
@@ -319,10 +315,25 @@ int Checker::getId(int r, int c) {
     return board[r][c].id;
 }
 
+
+int Checker::getPlayerNum(char player){
+    int i=0;
+    for(int i=0; i<8; i++){
+        for(int j=0; j<8; j++){
+            if(board[i][j].player == player){
+                i++;
+//                cout <<"!!! i = "<< i;
+            }
+        }
+    }
+    return i;
+}
+
 //Function to display the board
 void Checker::displayBoard() {
     cout << "***** DISPLAY BOARD *****\n";
-//    cout << "xxxx|" << getPlayer(0,0) << "| ";
+//    cout << "A( "<< getPlayerNum('A') << " ) -vs- "
+//    << "B( " << getPlayerNum('B') << " )\n";
     for(int i = 0; i < 8; i++){
         for( int j = 0; j < 8; j++) {
             if(getPlayer(i,j) != ' '){
