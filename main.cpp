@@ -162,6 +162,16 @@ void AlphaBeta2() {
     int evaluation1 = 1;
     int evaluation2 = 2;
     int shift = 1;
+    Step ArepeatStep[2]; // detect if in the loop
+    Step BrepeatStep [2]; // detect if in the loop
+    for(int i=0; i<2; i++){
+        ArepeatStep[i].heuristic_value = -1000;
+        ArepeatStep[i].row = -1;
+        ArepeatStep[i].col = -1;
+        BrepeatStep[i].heuristic_value = -1000;
+        BrepeatStep[i].row = -1;
+        BrepeatStep[i].col = -1;
+    }
 
     Checker ck1;
     Checker ck2;
@@ -178,6 +188,48 @@ void AlphaBeta2() {
             v = alphabeta(head, 1, player, alpha, beta, evaluation1);
         }else{
             v = alphabeta(head, 1, player, alpha, beta, evaluation2);
+        }
+        int temp_r = -1;
+        int temp_c = -1;
+        int temp_r1 = -1;
+        int temp_c1 = -1;
+       // cout<<"\nMOVEABLE A: "<<ArepeatStep[0].row << " - "<<ArepeatStep[0].col<<" / "<<ArepeatStep[1].row << " - "<<ArepeatStep[1].col<<endl;
+        //cout<<"\nMOVEABLE B: "<<BrepeatStep[0].row << " - "<<BrepeatStep[0].col<<" / "<<BrepeatStep[1].row << " - "<<BrepeatStep[1].col<<endl;
+        while(player == 'A' && checkMoveable(player, ArepeatStep, v) == false) {
+           // cout<<"\nPlayer A is not move able "<< v.id<<" - "<< v.row<<" - "<< v.col;
+            ck.setNotMoveable(player, ArepeatStep[0].row, ArepeatStep[0].col);
+            ck.setNotMoveable(player, ArepeatStep[1].row, ArepeatStep[1].col);
+//            ck.setNotMoveable(player, v.row, v.col);
+            if(v.row == ArepeatStep[0].row && v.col == ArepeatStep[0].col ) {
+                temp_r1 = v.row;
+                temp_c1 = v.col;
+            }
+            temp_r = ArepeatStep[1].row;
+            temp_c = ArepeatStep[1].col;
+//            temp_r = v.row;
+//            temp_c = v.col;
+            head->copyBoardStatus(ck);
+            v = alphabeta(head, 1, player, alpha, beta, evaluation1);
+            ck.setMoveable(player, temp_r, temp_c);
+            ck.setMoveable(player, temp_r1, temp_c1);
+        }
+
+        while(player == 'B' && checkMoveable(player, BrepeatStep, v) == false) {
+           // cout<<"\nPlayer B is not move able "<< v.id<<" - "<< v.row<<" - "<< v.col;
+            ck.setNotMoveable(player, BrepeatStep[0].row, BrepeatStep[0].col);
+            ck.setNotMoveable(player, BrepeatStep[1].row, BrepeatStep[1].col);
+            //ck.setNotMoveable(player, v.row, v.col);
+            if(v.row == BrepeatStep[0].row && v.col == BrepeatStep[0].col ) {
+                temp_r1 = v.row;
+                temp_c1 = v.col;
+            }
+            temp_r = BrepeatStep[1].row;
+            temp_c = BrepeatStep[1].col;
+
+            head->copyBoardStatus(ck);
+            v = alphabeta(head, 1, player, alpha, beta, evaluation2);
+            ck.setMoveable(player, temp_r, temp_c);
+            ck.setMoveable(player, temp_r1, temp_c1);
         }
 
         cout<<"\n*** New Place -- MOVE PLAYER *** step"<<steps<<": "<< player << v.id<< "(" << v.value;
