@@ -98,7 +98,6 @@ void MinMax1() {
     char win = ck.checkWin();
     char player = 'A';
     int shift = 1;
-
     Checker ck1;
     Checker ck2;
     Object useVal(1000,ck1,0,-1,-1);
@@ -236,6 +235,92 @@ void AlphaBeta2() {
     print(win, execution_time);
 }
 
+void MinMaxAlphaBeta1() { //Both use evaluation 1
+    int start_s = clock();
+    Checker ck;
+    cout << "Initial board " << endl;
+    ck.displayBoard();
+    char win = ck.checkWin();
+    char player = 'A';
+    int evaluation1 = 1;
+    int evaluation2 = 2;
+    int shift = 1;
+    Checker ck1;
+    Checker ck2;
+
+    Object useVal(1000,ck1,0,-1,-1);
+    Object passVal(-1000,ck2,0,-1,-1);
+    Object alpha(1000,ck1,0,-1,-1);
+    Object beta(-1000,ck2,0,-1,-1);
+
+    while (win == 'N') {
+        steps++;
+        GameTree *head = new GameTree(player);
+        head->copyBoardStatus(ck);
+        cout << "\n*****Turn*****" << player << endl;
+        Object v;
+        if(shift %2 == 1) { //start with A
+            v = MinMaxAB(head, 1, player, useVal, passVal, evaluation1);
+        }else{
+            v = alphabeta(head, 1, player, alpha, beta, evaluation1);
+        }
+
+        cout<<"\n*** New Place -- MOVE PLAYER *** step"<<steps<<": "<< player << v.id<< "(" << v.value;
+        cout << ") MOVE TO : " << v.row<<  " - "<< v.col << endl;
+        player = ck.move(player, v.id, v.row, v.col);
+        ck.displayBoard();
+        win = ck.checkWin();
+        shift++;
+    }
+    int stop_s = clock();
+    int execution_time = stop_s - start_s;
+    ck.displayBoard();
+    print(win, execution_time);
+}
+
+void MinMaxAlphaBeta2() { //Both use evaluation 2
+    int start_s = clock();
+    Checker ck;
+    cout << "Initial board " << endl;
+    ck.displayBoard();
+    char win = ck.checkWin();
+    char player = 'A';
+//    int evaluation1 = 1;
+    int evaluation2 = 2;
+    int shift = 1;
+    Checker ck1;
+    Checker ck2;
+
+    Object useVal(1000,ck1,0,-1,-1);
+    Object passVal(-1000,ck2,0,-1,-1);
+    Object alpha(1000,ck1,0,-1,-1);
+    Object beta(-1000,ck2,0,-1,-1);
+
+    while (win == 'N') {
+        steps++;
+        GameTree *head = new GameTree(player);
+        head->copyBoardStatus(ck);
+        cout << "\n*****Turn*****" << player << endl;
+        Object v;
+        if(shift %2 == 1) { //start with A
+            v = MinMaxAB(head, 1, player, useVal, passVal, evaluation2);
+        }else{
+            v = alphabeta(head, 1, player, alpha, beta, evaluation2);
+        }
+
+        cout<<"\n*** New Place -- MOVE PLAYER *** step"<<steps<<": "<< player << v.id<< "(" << v.value;
+        cout << ") MOVE TO : " << v.row<<  " - "<< v.col << endl;
+        player = ck.move(player, v.id, v.row, v.col);
+        ck.displayBoard();
+        win = ck.checkWin();
+        shift++;
+    }
+    int stop_s = clock();
+    int execution_time = stop_s - start_s;
+    ck.displayBoard();
+    print(win, execution_time);
+}
+
 void Statistics_print() {
     //cout << "Number of nodes generated : " << nodes_generated << endl;
     cout << "Number of nodes expanded : " << nodes_expanded << endl;
@@ -244,6 +329,61 @@ void Statistics_print() {
     int x = 81 * nodes_generated;
     cout << "Total memory needed for the algorithm is : " << x << "bytes = " << x / (1024) << "ck" <<endl;
 }
+
+void MinMaxUser() { //Both use evaluation 2
+    int start_s = clock();
+    Checker ck;
+    cout << "Initial board " << endl;
+    ck.displayBoard();
+    char win = ck.checkWin();
+    char player = 'A';
+//    int evaluation1 = 1;
+    int evaluation2 = 2;
+    int shift = 1;
+    Checker ck1;
+    Checker ck2;
+
+    Object useVal(1000,ck1,0,-1,-1);
+    Object passVal(-1000,ck2,0,-1,-1);
+    Object alpha(1000,ck1,0,-1,-1);
+    Object beta(-1000,ck2,0,-1,-1);
+
+    while (win == 'N') {
+        steps++;
+        GameTree *head = new GameTree(player);
+        head->copyBoardStatus(ck);
+        cout << "\n*****Turn*****" << player << endl;
+        Object v;
+        if(shift %2 == 1) { //start with A
+            v = MinMaxAB(head, 1, player, useVal, passVal, evaluation2);
+        }else{
+            int id = 0;
+            int row = -1;
+            int col = -1;
+            cout<<"\n Please input id: ";
+            cin>>id;
+            cout<<"\n Please input row : ";
+            cin>>row;
+            cout<<"\n Please input col: ";
+            cin>>col;
+            v.id = id;
+            v.row = row;
+            v.col = col;
+        }
+
+        cout<<"\n*** New Place -- MOVE PLAYER *** step"<<steps<<": "<< player << v.id<< "(" << v.value;
+        cout << ") MOVE TO : " << v.row<<  " - "<< v.col << endl;
+        player = ck.move(player, v.id, v.row, v.col);
+        ck.displayBoard();
+        win = ck.checkWin();
+        shift++;
+    }
+    int stop_s = clock();
+    int execution_time = stop_s - start_s;
+    ck.displayBoard();
+    print(win, execution_time);
+}
+
 
 void print(char win, int execution_time) {
     cout << "The result of the game is : " << win << endl;
@@ -278,6 +418,13 @@ int main() {
         case 2:
             AlphaBeta2();
             break;
+        case 3:
+            MinMaxAlphaBeta1();
+            break;
+        case 4:
+            MinMaxAlphaBeta2();
+            break;
+
     }
     // Statistics_print();
 
