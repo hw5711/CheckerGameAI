@@ -284,6 +284,12 @@ char Checker::checkWin() {
     if(acc_b == 0){
         return 'A';
     }
+    if(acc_a == 1 && acc_b== 2){
+        return 'B';
+    }
+    if(acc_b == 1 && acc_a == 2 ){
+        return 'A';
+    }
 
     if(acc_b == acc_a && acc_a == 1){
         return 'T';
