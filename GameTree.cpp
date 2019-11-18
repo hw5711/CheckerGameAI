@@ -402,16 +402,16 @@ void GameTree::print(GameTree *node, int nestLevel) {
 ///       BURAK'S EVALUATION      ///
 /////////////////////////////////////
 
-int GameTree::evaluation1( char player) {// good for player A
+int GameTree::evaluation1( char player) {// good for player A , keep the threathen as the stratage
     int value=0;
     if (player == 'A') {
         //check piece
         for (int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
                 if(board_status.board[i][j].role == 'm' && board_status.board[i][j].player == 'A'){
-                    value +=2;
+                    value +=3;
                 }else if (board_status.board[i][j].role == 'k' && board_status.board[i][j].player == 'A'){
-                    value +=4;
+                    value +=6;
                 }else if (board_status.board[i][j].role == 'm' && board_status.board[i][j].player == 'B'){
                     value -=1;
                 }else if (board_status.board[i][j].role == 'k' && board_status.board[i][j].player == 'B'){
@@ -491,7 +491,7 @@ int GameTree::evaluation1( char player) {// good for player A
     return value;
 }
 
-int GameTree::evaluation2( char player) { // good for player B
+int GameTree::evaluation2( char player) { // good for player B ,keep the more the better
     int value=0;
     if (player == 'A') {
 //        cout<<"test -- evaluationA: "<<endl;

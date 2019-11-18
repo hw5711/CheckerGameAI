@@ -18,9 +18,6 @@ struct Step{
 
 void print(char, int);
 bool checkMoveable(char player, Step *repeat, Object v ){
-//    cout<<"\nEnter: check function before -- repeatStep content: 1. "<< player <<  repeat[0].row << " %%% "
-//        <<repeat[0].col<<"&&"<< repeat[0].heuristic_value<<" 2. "<<repeat[1].row <<" % "<< repeat[1].col << "&" << repeat[1].heuristic_value<< endl;
-//    cout<<"\npassed v value: "<< v.row << " &&& " << v.col << "&&&" <<v.value<<endl;
 
     //two are empty
     if(repeat[0].row == -1 && repeat[1].row == -1) {
@@ -83,7 +80,8 @@ bool checkMoveable(char player, Step *repeat, Object v ){
 int nodes_generated, nodes_expanded, steps;
 
 //MinmaxAB vs MinmaxAB
-void MinMax() {
+void MinMax1() {
+    int start_s = clock();
     Checker ck ; // ck is the board to be displayed
     Step ArepeatStep[2]; // detect if in the loop
     Step BrepeatStep [2]; // detect if in the loop
@@ -99,7 +97,6 @@ void MinMax() {
     ck.displayBoard();
     char win = ck.checkWin();
     char player = 'A';
-    int start_s = clock();
     int shift = 1;
 
     Checker ck1;
@@ -155,22 +152,52 @@ void MinMax() {
 }
 
 //AlphaBeta vs AlphaBeta
-void AlphaBeta() {
+void AlphaBeta2() {
+    int start_s = clock();
     Checker ck;
     cout << "Initial board " << endl;
     ck.displayBoard();
     char win = ck.checkWin();
     char player = 'A';
     int evaluation1 = 1;
-    int evaluation2 = 1;
-    int start_s = clock();
+    int evaluation2 = 2;
+    int shift = 1;
+
+    Step ArepeatStep[2]; // detect if in the loop
+    Step BrepeatStep [2]; // detect if in the loop
+    for(int i=0; i<2; i++){
+        ArepeatStep[i].heuristic_value = -1000;
+        ArepeatStep[i].row = -1;
+        ArepeatStep[i].col = -1;
+        BrepeatStep[i].heuristic_value = -1000;
+        BrepeatStep[i].row = -1;
+        BrepeatStep[i].col = -1;
+    }
+
+    Checker ck1;
+    Checker ck2;
+    Object alpha(1000,ck1,0,-1,-1);
+    Object beta(-1000,ck2,0,-1,-1);
+
+
     while (win == 'N') {
         steps++;
         GameTree *head = new GameTree(player);
         head->copyBoardStatus(ck);
         cout << "\n*****Turn*****" << player << endl;
-        alphabeta(head, 0, player, 1000, -1000, evaluation1);
+        Object v;
+        if(shift %2 == 1) { //start with A
+            v = alphabeta(head, 0, player, alpha, beta, evaluation1);
+        }else{
+            v = alphabeta(head, 0, player, alpha, beta, evaluation2);
+        }
+
+        cout<<"\n*** New Place -- MOVE PLAYER *** step"<<steps<<": "<< player << v.id<< "(" << v.value;
+        cout << ") MOVE TO : " << v.row<<  " - "<< v.col << endl;
+        player = ck.move(player, v.id, v.row, v.col);
+        ck.displayBoard();
         win = ck.checkWin();
+        shift++;
     }
     int stop_s = clock();
     int execution_time = stop_s - start_s;
@@ -178,6 +205,14 @@ void AlphaBeta() {
     print(win, execution_time);
 }
 
+void Statistics_print() {
+    //cout << "Number of nodes generated : " << nodes_generated << endl;
+    cout << "Number of nodes expanded : " << nodes_expanded << endl;
+    cout << "Number of steps : " << steps << endl;
+    cout << "Memory need for 1 node is: 81 bytes." << endl;
+    int x = 81 * nodes_generated;
+    cout << "Total memory needed for the algorithm is : " << x << "bytes = " << x / (1024) << "ck" <<endl;
+}
 
 void print(char win, int execution_time) {
     cout << "The result of the game is : " << win << endl;
@@ -189,18 +224,11 @@ void print(char win, int execution_time) {
     else if (win == 'T')
         cout << "Game tied!! " << endl;
    // cout << "\n\t\t\tGame Ends-*\n" << endl;
-   // cout << "Execution time taken is : " << (execution_time) / double(CLOCKS_PER_SEC) << " seconds" << endl;
+    cout << "Execution time taken is : " << (execution_time) / double(CLOCKS_PER_SEC) << " seconds" << endl;
+    Statistics_print();
 }
 
-void Statistics_print() {
-    cout << "Number of nodes generated : " << nodes_generated << endl;
-    cout << "Number of nodes expanded : " << nodes_expanded << endl;
-    cout << "Number of steps : " << steps << endl;
-    cout << "Memory need for 1 node is: 81 bytes." << endl;
-    int x = 81 * nodes_generated;
-    cout << "Total memory needed for the algorithm is : " << x << "bytes = " << x / (1024) << "ck" << endl;
-    //cin>>x;
-}
+
 
 int main() {
     int choice_game;
@@ -214,10 +242,10 @@ int main() {
 
     switch (choice_game) {
         case 1:
-            MinMax();
+            MinMax1();
             break;
         case 2:
-            AlphaBeta();
+            AlphaBeta2();
             break;
     }
     // Statistics_print();

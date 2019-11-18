@@ -3,12 +3,13 @@
 #define AlphaBetaSearch_hpp
 
 #include "GameTree.h"
+#include "Object.h"
 #include <stdio.h>
 #include<iostream>
 
 using namespace std;
 
-int alphabeta(GameTree *, int, char, int, int, int);
+Object alphabeta(GameTree *, int, char, Object, Object, int);
 
 
 #endif /* AlphaBetaSearch_hpp */

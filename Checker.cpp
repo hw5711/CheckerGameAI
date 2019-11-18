@@ -178,7 +178,7 @@ char Checker::move_A(char player, int id, int r, int c) {
 
 //Function to move for the B player
 char Checker::move_B(char player, int id, int r, int c) {
-
+//    cout<<"actural move B:"<< r << "-"<<c<<endl;
     int before_r = -1;
     int before_c = -1;
 
