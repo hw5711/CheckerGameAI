@@ -107,25 +107,22 @@ void MinMax() {
     Object useVal(1000,ck1,0,-1,-1);
     Object passVal(-1000,ck2,0,-1,-1);
 
+    int evaluation1 = 1;
+    int evaluation2 = 2;
+
     while (win == 'N') {
         steps++;
         GameTree *head = new GameTree(player);
         head->copyBoardStatus(ck);
         cout << "*****Turn*****" << player;
-        int evaluation1 = 1;
-        int evaluation2 = 1;
         Object v;
-        if(shift %2 == 1) {
+        if(shift %2 == 1) { //start with A
             v = MinMaxAB(head, 1, player, useVal, passVal, evaluation1);
         }else{
             v = MinMaxAB(head, 1, player, useVal, passVal, evaluation2);
         }
         int temp_r = -1;
         int temp_c = -1;
-        int temp_id = 0;
-        int temp_r1 = -1;
-        int temp_c1 = -1;
-
         while(player == 'A' && checkMoveable(player, ArepeatStep, v) == false) {
             ck.setNotMoveable(player, v.row, v.col);
             temp_r = v.row;
@@ -144,9 +141,8 @@ void MinMax() {
             ck.setMoveable(player, temp_r, temp_c);
         }
 
-        cout<<"\n*** New Place -- MOVE PLAYER *** "<< player << v.getId()<< " " << v.getValue();
-        cout << "   MOVE TO : row # " << v.getRow()
-             <<  " ---  col # "<< v.getCol() << endl;
+        cout<<"\n*** New Place -- MOVE PLAYER *** step"<<steps<<": "<< player << v.getId()<< "(" << v.getValue();
+        cout << ") MOVE TO : " << v.getRow()<<  " - "<< v.getCol() << endl;
         player = ck.move(player, v.getId(), v.getRow(), v.getCol());
         ck.displayBoard();
         win = ck.checkWin();
@@ -166,7 +162,7 @@ void AlphaBeta() {
     char win = ck.checkWin();
     char player = 'A';
     int evaluation1 = 1;
-    int evaluation2 = 2;
+    int evaluation2 = 1;
     int start_s = clock();
     while (win == 'N') {
         steps++;

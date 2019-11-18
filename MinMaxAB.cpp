@@ -10,6 +10,9 @@ Object MinMaxAB(GameTree *board, int depth, char player, Object useVal, Object p
     char NewPlayer;
     if (board->deepenough(depth,player)) { // if search to the bottom child
         if(EF == 1) {
+            if(player == 'A'){
+               // cout<<"\nMIN- A - value is : "<< board->evaluation1(player);
+            }
             obj.setValue(board->evaluation1(player));
         }
         if(EF == 2) {
@@ -18,6 +21,7 @@ Object MinMaxAB(GameTree *board, int depth, char player, Object useVal, Object p
         obj.setTempBoard(board->board_status);
         if (player == 'B') {
             obj.setValue(-obj.getValue());
+            //cout<<"\nMIN- B - value is : "<< obj.getValue()<<endl;
         }
         board->set_heuristic_value(obj.getValue(), obj.getTempBoard(),board->id, board->row ,board->col );
         obj.setId(board->id);

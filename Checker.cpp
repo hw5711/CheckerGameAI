@@ -325,7 +325,8 @@ void Checker::displayBoard() {
     for(int i = 0; i < 8; i++){
         for( int j = 0; j < 8; j++) {
             if(getPlayer(i,j) != ' '){
-            cout << "|" << getPlayer(i,j) << getId(i,j) << getRole(i,j) << "| ";
+//                cout << "|" << getPlayer(i,j)<< "| ";
+                cout << "|" << getPlayer(i,j) << getId(i,j) << getRole(i,j) << "| ";
             }
             else{
                 cout << " - ";
