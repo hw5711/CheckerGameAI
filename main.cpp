@@ -42,7 +42,6 @@ bool checkMoveable(char player, Step *repeat, Object v ){
            return false;
        }
     }
-
     //both are not empty
     if(repeat[0].row != -1 && repeat[1].row != -1 ) {
         //match first one
@@ -253,6 +252,17 @@ void MinMaxAlphaBeta1() { //Both use evaluation 1
     Object alpha(1000,ck1,0,-1,-1);
     Object beta(-1000,ck2,0,-1,-1);
 
+    Step ArepeatStep[2]; // detect if in the loop
+    Step BrepeatStep [2]; // detect if in the loop
+    for(int i=0; i<2; i++){
+        ArepeatStep[i].heuristic_value = -1000;
+        ArepeatStep[i].row = -1;
+        ArepeatStep[i].col = -1;
+        BrepeatStep[i].heuristic_value = -1000;
+        BrepeatStep[i].row = -1;
+        BrepeatStep[i].col = -1;
+    }
+
     while (win == 'N') {
         steps++;
         GameTree *head = new GameTree(player);
@@ -263,6 +273,40 @@ void MinMaxAlphaBeta1() { //Both use evaluation 1
             v = MinMaxAB(head, 1, player, useVal, passVal, evaluation1);
         }else{
             v = alphabeta(head, 1, player, alpha, beta, evaluation1);
+        }
+
+        int temp_r = -1;
+        int temp_c = -1;
+        int temp_r1 = -1;
+        int temp_c1 = -1;
+        while(player == 'A' && checkMoveable(player, ArepeatStep, v) == false) {
+            ck.setNotMoveable(player, ArepeatStep[0].row, ArepeatStep[0].col);
+            ck.setNotMoveable(player, ArepeatStep[1].row, ArepeatStep[1].col);
+            if(v.row == ArepeatStep[0].row && v.col == ArepeatStep[0].col ) {
+                temp_r1 = v.row;
+                temp_c1 = v.col;
+            }
+            temp_r = ArepeatStep[1].row;
+            temp_c = ArepeatStep[1].col;
+            head->copyBoardStatus(ck);
+            v = alphabeta(head, 1, player, alpha, beta, evaluation1);
+            ck.setMoveable(player, temp_r, temp_c);
+            ck.setMoveable(player, temp_r1, temp_c1);
+        }
+
+        while(player == 'B' && checkMoveable(player, BrepeatStep, v) == false) {
+            ck.setNotMoveable(player, BrepeatStep[0].row, BrepeatStep[0].col);
+            ck.setNotMoveable(player, BrepeatStep[1].row, BrepeatStep[1].col);
+            if(v.row == BrepeatStep[0].row && v.col == BrepeatStep[0].col ) {
+                temp_r1 = v.row;
+                temp_c1 = v.col;
+            }
+            temp_r = BrepeatStep[1].row;
+            temp_c = BrepeatStep[1].col;
+            head->copyBoardStatus(ck);
+            v = alphabeta(head, 1, player, alpha, beta, evaluation2);
+            ck.setMoveable(player, temp_r, temp_c);
+            ck.setMoveable(player, temp_r1, temp_c1);
         }
 
         cout<<"\n*** New Place -- MOVE PLAYER *** step"<<steps<<": "<< player << v.id<< "(" << v.value;
