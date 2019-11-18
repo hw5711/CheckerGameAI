@@ -14,18 +14,6 @@ stdio.h
 iostream
 -
 
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/Checker.cpp
-Checker.h
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/Checker.h
-iostream
--
-iomanip
--
-ctime
--
-cstdlib
--
-
 /Users/huanwu/Desktop/myVersion/CheckerGameAI/Checker.h
 stdio.h
 -

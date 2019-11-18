@@ -59,12 +59,13 @@ Location GameTree::jump(int i, int j, Checker checker, char player){
         char p ='B';
         if (checker.board[i][j].role == 'm' && checker.board[i][j].player == player) {
             if (i + 1 <= 7 && j - 1 >= 0) { //check down left first
-                if (checker.board[i + 1][j - 1].player == ' ') {
+                if (checker.board[i + 1][j - 1].player == ' '&& checker.board[i + 1][j - 1].moveable == true) {
                     location.l1 = i + 1;
                     location.l2 = j - 1;
 //                    cout << "fit function: " << i + 1 << "%" << j - 1 << endl;
                 } else if (checker.board[i + 1][j - 1].player == p) {//check down right first
-                    if (i + 2 <= 7 && j - 2 >= 0 && checker.board[i + 2][j - 2].player == ' ') {
+                    if (i + 2 <= 7 && j - 2 >= 0 && checker.board[i + 2][j - 2].player == ' '
+                    && checker.board[i + 2][j - 2].moveable == true) {
                         location.l1 = i + 2;
                         location.l2 = j - 2;
 //                        cout << "fit function: " << i + 2 << "%" << j - 2 << endl;
@@ -73,12 +74,13 @@ Location GameTree::jump(int i, int j, Checker checker, char player){
             }
 
             if (i + 1 <= 7 && j + 1 <= 7) { //check down right first
-                if (checker.board[i + 1][j + 1].player == ' ') {
+                if (checker.board[i + 1][j + 1].player == ' '&& checker.board[i + 1][j + 1].moveable == true) {
                     location.l3 = i + 1;
                     location.l4 = j + 1;
 //                    cout << "fit function: " << i + 1 << "%" << j + 1 << endl;
                 } else if (checker.board[i + 1][j + 1].player == p) {//check down right first
-                    if (i + 2 <= 7 && j + 2 <= 7 && checker.board[i + 2][j + 2].player == ' ') {
+                    if (i + 2 <= 7 && j + 2 <= 7 && checker.board[i + 2][j + 2].player == ' '
+                    && checker.board[i + 2][j + 2].moveable == true) {
                         location.l3 = i + 2;
                         location.l4 = j + 2;
 //                        cout << "fit function: " << i + 2 << "%" << j + 2 << endl;
@@ -86,15 +88,16 @@ Location GameTree::jump(int i, int j, Checker checker, char player){
                 } else {}
             }
         } else if (checker.board[i][j].role == 'k' && checker.board[i][j].player == player) {
-            // int arr[8]={-1,-1,-1,-1,-1,-1,-1,-1};
 
             if (i + 1 <= 7 && j - 1 >= 0) { //check down left first
-                if (checker.board[i + 1][j - 1].player == ' ') {
+                if (checker.board[i + 1][j - 1].player == ' '
+                    && checker.board[i + 1][j - 1].moveable == true) {
                     location.l1 = i + 1;
                     location.l2 = j - 1;
 //                    cout << "fit function: " << i + 1 << "%" << j - 1 << endl;
                 } else if (checker.board[i + 1][j - 1].player == p) {//check down right first
-                    if (i + 2 <= 7 && j - 2 >= 0 && checker.board[i + 2][j - 2].player == ' ') {
+                    if (i + 2 <= 7 && j - 2 >= 0 && checker.board[i + 2][j - 2].player == ' '
+                    && checker.board[i + 2][j - 2].moveable == true) {
                         location.l1 = i + 2;
                         location.l2 = j - 2;
 //                        cout << "fit function: " << i + 2 << "%" << j - 2 << endl;
@@ -103,12 +106,14 @@ Location GameTree::jump(int i, int j, Checker checker, char player){
             }
 
             if (i + 1 <= 7 && j + 1 <= 7) { //check down right first
-                if (checker.board[i + 1][j + 1].player == ' ') {
+                if (checker.board[i + 1][j + 1].player == ' '
+                    && checker.board[i + 1][j + 1].moveable == true) {
                     location.l3 = i + 1;
                     location.l4 = j + 1;
 //                    cout << "fit function: " << i + 1 << "%" << j + 1 << endl;
                 } else if (checker.board[i + 1][j + 1].player == p) {//check down right first
-                    if (i + 2 <= 7 && j + 2 <= 7 && checker.board[i + 2][j + 2].player == ' ') {
+                    if (i + 2 <= 7 && j + 2 <= 7 && checker.board[i + 2][j + 2].player == ' '
+                    && checker.board[i + 2][j + 2].moveable == true) {
                         location.l3 = i + 2;
                         location.l4 = j + 2;
 //                        cout << "fit function: " << i + 2 << "%" << j + 2 << endl;
@@ -117,12 +122,14 @@ Location GameTree::jump(int i, int j, Checker checker, char player){
             }
 
             if (i - 1 >= 0 && j - 1 >= 0) { //check up left first
-                if (checker.board[i - 1][j - 1].player == ' ') {
+                if (checker.board[i - 1][j - 1].player == ' '
+                    && checker.board[i - 1][j - 1].moveable == true) {
                     location.l5 = i - 1;
                     location.l6 = j - 1;
 //                    cout << "fit function: " << i - 1 << "%" << j - 1 << endl;
                 } else if (checker.board[i - 1][j - 1].player == p) {//check down right first
-                    if (i - 2 >= 0 && j - 2 >= 0 && checker.board[i - 2][j - 2].player == ' ') {
+                    if (i - 2 >= 0 && j - 2 >= 0 && checker.board[i - 2][j - 2].player == ' '
+                    && checker.board[i - 2][j - 2].moveable == true) {
                         location.l5 = i - 2;
                         location.l6 = j - 2;
 //                        cout << "fit function: " << i - 2 << "%" << j - 2 << endl;
@@ -131,12 +138,14 @@ Location GameTree::jump(int i, int j, Checker checker, char player){
             }
 
             if (i - 1 >= 0 && j + 1 <= 7) { //check up right first
-                if (checker.board[i - 1][j + 1].player == ' ') {
+                if (checker.board[i - 1][j + 1].player == ' '
+                    && checker.board[i - 1][j + 1].moveable == true) {
                     location.l7 = i - 1;
                     location.l8 = j + 1;
 //                    cout << "fit function: " << i - 1 << "%" << j + 1 << endl;
                 } else if (checker.board[i - 1][j + 1].player == p) {//check down right first
-                    if (i - 2 >= 0 && j + 2 <= 7 && checker.board[i - 2][j + 2].player == ' ') {
+                    if (i - 2 >= 0 && j + 2 <= 7 && checker.board[i - 2][j + 2].player == ' '
+                    && checker.board[i - 2][j + 2].moveable == true) {
                         location.l7 = i - 2;
                         location.l8 = j + 2;
 //                        cout << "fit function: " << i - 2 << "%" << j + 2 << endl;
@@ -151,12 +160,14 @@ Location GameTree::jump(int i, int j, Checker checker, char player){
         char p ='A';
         if (checker.board[i][j].role == 'm' && checker.board[i][j].player == player) {
             if (i - 1 >= 0 && j - 1 >= 0) { //check up left first
-                if (checker.board[i - 1][j - 1].player == ' ') {
+                if (checker.board[i - 1][j - 1].player == ' '
+                    && checker.board[i - 1][j - 1].moveable == true) {
                     location.l1 = i - 1;
                     location.l2 = j - 1;
 //                    cout << "fit function: " << i - 1 << "%" << j - 1 << endl;
                 } else if (checker.board[i - 1][j - 1].player == p) {//check down right first
-                    if (i - 2 >= 0 && j - 2 >= 0 && checker.board[i - 2][j - 2].player == ' ') {
+                    if (i - 2 >= 0 && j - 2 >= 0 && checker.board[i - 2][j - 2].player == ' '
+                        && checker.board[i - 2][j - 2].moveable == true) {
                         location.l1 = i - 2;
                         location.l2 = j - 2;
 //                        cout << "fit function: " << i - 2 << "%" << j - 2 << endl;
@@ -165,12 +176,14 @@ Location GameTree::jump(int i, int j, Checker checker, char player){
             }
 
             if (i - 1 >= 0 && j + 1 <= 7) { //check up right first
-                if (checker.board[i - 1][j + 1].player == ' ') {
+                if (checker.board[i - 1][j + 1].player == ' '
+                    && checker.board[i - 1][j + 1].moveable == true) {
                     location.l3 = i - 1;
                     location.l4 = j + 1;
 //                    cout << "fit function: " << i - 1 << "%" << j + 1 << endl;
                 } else if (checker.board[i - 1][j + 1].player == p) {//check down right first
-                    if (i - 2 >= 0 && j + 2 <= 7 && checker.board[i - 2][j + 2].player == ' ') {
+                    if (i - 2 >= 0 && j + 2 <= 7 && checker.board[i - 2][j + 2].player == ' '
+                    && checker.board[i - 2][j + 2].moveable == true) {
                         location.l3 = i - 2;
                         location.l4 = j + 2;
 //                        cout << "fit function: " << i - 2 << "%" << j + 2 << endl;
@@ -179,12 +192,14 @@ Location GameTree::jump(int i, int j, Checker checker, char player){
             }
         } else if (checker.board[i][j].role == 'k' && checker.board[i][j].player == player) {
             if (i - 1 >= 0 && j - 1 >= 0) { //check up left first
-                if (checker.board[i - 1][j - 1].player == ' ') {
+                if (checker.board[i - 1][j - 1].player == ' '
+                    && checker.board[i - 1][j - 1].moveable == true) {
                     location.l1 = i - 1;
                     location.l2 = j - 1;
 //                    cout << "fit function: " << i - 1 << "%" << j - 1 << endl;
                 } else if (checker.board[i - 1][j - 1].player == p) {//check down right first
-                    if (i - 2 >= 0 && j - 2 >= 0 && checker.board[i - 2][j - 2].player == ' ') {
+                    if (i - 2 >= 0 && j - 2 >= 0 && checker.board[i - 2][j - 2].player == ' '
+                    && checker.board[i - 2][j - 2].moveable == true) {
                         location.l1 = i - 2;
                         location.l2 = j - 2;
 //                        cout << "fit function: " << i - 2 << "%" << j - 2 << endl;
@@ -193,12 +208,14 @@ Location GameTree::jump(int i, int j, Checker checker, char player){
             }
 
             if (i - 1 >= 0 && j + 1 <= 7) { //check up right first
-                if (checker.board[i - 1][j + 1].player == ' ') {
+                if (checker.board[i - 1][j + 1].player == ' '
+                    && checker.board[i - 1][j + 1].moveable == true) {
                     location.l3 = i - 1;
                     location.l4 = j + 1;
 //                    cout << "fit function: " << i - 1 << "%" << j + 1 << endl;
                 } else if (checker.board[i - 1][j + 1].player == p) {//check down right first
-                    if (i - 2 >= 0 && j + 2 <= 7 && checker.board[i - 2][j + 2].player == ' ') {
+                    if (i - 2 >= 0 && j + 2 <= 7 && checker.board[i - 2][j + 2].player == ' '
+                    && checker.board[i - 2][j + 2].moveable == true) {
                         location.l3 = i - 2;
                         location.l4 = j + 2;
 //                        cout << "fit function: " << i - 2 << "%" << j + 2 << endl;
@@ -207,12 +224,14 @@ Location GameTree::jump(int i, int j, Checker checker, char player){
             }
 
             if (i + 1 <= 7 && j - 1 >= 0) { //check down left first
-                if (checker.board[i + 1][j - 1].player == ' ') {
+                if (checker.board[i + 1][j - 1].player == ' '
+                    && checker.board[i + 1][j - 1].moveable == true) {
                     location.l5 = i + 1;
                     location.l6 = j - 1;
 //                    cout << "fit function: " << i + 1 << "%" << j - 1 << endl;
                 } else if (checker.board[i + 1][j - 1].player == p) {//check down right first
-                    if (i + 2 <= 7 && j - 2 >= 0 && checker.board[i + 2][j - 2].player == ' ') {
+                    if (i + 2 <= 7 && j - 2 >= 0 && checker.board[i + 2][j - 2].player == ' '
+                    && checker.board[i + 2][j - 2].moveable == true) {
                         location.l5 = i + 2;
                         location.l6 = j - 2;
 //                        cout << "fit function: " << i + 2 << "%" << j - 2 << endl;
@@ -221,12 +240,14 @@ Location GameTree::jump(int i, int j, Checker checker, char player){
             }
 
             if (i + 1 <= 7 && j + 1 <= 7) { //check up right first
-                if (checker.board[i + 1][j + 1].player == ' ') {
+                if (checker.board[i + 1][j + 1].player == ' '
+                    && checker.board[i + 1][j + 1].moveable == true) {
                     location.l7 = i + 1;
                     location.l8 = j + 1;
 //                    cout << "fit function: " << i + 1 << "%" << j + 1 << endl;
                 } else if (checker.board[i + 1][j + 1].player == p) {//check down right first
-                    if (i + 2 <= 7 && j + 2 <= 7 && checker.board[i + 2][j + 2].player == ' ') {
+                    if (i + 2 <= 7 && j + 2 <= 7 && checker.board[i + 2][j + 2].player == ' '
+                    && checker.board[i + 2][j + 2].moveable == true) {
                         location.l7 = i + 2;
                         location.l8 = j + 2;
 //                        cout << "fit function: " << i + 2 << "%" << j + 2 << endl;

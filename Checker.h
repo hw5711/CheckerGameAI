@@ -14,6 +14,11 @@ struct Board{
     char role;
     int id;
     int heuristic_value;
+    bool moveable;
+
+    bool isMoveable() const;
+
+    void setMoveable(bool moveable);
 };
 
 struct Address{
@@ -29,12 +34,7 @@ public:
     int heuristic_value;
     Address address;
 
-
     Checker();
-
-    //Checker(int[], int[], int, int);
-
-    //Checker(const Checker &);
 
     char move_A(char , int , int , int);
 
@@ -42,16 +42,13 @@ public:
 
     char move(char , int , int , int );
 
-    // int evaluation();
     char checkWin();
 
-    void setBoard(char, int, int, char,int, int);
+    void setBoard(char, int, int, char,int, int, bool);
 
- //   void operator=(Checker);
+    void removeRepeat(char, int, int, int);
 
     void displayBoard();
-
-    //bool checkLegealMove(char player, int hole);
 
     char getPlayer(int, int);
 
@@ -63,17 +60,13 @@ public:
 
     void set_heuristic_value_board(int);
 
-    //void getChildLocation(char, int, int, int);
-
-    int getHeuristicValue() const;
-
-    void setHeuristicValue(int heuristicValue);
-
     const Address &getAddress() const;
 
     void setAddress(const Address &address);
 
     int getPlayerNum(char);
+
+    void setMoveable(char, int, int, int);
 };
 
 

@@ -12,18 +12,94 @@ using namespace std;
 
 struct Step{
     int heuristic_value;
-    Checker b;
     int row;
     int col;
 };
 
 void print(char, int);
+bool checkMoveable(char player, Step *repeat, Object v ){
+//    cout<<"\ncheck function before -- repeatStep content: 1. "<< player <<  repeat[0].row << " %%% "
+//        <<repeat[0].col<<"&&"<< repeat[0].heuristic_value<<" 2. "<<repeat[1].row <<" % "<< repeat[1].col << "&" << repeat[1].heuristic_value<< endl;
+//    cout<<"\npassed v value: "<< v.row << " &&& " << v.col << "&&&" <<v.value<<endl;
+
+    //two are empty
+    if(repeat[0].row == -1 && repeat[1].row == -1) {
+        repeat[0].heuristic_value = v.value;
+        repeat[0].row = v.row;
+        repeat[0].col = v.col;
+//        cout<<"\ncheck function after -- 1repeatStep content: 1. "<<  repeat[0].row << " %%% "
+//            <<repeat[0].col<<" 2. "<<repeat[1].row <<" % "<< repeat[1].col << endl;
+        return true;
+    }
+    //second one is empty and not equal to first one
+    if(repeat[0].row != -1 && repeat[1].row == -1 &&
+        repeat[0].heuristic_value != v.value || repeat[0].row != v.row ||
+        repeat[0].col != v.col){
+        repeat[1].heuristic_value = v.value;
+        repeat[1].row = v.row;
+        repeat[1].col = v.col;
+//        cout<<"\ncheck function after -- 2repeatStep content: 1. "<<  repeat[0].row << " %%% "
+//            <<repeat[0].col<<" 2. "<<repeat[1].row <<" % "<< repeat[1].col << endl;
+        return true;
+    }
+    //both are not empty and not equal to both
+    if(repeat[0].row != -1 && repeat[1].row != -1 &&
+            repeat[0].heuristic_value != v.getValue() || repeat[0].row != v.row ||
+            repeat[0].col != v.col &&
+            repeat[1].heuristic_value != v.getValue() || repeat[1].row != v.row ||
+            repeat[1].col != v.col){
+        repeat[0].heuristic_value = repeat[1].heuristic_value;
+        repeat[0].row = repeat[1].row;
+        repeat[0].col = repeat[1].col;
+        repeat[1].heuristic_value = v.value;
+        repeat[1].row = v.row;
+        repeat[1].col = v.col;
+//        cout<<"\ncheck function after -- 3repeatStep content: 1. "<<  repeat[0].row << " %%% "
+//            <<repeat[0].col<<" 2. "<<repeat[1].row <<" % "<< repeat[1].col << endl;
+        return true;
+    }
+
+    //both are not empty and equal to the first one
+    if(repeat[0].row != -1 && repeat[1].row != -1 &&
+       repeat[0].heuristic_value == v.value && repeat[0].row == v.row &&
+       repeat[0].col == v.col){
+        repeat[0].heuristic_value = repeat[1].heuristic_value;
+        repeat[0].row = repeat[1].row;
+        repeat[0].col = repeat[1].col;
+        repeat[1].heuristic_value = v.value;
+        repeat[1].row = v.row;
+        repeat[1].col = v.col;
+//        cout<<"\ncheck function after -- 4repeatStep content: 1. "<<  repeat[0].row << " %%% "
+//            <<repeat[0].col<<" 2. "<<repeat[1].row <<" % "<< repeat[1].col << endl;
+        return false;
+    }
+    //both are not empty and  equal to the second one
+    if(repeat[0].row != -1 && repeat[1].row != -1 &&
+       repeat[1].heuristic_value == v.getValue() && repeat[1].row == v.row &&
+       repeat[1].col == v.col){
+//        cout<<"\ncheck function after -- 5repeatStep content: 1. "<<  repeat[0].row << " %%% "
+//            <<repeat[0].col<<" 2. "<<repeat[1].row <<" % "<< repeat[1].col << endl;
+        return false;
+    }
+    cout << "REPEAT!!!!-- THIS SHOULD NO SHOW ALWAYS!!!!!!!" << repeat[0].row << "-"<<repeat[0].col<<"-"<<repeat[1].row<<"-"<<repeat[1].col<<endl;
+    return true;
+}
 
 int nodes_generated, nodes_expanded, steps;
 
 //MinmaxAB vs MinmaxAB
 void MinMax() {
     Checker ck ; // ck is the board to be displayed
+    Step ArepeatStep[2]; // detect if in the loop
+    Step BrepeatStep [2]; // detect if in the loop
+    for(int i=0; i<2; i++){
+        ArepeatStep[i].heuristic_value = -1000;
+        ArepeatStep[i].row = -1;
+        ArepeatStep[i].col = -1;
+        BrepeatStep[i].heuristic_value = -1000;
+        BrepeatStep[i].row = -1;
+        BrepeatStep[i].col = -1;
+    }
     cout << "Initial board " << endl;
     ck.displayBoard();
     char win = ck.checkWin();
@@ -49,7 +125,17 @@ void MinMax() {
         }else{
             v = MinMaxAB(head, 1, player, useVal, passVal, evaluation2);
         }
-        cout<<"\n*** MOVE PLAYER *** "<< player << v.getId();
+//      cout<<"\nchecke if moveable:";
+        while(player == 'A' && checkMoveable(player, ArepeatStep, v) == false) {
+            ck.setMoveable(player, v.getId(), v.getRow(), v.getCol());
+            v = MinMaxAB(head, 1, player, useVal, passVal, evaluation1);
+        }
+
+        while(player == 'B' && checkMoveable(player, BrepeatStep, v) == false) {
+            ck.setMoveable(player, v.getId(), v.getRow(), v.getCol());
+            v = MinMaxAB(head, 1, player, useVal, passVal, evaluation2);
+        }
+        cout<<"\n*** New Place -- MOVE PLAYER *** "<< player << v.getId()<< " " << v.getValue();
         cout << "   MOVE TO : row # " << v.getRow()
              <<  " ---  col # "<< v.getCol() << endl;
         player = ck.move(player, v.getId(), v.getRow(), v.getCol());
@@ -77,13 +163,6 @@ void AlphaBeta() {
         head->copyBoardStatus(ck);
         cout << "*****Turn*****" << player << endl;
         alphabeta(head, 0, player, 1000, -1000);
-
-//        ck.getChildLocation(player, head->id, head->row, head->col);
-        // cout<<"display ck:";
-        // ck->displayBoard();
-
-//        player = ck.move(ck.address.row_before, ck.address.col_before,ck.address.row_after, ck.address.col_after, player);
-        // ck->displayBoard();
         win = ck.checkWin();
     }
     int stop_s = clock();
