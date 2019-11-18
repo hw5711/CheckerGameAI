@@ -6,38 +6,37 @@
 using namespace std;
 
 Object alphabeta(GameTree *node, int depth, char player, Object alpha, Object beta, int EF) {
-    //node is a leaf node)
     Object obj;
     if (node->deepenough(depth, player)){
         if(EF == 1){
             obj.setValue(node->evaluation1(player));
             obj.setTempBoard(node->board_status);
+            node->set_heuristic_value(obj.getValue(), obj.getTempBoard(),node->id, node->row ,node->col);
             obj.setRow(node->row);
             obj.setCol(node->col);
             obj.setId(node->id);
-            node->set_heuristic_value(obj.getValue(), obj.getTempBoard(),node->id, node->row ,node->col);
             return obj;
         }
         if(EF == 2){
-            obj.setValue(node->evaluation2(player));
+            obj.setValue(node->evaluation2(player));//changed
             obj.setTempBoard(node->board_status);
+            node->set_heuristic_value(obj.getValue(), obj.getTempBoard(),node->id, node->row ,node->col);
             obj.setRow(node->row);
             obj.setCol(node->col);
             obj.setId(node->id);
-            node->set_heuristic_value(obj.getValue(), obj.getTempBoard(),node->id, node->row ,node->col);
             return obj;
         }
     }
-    Checker ck;
-    Object obj1(0, ck, 0, -1, -1);
-    Object bestVal(0, ck, 0, -1, -1);
-//    Object bestVal(0, ck, 0, -1, -1);
 
     if (player == 'A') {
-        //int bestVal = -100, value;
+        Checker ck;
+        Object bestVal(-100, ck, 0, -1, -1);
+        Object obj1(0, ck, 0, -1, -1);
         for (int i = 0; i < 48; i++) {
-            if (node->children[i] == NULL)
+            if (node->children[i] == NULL) {
                 continue;
+            }
+            //cout<<"\nA inside player: "<< player << "   board player : "<< node->player<<endl;
             if(EF == 1) {
                 obj1 = alphabeta(node->children[i], depth + 1, node->player, alpha, beta, 1);
             }
@@ -60,13 +59,20 @@ Object alphabeta(GameTree *node, int depth, char player, Object alpha, Object be
             if (beta.value <= alpha.value)
                 break;
         }
+        node->set_heuristic_value(bestVal.value, bestVal.tempBoard, bestVal.id, bestVal.row ,bestVal.col);
+        cout<<"player A return bestVal : "<< bestVal.value<<" --- id,row,col :" <<bestVal.id <<","<<bestVal.row<<","<<bestVal.col<<endl;
         return bestVal;
     } else {
+        Checker ck;
+        Object bestVal(100, ck, 0, -1, -1);
+        Object obj1(0, ck, 0, -1, -1);
         for (int i = 0; i < 48; i++) {
-            if (node->children[i] == NULL)
+            if (node->children[i] == NULL) {
                 continue;
+            }
+            //cout<<"\nB inside player: "<< player << "   board player : "<< node->player<<endl;
             if(EF == 1) {
-                obj1 = alphabeta(node->children[i], depth + 1, node->player, alpha, beta, 1);
+                obj1 = alphabeta(node->children[i], depth + 1,  node->player, alpha, beta, 1);
             }
             if(EF == 2) {
                 obj1 = alphabeta(node->children[i], depth + 1, node->player, alpha, beta, 2);
@@ -84,9 +90,11 @@ Object alphabeta(GameTree *node, int depth, char player, Object alpha, Object be
             beta.setRow((beta.value < bestVal.value)? beta.row : bestVal.row);
             beta.setCol((beta.value < bestVal.value)? beta.col : bestVal.col);
 
-            if (beta.value > alpha.value)
+            if (beta.value < alpha.value)
                 break;
         }
+        node->set_heuristic_value(bestVal.value, bestVal.tempBoard, bestVal.id, bestVal.row ,bestVal.col);
+        cout<<"player B return bestVal : "<< bestVal.value<<" --- id,row,col :" <<bestVal.id <<","<<bestVal.row<<","<<bestVal.col<<endl;
         return bestVal;
     }
 }

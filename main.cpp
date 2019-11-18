@@ -162,23 +162,10 @@ void AlphaBeta2() {
     int evaluation1 = 1;
     int evaluation2 = 2;
     int shift = 1;
-
-    Step ArepeatStep[2]; // detect if in the loop
-    Step BrepeatStep [2]; // detect if in the loop
-    for(int i=0; i<2; i++){
-        ArepeatStep[i].heuristic_value = -1000;
-        ArepeatStep[i].row = -1;
-        ArepeatStep[i].col = -1;
-        BrepeatStep[i].heuristic_value = -1000;
-        BrepeatStep[i].row = -1;
-        BrepeatStep[i].col = -1;
-    }
-
     Checker ck1;
     Checker ck2;
     Object alpha(1000,ck1,0,-1,-1);
     Object beta(-1000,ck2,0,-1,-1);
-
 
     while (win == 'N') {
         steps++;
@@ -186,10 +173,11 @@ void AlphaBeta2() {
         head->copyBoardStatus(ck);
         cout << "\n*****Turn*****" << player << endl;
         Object v;
+
         if(shift %2 == 1) { //start with A
-            v = alphabeta(head, 0, player, alpha, beta, evaluation1);
+            v = alphabeta(head, 1, player, alpha, beta, evaluation1);
         }else{
-            v = alphabeta(head, 0, player, alpha, beta, evaluation2);
+            v = alphabeta(head, 1, player, alpha, beta, evaluation2);
         }
 
         cout<<"\n*** New Place -- MOVE PLAYER *** step"<<steps<<": "<< player << v.id<< "(" << v.value;

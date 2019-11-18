@@ -10,9 +10,6 @@ Object MinMaxAB(GameTree *board, int depth, char player, Object useVal, Object p
     char NewPlayer;
     if (board->deepenough(depth,player)) { // if search to the bottom child
         if(EF == 1) {
-            if(player == 'A'){
-               // cout<<"\nMIN- A - value is : "<< board->evaluation1(player);
-            }
             obj.setValue(board->evaluation1(player));
         }
         if(EF == 2) {

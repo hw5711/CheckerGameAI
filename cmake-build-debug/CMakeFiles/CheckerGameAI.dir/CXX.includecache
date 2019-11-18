@@ -6,28 +6,18 @@
 
 #IncludeRegexTransform: 
 
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBetaSearch.cpp
-AlphaBetaSearch.h
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBetaSearch.h
-GameTree.h
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.h
-iostream
--
-
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBetaSearch.h
-GameTree.h
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.h
-Object.h
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/Object.h
-stdio.h
--
-iostream
--
-
 /Users/huanwu/Desktop/myVersion/CheckerGameAI/Checker.h
 stdio.h
 -
 iostream
+-
+
+/Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.cpp
+GameTree.h
+/Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.h
+cstdlib
+-
+ctime
 -
 
 /Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.h
