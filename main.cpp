@@ -162,6 +162,7 @@ void AlphaBeta2() {
     int evaluation1 = 1;
     int evaluation2 = 2;
     int shift = 1;
+
     Checker ck1;
     Checker ck2;
     Object alpha(1000,ck1,0,-1,-1);
@@ -173,7 +174,6 @@ void AlphaBeta2() {
         head->copyBoardStatus(ck);
         cout << "\n*****Turn*****" << player << endl;
         Object v;
-
         if(shift %2 == 1) { //start with A
             v = alphabeta(head, 1, player, alpha, beta, evaluation1);
         }else{
