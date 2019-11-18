@@ -18,68 +18,63 @@ struct Step{
 
 void print(char, int);
 bool checkMoveable(char player, Step *repeat, Object v ){
-//    cout<<"\ncheck function before -- repeatStep content: 1. "<< player <<  repeat[0].row << " %%% "
+//    cout<<"\nEnter: check function before -- repeatStep content: 1. "<< player <<  repeat[0].row << " %%% "
 //        <<repeat[0].col<<"&&"<< repeat[0].heuristic_value<<" 2. "<<repeat[1].row <<" % "<< repeat[1].col << "&" << repeat[1].heuristic_value<< endl;
 //    cout<<"\npassed v value: "<< v.row << " &&& " << v.col << "&&&" <<v.value<<endl;
 
     //two are empty
     if(repeat[0].row == -1 && repeat[1].row == -1) {
+        //cout<<"\n1111111";
         repeat[0].heuristic_value = v.value;
         repeat[0].row = v.row;
         repeat[0].col = v.col;
-//        cout<<"\ncheck function after -- 1repeatStep content: 1. "<<  repeat[0].row << " %%% "
-//            <<repeat[0].col<<" 2. "<<repeat[1].row <<" % "<< repeat[1].col << endl;
         return true;
     }
     //second one is empty and not equal to first one
-    if(repeat[0].row != -1 && repeat[1].row == -1 &&
-        repeat[0].heuristic_value != v.value || repeat[0].row != v.row ||
-        repeat[0].col != v.col){
-        repeat[1].heuristic_value = v.value;
-        repeat[1].row = v.row;
-        repeat[1].col = v.col;
-//        cout<<"\ncheck function after -- 2repeatStep content: 1. "<<  repeat[0].row << " %%% "
-//            <<repeat[0].col<<" 2. "<<repeat[1].row <<" % "<< repeat[1].col << endl;
-        return true;
-    }
-    //both are not empty and not equal to both
-    if(repeat[0].row != -1 && repeat[1].row != -1 &&
-            repeat[0].heuristic_value != v.getValue() || repeat[0].row != v.row ||
-            repeat[0].col != v.col &&
-            repeat[1].heuristic_value != v.getValue() || repeat[1].row != v.row ||
-            repeat[1].col != v.col){
-        repeat[0].heuristic_value = repeat[1].heuristic_value;
-        repeat[0].row = repeat[1].row;
-        repeat[0].col = repeat[1].col;
-        repeat[1].heuristic_value = v.value;
-        repeat[1].row = v.row;
-        repeat[1].col = v.col;
-//        cout<<"\ncheck function after -- 3repeatStep content: 1. "<<  repeat[0].row << " %%% "
-//            <<repeat[0].col<<" 2. "<<repeat[1].row <<" % "<< repeat[1].col << endl;
-        return true;
+    if(repeat[0].row != -1 && repeat[1].row == -1){
+       if(repeat[0].heuristic_value != v.value || repeat[0].row != v.row || repeat[0].col != v.col){
+           // cout<<"\n222222 - only one and match nothing ";
+            repeat[1].heuristic_value = v.value;
+            repeat[1].row = v.row;
+            repeat[1].col = v.col;
+            return true;
+       }
+       //equal to the first one
+       if(repeat[0].heuristic_value == v.value && repeat[1].row != v.row && repeat[0].col == v.col){
+           //cout<<"\n222222 - only one and match the first one ";
+           return false;
+       }
     }
 
-    //both are not empty and equal to the first one
-    if(repeat[0].row != -1 && repeat[1].row != -1 &&
-       repeat[0].heuristic_value == v.value && repeat[0].row == v.row &&
-       repeat[0].col == v.col){
+    //both are not empty
+    if(repeat[0].row != -1 && repeat[1].row != -1 ) {
+        //match first one
+        if (repeat[0].heuristic_value == v.value && repeat[0].row == v.row && repeat[0].col == v.col) {
+            if (repeat[1].heuristic_value != v.value && repeat[1].row != v.row && repeat[1].col != v.col) {
+                //cout << "\n44444444 match the first one";
+                repeat[0].heuristic_value = repeat[1].heuristic_value;
+                repeat[0].row = repeat[1].row;
+                repeat[0].col = repeat[1].col;
+                repeat[1].heuristic_value = v.value;
+                repeat[1].row = v.row;
+                repeat[1].col = v.col;
+                return false;
+            }
+        }
+        if (repeat[1].heuristic_value == v.value && repeat[1].row == v.row && repeat[1].col == v.col) {
+            if (repeat[0].heuristic_value != v.value && repeat[0].row != v.row && repeat[0].col != v.col) {
+                //cout<<"\n55555555555 match the second one";
+                return false;
+            }
+        }
+       // cout<<"\n666666 not match any of values\n";
         repeat[0].heuristic_value = repeat[1].heuristic_value;
         repeat[0].row = repeat[1].row;
         repeat[0].col = repeat[1].col;
         repeat[1].heuristic_value = v.value;
         repeat[1].row = v.row;
         repeat[1].col = v.col;
-//        cout<<"\ncheck function after -- 4repeatStep content: 1. "<<  repeat[0].row << " %%% "
-//            <<repeat[0].col<<" 2. "<<repeat[1].row <<" % "<< repeat[1].col << endl;
-        return false;
-    }
-    //both are not empty and  equal to the second one
-    if(repeat[0].row != -1 && repeat[1].row != -1 &&
-       repeat[1].heuristic_value == v.getValue() && repeat[1].row == v.row &&
-       repeat[1].col == v.col){
-//        cout<<"\ncheck function after -- 5repeatStep content: 1. "<<  repeat[0].row << " %%% "
-//            <<repeat[0].col<<" 2. "<<repeat[1].row <<" % "<< repeat[1].col << endl;
-        return false;
+        return true;
     }
     cout << "REPEAT!!!!-- THIS SHOULD NO SHOW ALWAYS!!!!!!!" << repeat[0].row << "-"<<repeat[0].col<<"-"<<repeat[1].row<<"-"<<repeat[1].col<<endl;
     return true;
@@ -118,28 +113,42 @@ void MinMax() {
         head->copyBoardStatus(ck);
         cout << "*****Turn*****" << player;
         int evaluation1 = 1;
-        int evaluation2 = 2;
+        int evaluation2 = 1;
         Object v;
         if(shift %2 == 1) {
             v = MinMaxAB(head, 1, player, useVal, passVal, evaluation1);
         }else{
             v = MinMaxAB(head, 1, player, useVal, passVal, evaluation2);
         }
-//      cout<<"\nchecke if moveable:";
+        int temp_r = -1;
+        int temp_c = -1;
+        int temp_id = 0;
+        int temp_r1 = -1;
+        int temp_c1 = -1;
+
         while(player == 'A' && checkMoveable(player, ArepeatStep, v) == false) {
-            ck.setMoveable(player, v.getId(), v.getRow(), v.getCol());
+            ck.setNotMoveable(player, v.row, v.col);
+            temp_r = v.row;
+            temp_c = v.col;
+            head->copyBoardStatus(ck);
             v = MinMaxAB(head, 1, player, useVal, passVal, evaluation1);
+            ck.setMoveable(player, temp_r, temp_c);
         }
 
         while(player == 'B' && checkMoveable(player, BrepeatStep, v) == false) {
-            ck.setMoveable(player, v.getId(), v.getRow(), v.getCol());
+            ck.setNotMoveable(player, v.row, v.col);
+            temp_r = v.row;
+            temp_c = v.col;
+            head->copyBoardStatus(ck);
             v = MinMaxAB(head, 1, player, useVal, passVal, evaluation2);
+            ck.setMoveable(player, temp_r, temp_c);
         }
+
         cout<<"\n*** New Place -- MOVE PLAYER *** "<< player << v.getId()<< " " << v.getValue();
         cout << "   MOVE TO : row # " << v.getRow()
              <<  " ---  col # "<< v.getCol() << endl;
         player = ck.move(player, v.getId(), v.getRow(), v.getCol());
-        //ck.displayBoard();
+        ck.displayBoard();
         win = ck.checkWin();
         shift++;
     }
@@ -156,13 +165,15 @@ void AlphaBeta() {
     ck.displayBoard();
     char win = ck.checkWin();
     char player = 'A';
+    int evaluation1 = 1;
+    int evaluation2 = 2;
     int start_s = clock();
     while (win == 'N') {
         steps++;
         GameTree *head = new GameTree(player);
         head->copyBoardStatus(ck);
-        cout << "*****Turn*****" << player << endl;
-        alphabeta(head, 0, player, 1000, -1000);
+        cout << "\n*****Turn*****" << player << endl;
+        alphabeta(head, 0, player, 1000, -1000, evaluation1);
         win = ck.checkWin();
     }
     int stop_s = clock();

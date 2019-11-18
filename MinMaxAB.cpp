@@ -6,13 +6,15 @@ using namespace std;
 
 //use value is min, pass value is max
 Object MinMaxAB(GameTree *board, int depth, char player, Object useVal, Object passVal, int EF) {
-    /***************************************************************/
-    /*** object should carry the first layer child location ***/
-    /***************************************************************/
     Object obj;
     char NewPlayer;
     if (board->deepenough(depth,player)) { // if search to the bottom child
-        obj.setValue(board->evaluation(player));
+        if(EF == 1) {
+            obj.setValue(board->evaluation1(player));
+        }
+        if(EF == 2) {
+            obj.setValue(board->evaluation2(player));
+        }
         obj.setTempBoard(board->board_status);
         if (player == 'B') {
             obj.setValue(-obj.getValue());

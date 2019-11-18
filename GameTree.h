@@ -63,7 +63,9 @@ public:
 
     void print(GameTree *, int);
 
-    int evaluation(char);
+    int evaluation1(char);
+
+    int evaluation2(char);
 
     void copyBoardStatus(Checker kb);
 

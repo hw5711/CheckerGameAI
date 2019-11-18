@@ -402,7 +402,7 @@ void GameTree::print(GameTree *node, int nestLevel) {
 ///       BURAK'S EVALUATION      ///
 /////////////////////////////////////
 
-int GameTree::evaluation( char player) {
+int GameTree::evaluation1( char player) {
     int value=0;
     if (player == 'A') {
 //        cout<<"test -- evaluationA: "<<endl;
@@ -410,22 +410,121 @@ int GameTree::evaluation( char player) {
         for (int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
                 if(board_status.board[i][j].role == 'm' && board_status.board[i][j].player == 'A'){
-                    value +=11;
+                    value +=1;
                 }else if (board_status.board[i][j].role == 'k' && board_status.board[i][j].player == 'A'){
-                    value +=23;
+                    value +=9;
                 }else if (board_status.board[i][j].role == 'm' && board_status.board[i][j].player == 'B'){
-                    value -=15;
+                    value -=1;
                 }else if (board_status.board[i][j].role == 'k' && board_status.board[i][j].player == 'B'){
-                    value -=27;
+                    value -=9;
                 }else{}
             }
         }
 //        cout<<"\ntest--evaluation1: "<< value<<endl;
         //check side
-        for (int i = 4; i < 8; i++) {
-            for (int j = 4; j < 8; j++) {
+        for (int i = 5; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
                 if (board_status.board[i][j].player == 'A') {
                     value += 5;
+                }
+            }
+        }
+//        cout<<"\ntest--evaluation2: "<< value<<endl;
+//        for (int i = 0; i < 4; i++) {
+//            for (int j = 0; j < 4; j++) {
+//                if (board_status.board[i][j].player == 'B') {
+//                    value -= 3;
+//                }
+//            }
+//        }
+//        cout<<"\ntest--evaluation3: "<< value<<endl;
+        //threatened
+//        for (int i = 0; i < 8; i++) {
+//            for(int j = 0; j < 8; j++) {
+//                if(threaten(i,j, board_status,'A')){
+//                    value +=18;
+//                }else if(threaten(i,j, board_status,'B')){
+//                    value -=13;
+//                }else{}
+//            }
+//        }
+//        cout<<"\ntest--evaluation4: "<< value<<endl;
+
+    } else if (player == 'B') {
+//        cout<<"test -- evaluationB : "<<endl;
+        //check piece
+        for (int i = 0; i < 8; i++) {
+            for(int j = 0; j < 8; j++) {
+                if(board_status.board[i][j].role == 'm' && board_status.board[i][j].player == 'B'){
+                    value +=2;
+                }else if (board_status.board[i][j].role == 'k' && board_status.board[i][j].player == 'B'){
+                    value +=8;
+                }else if (board_status.board[i][j].role == 'm' && board_status.board[i][j].player == 'A'){
+                    value -=2;
+                }else if (board_status.board[i][j].role == 'k' && board_status.board[i][j].player == 'A'){
+                    value -=8;
+                }else{}
+            }
+        }
+//        cout<<"\ntest--evaluation1: "<< value<<endl;
+        //check side
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (board_status.board[i][j].player == 'B') {
+                    value += 7;
+                }
+            }
+        }
+//        cout<<"\ntest--evaluation2: "<< value<<endl;
+//        for (int i = 0; i < 4; i++) {
+//            for (int j = 0; j < 4; j++) {
+//                if (board_status.board[i][j].player == 'A') {
+//                    value -= 9;
+//                }
+//            }
+//        }
+//        cout<<"\ntest--evaluation3: "<< value<<endl;
+        //threatened
+//        for (int i = 0; i < 8; i++) {
+//            for(int j = 0; j < 8; j++) {
+//                if(threaten(i,j, board_status,'B')){
+//                    value +=1;
+//                }else if(threaten(i,j, board_status,'A')){
+//                    value -=10;
+//                }else{}
+//            }
+//        }
+//        cout<<"\ntest--evaluation : "<< value<<endl;
+    }
+
+    //set_heuristic_value(value);
+    return value;
+}
+
+int GameTree::evaluation2( char player) {
+    int value=0;
+    if (player == 'A') {
+//        cout<<"test -- evaluationA: "<<endl;
+        //check piece
+        for (int i = 0; i < 8; i++) {
+            for(int j = 0; j < 8; j++) {
+                if(board_status.board[i][j].role == 'm' && board_status.board[i][j].player == 'A'){
+                    value +=4;
+                }else if (board_status.board[i][j].role == 'k' && board_status.board[i][j].player == 'A'){
+                    value +=3;
+                }else if (board_status.board[i][j].role == 'm' && board_status.board[i][j].player == 'B'){
+                    value -=10;
+                }else if (board_status.board[i][j].role == 'k' && board_status.board[i][j].player == 'B'){
+                    value -=20;
+                }else{}
+            }
+        }
+//        cout<<"\ntest--evaluation1: "<< value<<endl;
+        //check side
+        for (int i = 5; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (board_status.board[i][j].player == 'A') {
+                    value += 2;
                 }
             }
         }
@@ -433,7 +532,7 @@ int GameTree::evaluation( char player) {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 if (board_status.board[i][j].player == 'B') {
-                    value -= 3;
+                    value -= 10;
                 }
             }
         }
@@ -442,9 +541,9 @@ int GameTree::evaluation( char player) {
         for (int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
                 if(threaten(i,j, board_status,'A')){
-                    value +=18;
+                    value +=2;
                 }else if(threaten(i,j, board_status,'B')){
-                    value -=13;
+                    value -=11;
                 }else{}
             }
         }
@@ -468,8 +567,8 @@ int GameTree::evaluation( char player) {
         }
 //        cout<<"\ntest--evaluation1: "<< value<<endl;
         //check side
-        for (int i = 4; i < 8; i++) {
-            for (int j = 4; j < 8; j++) {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 8; j++) {
                 if (board_status.board[i][j].player == 'B') {
                     value += 4;
                 }

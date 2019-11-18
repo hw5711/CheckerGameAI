@@ -15,10 +15,6 @@ struct Board{
     int id;
     int heuristic_value;
     bool moveable;
-
-    bool isMoveable() const;
-
-    void setMoveable(bool moveable);
 };
 
 struct Address{
@@ -66,7 +62,12 @@ public:
 
     int getPlayerNum(char);
 
-    void setMoveable(char, int, int, int);
+    void setNotMoveable(char, int, int);
+
+    void setMoveable(char, int, int);
+
+    bool isMoveable(int, int);
+
 };
 
 

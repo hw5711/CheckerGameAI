@@ -311,7 +311,6 @@ int Checker::getPlayerNum(char player){
         for(int j=0; j<8; j++){
             if(board[i][j].player == player){
                 i++;
-//                cout <<"!!! i = "<< i;
             }
         }
     }
@@ -326,7 +325,7 @@ void Checker::displayBoard() {
     for(int i = 0; i < 8; i++){
         for( int j = 0; j < 8; j++) {
             if(getPlayer(i,j) != ' '){
-            cout << "|" << getPlayer(i,j) << getRole(i,j) << getId(i,j) << "| ";
+            cout << "|" << getPlayer(i,j) << getId(i,j) << getRole(i,j) << "| ";
             }
             else{
                 cout << " - ";
@@ -354,14 +353,15 @@ void Checker::setAddress(const Address &address) {
     Checker::address = address;
 }
 
-void Checker::setMoveable(char player, int id, int row, int col){
+void Checker::setNotMoveable(char player, int row, int col){
     board[row][col].moveable = false;
 }
 
-bool Board::isMoveable() const {
-    return moveable;
+void Checker::setMoveable(char player, int row, int col){
+    board[row][col].moveable = true;
 }
 
-void Board::setMoveable(bool moveable) {
-    Board::moveable = moveable;
+bool Checker::isMoveable(int i, int j) {
+    return board[i][j].moveable;
 }
+

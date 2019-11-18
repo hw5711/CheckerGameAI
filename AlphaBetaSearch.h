@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int alphabeta(GameTree *, int, char, int, int);
+int alphabeta(GameTree *, int, char, int, int, int);
 
 
 #endif /* AlphaBetaSearch_hpp */
