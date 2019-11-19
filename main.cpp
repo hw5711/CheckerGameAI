@@ -78,8 +78,6 @@ bool checkMoveable(char player, Step *repeat, Object v ){
     return true;
 }
 
-
-
 //MinmaxAB vs MinmaxAB
 void MinMax1() {
     int start_s = clock();
@@ -325,7 +323,7 @@ void MinMaxAlphaBeta1() { //Both use evaluation 1
         cout<<"\n*** New Place -- MOVE PLAYER *** step"<<steps<<": "<< player << v.id<< "(" << v.value;
         cout << ") MOVE TO : " << v.row<<  " - "<< v.col << endl;
         player = ck.move(player, v.id, v.row, v.col);
-        ck.displayBoard();
+        //ck.displayBoard();
         win = ck.checkWin();
         shift++;
     }
@@ -432,7 +430,6 @@ void MinMaxUser() { //Both use evaluation 2
     print(win, execution_time);
 }
 
-
 void Statistics_print() {
     //cout << "Number of nodes generated : " << nodes_generated << endl;
     cout << "Number of nodes expanded : " << nodes_expanded << endl;
@@ -456,8 +453,6 @@ void print(char win, int execution_time) {
     cout << "Execution time taken is : " << (execution_time) / double(CLOCKS_PER_SEC) << " seconds" << endl;
     Statistics_print();
 }
-
-
 
 int main() {
     int choice_game;

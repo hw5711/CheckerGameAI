@@ -426,9 +426,9 @@ int GameTree::evaluation1( char player) {// good for player A , keep the threath
                 }else if (board_status.board[i][j].role == 'k' && board_status.board[i][j].player == 'A'){
                     value +=6;
                 }else if (board_status.board[i][j].role == 'm' && board_status.board[i][j].player == 'B'){
-                    value -=1;
+                    value -=3;//1 to 3
                 }else if (board_status.board[i][j].role == 'k' && board_status.board[i][j].player == 'B'){
-                    value -=2;
+                    value -=6;//2 to 6
                 }else{}
             }
         }
@@ -464,43 +464,43 @@ int GameTree::evaluation1( char player) {// good for player A , keep the threath
         for (int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
                 if(board_status.board[i][j].role == 'm' && board_status.board[i][j].player == 'B'){
-                    value +=2;
+                    value +=3;
                 }else if (board_status.board[i][j].role == 'k' && board_status.board[i][j].player == 'B'){
-                    value +=4;
+                    value +=6;
                 }else if (board_status.board[i][j].role == 'm' && board_status.board[i][j].player == 'A'){
-                    value -=1;
+                    value -=3;
                 }else if (board_status.board[i][j].role == 'k' && board_status.board[i][j].player == 'A'){
-                    value -=2;
+                    value -=6;
                 }else{}
             }
         }
         //check side
 
-        for (int i = 5; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (board_status.board[i][j].player == 'A') {
-                    value -= 5;
-                }
-            }
-        }
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (board_status.board[i][j].player == 'B') {
-                    value += 5;
-                }
-            }
+//        for (int i = 5; i < 8; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (board_status.board[i][j].player == 'A') {
+//                    value -= 5;
+//                }
+//            }
+//        }
+//        for (int i = 0; i < 4; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (board_status.board[i][j].player == 'B') {
+//                    value += 5;
+//                }
+//            }
         }
         //threatened
-        for (int i = 0; i < 8; i++) {
-            for(int j = 0; j < 8; j++) {
-                if(threaten(i,j, board_status,'B')){
-                    value +=8;
-                }else if(threaten(i,j, board_status,'A')){
-                    value -=4;
-                }else{}
-            }
-        }
-    }
+//        for (int i = 0; i < 8; i++) {
+//            for(int j = 0; j < 8; j++) {
+//                if(threaten(i,j, board_status,'B')){
+//                    value +=10;
+//                }else if(threaten(i,j, board_status,'A')){
+//                    value -=5;
+//                }else{}
+//            }
+//        }
+//    }
     return value;
 }
 
