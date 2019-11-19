@@ -82,16 +82,6 @@ bool checkMoveable(char player, Step *repeat, Object v ){
 void MinMax1() {
     int start_s = clock();
     Checker ck ; // ck is the board to be displayed
-    Step ArepeatStep[2]; // detect if in the loop
-    Step BrepeatStep [2]; // detect if in the loop
-    for(int i=0; i<2; i++){
-        ArepeatStep[i].heuristic_value = -1000;
-        ArepeatStep[i].row = -1;
-        ArepeatStep[i].col = -1;
-        BrepeatStep[i].heuristic_value = -1000;
-        BrepeatStep[i].row = -1;
-        BrepeatStep[i].col = -1;
-    }
     cout << "Initial board " << endl;
     ck.displayBoard();
     char win = ck.checkWin();
@@ -116,26 +106,6 @@ void MinMax1() {
         }else{
             v = MinMaxAB(head, 1, player, useVal, passVal, evaluation2);
         }
-//        int temp_r = -1;
-//        int temp_c = -1;
-//        while(player == 'A' && checkMoveable(player, ArepeatStep, v) == false) {
-//            ck.setNotMoveable(player, v.row, v.col);
-//            temp_r = v.row;
-//            temp_c = v.col;
-//            head->copyBoardStatus(ck);
-//            v = MinMaxAB(head, 1, player, useVal, passVal, evaluation1);
-//            ck.setMoveable(player, temp_r, temp_c);
-//        }
-//
-//        while(player == 'B' && checkMoveable(player, BrepeatStep, v) == false) {
-//            ck.setNotMoveable(player, v.row, v.col);
-//            temp_r = v.row;
-//            temp_c = v.col;
-//            head->copyBoardStatus(ck);
-//            v = MinMaxAB(head, 1, player, useVal, passVal, evaluation2);
-//            ck.setMoveable(player, temp_r, temp_c);
-//        }
-
         cout<<"\n*** New Place -- MOVE PLAYER *** step"<<steps<<": "<< player << v.getId()<< "(" << v.getValue();
         cout << ") MOVE TO : " << v.getRow()<<  " - "<< v.getCol() << endl;
         player = ck.move(player, v.getId(), v.getRow(), v.getCol());
