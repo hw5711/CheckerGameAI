@@ -178,7 +178,6 @@ char Checker::move_A(char player, int id, int r, int c) {
 
 //Function to move for the B player
 char Checker::move_B(char player, int id, int r, int c) {
-//    cout<<"actural move B:"<< r << "-"<<c<<endl;
     int before_r = -1;
     int before_c = -1;
 
@@ -301,26 +300,12 @@ char Checker::getPlayer(int r, int c) {
     return board[r][c].player;
 }
 
-
 char Checker::getRole(int r, int c) {
     return board[r][c].role;
 }
 
 int Checker::getId(int r, int c) {
     return board[r][c].id;
-}
-
-
-int Checker::getPlayerNum(char player){
-    int i=0;
-    for(int i=0; i<8; i++){
-        for(int j=0; j<8; j++){
-            if(board[i][j].player == player){
-                i++;
-            }
-        }
-    }
-    return i;
 }
 
 //Function to display the board
@@ -353,13 +338,6 @@ void Checker::set_heuristic_value_board(int v){
     heuristic_value = v;
 }
 
-const Address &Checker::getAddress() const {
-    return address;
-}
-
-void Checker::setAddress(const Address &address) {
-    Checker::address = address;
-}
 
 void Checker::setNotMoveable(char player, int row, int col){
     board[row][col].moveable = false;
@@ -368,8 +346,3 @@ void Checker::setNotMoveable(char player, int row, int col){
 void Checker::setMoveable(char player, int row, int col){
     board[row][col].moveable = true;
 }
-
-bool Checker::isMoveable(int i, int j) {
-    return board[i][j].moveable;
-}
-

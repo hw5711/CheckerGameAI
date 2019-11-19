@@ -42,8 +42,6 @@ public:
 
     void setBoard(char, int, int, char,int, int, bool);
 
-    void removeRepeat(char, int, int, int);
-
     void displayBoard();
 
     char getPlayer(int, int);
@@ -56,17 +54,9 @@ public:
 
     void set_heuristic_value_board(int);
 
-    const Address &getAddress() const;
-
-    void setAddress(const Address &address);
-
-    int getPlayerNum(char);
-
     void setNotMoveable(char, int, int);
 
     void setMoveable(char, int, int);
-
-    bool isMoveable(int, int);
 
 };
 
