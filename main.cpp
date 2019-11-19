@@ -372,9 +372,9 @@ void Statistics_print() {
     cout << "Number of nodes expanded : " << nodes_expanded << endl;
     cout << "Number of nodes generated : " << nodes_generated << endl;
     cout << "Number of steps : " << steps << endl;
-    cout << "Memory need for 1 node is: 81 bytes." << endl;
-    int x = 81 * nodes_generated;
-    cout << "Total memory needed for the algorithm is : " << x << "bytes = " << x / (1024) << "ck" <<endl;
+    cout << "Memory need for 1 node is: 1236 bytes." << endl;
+    int x = 1236 * nodes_generated;
+    cout << "Total memory needed for the algorithm is : " << x << "bytes = " << x / (1024) << "kb" <<endl;
 }
 
 void MinMaxUser() { //Both use evaluation 2
