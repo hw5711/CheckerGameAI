@@ -22,6 +22,14 @@ stdio.h
 iostream
 -
 
+/Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.cpp
+GameTree.h
+/Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.h
+cstdlib
+-
+ctime
+-
+
 /Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.h
 stdio.h
 -

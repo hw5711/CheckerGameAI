@@ -10,6 +10,8 @@
 
 using namespace std;
 
+int nodes_generated, nodes_expanded, steps;
+
 struct Step{
     int heuristic_value;
     int row;
@@ -76,7 +78,7 @@ bool checkMoveable(char player, Step *repeat, Object v ){
     return true;
 }
 
-int nodes_generated, nodes_expanded, steps;
+
 
 //MinmaxAB vs MinmaxAB
 void MinMax1() {
@@ -368,6 +370,7 @@ void MinMaxAlphaBeta2() { //Both use evaluation 2
 void Statistics_print() {
     //cout << "Number of nodes generated : " << nodes_generated << endl;
     cout << "Number of nodes expanded : " << nodes_expanded << endl;
+    cout << "Number of nodes generated : " << nodes_generated << endl;
     cout << "Number of steps : " << steps << endl;
     cout << "Memory need for 1 node is: 81 bytes." << endl;
     int x = 81 * nodes_generated;
@@ -452,6 +455,7 @@ int main() {
     cout << "Enter 2 for AlphaBetaSearch(EF1) VS AlphaBetaSearch(EF2) " << endl;
     cout << "Enter 3 for MinMaxAB(EF1) VS AlphaBetaSearch(EF1) " << endl;
     cout << "Enter 4 for MinMaxAB(EF2) VS AlphaBetaSearch(EF2)  " << endl;
+    cout << "Enter 5 for MinMaxAB VS USER  " << endl;
 
     cin >> choice_game;
 
@@ -468,6 +472,8 @@ int main() {
         case 4:
             MinMaxAlphaBeta2();
             break;
+        case 5:
+            MinMaxUser();
 
     }
     // Statistics_print();

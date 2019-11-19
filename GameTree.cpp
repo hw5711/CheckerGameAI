@@ -282,12 +282,14 @@ void GameTree::add_all_children(char player) {
                             children[children_num]->board_status = this->board_status;
                             children[children_num]->board_status.move('A', this->board_status.board[i][j].id,location.l1, location.l2);
                             children_num++;
+                            nodes_generated++;
                         }
                         if(location.l3 != -2 && location.l4 != -2){
                             children[children_num] = new GameTree(p);
                             children[children_num]->board_status = this->board_status;
                             children[children_num]->board_status.move('A', this->board_status.board[i][j].id,location.l3, location.l4);
                             children_num++;
+                            nodes_generated++;
                         }
 
                     } else if (this->board_status.board[i][j].role == 'k') {
@@ -296,30 +298,35 @@ void GameTree::add_all_children(char player) {
                             children[children_num]->board_status = this->board_status;
                             children[children_num]->board_status.move('A', this->board_status.board[i][j].id,location.l1, location.l2);
                             children_num++;
+                            nodes_generated++;
                         }
                         if(location.l3 != -2 && location.l4 != -2){
                             children[children_num] = new GameTree(p);
                             children[children_num]->board_status = this->board_status;
                             children[children_num]->board_status.move('A', this->board_status.board[i][j].id,location.l3, location.l4);
                             children_num++;
+                            nodes_generated++;
                         }
                         if(location.l5 != -2 && location.l6 != -2){
                             children[children_num] = new GameTree(p);
                             children[children_num]->board_status = this->board_status;
                             children[children_num]->board_status.move('A', this->board_status.board[i][j].id,location.l5, location.l6);
                             children_num++;
+                            nodes_generated++;
                         }
                         if(location.l7 != -2 && location.l8 != -2){
                             children[children_num] = new GameTree(p);
                             children[children_num]->board_status = this->board_status;
                             children[children_num]->board_status.move('A', this->board_status.board[i][j].id,location.l7, location.l8);
                             children_num++;
+                            nodes_generated++;
                         }
                     }else {}
                 }
             }
             else if(player == 'B') {
                 char p = 'A';
+
                 location = jump(i, j, this->board_status, 'B');
                 if (available_to_jump(location) == true) {
 //                    cout<<"\ncurrent ture situation-B : "<< i<<","<<j<<endl;
@@ -329,12 +336,14 @@ void GameTree::add_all_children(char player) {
                                 children[children_num]->board_status = this->board_status;
                                 children[children_num]->board_status.move('B', this->board_status.board[i][j].id,location.l1, location.l2);
                                 children_num++;
+                                nodes_generated++;
                             }
                             if (location.l3 != -2 && location.l4 != -2) {
                                 children[children_num] = new GameTree(p);
                                 children[children_num]->board_status = this->board_status;
                                 children[children_num]->board_status.move('B', this->board_status.board[i][j].id,location.l3, location.l4);
                                 children_num++;
+                                nodes_generated++;
                             }
                         } else if (this->board_status.board[i][j].role == 'k') {
                             if (location.l1 != -2 && location.l2 != -2) {
@@ -342,24 +351,28 @@ void GameTree::add_all_children(char player) {
                                 children[children_num]->board_status = this->board_status;
                                 children[children_num]->board_status.move('B', this->board_status.board[i][j].id,location.l1, location.l2);
                                 children_num++;
+                                nodes_generated++;
                             }
                             if (location.l3 != -2 && location.l4 != -2) {
                                 children[children_num] = new GameTree(p);
                                 children[children_num]->board_status = this->board_status;
                                 children[children_num]->board_status.move('B', this->board_status.board[i][j].id,location.l3, location.l4);
                                 children_num++;
+                                nodes_generated++;
                             }
                             if (location.l5 != -2 && location.l6 != -2) {
                                 children[children_num] = new GameTree(p);
                                 children[children_num]->board_status = this->board_status;
                                 children[children_num]->board_status.move('B', this->board_status.board[i][j].id,location.l5, location.l6);
                                 children_num++;
+                                nodes_generated++;
                             }
                             if (location.l7 != -2 && location.l8 != -2) {
                                 children[children_num] = new GameTree(p);
                                 children[children_num]->board_status = this->board_status;
                                 children[children_num]->board_status.move('B', this->board_status.board[i][j].id,location.l7, location.l8);
                                 children_num++;
+                                nodes_generated++;
                             }
                         }
                         else{}
@@ -768,6 +781,7 @@ void GameTree::add_all_children2(char player) {
 //                            <<children[children_num]->id <<" %%  "<< children[children_num]->row << " %% "
 //                            << children[children_num]->col<<endl;
                             children_num++;
+                            nodes_generated++;
                         }
                         if(location.l3 != -2 && location.l4 != -2){
                             children[children_num] = new GameTree(p);
@@ -780,6 +794,7 @@ void GameTree::add_all_children2(char player) {
 //                                <<children[children_num]->id <<" %%  "<< children[children_num]->row << " %% "
 //                                << children[children_num]->col<<endl;
                             children_num++;
+                            nodes_generated++;
                         }
 
                     } else if (this->board_status.board[i][j].role == 'k') {
@@ -794,6 +809,7 @@ void GameTree::add_all_children2(char player) {
 //                                <<children[children_num]->id <<" %%  "<< children[children_num]->row << " %% "
 //                                << children[children_num]->col<<endl;
                             children_num++;
+                            nodes_generated++;
                         }
                         if(location.l3 != -2 && location.l4 != -2){
                             children[children_num] = new GameTree(p);
@@ -806,6 +822,7 @@ void GameTree::add_all_children2(char player) {
 //                                <<children[children_num]->id <<" %%  "<< children[children_num]->row << " %% "
 //                                << children[children_num]->col<<endl;
                             children_num++;
+                            nodes_generated++;
                         }
                         if(location.l5 != -2 && location.l6 != -2){
                             children[children_num] = new GameTree(p);
@@ -818,6 +835,7 @@ void GameTree::add_all_children2(char player) {
 //                                <<children[children_num]->id <<" %%  "<< children[children_num]->row << " %% "
 //                                << children[children_num]->col<<endl;
                             children_num++;
+                            nodes_generated++;
                         }
                         if(location.l7 != -2 && location.l8 != -2){
                             children[children_num] = new GameTree(p);
@@ -830,6 +848,7 @@ void GameTree::add_all_children2(char player) {
 //                                <<children[children_num]->id <<" %%  "<< children[children_num]->row << " %% "
 //                                << children[children_num]->col<<endl;
                             children_num++;
+                            nodes_generated++;
                         }
                     }else {}
                 }
@@ -851,6 +870,7 @@ void GameTree::add_all_children2(char player) {
 //                                <<children[children_num]->id <<" %%  "<< children[children_num]->row << " %% "
 //                                << children[children_num]->col<<endl;
                             children_num++;
+                            nodes_generated++;
                         }
                         if (location.l3 != -2 && location.l4 != -2) {
                             children[children_num] = new GameTree(p);
@@ -863,6 +883,7 @@ void GameTree::add_all_children2(char player) {
 //                                <<children[children_num]->id <<" %%  "<< children[children_num]->row << " %% "
 //                                << children[children_num]->col<<endl;
                             children_num++;
+                            nodes_generated++;
                         }
                     } else if (this->board_status.board[i][j].role == 'k') {
                         if (location.l1 != -2 && location.l2 != -2) {
@@ -873,6 +894,7 @@ void GameTree::add_all_children2(char player) {
                             children[children_num]->col = location.l2;
                             children[children_num]->id = this->board_status.board[i][j].id;
                             children_num++;
+                            nodes_generated++;
                         }
                         if (location.l3 != -2 && location.l4 != -2) {
                             children[children_num] = new GameTree(p);
@@ -882,6 +904,7 @@ void GameTree::add_all_children2(char player) {
                             children[children_num]->col = location.l4;
                             children[children_num]->id = this->board_status.board[i][j].id;
                             children_num++;
+                            nodes_generated++;
                         }
                         if (location.l5 != -2 && location.l6 != -2) {
                             children[children_num] = new GameTree(p);
@@ -891,6 +914,7 @@ void GameTree::add_all_children2(char player) {
                             children[children_num]->col = location.l6;
                             children[children_num]->id = this->board_status.board[i][j].id;
                             children_num++;
+                            nodes_generated++;
                         }
                         if (location.l7 != -2 && location.l8 != -2) {
                             children[children_num] = new GameTree(p);
@@ -900,6 +924,7 @@ void GameTree::add_all_children2(char player) {
                             children[children_num]->col = location.l8;
                             children[children_num]->id = this->board_status.board[i][j].id;
                             children_num++;
+                            nodes_generated++;
                         }
                     }
                     else{}

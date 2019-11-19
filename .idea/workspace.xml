@@ -12,6 +12,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1049f50a-b802-4356-8d39-63554f1d0167" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameTree.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/GameTree.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CheckerGameAI" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CheckerGameAI" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -69,7 +74,7 @@
       <workItem from="1572211821581" duration="148000" />
       <workItem from="1572211990539" duration="64000" />
       <workItem from="1572212220753" duration="146889000" />
-      <workItem from="1573582409031" duration="69165000" />
+      <workItem from="1573582409031" duration="71358000" />
     </task>
     <servers />
   </component>
@@ -94,12 +99,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/GameTree.cpp</url>
-          <line>404</line>
+          <line>417</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/GameTree.cpp</url>
-          <line>493</line>
+          <line>506</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
