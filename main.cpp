@@ -48,8 +48,8 @@ bool checkMoveable(char player, Step *repeat, Object v ){
     if(repeat[0].row != -1 && repeat[1].row != -1 ) {
         //match first one
         if (repeat[0].heuristic_value == v.value && repeat[0].row == v.row && repeat[0].col == v.col) {
-            if (repeat[1].heuristic_value != v.value && repeat[1].row != v.row && repeat[1].col != v.col) {
-                //cout << "\n44444444 match the first one";
+            if (repeat[1].heuristic_value != v.value || repeat[1].row != v.row || repeat[1].col != v.col) {
+//                cout << "\n44444444 match the first one";
                 repeat[0].heuristic_value = repeat[1].heuristic_value;
                 repeat[0].row = repeat[1].row;
                 repeat[0].col = repeat[1].col;
@@ -199,6 +199,9 @@ void AlphaBeta2() {
             if(v.row == ArepeatStep[0].row && v.col == ArepeatStep[0].col ) {
                 temp_r1 = v.row;
                 temp_c1 = v.col;
+            }else{
+                ArepeatStep[0].row = v.row;
+                ArepeatStep[0].col = v.col;
             }
             temp_r = ArepeatStep[1].row;
             temp_c = ArepeatStep[1].col;
@@ -214,6 +217,9 @@ void AlphaBeta2() {
             if(v.row == BrepeatStep[0].row && v.col == BrepeatStep[0].col ) {
                 temp_r1 = v.row;
                 temp_c1 = v.col;
+            }else{
+                BrepeatStep[0].row = v.row;
+                BrepeatStep[0].col = v.col;
             }
             temp_r = BrepeatStep[1].row;
             temp_c = BrepeatStep[1].col;
@@ -276,7 +282,6 @@ void MinMaxAlphaBeta1() { //Both use evaluation 1
         }else{
             v = alphabeta(head, 1, player, alpha, beta, evaluation1);
         }
-
         int temp_r = -1;
         int temp_c = -1;
         int temp_r1 = -1;
@@ -287,6 +292,9 @@ void MinMaxAlphaBeta1() { //Both use evaluation 1
             if(v.row == ArepeatStep[0].row && v.col == ArepeatStep[0].col ) {
                 temp_r1 = v.row;
                 temp_c1 = v.col;
+            }else{
+                ArepeatStep[0].row = v.row;
+                ArepeatStep[0].col = v.col;
             }
             temp_r = ArepeatStep[1].row;
             temp_c = ArepeatStep[1].col;
@@ -295,13 +303,15 @@ void MinMaxAlphaBeta1() { //Both use evaluation 1
             ck.setMoveable(player, temp_r, temp_c);
             ck.setMoveable(player, temp_r1, temp_c1);
         }
-
         while(player == 'B' && checkMoveable(player, BrepeatStep, v) == false) {
             ck.setNotMoveable(player, BrepeatStep[0].row, BrepeatStep[0].col);
             ck.setNotMoveable(player, BrepeatStep[1].row, BrepeatStep[1].col);
             if(v.row == BrepeatStep[0].row && v.col == BrepeatStep[0].col ) {
                 temp_r1 = v.row;
                 temp_c1 = v.col;
+            }else{
+                BrepeatStep[0].row = v.row;
+                BrepeatStep[0].col = v.col;
             }
             temp_r = BrepeatStep[1].row;
             temp_c = BrepeatStep[1].col;
@@ -310,6 +320,7 @@ void MinMaxAlphaBeta1() { //Both use evaluation 1
             ck.setMoveable(player, temp_r, temp_c);
             ck.setMoveable(player, temp_r1, temp_c1);
         }
+
 
         cout<<"\n*** New Place -- MOVE PLAYER *** step"<<steps<<": "<< player << v.id<< "(" << v.value;
         cout << ") MOVE TO : " << v.row<<  " - "<< v.col << endl;
@@ -367,16 +378,6 @@ void MinMaxAlphaBeta2() { //Both use evaluation 2
     print(win, execution_time);
 }
 
-void Statistics_print() {
-    //cout << "Number of nodes generated : " << nodes_generated << endl;
-    cout << "Number of nodes expanded : " << nodes_expanded << endl;
-    cout << "Number of nodes generated : " << nodes_generated << endl;
-    cout << "Number of steps : " << steps << endl;
-    cout << "Memory need for 1 node is: 1236 bytes." << endl;
-    int x = 1236 * nodes_generated;
-    cout << "Total memory needed for the algorithm is : " << x << "bytes = " << x / (1024) << "kb" <<endl;
-}
-
 void MinMaxUser() { //Both use evaluation 2
     int start_s = clock();
     Checker ck;
@@ -432,6 +433,16 @@ void MinMaxUser() { //Both use evaluation 2
 }
 
 
+void Statistics_print() {
+    //cout << "Number of nodes generated : " << nodes_generated << endl;
+    cout << "Number of nodes expanded : " << nodes_expanded << endl;
+    cout << "Number of nodes generated : " << nodes_generated << endl;
+    cout << "Number of steps : " << steps << endl;
+    cout << "Memory need for 1 node is: 1236 bytes." << endl;
+    int x = 1236 * nodes_generated;
+    cout << "Total memory needed for the algorithm is : " << x << "bytes = " << x / (1024) << "kb" <<endl;
+}
+
 void print(char win, int execution_time) {
     cout << "The result of the game is : " << win << endl;
     cout << endl;
@@ -456,7 +467,6 @@ int main() {
     cout << "Enter 3 for MinMaxAB(EF1) VS AlphaBetaSearch(EF1) " << endl;
     cout << "Enter 4 for MinMaxAB(EF2) VS AlphaBetaSearch(EF2)  " << endl;
     cout << "Enter 5 for MinMaxAB VS USER  " << endl;
-
     cin >> choice_game;
 
     switch (choice_game) {
@@ -474,9 +484,6 @@ int main() {
             break;
         case 5:
             MinMaxUser();
-
     }
-    // Statistics_print();
-
     return 0;
 }
