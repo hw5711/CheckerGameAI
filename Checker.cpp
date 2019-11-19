@@ -328,10 +328,11 @@ void Checker::displayBoard() {
     cout << "***** DISPLAY BOARD *****\n";
 //    cout << "A( "<< getPlayerNum('A') << " ) -vs- "
 //    << "B( " << getPlayerNum('B') << " )\n";
+cout << "\nCol      0  1  2  3  4  5  6  7\n";
     for(int i = 0; i < 8; i++){
+        cout << "row " << i << "   ";
         for( int j = 0; j < 8; j++) {
             if(getPlayer(i,j) != ' '){
-//                cout << "|" << getPlayer(i,j)<< "| ";
                 cout << "|" << getPlayer(i,j) << getId(i,j) << getRole(i,j) << "| ";
             }
             else{

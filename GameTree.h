@@ -45,13 +45,7 @@ public:
 
     GameTree(char);
 
-    void create_node(char);
-
     void set_heuristic_value(int, Checker, int, int ,int);
-
-    const Checker &getHeuristicBoard() const;
-
-    int get_heuristic_value();
 
     void add_all_children(char);
 
@@ -73,15 +67,10 @@ public:
 
     bool available_to_jump(Location);
 
-    int getRow() const;
 
     void setRow(int row);
 
-    int getCol() const;
-
     void setCol(int col);
-
-    int getId() const;
 
     void setId(int id);
 

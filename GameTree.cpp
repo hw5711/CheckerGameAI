@@ -4,7 +4,6 @@
 #include <ctime>
 
 using namespace std;
-//extern int  ALGO_FLAG;
 
 extern int nodes_generated, nodes_expanded;
 
@@ -29,10 +28,6 @@ GameTree::GameTree(char p) {
     for (int i = 0; i < 48; i++) { // go through all board
         children[i] = NULL;
     }
-}
-
-void GameTree::create_node(char p) {
-    children[number_of_children++] = new GameTree(p);
 }
 
 void GameTree::set_heuristic_value(int value, Checker k, int id, int row, int col) {
@@ -411,10 +406,6 @@ void GameTree::print(GameTree *node, int nestLevel) {
     }
 }
 
-/////////////////////////////////////
-///       BURAK'S EVALUATION      ///
-/////////////////////////////////////
-
 int GameTree::evaluation1( char player) {// good for player A , keep the threathen as the stratage
     int value=0;
     if (player == 'A') {
@@ -652,84 +643,6 @@ bool GameTree::threaten(int i, int j, Checker checker, char player){
     return false;
 }
 
-/////////////////////////////////////
-///       HURSH'S EVALUATION      ///
-/////////////////////////////////////
-// int GameTree::evaluation()
-// {
-//     int value;
-//     if(player == 'A')
-//     {
-//         int a_stones = 0;
-//         for(int i = 0 ; i < 6 ; i++)
-//         {
-//             if(board_status.A[i] == 0)
-//                 a_stones++;
-//         }
-//         if(a_stones == 6)
-//             value = 1000;
-//     }
-//     else if(player == 'B')
-//     {
-//         int b_stones = 0;
-//         for(int i = 0 ; i < 6 ; i++)
-//         {
-//             if(board_status.B[i] == 0)
-//                 b_stones++;
-//         }
-//         if(b_stones == 6)
-//             value = -1000;
-//     }
-//     set_heuristic_value(value);
-//     return value;
-// }
-
-
-/////////////////////////////////////
-///       RANDY'S EVALUATION      ///
-/////////////////////////////////////
-
-// int GameTree::evaluation()
-// {
-//     int value;
-//     if(player == 'A')
-//     {
-//         int a_pits = 0;
-//         for(int i = 0 ; i < 6 ; i++)
-//         {
-//             if(board_status.A[i] == 0)
-//                 a_pits++;
-//             else if (board_status.A[i] == i) // last stone in checker. one more chance to play
-//                 value = 2000;
-//             else if (board_status.A[i] > i ) // last stone in self side
-//                 value = 800;
-//             else
-//                 value = 300; // last stone in opponent side
-//         }
-//         if(a_pits == 6)
-//             value = 5000;
-//     }
-//     else if(player == 'B')
-//     {
-//         int b_pits = 0;
-//         for(int i = 0 ; i < 6 ; i++)
-//         {
-//             if(board_status.B[i] == 0)
-//                 b_pits++;
-//             else if (board_status.B[i] == i) // last stone in checker. one more chance to play
-//                 value = 2000;
-//             else if (board_status.B[i] < i ) // last stone in opponent side
-//                 value = 800;
-//             else
-//                 value = 300; // last stone in opponent side
-//         }
-//         if(b_pits == 6)
-//             value = 5000;
-//     }
-//     set_heuristic_value(value);
-//     return value;
-
-
 bool GameTree::available_to_jump(Location location){
 
     if(location.l1 != -2 && location.l2){
@@ -749,10 +662,6 @@ bool GameTree::available_to_jump(Location location){
     }
 
     return false;
-}
-
-const Checker &GameTree::getHeuristicBoard() const {
-    return heuristic_board;
 }
 
 void GameTree::add_all_children2(char player) {
@@ -932,18 +841,6 @@ void GameTree::add_all_children2(char player) {
             }else{}
         }
     }
-}
-
-int GameTree::getRow() const {
-    return row;
-}
-
-int GameTree::getCol() const {
-    return col;
-}
-
-int GameTree::getId() const {
-    return id;
 }
 
 void GameTree::setId(int id) {
