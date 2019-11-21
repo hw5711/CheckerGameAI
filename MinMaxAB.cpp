@@ -4,39 +4,38 @@
 
 using namespace std;
 
-//use value is min, pass value is max
-Object MinMaxAB(GameTree *board, int depth, char player, Object useVal, Object passVal, int EF) {
+Object MinMaxAB(GameTree *checkerboard, int depth, char player, Object useVal, Object passVal, int EF) {
     Object obj;
-    char NewPlayer;
-    if (board->deepenough(depth,player)) { // if search to the bottom child
+    char player1;
+    if (checkerboard->deepenough(depth,player)) { // if search to the bottom child
         if(EF == 1) {
-            obj.setValue(board->evaluation1(player));
+            obj.setValue(checkerboard->evaluation1(player));
         }
         if(EF == 2) {
-            obj.setValue(board->evaluation2(player));
+            obj.setValue(checkerboard->evaluation2(player));
         }
-        obj.setTempBoard(board->board_status);
+        obj.setTempBoard(checkerboard->currentboard);
         if (player == 'B') {
             obj.setValue(-obj.getValue());
             //cout<<"\nMIN- B - value is : "<< obj.getValue()<<endl;
         }
-        board->set_heuristic_value(obj.getValue(), obj.getTempBoard(),board->id, board->row ,board->col );
-        obj.setId(board->id);
-        obj.setRow(board->row);
-        obj.setCol(board->col);
+        checkerboard->setHeuristicValue(obj.getValue(), obj.getTempBoard(),checkerboard->id, checkerboard->row ,checkerboard->col );
+        obj.setId(checkerboard->id);
+        obj.setRow(checkerboard->row);
+        obj.setCol(checkerboard->col);
         return obj;
     }
     Checker ck;
     Object obj1(0, ck, 0, -1, -1);
 
     for (int i = 0; i < 48; i++) { // need to update
-        if (board->children[i] == NULL) {
+        if (checkerboard->successor[i] == NULL) {
             continue;
         }
         if (player == 'A')
-            NewPlayer = 'B';
+            player1 = 'B';
         else
-            NewPlayer = 'A';
+            player1 = 'A';
 
         Object negPass;
         negPass.setValue(-useVal.getValue());
@@ -52,11 +51,11 @@ Object MinMaxAB(GameTree *board, int depth, char player, Object useVal, Object p
         negUse.setRow(passVal.getRow());
         negUse.setCol(passVal.getCol());
 
-        obj1 = MinMaxAB(board->children[i], depth + 1, NewPlayer, negPass, negUse, EF);
+        obj1 = MinMaxAB(checkerboard->successor[i], depth + 1, player1, negPass, negUse, EF);
         Object newVal(-obj1.getValue(), obj1.getTempBoard(), obj1.getId(), obj1.getRow(), obj1.getCol());
 
         if (newVal.getValue() > passVal.getValue()) {
-            board->children[i]->set_heuristic_value(newVal.getValue(),newVal.getTempBoard(),newVal.getId(), newVal.getRow() ,newVal.getCol() );
+            checkerboard->successor[i]->setHeuristicValue(newVal.getValue(),newVal.getTempBoard(),newVal.getId(), newVal.getRow() ,newVal.getCol() );
             passVal.setValue(newVal.getValue());
             passVal.setTempBoard(newVal.getTempBoard());
             passVal.setId(newVal.getId());
@@ -78,8 +77,8 @@ Object MinMaxAB(GameTree *board, int depth, char player, Object useVal, Object p
     obj1.setId(passVal.getId());
     obj1.setRow(passVal.getRow());
     obj1.setCol(passVal.getCol());
-    board->setId(obj1.getId());
-    board->setRow(obj1.getRow());
-    board->setCol(obj1.getCol());
+    checkerboard->setId(obj1.getId());
+    checkerboard->setRow(obj1.getRow());
+    checkerboard->setCol(obj1.getCol());
     return obj1;
 }

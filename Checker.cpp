@@ -8,7 +8,6 @@
 
 using namespace std;
 
-//initializing the board
 Checker::Checker() {
     int id_num = 1;
     int id_num_otherplayer = 1;
@@ -90,7 +89,7 @@ Checker::Checker() {
     set_heuristic_value_board( -1000);
 }
 
-//constructor to set the board values, mainly used for testing
+
 void Checker::setBoard(char p, int r, int c, char ro, int i, int he, bool t) {
     board[r][c].player = p;
     board[r][c].row = r;
@@ -100,200 +99,6 @@ void Checker::setBoard(char p, int r, int c, char ro, int i, int he, bool t) {
     board[r][c].heuristic_value = he;
     board[r][c].moveable = t;
 
-}
-
-//Function to move for the A player
-char Checker::move_A(char player, int id, int r, int c) {
-
-    int before_r = -1;
-    int before_c = -1;
-
-    for(int i=0; i<8; i++){
-        for(int j=0; j<8; j++){
-            if(board[i][j].player == player && board[i][j].id == id){
-                before_r = i;
-                before_c = j;
-            }
-        }
-    }
-
-    int row_diff = abs(r-before_r);
-    int col_diff = abs(c-before_c);
-    if(row_diff == 1 && col_diff ==1){
-        char role = board[before_r][before_c].role;
-        //char player = board[r][c].player;
-        setBoard(player,r,c,role,id,-1000,true); // set the moving place
-        setBoard(' ',before_r,before_c,'n',0,-1000,true); //set current place as empty
-        before_r = r; //change the current head row
-        before_c = c; //change the current head col
-    }else{ // eat enemy
-        char role = board[before_r][before_c].role;
-        //char player =board[r][c].player;
-        setBoard(' ',r,c,'n',0,-1000,true);
-        if(r >before_r && c > before_c) {
-            int en_id = board[before_r+1][before_c+1].id;
-            setBoard(player, r, c, role,id, -1000,true);
-            setBoard(' ', before_r+1, before_c+1, 'n',en_id, -1000,true);
-            setBoard(' ', before_r, before_c, 'n',0, -1000,true);
-        }
-        else if(r > before_r && c < before_c){
-            int en_id = board[before_r+1][before_c-1].id;
-            setBoard(player, r, c, role,id, -1000,true);
-            setBoard(' ', before_r+1, before_c-1,en_id, 'n', -1000,true);
-            setBoard(' ', before_r, before_c, 'n',0, -1000,true);
-        }
-        else if(r < before_r && c >before_c){
-            int en_id = board[before_r-1][before_c+1].id;
-            setBoard(player, r, c, role,id, -1000,true);
-            setBoard(' ', before_r-1, before_c+1, 'n',en_id, -1000,true);
-            setBoard(' ', before_r, before_c, 'n',0, -1000,true);
-        }
-        else if(r <before_r && c < before_c){
-            int en_id = board[before_r-1][before_c-1].id;
-            setBoard(player, r, c, role,id, -1000,true);
-            setBoard(' ', before_r-1, before_c-1, 'n', en_id,-1000,true);
-            setBoard(' ', before_r, before_c, 'n',0, -1000,true);
-        }else{}
-//        before_r = r; //change the current head row
-//        before_c = c; //change the current head col
-    }
-    //update king role
-    for(int i = 0; i < 8; i++){
-        for(int j = 0; j < 8; j++) {
-            if(i==0 && getPlayer(i,j) == 'B'){
-                int id = board[i][j].id;
-                setBoard('B',i,j,'k',id,-1000,true);
-            }
-            if(i==7 && getPlayer(i,j) == 'A'){
-                int id = board[i][j].id;
-                setBoard('A',i,j,'k',id,-1000,true);
-            }
-        }
-    }
-//    cout<<"\n*** MOVE PLAYER *** "<< player << id;
-//    cout << "   MOVE TO :hole row # " << r
-//         <<  " --- hole col # "<< c<< endl;
-    return 'B';
-}
-
-//Function to move for the B player
-char Checker::move_B(char player, int id, int r, int c) {
-    int before_r = -1;
-    int before_c = -1;
-
-    for(int i=0; i<8; i++){
-        for(int j=0; j<8; j++){
-            if(board[i][j].player == player && board[i][j].id == id){
-                before_r = i;
-                before_c = j;
-            }
-        }
-    }
-
-    int row_diff = abs(r-before_r);
-    int col_diff = abs(c-before_c);
-    if(row_diff == 1 && col_diff ==1){
-        char role = board[before_r][before_c].role;
-        //char player = board[r][c].player;
-        setBoard(player,r,c,role,id,-1000,true); // set the moving place
-        setBoard(' ',before_r,before_c,'n',0,-1000,true); //set current place as empty
-        before_r = r; //change the current head row
-        before_c = c; //change the current head col
-    }else{ // eat enemy
-        char role = board[before_r][before_c].role;
-        //char player = board[r][c].player;
-        setBoard(' ',r,c,'n',0,-1000,true);
-        if(r >before_r && c > before_c) {
-            int en_id = board[before_r+1][before_c+1].id;
-            setBoard(player, r, c, role,id, -1000,true);
-            setBoard(' ', before_r+1, before_c+1, 'n',en_id, -1000,true);
-            setBoard(' ', before_r, before_c, 'n',0, -1000,true);
-        }
-        else if(r > before_r && c < before_c){
-            int en_id = board[before_r+1][before_c-1].id;
-            setBoard(player, r, c, role,id, -1000,true);
-            setBoard(' ', before_r+1, before_c-1,en_id, 'n', -1000,true);
-            setBoard(' ', before_r, before_c, 'n',0, -1000,true);
-        }
-        else if(r < before_r && c >before_c){
-            int en_id = board[before_r-1][before_c+1].id;
-            setBoard(player, r, c, role,id, -1000,true);
-            setBoard(' ', before_r-1, before_c+1, 'n',en_id, -1000,true);
-            setBoard(' ', before_r, before_c, 'n',0, -1000,true);
-        }
-        else if(r <before_r && c < before_c){
-            int en_id = board[before_r-1][before_c-1].id;
-            setBoard(player, r, c, role,id, -1000,true);
-            setBoard(' ', before_r-1, before_c-1, 'n', en_id,-1000,true);
-            setBoard(' ', before_r, before_c, 'n',0, -1000,true);
-        }else{}
-//        before_r = r; //change the current head row
-//        before_c = c; //change the current head col
-    }
-    //update king role
-    for(int i = 0; i < 8; i++){
-        for(int j = 0; j < 8; j++) {
-            if(i==0 && getPlayer(i,j) == 'B'){
-                int id = board[i][j].id;
-                setBoard('B',i,j,'k',id,-1000,true);
-            }
-            if(i==7 && getPlayer(i,j) == 'A'){
-                int id = board[i][j].id;
-                setBoard('A',i,j,'k',id,-1000,true);
-            }
-        }
-    }
-
-//    cout<<"\n*** MOVE PLAYER *** "<< player << id;
-//    cout << "   MOVE TO :hole row # " << r
-//         <<  " --- hole col # "<< c<< endl;
-    return 'A';
-}
-
-//Function which decides as to who should move
-/*** will perform move and change role, board ***/
-char Checker::move(char player, int id, int row, int col) {
-    char v;
-    if (player == 'A') {
-        v = move_A( player,  id,  row,  col);
-    }
-    else{
-        v = move_B( player,  id,  row,  col);
-    }
-    return v;
-}
-
-//Function to decide as to which player wins
-char Checker::checkWin() {
-    int acc_a = 0;
-    int acc_b = 0;
-    for (int i = 0; i < 8; i++) {
-        for(int j = 0; j < 8; j++) {
-            if(board[i][j].player == 'A') {
-                acc_a ++;
-            }
-            if(board[i][j].player == 'B'){
-                acc_b ++;
-            }
-        }
-    }
-    if(acc_a == 0){
-        return 'B';
-    }
-    if(acc_b == 0){
-        return 'A';
-    }
-    if(acc_a == 1 && acc_b== 2){
-        return 'B';
-    }
-    if(acc_b == 1 && acc_a == 2 ){
-        return 'A';
-    }
-
-    if(acc_b == acc_a && acc_a == 1){
-        return 'T';
-    }
-    return 'N';
 }
 
 char Checker::getPlayer(int r, int c) {
@@ -308,12 +113,10 @@ int Checker::getId(int r, int c) {
     return board[r][c].id;
 }
 
-//Function to display the board
-void Checker::displayBoard() {
+//This function allows to display the checker board
+void Checker::displayCheckerBoard() {
     cout << "***** DISPLAY BOARD *****\n";
-//    cout << "A( "<< getPlayerNum('A') << " ) -vs- "
-//    << "B( " << getPlayerNum('B') << " )\n";
-cout << "\nCol      0  1  2  3  4  5  6  7\n";
+    cout << "\nCol      0  1  2  3  4  5  6  7\n";
     for(int i = 0; i < 8; i++){
         cout << "row " << i << "   ";
         for( int j = 0; j < 8; j++) {
@@ -338,11 +141,198 @@ void Checker::set_heuristic_value_board(int v){
     heuristic_value = v;
 }
 
+//This function will allows to move player A
+char Checker::chanceOfA(char player, int id, int r, int c) {
+
+    int before_r = -1;
+    int before_c = -1;
+
+    for(int i=0; i<8; i++){
+        for(int j=0; j<8; j++){
+            if(board[i][j].player == player && board[i][j].id == id){
+                before_r = i;
+                before_c = j;
+            }
+        }
+    }
+
+    int row_diff = abs(r-before_r);
+    int col_diff = abs(c-before_c);
+    if(row_diff == 1 && col_diff ==1){
+        char role = board[before_r][before_c].role;
+        setBoard(player,r,c,role,id,-1000,true);
+        setBoard(' ',before_r,before_c,'n',0,-1000,true);
+        before_r = r;
+        before_c = c;
+    }else{
+        char role = board[before_r][before_c].role;
+        setBoard(' ',r,c,'n',0,-1000,true);
+        if(r >before_r && c > before_c) {
+            int en_id = board[before_r+1][before_c+1].id;
+            setBoard(player, r, c, role,id, -1000,true);
+            setBoard(' ', before_r+1, before_c+1, 'n',en_id, -1000,true);
+            setBoard(' ', before_r, before_c, 'n',0, -1000,true);
+        }
+        else if(r > before_r && c < before_c){
+            int en_id = board[before_r+1][before_c-1].id;
+            setBoard(player, r, c, role,id, -1000,true);
+            setBoard(' ', before_r+1, before_c-1,en_id, 'n', -1000,true);
+            setBoard(' ', before_r, before_c, 'n',0, -1000,true);
+        }
+        else if(r < before_r && c >before_c){
+            int en_id = board[before_r-1][before_c+1].id;
+            setBoard(player, r, c, role,id, -1000,true);
+            setBoard(' ', before_r-1, before_c+1, 'n',en_id, -1000,true);
+            setBoard(' ', before_r, before_c, 'n',0, -1000,true);
+        }
+        else if(r <before_r && c < before_c){
+            int en_id = board[before_r-1][before_c-1].id;
+            setBoard(player, r, c, role,id, -1000,true);
+            setBoard(' ', before_r-1, before_c-1, 'n', en_id,-1000,true);
+            setBoard(' ', before_r, before_c, 'n',0, -1000,true);
+        }else{}
+
+    }
+    for(int i = 0; i < 8; i++){
+        for(int j = 0; j < 8; j++) {
+            if(i==0 && getPlayer(i,j) == 'B'){
+                int id = board[i][j].id;
+                setBoard('B',i,j,'k',id,-1000,true);
+            }
+            if(i==7 && getPlayer(i,j) == 'A'){
+                int id = board[i][j].id;
+                setBoard('A',i,j,'k',id,-1000,true);
+            }
+        }
+    }
+    return 'B';
+}
+
+//This function allows to move player B
+char Checker::chanceOfB(char player, int id, int r, int c) {
+    int before_r = -1;
+    int before_c = -1;
+
+    for(int i=0; i<8; i++){
+        for(int j=0; j<8; j++){
+            if(board[i][j].player == player && board[i][j].id == id){
+                before_r = i;
+                before_c = j;
+            }
+        }
+    }
+
+    int row_diff = abs(r-before_r);
+    int col_diff = abs(c-before_c);
+    if(row_diff == 1 && col_diff ==1){
+        char role = board[before_r][before_c].role;
+        setBoard(player,r,c,role,id,-1000,true); // set the moving place
+        setBoard(' ',before_r,before_c,'n',0,-1000,true); //set current place as empty
+        before_r = r; //change the current head row
+        before_c = c; //change the current head col
+    }else{
+        char role = board[before_r][before_c].role;
+        setBoard(' ',r,c,'n',0,-1000,true);
+        if(r >before_r && c > before_c) {
+            int en_id = board[before_r+1][before_c+1].id;
+            setBoard(player, r, c, role,id, -1000,true);
+            setBoard(' ', before_r+1, before_c+1, 'n',en_id, -1000,true);
+            setBoard(' ', before_r, before_c, 'n',0, -1000,true);
+        }
+        else if(r > before_r && c < before_c){
+            int en_id = board[before_r+1][before_c-1].id;
+            setBoard(player, r, c, role,id, -1000,true);
+            setBoard(' ', before_r+1, before_c-1,en_id, 'n', -1000,true);
+            setBoard(' ', before_r, before_c, 'n',0, -1000,true);
+        }
+        else if(r < before_r && c >before_c){
+            int en_id = board[before_r-1][before_c+1].id;
+            setBoard(player, r, c, role,id, -1000,true);
+            setBoard(' ', before_r-1, before_c+1, 'n',en_id, -1000,true);
+            setBoard(' ', before_r, before_c, 'n',0, -1000,true);
+        }
+        else if(r <before_r && c < before_c){
+            int en_id = board[before_r-1][before_c-1].id;
+            setBoard(player, r, c, role,id, -1000,true);
+            setBoard(' ', before_r-1, before_c-1, 'n', en_id,-1000,true);
+            setBoard(' ', before_r, before_c, 'n',0, -1000,true);
+        }else{}
+
+    }
+    //update king role
+    for(int i = 0; i < 8; i++){
+        for(int j = 0; j < 8; j++) {
+            if(i==0 && getPlayer(i,j) == 'B'){
+                int id = board[i][j].id;
+                setBoard('B',i,j,'k',id,-1000,true);
+            }
+            if(i==7 && getPlayer(i,j) == 'A'){
+                int id = board[i][j].id;
+                setBoard('A',i,j,'k',id,-1000,true);
+            }
+        }
+    }
+
+
+    return 'A';
+}
+
 
 void Checker::setNotMoveable(char player, int row, int col){
     board[row][col].moveable = false;
 }
 
+
+
+char Checker::choosePlayer(char player, int id, int row, int col) {
+    char result;
+    if (player == 'A') {
+        result = chanceOfA( player,  id,  row,  col);
+    }
+    else{
+        result = chanceOfB( player,  id,  row,  col);
+    }
+    return result;
+}
+
+
+
 void Checker::setMoveable(char player, int row, int col){
     board[row][col].moveable = true;
 }
+
+//This function evaluates who is the winner of the game and returns the winning player
+char Checker::winningPlayer() {
+    int noOfPlayerA = 0;
+    int noOfPlayerB= 0;
+    for (int i = 0; i < 8; i++) {
+        for(int j = 0; j < 8; j++) {
+            if(board[i][j].player == 'A') {
+                noOfPlayerA++;
+            }
+            if(board[i][j].player == 'B'){
+                 noOfPlayerB ++;
+            }
+        }
+    }
+    if(noOfPlayerA == 0){
+        return 'B';
+    }
+    if( noOfPlayerB == 0){
+        return 'A';
+    }
+    if(noOfPlayerA == 1 &&  noOfPlayerB== 2){
+        return 'B';
+    }
+    if( noOfPlayerB == 1 && noOfPlayerA == 2 ){
+        return 'A';
+    }
+
+    if( noOfPlayerB == noOfPlayerA && noOfPlayerA == 1){
+        return 'T';
+    }
+    return 'N';
+}
+
+
+

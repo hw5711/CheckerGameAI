@@ -29,51 +29,35 @@ struct Add{
 class GameTree {
 
 public:
-    //StepInfo step;
+
+    static int nodes_expanded;
+    static int nodes_generated;
     char player;
-    Checker board_status; //contains board status including each location info
-    int number_of_children;
-    GameTree *children[48]; // one step has 4 directions choices(man+king)
     int row;// to strore the second child move to location of this board
     int col;// to strore the second child move to location of this board
     int id;
-
     Add address;
+    int successors;
+    Checker currentboard; //contains board status including each location info
     Checker heuristic_board; //store it's best children
-
+    GameTree *successor[48]; // one step has 4 directions choices(man+king)
     GameTree();
-
     GameTree(char);
-
-    void set_heuristic_value(int, Checker, int, int ,int);
-
-    void add_all_children(char);
-
-    void add_all_children2(char);
-
     bool deepenough(int, char);
-
+    void newCurrentBoard(Checker );
     Location jump(int, int, Checker, char);
-
-    void print(GameTree *, int);
-
+    void setHeuristicValue(int, Checker, int, int ,int);
     int evaluation1(char);
-
     int evaluation2(char);
-
-    void copyBoardStatus(Checker kb);
-
     bool threaten(int, int, Checker, char);
-
     bool available_to_jump(Location);
-
-
+    void generateChildren(char);
+    void generateChildren2(char);
     void setRow(int row);
-
     void setCol(int col);
-
     void setId(int id);
-
+    int getnodeGenerated();
+    int getnodeExpanded();
 
 };
 

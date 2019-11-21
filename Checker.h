@@ -29,20 +29,10 @@ public:
     Board board[8][8];
     int heuristic_value;
     Address address;
-
     Checker();
-
-    char move_A(char , int , int , int);
-
-    char move_B(char , int , int , int );
-
-    char move(char , int , int , int );
-
-    char checkWin();
-
     void setBoard(char, int, int, char,int, int, bool);
 
-    void displayBoard();
+    void displayCheckerBoard();
 
     char getPlayer(int, int);
 
@@ -54,9 +44,16 @@ public:
 
     void set_heuristic_value_board(int);
 
+    char chanceOfA(char , int , int , int);
+
+    char chanceOfB(char , int , int , int );
+
     void setNotMoveable(char, int, int);
 
+    char choosePlayer(char , int , int , int );
+
     void setMoveable(char, int, int);
+    char winningPlayer();
 
 };
 
