@@ -48,11 +48,11 @@ public:
 
     char chanceOfB(char , int , int , int );
 
-    void setNotMoveable(char, int, int);
+    void setNotMoveable(char, int, int, int);
 
     char choosePlayer(char , int , int , int );
 
-    void setMoveable(char, int, int);
+    void setMoveable(char, int, int, int);
     char winningPlayer();
 
 };

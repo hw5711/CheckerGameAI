@@ -278,8 +278,10 @@ char Checker::chanceOfB(char player, int id, int r, int c) {
 }
 
 
-void Checker::setNotMoveable(char player, int row, int col){
-    board[row][col].moveable = false;
+void Checker::setNotMoveable(char player, int row, int col, int id){
+    if(board[row][col].player == player && board[row][col].id == id) {
+        board[row][col].moveable = false;
+    }
 }
 
 
@@ -297,8 +299,10 @@ char Checker::choosePlayer(char player, int id, int row, int col) {
 
 
 
-void Checker::setMoveable(char player, int row, int col){
-    board[row][col].moveable = true;
+void Checker::setMoveable(char player, int row, int col, int id){
+    if(board[row][col].player == player && board[row][col].id == id) {
+        board[row][col].moveable = true;
+    }
 }
 
 //This function evaluates who is the winner of the game and returns the winning player

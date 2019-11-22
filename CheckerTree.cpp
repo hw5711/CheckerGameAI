@@ -366,71 +366,98 @@ bool CheckerTree::deepenough(int depth, char player) {
         generateChildren(player);
         return false;
     }
-
 }
-
-
 
 int CheckerTree::evaluation1( char player) {// good for player A , keep the threathen as the stratage
     int points=0;
     if (player == 'A') {
         //check piece
-        for (int i = 0; i < 8; i++) {
-            for(int j = 0; j < 8; j++) {
-                if(currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'A'){
-                    points +=10;
-                }else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'A'){
-                    points +=20;
-                }else if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'B'){
-                    points -=3;//1 to 3
-                }else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'B'){
-                    points -=6;//2 to 6
-                }else{}
-            }
-        }
-        //check side
-        for (int i = 5; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (currentboard.board[i][j].player == 'A') {
-                    points += 20;
-                }
-            }
-        }
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (currentboard.board[i][j].player == 'B') {
-                    points -= 5;
-                }
-            }
-        }
-
-//        threatened
 //        for (int i = 0; i < 8; i++) {
-//            for(int j = 0; j < 8; j++) {
-//                if(threaten(i,j, currentboard,'A')){
-//                    points +=10;
-//                }else if(threaten(i,j, currentboard,'B')){
-//                    points -=5;
-//                }else{}
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'A') {
+//                    points += 1;
+//                } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'A') {
+//                    points += 2;
+//                } else if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'B') {
+//                    points -= 1;
+//                } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'B') {
+//                    points -= 2;
+//                } else {}
+//            }
+//        }
+        //check side
+//        for (int i = 5; i < 8; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].player == 'A' && currentboard.board[i][j].role == 'm' ) {
+//                    points += 1;
+//                }
+//            }
+//        }
+//        for (int i = 0; i < 4; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].player == 'B') {
+//                    points -= 1;
+//                }
 //            }
 //        }
 
-    } else if (player == 'B') {
+        //threatened
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (threaten(i, j, currentboard, 'A')) {
+                    points += 100;
+                } else if (threaten(i, j, currentboard, 'B')) {
+                    points -= 20;
+                } else {}
+            }
+        }
+    }
+    else if(player == 'B') {
         //check piece
         for (int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
                 if(currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'B'){
-                    points +=10;
+                    points +=1;
                 }else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'B'){
-                    points +=20;
+                    points +=2;
                 }else if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'A'){
-                    points -=2;
+                    points -=1;
                 }else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'A'){
-                    points -=4;
+                    points -=2;
                 }else{}
             }
         }
-    }
+
+        //check side
+//        for (int i = 5; i < 8; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].player == 'A') {
+//                    points -= 1;
+//                }
+//            }
+//        }
+//        for (int i = 0; i < 4; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].player == 'B') {
+//                    points += 1;
+//                }
+//            }
+//        }
+
+        //threatened
+        for (int i = 0; i < 8; i++) {
+            for(int j = 0; j < 8; j++) {
+                if(threaten(i,j, currentboard,'A')){
+                    points +=100;
+                }
+                else if(threaten(i,j, currentboard,'B')){
+                    points -=50;
+                }
+                else{}
+            }
+        }
+
+    }else{}
 
     return points;
 }
