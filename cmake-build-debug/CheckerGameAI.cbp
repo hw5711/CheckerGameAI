@@ -82,10 +82,10 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBetaSearch.cpp">
+		<Unit filename="/Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBeta.cpp">
 			<Option target="CheckerGameAI"/>
 		</Unit>
-		<Unit filename="/Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBetaSearch.h">
+		<Unit filename="/Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBeta.h">
 			<Option target="CheckerGameAI"/>
 		</Unit>
 		<Unit filename="/Users/huanwu/Desktop/myVersion/CheckerGameAI/Checker.cpp">
@@ -94,10 +94,10 @@
 		<Unit filename="/Users/huanwu/Desktop/myVersion/CheckerGameAI/Checker.h">
 			<Option target="CheckerGameAI"/>
 		</Unit>
-		<Unit filename="/Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.cpp">
+		<Unit filename="/Users/huanwu/Desktop/myVersion/CheckerGameAI/CheckerTree.cpp">
 			<Option target="CheckerGameAI"/>
 		</Unit>
-		<Unit filename="/Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.h">
+		<Unit filename="/Users/huanwu/Desktop/myVersion/CheckerGameAI/CheckerTree.h">
 			<Option target="CheckerGameAI"/>
 		</Unit>
 		<Unit filename="/Users/huanwu/Desktop/myVersion/CheckerGameAI/MinMaxAB.cpp">

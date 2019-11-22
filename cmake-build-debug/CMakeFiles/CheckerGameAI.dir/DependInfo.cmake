@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBetaSearch.cpp" "/Users/huanwu/Desktop/myVersion/CheckerGameAI/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.o"
+  "/Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBeta.cpp" "/Users/huanwu/Desktop/myVersion/CheckerGameAI/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/AlphaBeta.cpp.o"
   "/Users/huanwu/Desktop/myVersion/CheckerGameAI/Checker.cpp" "/Users/huanwu/Desktop/myVersion/CheckerGameAI/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/Checker.cpp.o"
-  "/Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.cpp" "/Users/huanwu/Desktop/myVersion/CheckerGameAI/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o"
+  "/Users/huanwu/Desktop/myVersion/CheckerGameAI/CheckerTree.cpp" "/Users/huanwu/Desktop/myVersion/CheckerGameAI/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/CheckerTree.cpp.o"
   "/Users/huanwu/Desktop/myVersion/CheckerGameAI/MinMaxAB.cpp" "/Users/huanwu/Desktop/myVersion/CheckerGameAI/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.o"
   "/Users/huanwu/Desktop/myVersion/CheckerGameAI/main.cpp" "/Users/huanwu/Desktop/myVersion/CheckerGameAI/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/main.cpp.o"
   )

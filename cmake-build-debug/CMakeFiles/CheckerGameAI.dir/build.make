@@ -57,18 +57,18 @@ include CMakeFiles/CheckerGameAI.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/CheckerGameAI.dir/flags.make
 
-CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.o: CMakeFiles/CheckerGameAI.dir/flags.make
-CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.o: ../AlphaBetaSearch.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/huanwu/Desktop/myVersion/CheckerGameAI/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.o -c /Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBetaSearch.cpp
+CMakeFiles/CheckerGameAI.dir/AlphaBeta.cpp.o: CMakeFiles/CheckerGameAI.dir/flags.make
+CMakeFiles/CheckerGameAI.dir/AlphaBeta.cpp.o: ../AlphaBeta.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/huanwu/Desktop/myVersion/CheckerGameAI/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CheckerGameAI.dir/AlphaBeta.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CheckerGameAI.dir/AlphaBeta.cpp.o -c /Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBeta.cpp
 
-CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBetaSearch.cpp > CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.i
+CMakeFiles/CheckerGameAI.dir/AlphaBeta.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CheckerGameAI.dir/AlphaBeta.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBeta.cpp > CMakeFiles/CheckerGameAI.dir/AlphaBeta.cpp.i
 
-CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBetaSearch.cpp -o CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.s
+CMakeFiles/CheckerGameAI.dir/AlphaBeta.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CheckerGameAI.dir/AlphaBeta.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBeta.cpp -o CMakeFiles/CheckerGameAI.dir/AlphaBeta.cpp.s
 
 CMakeFiles/CheckerGameAI.dir/Checker.cpp.o: CMakeFiles/CheckerGameAI.dir/flags.make
 CMakeFiles/CheckerGameAI.dir/Checker.cpp.o: ../Checker.cpp
@@ -83,18 +83,18 @@ CMakeFiles/CheckerGameAI.dir/Checker.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CheckerGameAI.dir/Checker.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/huanwu/Desktop/myVersion/CheckerGameAI/Checker.cpp -o CMakeFiles/CheckerGameAI.dir/Checker.cpp.s
 
-CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o: CMakeFiles/CheckerGameAI.dir/flags.make
-CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o: ../GameTree.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/huanwu/Desktop/myVersion/CheckerGameAI/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o -c /Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.cpp
+CMakeFiles/CheckerGameAI.dir/CheckerTree.cpp.o: CMakeFiles/CheckerGameAI.dir/flags.make
+CMakeFiles/CheckerGameAI.dir/CheckerTree.cpp.o: ../CheckerTree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/huanwu/Desktop/myVersion/CheckerGameAI/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CheckerGameAI.dir/CheckerTree.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CheckerGameAI.dir/CheckerTree.cpp.o -c /Users/huanwu/Desktop/myVersion/CheckerGameAI/CheckerTree.cpp
 
-CMakeFiles/CheckerGameAI.dir/GameTree.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CheckerGameAI.dir/GameTree.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.cpp > CMakeFiles/CheckerGameAI.dir/GameTree.cpp.i
+CMakeFiles/CheckerGameAI.dir/CheckerTree.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CheckerGameAI.dir/CheckerTree.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/huanwu/Desktop/myVersion/CheckerGameAI/CheckerTree.cpp > CMakeFiles/CheckerGameAI.dir/CheckerTree.cpp.i
 
-CMakeFiles/CheckerGameAI.dir/GameTree.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CheckerGameAI.dir/GameTree.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/huanwu/Desktop/myVersion/CheckerGameAI/GameTree.cpp -o CMakeFiles/CheckerGameAI.dir/GameTree.cpp.s
+CMakeFiles/CheckerGameAI.dir/CheckerTree.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CheckerGameAI.dir/CheckerTree.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/huanwu/Desktop/myVersion/CheckerGameAI/CheckerTree.cpp -o CMakeFiles/CheckerGameAI.dir/CheckerTree.cpp.s
 
 CMakeFiles/CheckerGameAI.dir/main.cpp.o: CMakeFiles/CheckerGameAI.dir/flags.make
 CMakeFiles/CheckerGameAI.dir/main.cpp.o: ../main.cpp
@@ -124,18 +124,18 @@ CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.s: cmake_force
 
 # Object files for target CheckerGameAI
 CheckerGameAI_OBJECTS = \
-"CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.o" \
+"CMakeFiles/CheckerGameAI.dir/AlphaBeta.cpp.o" \
 "CMakeFiles/CheckerGameAI.dir/Checker.cpp.o" \
-"CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o" \
+"CMakeFiles/CheckerGameAI.dir/CheckerTree.cpp.o" \
 "CMakeFiles/CheckerGameAI.dir/main.cpp.o" \
 "CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.o"
 
 # External object files for target CheckerGameAI
 CheckerGameAI_EXTERNAL_OBJECTS =
 
-CheckerGameAI: CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.o
+CheckerGameAI: CMakeFiles/CheckerGameAI.dir/AlphaBeta.cpp.o
 CheckerGameAI: CMakeFiles/CheckerGameAI.dir/Checker.cpp.o
-CheckerGameAI: CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o
+CheckerGameAI: CMakeFiles/CheckerGameAI.dir/CheckerTree.cpp.o
 CheckerGameAI: CMakeFiles/CheckerGameAI.dir/main.cpp.o
 CheckerGameAI: CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.o
 CheckerGameAI: CMakeFiles/CheckerGameAI.dir/build.make

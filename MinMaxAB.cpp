@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Object MinMaxAB(GameTree *checkerboard, int depth, char player, Object useVal, Object passVal, int EF) {
+Object MinMaxAB(CheckerTree *checkerboard, int depth, char player, Object useVal, Object passVal, int EF) {
     Object obj;
     char player1;
     if (checkerboard->deepenough(depth,player)) { // if search to the bottom child
@@ -13,6 +13,9 @@ Object MinMaxAB(GameTree *checkerboard, int depth, char player, Object useVal, O
         }
         if(EF == 2) {
             obj.setValue(checkerboard->evaluation2(player));
+        }
+        if(EF == 3) {
+            obj.setValue(checkerboard->evaluation3(player));
         }
         obj.setTempBoard(checkerboard->currentboard);
         if (player == 'B') {

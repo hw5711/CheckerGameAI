@@ -6,12 +6,12 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(.)
 
 add_executable(CheckerGameAI
-        AlphaBetaSearch.cpp
-        AlphaBetaSearch.h
+        AlphaBeta.cpp
+        AlphaBeta.h
         Checker.cpp
         Checker.h
-        GameTree.cpp
-        GameTree.h
+        CheckerTree.cpp
+        CheckerTree.h
         main.cpp
         MinMaxAB.cpp
         MinMaxAB.h Object.h)

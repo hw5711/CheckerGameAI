@@ -1,11 +1,11 @@
 
-#include "AlphaBetaSearch.h"
-#include "GameTree.h"
+#include "AlphaBeta.h"
+#include "CheckerTree.h"
 #include<iostream>
 
 using namespace std;
 
-Object alphabeta(GameTree *node, int depth, char player, Object a, Object b, int EF) {
+Object alphabeta(CheckerTree *node, int depth, char player, Object a, Object b, int EF) {
     Object obj;
     if (node->deepenough(depth, player)){
         if(EF == 1){

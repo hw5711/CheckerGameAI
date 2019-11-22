@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.o"
+  "CMakeFiles/CheckerGameAI.dir/AlphaBeta.cpp.o"
   "CMakeFiles/CheckerGameAI.dir/Checker.cpp.o"
-  "CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o"
+  "CMakeFiles/CheckerGameAI.dir/CheckerTree.cpp.o"
   "CMakeFiles/CheckerGameAI.dir/MinMaxAB.cpp.o"
   "CMakeFiles/CheckerGameAI.dir/main.cpp.o"
   "CheckerGameAI"

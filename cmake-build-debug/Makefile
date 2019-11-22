@@ -123,32 +123,32 @@ CheckerGameAI/fast:
 	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/build
 .PHONY : CheckerGameAI/fast
 
-AlphaBetaSearch.o: AlphaBetaSearch.cpp.o
+AlphaBeta.o: AlphaBeta.cpp.o
 
-.PHONY : AlphaBetaSearch.o
+.PHONY : AlphaBeta.o
 
 # target to build an object file
-AlphaBetaSearch.cpp.o:
-	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.o
-.PHONY : AlphaBetaSearch.cpp.o
+AlphaBeta.cpp.o:
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/AlphaBeta.cpp.o
+.PHONY : AlphaBeta.cpp.o
 
-AlphaBetaSearch.i: AlphaBetaSearch.cpp.i
+AlphaBeta.i: AlphaBeta.cpp.i
 
-.PHONY : AlphaBetaSearch.i
+.PHONY : AlphaBeta.i
 
 # target to preprocess a source file
-AlphaBetaSearch.cpp.i:
-	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.i
-.PHONY : AlphaBetaSearch.cpp.i
+AlphaBeta.cpp.i:
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/AlphaBeta.cpp.i
+.PHONY : AlphaBeta.cpp.i
 
-AlphaBetaSearch.s: AlphaBetaSearch.cpp.s
+AlphaBeta.s: AlphaBeta.cpp.s
 
-.PHONY : AlphaBetaSearch.s
+.PHONY : AlphaBeta.s
 
 # target to generate assembly for a file
-AlphaBetaSearch.cpp.s:
-	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/AlphaBetaSearch.cpp.s
-.PHONY : AlphaBetaSearch.cpp.s
+AlphaBeta.cpp.s:
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/AlphaBeta.cpp.s
+.PHONY : AlphaBeta.cpp.s
 
 Checker.o: Checker.cpp.o
 
@@ -177,32 +177,32 @@ Checker.cpp.s:
 	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/Checker.cpp.s
 .PHONY : Checker.cpp.s
 
-GameTree.o: GameTree.cpp.o
+CheckerTree.o: CheckerTree.cpp.o
 
-.PHONY : GameTree.o
+.PHONY : CheckerTree.o
 
 # target to build an object file
-GameTree.cpp.o:
-	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/GameTree.cpp.o
-.PHONY : GameTree.cpp.o
+CheckerTree.cpp.o:
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/CheckerTree.cpp.o
+.PHONY : CheckerTree.cpp.o
 
-GameTree.i: GameTree.cpp.i
+CheckerTree.i: CheckerTree.cpp.i
 
-.PHONY : GameTree.i
+.PHONY : CheckerTree.i
 
 # target to preprocess a source file
-GameTree.cpp.i:
-	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/GameTree.cpp.i
-.PHONY : GameTree.cpp.i
+CheckerTree.cpp.i:
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/CheckerTree.cpp.i
+.PHONY : CheckerTree.cpp.i
 
-GameTree.s: GameTree.cpp.s
+CheckerTree.s: CheckerTree.cpp.s
 
-.PHONY : GameTree.s
+.PHONY : CheckerTree.s
 
 # target to generate assembly for a file
-GameTree.cpp.s:
-	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/GameTree.cpp.s
-.PHONY : GameTree.cpp.s
+CheckerTree.cpp.s:
+	$(MAKE) -f CMakeFiles/CheckerGameAI.dir/build.make CMakeFiles/CheckerGameAI.dir/CheckerTree.cpp.s
+.PHONY : CheckerTree.cpp.s
 
 MinMaxAB.o: MinMaxAB.cpp.o
 
@@ -267,15 +267,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... CheckerGameAI"
-	@echo "... AlphaBetaSearch.o"
-	@echo "... AlphaBetaSearch.i"
-	@echo "... AlphaBetaSearch.s"
+	@echo "... AlphaBeta.o"
+	@echo "... AlphaBeta.i"
+	@echo "... AlphaBeta.s"
 	@echo "... Checker.o"
 	@echo "... Checker.i"
 	@echo "... Checker.s"
-	@echo "... GameTree.o"
-	@echo "... GameTree.i"
-	@echo "... GameTree.s"
+	@echo "... CheckerTree.o"
+	@echo "... CheckerTree.i"
+	@echo "... CheckerTree.s"
 	@echo "... MinMaxAB.o"
 	@echo "... MinMaxAB.i"
 	@echo "... MinMaxAB.s"
