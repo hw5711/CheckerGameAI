@@ -456,9 +456,8 @@ char Checker::winningPlayer() {
     noOfPlayerA = stepAvaliable('A');
     noOfPlayerB = stepAvaliable('B');
 
-    cout<<"\n noOfPlayerA: "<< noOfPlayerA;
-    cout<<"\n noOfPlayerB: "<< noOfPlayerB<<endl;
-
+//    cout<<"\n noOfPlayerA: "<< noOfPlayerA;
+//    cout<<"\n noOfPlayerB: "<< noOfPlayerB<<endl;
 
     if(noOfPlayerA == 0){
         return 'B';

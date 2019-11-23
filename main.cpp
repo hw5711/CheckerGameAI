@@ -41,11 +41,11 @@ int getMoveableCount(char player, Checker *ck){
 }
 
 void displayResult(char winner, int executionTime, int nodesGenerated, int nodesExpanded) {
-    cout << "Final Result is : " << winner <<"\n"<< endl;
+    cout << "Final Result is : " << winner << endl;
     if (winner == 'A')
-        cout << "Player A is the winner. \n" << endl;
+        cout << "Player A is the winner." << endl;
     else if (winner == 'B')
-        cout << "Player B is the winner. \n" << endl;
+        cout << "Player B is the winner." << endl;
     else if (winner == 'T')
         cout << "No players won.It is a tie!" << endl;
     cout << "Execution time: " << (executionTime) / double(CLOCKS_PER_SEC) << " s\n" << endl;
@@ -106,24 +106,21 @@ bool checkMoveable(char player, Step *repeat, Object v ){
         repeat[1].col = v.col;
         return true;
     }
-    cout << "REPEAT!!!!-- THIS SHOULD NO SHOW ALWAYS!!!!!!!" << repeat[0].row << "-"<<repeat[0].col<<"-"<<repeat[1].row<<"-"<<repeat[1].col<<endl;
     return true;
 }
 
 //MinmaxAB vs MinmaxAB ( using ev1,ev2)
-void MinMax1() {
-
+void MinMax1() {  //option 1
     int counter = 1;
     do {
         clock_t time_req;
         time_req = clock();
-
         char player = 'A';
         Checker checker; // checker is the board to be displayed
         char winner = checker.winningPlayer();
-        cout << "Lets begin the game" << endl;
-        cout << " Checker Board\n" << endl;
-        checker.displayCheckerBoard();
+//        cout << "Lets begin the game" << endl;
+//        cout << " Checker Board\n" << endl;
+       // checker.displayCheckerBoard();
 
         Step ArepeatStep[2]; // detect if in the loop
         Step BrepeatStep [2]; // detect if in the loop
@@ -160,7 +157,7 @@ void MinMax1() {
             steps++;
             CheckerTree *headptr = new CheckerTree(player);
             headptr->newCurrentBoard(checker);
-            cout << "***Chance of " << player << "****" << endl;
+            //cout << "***Chance of " << player << "****" << endl;
             Object v;
             if (counter == 1) { //start with A
                 v = MinMaxAB(headptr, 1, player, useVal, passVal, evaluation1);
@@ -182,11 +179,11 @@ void MinMax1() {
             int counterB = -1;
             if(player == 'A'){
                 counterA = getMoveableCount(player, &headptr->currentboard);
-                cout << "\nHow many moveable A: "<< counterA << endl;
+//                cout << "\nHow many moveable A: "<< counterA << endl;
             }
             if(player == 'B') {
                 counterB = getMoveableCount(player, &headptr->currentboard);
-                cout << "\nHow many moveable B: " << counterB << endl;
+//                cout << "\nHow many moveable B: " << counterB << endl;
             }
 
             if (player == 'A'){
@@ -242,16 +239,16 @@ void MinMax1() {
             }
             v = MinMaxAB(headptr, 1, player, useVal, passVal, counter);
 
-            cout << "\n** In step " << steps << ": " << player << v.getId() << "(" << v.getValue();
-            cout << ") moved to row  : " << v.getRow() << " and column " << v.getCol() << endl;
+//            cout << "\n** In step " << steps << ": " << player << v.getId() << "(" << v.getValue();
+//            cout << ") moved to row  : " << v.getRow() << " and column " << v.getCol() << endl;
             player = checker.choosePlayer(player, v.getId(), v.getRow(), v.getCol());
-           checker.displayCheckerBoard();
+           //checker.displayCheckerBoard();
             winner = checker.winningPlayer();
             nodesGenerated = headptr->getnodeGenerated();
             nodesExpanded = headptr->getnodeExpanded();
         }
         int executionTime = clock() - time_req;
-        cout<<"Here is the result of evaluation "<< counter << endl;
+        cout<<"\n*******  Here is the result of Option 1 with evaluation "<< counter << "  ********"<< endl;
         checker.displayCheckerBoard();
         displayResult(winner, executionTime, nodesGenerated, nodesExpanded);
         counter ++;
@@ -260,17 +257,20 @@ void MinMax1() {
 
 //AlphaBeta vs AlphaBeta
 
-void AlphaBeta2() {
+void AlphaBeta2() {  //option 2
+    int counter = 1;
+    do {
     clock_t time_req;
     time_req = clock();
     Checker checker;
-    cout << "Lets begin the game" << endl;
-    cout<<" Checker Board\n"<<endl;
-    checker.displayCheckerBoard();
+    //cout << "Lets begin the game" << endl;
+    //cout<<" Checker Board\n"<<endl;
+   // checker.displayCheckerBoard();
     char winner = checker.winningPlayer();
     char player = 'A';
     int evaluation1 = 1;
     int evaluation2 = 2;
+    int evaluation3 = 3;
     int shift = 1;
 
     Step ArepeatStep[2]; // detect if in the loop
@@ -304,67 +304,105 @@ void AlphaBeta2() {
         steps++;
         CheckerTree *headptr = new CheckerTree(player);
         headptr->newCurrentBoard(checker);
-        cout << "***Chance of "<< player<<"****"<<endl;
+       // cout << "***Chance of "<< player<<"****"<<endl;
         Object v;
-        if(shift %2 == 1) { //start with A
+        if(counter == 1) { //start with A
             v = alphabeta(headptr, 1, player, alpha, beta, evaluation1);
-        }else{
+        }
+        if(counter == 2){
             v = alphabeta(headptr, 1, player, alpha, beta, evaluation2);
         }
-//        int temp_r = -1;
-//        int temp_c = -1;
-//        int temp_r1 = -1;
-//        int temp_c1 = -1;
-//        while(player == 'A' && checkMoveable(player, ArepeatStep, v) == false) {
-//            checker.setNotMoveable(player, ArepeatStep[0].row, ArepeatStep[0].col);
-//            checker.setNotMoveable(player, ArepeatStep[1].row, ArepeatStep[1].col);
-//            if(v.row == ArepeatStep[0].row && v.col == ArepeatStep[0].col ) {
-//                temp_r1 = v.row;
-//                temp_c1 = v.col;
-//            }else{
-//                ArepeatStep[0].row = v.row;
-//                ArepeatStep[0].col = v.col;
-//            }
-//            temp_r = ArepeatStep[1].row;
-//            temp_c = ArepeatStep[1].col;
-//            headptr->newCurrentBoard(checker);
-//            v = alphabeta(headptr, 1, player, alpha, beta, evaluation1);
-//            checker.setMoveable(player, temp_r, temp_c);
-//            checker.setMoveable(player, temp_r1, temp_c1);
-//        }
-//        while(player == 'B' && checkMoveable(player, BrepeatStep, v) == false) {
-//            checker.setNotMoveable(player, BrepeatStep[0].row, BrepeatStep[0].col);
-//            checker.setNotMoveable(player, BrepeatStep[1].row, BrepeatStep[1].col);
-//            if(v.row == BrepeatStep[0].row && v.col == BrepeatStep[0].col ) {
-//                temp_r1 = v.row;
-//                temp_c1 = v.col;
-//            }else{
-//                BrepeatStep[0].row = v.row;
-//                BrepeatStep[0].col = v.col;
-//            }
-//            temp_r = BrepeatStep[1].row;
-//            temp_c = BrepeatStep[1].col;
-//            headptr->newCurrentBoard(checker);
-//            v = alphabeta(headptr, 1, player, alpha, beta, evaluation2);
-//            checker.setMoveable(player, temp_r, temp_c);
-//            checker.setMoveable(player, temp_r1, temp_c1);
-//        }
+        if(counter == 3){
+            v = alphabeta(headptr, 1, player, alpha, beta, evaluation3);
+        }
+        int temp_r = -1;
+        int temp_c = -1;
+        int temp_r1 = -1;
+        int temp_c1 = -1;
+        int temp_id = 0;
+        int current_id = v.id;
+        int counterA = -1;
+        int counterB = -1;
+        if(player == 'A'){
+            counterA = getMoveableCount(player, &headptr->currentboard);
+//                cout << "\nHow many moveable A: "<< counterA << endl;
+        }
+        if(player == 'B') {
+            counterB = getMoveableCount(player, &headptr->currentboard);
+//                cout << "\nHow many moveable B: " << counterB << endl;
+        }
 
-        cout<<"\n** In step " <<steps<<": "<< player << v.id<< "(" << v.value;
-        cout << ") moved to row  : "<< v.row<< " and column "" - "<< v.col << endl;
+        if (player == 'A'){
+            while(checkMoveable(player, &stepArrayA[current_id], v) == false)
+            {
+                if(counterA > 0) {
+                    checker.setNotMoveable(player, ArepeatStep[0].row, ArepeatStep[0].col, ArepeatStep[0].id);
+                    checker.setNotMoveable(player, ArepeatStep[1].row, ArepeatStep[1].col, ArepeatStep[1].id);
+                    if (v.row == ArepeatStep[0].row && v.col == ArepeatStep[0].col) {
+                        temp_r1 = v.row;
+                        temp_c1 = v.col;
+                    } else {
+                        ArepeatStep[0].row = v.row;
+                        ArepeatStep[0].col = v.col;
+                    }
+                    temp_id = ArepeatStep[1].id;
+                    temp_r = ArepeatStep[1].row;
+                    temp_c = ArepeatStep[1].col;
+                    headptr->newCurrentBoard(checker);
+                    v = MinMaxAB(headptr, 1, player, alpha, beta, counter);
+                    checker.setMoveable(player, temp_r, temp_c, temp_id);
+                    checker.setMoveable(player, temp_r1, temp_c1, temp_id);
+                    counterA--;
+                }
+                else break;
+            }
+        }
+
+
+        if(player == 'B'){
+            while(checkMoveable(player, &stepArrayB[current_id], v) == false) {
+                if(counterB > 0) {
+                    checker.setNotMoveable(player, BrepeatStep[0].row, BrepeatStep[0].col, BrepeatStep[0].id);
+                    checker.setNotMoveable(player, BrepeatStep[1].row, BrepeatStep[1].col, BrepeatStep[1].id);
+                    if(v.row == BrepeatStep[0].row && v.col == BrepeatStep[0].col ) {
+                        temp_r1 = v.row;
+                        temp_c1 = v.col;
+                    }else{
+                        BrepeatStep[0].row = v.row;
+                        BrepeatStep[0].col = v.col;
+                    }
+                    temp_id = BrepeatStep[1].id;
+                    temp_r = BrepeatStep[1].row;
+                    temp_c = BrepeatStep[1].col;
+                    headptr->newCurrentBoard(checker);
+                    v = MinMaxAB(headptr, 1, player, alpha, beta, counter);
+                    checker.setMoveable(player, temp_r, temp_c, temp_id);
+                    checker.setMoveable(player, temp_r1, temp_c1, temp_id);
+                    counterB--;
+                }
+                else break;
+            }
+        }
+        v = MinMaxAB(headptr, 1, player, alpha, beta, counter);
+
+//        cout<<"\n** In step " <<steps<<": "<< player << v.id<< "(" << v.value;
+//        cout << ") moved to row  : "<< v.row<< " and column "" - "<< v.col << endl;
         player = checker.choosePlayer(player, v.id, v.row, v.col);
-        checker.displayCheckerBoard();
+        //checker.displayCheckerBoard();
         winner = checker.winningPlayer();
         shift++;
         nodesGenerated= headptr->getnodeGenerated();
         nodesExpanded=headptr->getnodeExpanded();
     }
     int executionTime = clock()- time_req;
-    checker.displayCheckerBoard();
+    //checker.displayCheckerBoard();
+        cout<<"\n*******  Here is the result of Option 2 with evaluation "<< counter << "  ********"<< endl;
     displayResult(winner, executionTime, nodesGenerated,nodesExpanded);
+        counter ++;
+    }while(counter < 4);
 }
 
-void MinMaxAlphaBeta1() { //Both use evaluation 1
+void MinMaxAlphaBeta1() { //option 3
     clock_t time_req;
     time_req = clock();
     Checker checker;
@@ -410,7 +448,7 @@ void MinMaxAlphaBeta1() { //Both use evaluation 1
         steps++;
         CheckerTree *headptr = new CheckerTree(player);
         headptr->newCurrentBoard(checker);
-        cout << "***Chance of "<< player<<"****"<<endl;
+        //cout << "***Chance of "<< player<<"****"<<endl;
         Object v;
         if(shift %2 == 1) { //start with A
             v = MinMaxAB(headptr, 1, player, useVal, passVal, evaluation1);
@@ -467,6 +505,7 @@ void MinMaxAlphaBeta1() { //Both use evaluation 1
     int executionTime = clock()- time_req;
     checker.displayCheckerBoard();
     displayResult(winner, executionTime, nodesGenerated,nodesExpanded);
+
 }
 
 void MinMaxAlphaBeta2() { //Both use evaluation 2
@@ -513,6 +552,7 @@ void MinMaxAlphaBeta2() { //Both use evaluation 2
     int executionTime = clock()- time_req;
     checker.displayCheckerBoard();
     displayResult(winner, executionTime, nodesGenerated,nodesExpanded);
+
 }
 
 void MinMaxUser() { //Both use evaluation 2

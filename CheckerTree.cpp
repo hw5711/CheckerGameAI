@@ -373,30 +373,30 @@ int CheckerTree::evaluation1( char player) {// good for player A , keep the thre
     if (player == 'A') {
         //check piece
         for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'A') {
-                    points += 10;
-                } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'A') {
-                    points += 20;
-                } else if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'B') {
-                    points -= 10;
-                } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'B') {
-                    points -= 20;
-                } else {}
+            for(int j = 0; j < 8; j++) {
+                if(currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'A'){
+                    points +=15;
+                }else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'A'){
+                    points +=25;
+                }else if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'B'){
+                    points -=15;
+                }else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'B'){
+                    points -=25;
+                }else{}
             }
         }
         //check side
 //        for (int i = 5; i < 8; i++) {
 //            for (int j = 0; j < 8; j++) {
 //                if (currentboard.board[i][j].player == 'A') {
-//                    points += 20;
+//                    points -= 10;
 //                }
 //            }
 //        }
 //        for (int i = 0; i < 4; i++) {
 //            for (int j = 0; j < 8; j++) {
 //                if (currentboard.board[i][j].player == 'A') {
-//                    points -= 10;
+//                    points += 50;
 //                }
 //            }
 //        }
@@ -405,9 +405,9 @@ int CheckerTree::evaluation1( char player) {// good for player A , keep the thre
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (threaten(i, j, currentboard, 'B')) {
-                    points += 200;
+                    points += 120;
                 } else if (threaten(i, j, currentboard, 'A')) {
-                    points -= 150;
+                    points -= 80;
                 } else {}
             }
         }
@@ -417,41 +417,41 @@ int CheckerTree::evaluation1( char player) {// good for player A , keep the thre
         for (int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
                 if(currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'B'){
-                    points +=10;
+                    points +=15;
                 }else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'B'){
-                    points +=20;
+                    points +=25;
                 }else if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'A'){
-                    points -=10;
+                    points -=15;
                 }else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'A'){
-                    points -=20;
+                    points -=25;
                 }else{}
             }
         }
 
         //check side
-//        for (int i = 5; i < 8; i++) {
-//            for (int j = 0; j < 8; j++) {
-//                if (currentboard.board[i][j].player == 'B') {
-//                    points -= 2;
-//                }
-//            }
-//        }
-//        for (int i = 0; i < 4; i++) {
-//            for (int j = 0; j < 8; j++) {
-//                if (currentboard.board[i][j].player == 'B') {
-//                    points += 3;
-//                }
-//            }
-//        }
+        for (int i = 5; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (currentboard.board[i][j].player == 'B') {
+                    points += 30;
+                }
+            }
+        }
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (currentboard.board[i][j].player == 'B') {
+                    points -= 10;
+                }
+            }
+        }
 
         //threatened
         for (int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
                 if(threaten(i,j, currentboard,'A')){
-                    points +=200;
+                    points +=120;
                 }
                 else if(threaten(i,j, currentboard,'B')){
-                    points -=50;
+                    points -=80;
                 }
                 else{}
             }

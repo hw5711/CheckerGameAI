@@ -26,6 +26,16 @@ Object alphabeta(CheckerTree *node, int depth, char player, Object a, Object b, 
             obj.setId(node->id);
             return obj;
         }
+
+        if(EF == 3){
+            obj.setValue(node->evaluation3(player));//changed
+            obj.setTempBoard(node->currentboard);
+            node->setHeuristicValue(obj.getValue(), obj.getTempBoard(),node->id, node->row ,node->col);
+            obj.setRow(node->row);
+            obj.setCol(node->col);
+            obj.setId(node->id);
+            return obj;
+        }
     }
     Checker ck;
 
