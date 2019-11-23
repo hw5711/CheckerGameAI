@@ -29,7 +29,9 @@ public:
     Board board[8][8];
     int heuristic_value;
     Address address;
+
     Checker();
+
     void setBoard(char, int, int, char,int, int, bool);
 
     void displayCheckerBoard();
@@ -53,7 +55,10 @@ public:
     char choosePlayer(char , int , int , int );
 
     void setMoveable(char, int, int, int);
+
     char winningPlayer();
+
+    bool stepAvaliable(char);
 
 };
 

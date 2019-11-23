@@ -272,8 +272,6 @@ char Checker::chanceOfB(char player, int id, int r, int c) {
             }
         }
     }
-
-
     return 'A';
 }
 
@@ -283,8 +281,6 @@ void Checker::setNotMoveable(char player, int row, int col, int id){
         board[row][col].moveable = false;
     }
 }
-
-
 
 char Checker::choosePlayer(char player, int id, int row, int col) {
     char result;
@@ -305,30 +301,157 @@ void Checker::setMoveable(char player, int row, int col, int id){
     }
 }
 
+bool Checker::stepAvaliable(char player) {
+
+    if(player == 'A') {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (this->board[i][j].player == player && this->board[i][j].role == 'm') {
+                    if (i+1<=7 && j-1>=0 && this->board[i+1][j-1].player == ' '){
+                        return true;
+                    }
+                    if(i+1<=7 && j-1>=0 && this->board[i+1][j-1].player == 'B'){
+                        if (i+2<=7 && j-2>=0 && this->board[i+2][j-2].player == ' '){
+                            return true;
+                        }
+                    }
+                    if(i+1<=7 && j+1<=7 && this->board[i+1][j+1].player == ' '){
+                        return true;
+                    }
+                    if(i+1<=7 && j+1<=7 && this->board[i+1][j+1].player == 'B'){
+                        if (i+2<=7 && j+2<=7 && this->board[i+2][j+2].player == ' '){
+                            return true;
+                        }
+                    }
+                }
+                if (this->board[i][j].player == player && this->board[i][j].role == 'k'){
+                    if (i+1<=7 && j-1>=0 && this->board[i+1][j-1].player == ' '){
+                        return true;
+                    }
+                    if(i+1<=7 && j-1>=0 && this->board[i+1][j-1].player == 'B'){
+                        if (i+2<=7 && j-2>=0 && this->board[i+2][j-2].player == ' '){
+                            return true;
+                        }
+                    }
+                    if(i+1<=7 && j+1<=7 && this->board[i+1][j+1].player == ' '){
+                        return true;
+                    }
+                    if(i+1<=7 && j+1<=7 && this->board[i+1][j+1].player == 'B'){
+                        if (i+2<=7 && j+2<=7 && this->board[i+2][j+2].player == ' '){
+                            return true;
+                        }
+                    }
+
+                    if (i-1>=0 && j-1>=0 && this->board[i-1][j-1].player == ' '){
+                        return true;
+                    }
+                    if(i-1>=0 && j-1>=0 && this->board[i-1][j-1].player == 'B'){
+                        if (i-2>=0 && j-2>=0 && this->board[i-2][j-2].player == ' '){
+                            return true;
+                        }
+                    }
+                    if(i-1>=0 && j+1<=7 && this->board[i-1][j+1].player == ' '){
+                        return true;
+                    }
+                    if(i-1>=0 && j+1<=7 && this->board[i-1][j+1].player == 'B'){
+                        if (i-2>=0 && j+2<=7 && this->board[i-2][j+2].player == ' '){
+                            return true;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    if(player == 'B'){
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (this->board[i][j].player == player && this->board[i][j].role == 'm') {
+                    if (i-1>=0 && j-1>=0 && this->board[i-1][j-1].player == ' '){
+                        return true;
+                    }
+                    if(i-1>=0 && j-1>=0 && this->board[i-1][j-1].player == 'A'){
+                        if (i-2>=0 && j-2>=0 && this->board[i-2][j-2].player == ' '){
+                            return true;
+                        }
+                    }
+                    if(i-1>=0 && j+1<=7 && this->board[i-1][j+1].player == ' '){
+                        return true;
+                    }
+                    if(i-1>=0 && j+1<=7 && this->board[i-1][j+1].player == 'A'){
+                        if (i-2>=0 && j+2<=7 && this->board[i-2][j+2].player == ' '){
+                            return true;
+                        }
+                    }
+                }
+                if (this->board[i][j].player == player && this->board[i][j].role == 'k') {
+                    if (i-1>=0 && j-1>=0 && this->board[i-1][j-1].player == ' '){
+                        return true;
+                    }
+                    if(i-1>=0 && j-1>=0 && this->board[i-1][j-1].player == 'A'){
+                        if (i-2>=0 && j-2>=0 && this->board[i-2][j-2].player == ' '){
+                            return true;
+                        }
+                    }
+                    if(i-1>=0 && j+1<=7 && this->board[i-1][j+1].player == ' '){
+                        return true;
+                    }
+                    if(i-1>=0 && j+1<=7 && this->board[i-1][j+1].player == 'A'){
+                        if (i-2>=0 && j+2<=7 && this->board[i-2][j+2].player == ' '){
+                            return true;
+                        }
+                    }
+
+                    if (i+1<=7 && j-1>=0 && this->board[i+1][j-1].player == ' '){
+                        return true;
+                    }
+                    if(i+1<=7 && j-1>=0 && this->board[i+1][j-1].player == 'A'){
+                        if (i+2<=7 && j-2>=0 && this->board[i+2][j-2].player == ' '){
+                            return true;
+                        }
+                    }
+                    if(i+1<=7 && j+1<=7 && this->board[i+1][j+1].player == ' '){
+                        return true;
+                    }
+                    if(i+1<=7 && j+1<=7 && this->board[i+1][j+1].player == 'A'){
+                        if (i+2<=7 && j+2<=7 && this->board[i+2][j+2].player == ' '){
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return false;
+}
+
 //This function evaluates who is the winner of the game and returns the winning player
 char Checker::winningPlayer() {
     int noOfPlayerA = 0;
     int noOfPlayerB= 0;
+
     for (int i = 0; i < 8; i++) {
-        for(int j = 0; j < 8; j++) {
-            if(board[i][j].player == 'A') {
+        for (int j = 0; j < 8; j++) {
+            if (stepAvaliable('A') && board[i][j].player == 'A' ) {
                 noOfPlayerA++;
             }
-            if(board[i][j].player == 'B'){
-                 noOfPlayerB ++;
+            if (stepAvaliable('B') && board[i][j].player == 'B' ) {
+                noOfPlayerB++;
             }
         }
     }
+
     if(noOfPlayerA == 0){
         return 'B';
     }
     if( noOfPlayerB == 0){
         return 'A';
     }
-    if(noOfPlayerA == 1 &&  noOfPlayerB== 2){
+    if(noOfPlayerA == 1 &&  noOfPlayerB > 1){
         return 'B';
     }
-    if( noOfPlayerB == 1 && noOfPlayerA == 2 ){
+    if( noOfPlayerB == 1 && noOfPlayerA > 1 ){
         return 'A';
     }
 
