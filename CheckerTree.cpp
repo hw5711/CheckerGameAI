@@ -412,15 +412,15 @@ int CheckerTree::evaluation1(char player) {// good for player A , keep the threa
 //        }
 
         //threatened
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (threaten(i, j, currentboard, 'B')) {
-                    points += 120;
-                } else if (threaten(i, j, currentboard, 'A')) {
-                    points -= 80;
-                } else {}
-            }
-        }
+//        for (int i = 0; i < 8; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (threaten(i, j, currentboard, 'B')) {
+//                    points += 120;
+//                } else if (threaten(i, j, currentboard, 'A')) {
+//                    points -= 80;
+//                } else {}
+//            }
+//        }
     } else if (player == 'B') {
         //check piece
         for (int i = 0; i < 8; i++) {
@@ -438,28 +438,28 @@ int CheckerTree::evaluation1(char player) {// good for player A , keep the threa
         }
 
         //check side
-//        for (int i = 5; i < 8; i++) {
-//            for (int j = 0; j < 8; j++) {
-//                if (currentboard.board[i][j].player == 'B') {
-//                    points += 30;
-//                }
-//            }
-//        }
-//        for (int i = 0; i < 4; i++) {
-//            for (int j = 0; j < 8; j++) {
-//                if (currentboard.board[i][j].player == 'B') {
-//                    points -= 10;
-//                }
-//            }
-//        }
+        for (int i = 5; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (currentboard.board[i][j].player == 'A') {
+                    points -= 10;
+                }
+            }
+        }
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (currentboard.board[i][j].player == 'B') {
+                    points += 20;
+                }
+            }
+        }
 
         //threatened
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (threaten(i, j, currentboard, 'A')) {
-                    points += 110;
+                    points += 50;
                 } else if (threaten(i, j, currentboard, 'B')) {
-                    points -= 80;
+                    points -= 10;
                 } else {}
             }
         }
