@@ -14,7 +14,6 @@
     <list default="true" id="1049f50a-b802-4356-8d39-63554f1d0167" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CheckerTree.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/CheckerTree.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CheckerGameAI.dir/main.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CheckerGameAI" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CheckerGameAI" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -77,7 +76,7 @@
       <workItem from="1572212220753" duration="146889000" />
       <workItem from="1573582409031" duration="75536000" />
       <workItem from="1574455432712" duration="25612000" />
-      <workItem from="1574487010793" duration="218000" />
+      <workItem from="1574487010793" duration="1690000" />
     </task>
     <servers />
   </component>

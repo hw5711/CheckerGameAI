@@ -438,20 +438,20 @@ int CheckerTree::evaluation1(char player) {// good for player A , keep the threa
         }
 
         //check side
-        for (int i = 5; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (currentboard.board[i][j].player == 'A') {
-                    points -= 10;
-                }
-            }
-        }
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (currentboard.board[i][j].player == 'B') {
-                    points += 20;
-                }
-            }
-        }
+//        for (int i = 5; i < 8; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].player == 'A') {
+//                    points -= 10;
+//                }
+//            }
+//        }
+//        for (int i = 0; i < 4; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].player == 'B') {
+//                    points += 20;
+//                }
+//            }
+//        }
 
         //threatened
         for (int i = 0; i < 8; i++) {
