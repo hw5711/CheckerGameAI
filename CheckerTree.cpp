@@ -375,7 +375,7 @@ bool CheckerTree::deepenough(int depth, char player) {
     }
 }
 
-int CheckerTree::evaluation1(char player) {// good for player A , keep the threathen as the stratage
+int CheckerTree::evaluation1(char player) {
     int points = 0;
     if (player == 'A') {
         //check piece
@@ -392,32 +392,7 @@ int CheckerTree::evaluation1(char player) {// good for player A , keep the threa
                 } else {}
             }
         }
-        //check side
-//        for (int i = 5; i < 8; i++) {
-//            for (int j = 0; j < 8; j++) {
-//                if (currentboard.board[i][j].player == 'A') {
-//                    points -= 10;
-//                }
-//            }
-//        }
-//        for (int i = 0; i < 4; i++) {
-//            for (int j = 0; j < 8; j++) {
-//                if (currentboard.board[i][j].player == 'A') {
-//                    points += 50;
-//                }
-//            }
-//        }
 
-        //threatened
-//        for (int i = 0; i < 8; i++) {
-//            for (int j = 0; j < 8; j++) {
-//                if (threaten(i, j, currentboard, 'B')) {
-//                    points += 120;
-//                } else if (threaten(i, j, currentboard, 'A')) {
-//                    points -= 80;
-//                } else {}
-//            }
-//        }
     } else if (player == 'B') {
         //check piece
         for (int i = 0; i < 8; i++) {
@@ -434,22 +409,6 @@ int CheckerTree::evaluation1(char player) {// good for player A , keep the threa
             }
         }
 
-        //check side
-//        for (int i = 5; i < 8; i++) {
-//            for (int j = 0; j < 8; j++) {
-//                if (currentboard.board[i][j].player == 'A') {
-//                    points -= 10;
-//                }
-//            }
-//        }
-//        for (int i = 0; i < 4; i++) {
-//            for (int j = 0; j < 8; j++) {
-//                if (currentboard.board[i][j].player == 'B') {
-//                    points += 20;
-//                }
-//            }
-//        }
-
         //threatened
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -460,16 +419,13 @@ int CheckerTree::evaluation1(char player) {// good for player A , keep the threa
                 } else {}
             }
         }
-
     } else {}
-
     return points;
 }
 
 int CheckerTree::evaluation2(char player) { // good for player B ,keep the more the better
     int points = 0;
     if (player == 'A') {
-//        cout<<"test -- evaluationA: "<<endl;
         //check piece
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -484,25 +440,6 @@ int CheckerTree::evaluation2(char player) { // good for player B ,keep the more 
                 } else {}
             }
         }
-//        cout<<"\ntest--evaluation1: "<< value<<endl;
-        //check side
-//        for (int i = 5; i < 8; i++) {
-//            for (int j = 0; j < 8; j++) {
-//                if (currentboard.board[i][j].player == 'A') {
-//                    points += 8;
-//                }
-//            }
-//        }
-//
-//        for (int i = 0; i < 4; i++) {
-//            for (int j = 0; j < 8; j++) {
-//                if (currentboard.board[i][j].player == 'B') {
-//                    points -= 8;
-//                }
-//            }
-//        }
-
-
     } else if (player == 'B') {
 
         for (int i = 0; i < 8; i++) {
@@ -518,7 +455,6 @@ int CheckerTree::evaluation2(char player) { // good for player B ,keep the more 
                 } else {}
             }
         }
-//        cout<<"\ntest--evaluation1: "<< points<<endl;
         //check side
         for (int i = 5; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -535,7 +471,6 @@ int CheckerTree::evaluation2(char player) { // good for player B ,keep the more 
                 }
             }
         }
-
     }
     return points;
 }
@@ -599,9 +534,7 @@ int CheckerTree::evaluation3(char player) {// good for player A , keep the threa
                 } else {}
             }
         }
-
     }
-
     return points;
 }
 
