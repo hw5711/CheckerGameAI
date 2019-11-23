@@ -407,7 +407,7 @@ int CheckerTree::evaluation1( char player) {// good for player A , keep the thre
                 if (threaten(i, j, currentboard, 'B')) {
                     points += 200;
                 } else if (threaten(i, j, currentboard, 'A')) {
-                    points -= 50;
+                    points -= 150;
                 } else {}
             }
         }
@@ -448,7 +448,7 @@ int CheckerTree::evaluation1( char player) {// good for player A , keep the thre
         for (int i = 0; i < 8; i++) {
             for(int j = 0; j < 8; j++) {
                 if(threaten(i,j, currentboard,'A')){
-                    points +=100;
+                    points +=200;
                 }
                 else if(threaten(i,j, currentboard,'B')){
                     points -=50;

@@ -189,57 +189,57 @@ void MinMax1() {
                 cout << "\nHow many moveable B: " << counterB << endl;
             }
 
-//            if (player == 'A'){
-//                while(checkMoveable(player, &stepArrayA[current_id], v) == false)
-//               {
-//                    if(counterA > 0) {
-//                        checker.setNotMoveable(player, ArepeatStep[0].row, ArepeatStep[0].col, ArepeatStep[0].id);
-//                        checker.setNotMoveable(player, ArepeatStep[1].row, ArepeatStep[1].col, ArepeatStep[1].id);
-//                        if (v.row == ArepeatStep[0].row && v.col == ArepeatStep[0].col) {
-//                            temp_r1 = v.row;
-//                            temp_c1 = v.col;
-//                        } else {
-//                            ArepeatStep[0].row = v.row;
-//                            ArepeatStep[0].col = v.col;
-//                        }
-//                        temp_id = ArepeatStep[1].id;
-//                        temp_r = ArepeatStep[1].row;
-//                        temp_c = ArepeatStep[1].col;
-//                        headptr->newCurrentBoard(checker);
-//                        v = MinMaxAB(headptr, 1, player, useVal, passVal, counter);
-//                        checker.setMoveable(player, temp_r, temp_c, temp_id);
-//                        checker.setMoveable(player, temp_r1, temp_c1, temp_id);
-//                        counterA--;
-//                    }
-//                    else break;
-//                }
-//            }
+            if (player == 'A'){
+                while(checkMoveable(player, &stepArrayA[current_id], v) == false)
+               {
+                    if(counterA > 0) {
+                        checker.setNotMoveable(player, ArepeatStep[0].row, ArepeatStep[0].col, ArepeatStep[0].id);
+                        checker.setNotMoveable(player, ArepeatStep[1].row, ArepeatStep[1].col, ArepeatStep[1].id);
+                        if (v.row == ArepeatStep[0].row && v.col == ArepeatStep[0].col) {
+                            temp_r1 = v.row;
+                            temp_c1 = v.col;
+                        } else {
+                            ArepeatStep[0].row = v.row;
+                            ArepeatStep[0].col = v.col;
+                        }
+                        temp_id = ArepeatStep[1].id;
+                        temp_r = ArepeatStep[1].row;
+                        temp_c = ArepeatStep[1].col;
+                        headptr->newCurrentBoard(checker);
+                        v = MinMaxAB(headptr, 1, player, useVal, passVal, counter);
+                        checker.setMoveable(player, temp_r, temp_c, temp_id);
+                        checker.setMoveable(player, temp_r1, temp_c1, temp_id);
+                        counterA--;
+                    }
+                    else break;
+                }
+            }
 
-//
-//            if(player == 'B'){
-//                while(checkMoveable(player, &stepArrayB[current_id], v) == false) {
-//                    if(counterB > 0) {
-//                        checker.setNotMoveable(player, BrepeatStep[0].row, BrepeatStep[0].col, BrepeatStep[0].id);
-//                        checker.setNotMoveable(player, BrepeatStep[1].row, BrepeatStep[1].col, BrepeatStep[1].id);
-//                        if(v.row == BrepeatStep[0].row && v.col == BrepeatStep[0].col ) {
-//                            temp_r1 = v.row;
-//                            temp_c1 = v.col;
-//                        }else{
-//                            BrepeatStep[0].row = v.row;
-//                            BrepeatStep[0].col = v.col;
-//                        }
-//                        temp_id = BrepeatStep[1].id;
-//                        temp_r = BrepeatStep[1].row;
-//                        temp_c = BrepeatStep[1].col;
-//                        headptr->newCurrentBoard(checker);
-//                        v = MinMaxAB(headptr, 1, player, useVal, passVal, counter);
-//                        checker.setMoveable(player, temp_r, temp_c, temp_id);
-//                        checker.setMoveable(player, temp_r1, temp_c1, temp_id);
-//                        counterB--;
-//                    }
-//                    else break;
-//                }
-//            }
+
+            if(player == 'B'){
+                while(checkMoveable(player, &stepArrayB[current_id], v) == false) {
+                    if(counterB > 0) {
+                        checker.setNotMoveable(player, BrepeatStep[0].row, BrepeatStep[0].col, BrepeatStep[0].id);
+                        checker.setNotMoveable(player, BrepeatStep[1].row, BrepeatStep[1].col, BrepeatStep[1].id);
+                        if(v.row == BrepeatStep[0].row && v.col == BrepeatStep[0].col ) {
+                            temp_r1 = v.row;
+                            temp_c1 = v.col;
+                        }else{
+                            BrepeatStep[0].row = v.row;
+                            BrepeatStep[0].col = v.col;
+                        }
+                        temp_id = BrepeatStep[1].id;
+                        temp_r = BrepeatStep[1].row;
+                        temp_c = BrepeatStep[1].col;
+                        headptr->newCurrentBoard(checker);
+                        v = MinMaxAB(headptr, 1, player, useVal, passVal, counter);
+                        checker.setMoveable(player, temp_r, temp_c, temp_id);
+                        checker.setMoveable(player, temp_r1, temp_c1, temp_id);
+                        counterB--;
+                    }
+                    else break;
+                }
+            }
             v = MinMaxAB(headptr, 1, player, useVal, passVal, counter);
 
             cout << "\n** In step " << steps << ": " << player << v.getId() << "(" << v.getValue();

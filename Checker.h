@@ -58,7 +58,7 @@ public:
 
     char winningPlayer();
 
-    bool stepAvaliable(char);
+    int stepAvaliable(char);
 
 };
 
