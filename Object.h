@@ -43,15 +43,15 @@ public:
         return value;
     }
 
-    Object operator-(Object obj) {
-        Object newObj;
-        newObj.setValue(-obj.value);
-        newObj.setTempBoard(obj.getTempBoard());
-        newObj.setId(obj.id);
-        newObj.setRow(obj.row);
-        newObj.setCol(obj.col);
-        return newObj;
-    }
+//    Object operator-(Object obj) {
+//        Object newObj;
+//        newObj.setValue(-obj.value);
+//        newObj.setTempBoard(obj.getTempBoard());
+//        newObj.setId(obj.id);
+//        newObj.setRow(obj.row);
+//        newObj.setCol(obj.col);
+//        return newObj;
+//    }
 
     int getRow() const {
         return row;
