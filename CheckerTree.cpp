@@ -489,21 +489,21 @@ int CheckerTree::evaluation2(char player) { // good for player B ,keep the more 
         }
 //        cout<<"\ntest--evaluation1: "<< value<<endl;
         //check side
-        for (int i = 5; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (currentboard.board[i][j].player == 'A') {
-                    points += 8;
-                }
-            }
-        }
-
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (currentboard.board[i][j].player == 'B') {
-                    points -= 8;
-                }
-            }
-        }
+//        for (int i = 5; i < 8; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].player == 'A') {
+//                    points += 8;
+//                }
+//            }
+//        }
+//
+//        for (int i = 0; i < 4; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].player == 'B') {
+//                    points -= 8;
+//                }
+//            }
+//        }
 
 
     } else if (player == 'B') {
