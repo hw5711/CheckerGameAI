@@ -645,12 +645,12 @@ void gameMenu() {
     cout << "/***** Select 1 for MinMaxAB(EF1) VS MinMaxAB(EF1)****/ " << endl;
     cout << "/***** Select 2 for MinMaxAB(EF2) VS MinMaxAB(EF2)****/ " << endl;
     cout << "/***** Select 3 for MinMaxAB(EF3) VS MinMaxAB(EF3)****/ " << endl;
-    cout << "/***** Select 4 for AlphaBetaSearch(EF1) VS AlphaBetaSearch(EF1)**/ " << endl;
-    cout << "/***** Select 5 for AlphaBetaSearch(EF2) VS AlphaBetaSearch(EF2)**/ " << endl;
-    cout << "/***** Select 6 for AlphaBetaSearch(EF3) VS AlphaBetaSearch(EF3)**/ " << endl;
-    cout << "/******Select 7 for MinMaxAB(EF1) VS AlphaBetaSearch(EF1)**/ " << endl;
-    cout << "/**** Select 8 for MinMaxAB(EF2) VS AlphaBetaSearch(EF2)*/ " << endl;
-    cout << "/**** Select 9 for MinMaxAB(EF3) VS AlphaBetaSearch(EF3)*/ " << endl;
+    cout << "/***** Select 4 for AlphaBeta(EF1) VS AlphaBeta(EF1)**/ " << endl;
+    cout << "/***** Select 5 for AlphaBeta(EF2) VS AlphaBeta(EF2)**/ " << endl;
+    cout << "/***** Select 6 for AlphaBeta(EF3) VS AlphaBeta(EF3)**/ " << endl;
+    cout << "/******Select 7 for MinMaxAB(EF1) VS AlphaBeta(EF1)**/ " << endl;
+    cout << "/**** Select 8 for MinMaxAB(EF2) VS AlphaBeta(EF2)*/ " << endl;
+    cout << "/**** Select 9 for MinMaxAB(EF3) VS AlphaBeta(EF3)*/ " << endl;
     cout << "/**** Select 10 for MinMaxAB vs User */ " << endl;
     cout << "/**** Select 11 for AlphaBeta vs User */ " << endl;
 

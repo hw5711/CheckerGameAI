@@ -385,9 +385,9 @@ int CheckerTree::evaluation1(char player) {// good for player A , keep the threa
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'A') {
-                    points += 15;
+                    points += 30;
                 } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'A') {
-                    points += 25;
+                    points += 45;
                 } else if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'B') {
                     points -= 15;
                 } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'B') {
@@ -438,26 +438,26 @@ int CheckerTree::evaluation1(char player) {// good for player A , keep the threa
         }
 
         //check side
-        for (int i = 5; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (currentboard.board[i][j].player == 'B') {
-                    points += 30;
-                }
-            }
-        }
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (currentboard.board[i][j].player == 'B') {
-                    points -= 10;
-                }
-            }
-        }
+//        for (int i = 5; i < 8; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].player == 'B') {
+//                    points += 30;
+//                }
+//            }
+//        }
+//        for (int i = 0; i < 4; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].player == 'B') {
+//                    points -= 10;
+//                }
+//            }
+//        }
 
         //threatened
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (threaten(i, j, currentboard, 'A')) {
-                    points += 120;
+                    points += 110;
                 } else if (threaten(i, j, currentboard, 'B')) {
                     points -= 80;
                 } else {}
