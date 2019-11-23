@@ -148,7 +148,6 @@ void MinMax1(int choice) {  //option 1
     Checker checker2;
     Object useVal(1000, checker1, 0, -1, -1);
     Object passVal(-1000, checker2, 0, -1, -1);
-
     int evaluation1 = 1;
     int evaluation2 = 2;
     int evaluation3 = 3;
@@ -157,7 +156,6 @@ void MinMax1(int choice) {  //option 1
         steps++;
         CheckerTree *headptr = new CheckerTree(player);
         headptr->newCurrentBoard(checker);
-        //cout << "***Chance of " << player << "****" << endl;
         Object v;
         if (counter == 1) { //start with A
             v = MinMaxAB(headptr, 1, player, useVal, passVal, evaluation1);

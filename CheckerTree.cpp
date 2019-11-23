@@ -242,7 +242,6 @@ void CheckerTree::generateChildren(char player) {
             if (player == 'A') {
                 char p = 'B';
                 location = jump(i, j, this->currentboard, 'A');
-
                 if (available_to_jump(location) == true) {
                     //cout<<"\ncurrent ture situation -A:"<< i<<","<<j<<endl;
                     //use location to perform jumps and generate children
@@ -363,11 +362,9 @@ void CheckerTree::generateChildren(char player) {
 }
 
 bool CheckerTree::deepenough(int depth, char player) {
-
     if (depth >= 2 || this->currentboard.winningPlayer() != 'N') {
         return true;
     } else if (depth == 1) {
-
         nodes_expanded++;
         generateChildren2(player);
         return false;
