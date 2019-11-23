@@ -652,7 +652,7 @@ void gameMenu() {
     cout << "/**** Select 8 for MinMaxAB(EF2) VS AlphaBetaSearch(EF2)*/ " << endl;
     cout << "/**** Select 9 for MinMaxAB(EF3) VS AlphaBetaSearch(EF3)*/ " << endl;
     cout << "/**** Select 10 for MinMaxAB vs User */ " << endl;
-    cout << "/**** Select 11 for MinMaxAB vs User */ " << endl;
+    cout << "/**** Select 11 for AlphaBeta vs User */ " << endl;
 
     cin >> menu;
 
