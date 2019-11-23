@@ -15,7 +15,7 @@ public:
     int col;
     int id;
 
-    Object(){
+    Object() {
 
     }
 
@@ -27,7 +27,7 @@ public:
         return tempBoard;
     }
 
-    Object(int value, Checker b, int id, int r, int c ) {
+    Object(int value, Checker b, int id, int r, int c) {
         this->value = value;
         this->tempBoard = b;
         this->id = id;
@@ -43,7 +43,7 @@ public:
         return value;
     }
 
-    Object operator-(Object obj){
+    Object operator-(Object obj) {
         Object newObj;
         newObj.setValue(-obj.value);
         newObj.setTempBoard(obj.getTempBoard());

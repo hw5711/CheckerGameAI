@@ -7,14 +7,14 @@ using namespace std;
 Object MinMaxAB(CheckerTree *checkerboard, int depth, char player, Object useVal, Object passVal, int EF) {
     Object obj;
     char player1;
-    if (checkerboard->deepenough(depth,player)) { // if search to the bottom child
-        if(EF == 1) {
+    if (checkerboard->deepenough(depth, player)) { // if search to the bottom child
+        if (EF == 1) {
             obj.setValue(checkerboard->evaluation1(player));
         }
-        if(EF == 2) {
+        if (EF == 2) {
             obj.setValue(checkerboard->evaluation2(player));
         }
-        if(EF == 3) {
+        if (EF == 3) {
             obj.setValue(checkerboard->evaluation3(player));
         }
         obj.setTempBoard(checkerboard->currentboard);
@@ -22,7 +22,8 @@ Object MinMaxAB(CheckerTree *checkerboard, int depth, char player, Object useVal
             obj.setValue(-obj.getValue());
             //cout<<"\nMIN- B - value is : "<< obj.getValue()<<endl;
         }
-        checkerboard->setHeuristicValue(obj.getValue(), obj.getTempBoard(),checkerboard->id, checkerboard->row ,checkerboard->col );
+        checkerboard->setHeuristicValue(obj.getValue(), obj.getTempBoard(), checkerboard->id, checkerboard->row,
+                                        checkerboard->col);
         obj.setId(checkerboard->id);
         obj.setRow(checkerboard->row);
         obj.setCol(checkerboard->col);
@@ -58,7 +59,8 @@ Object MinMaxAB(CheckerTree *checkerboard, int depth, char player, Object useVal
         Object newVal(-obj1.getValue(), obj1.getTempBoard(), obj1.getId(), obj1.getRow(), obj1.getCol());
 
         if (newVal.getValue() > passVal.getValue()) {
-            checkerboard->successor[i]->setHeuristicValue(newVal.getValue(),newVal.getTempBoard(),newVal.getId(), newVal.getRow() ,newVal.getCol() );
+            checkerboard->successor[i]->setHeuristicValue(newVal.getValue(), newVal.getTempBoard(), newVal.getId(),
+                                                          newVal.getRow(), newVal.getCol());
             passVal.setValue(newVal.getValue());
             passVal.setTempBoard(newVal.getTempBoard());
             passVal.setId(newVal.getId());

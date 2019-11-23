@@ -7,7 +7,7 @@
 
 using namespace std;
 
-struct Board{
+struct Board {
     char player;
     int row;
     int col;
@@ -17,7 +17,7 @@ struct Board{
     bool moveable;
 };
 
-struct Address{
+struct Address {
     int row_before;
     int col_before;
     int row_after;
@@ -32,7 +32,7 @@ public:
 
     Checker();
 
-    void setBoard(char, int, int, char,int, int, bool);
+    void setBoard(char, int, int, char, int, int, bool);
 
     void displayCheckerBoard();
 
@@ -46,13 +46,13 @@ public:
 
     void set_heuristic_value_board(int);
 
-    char chanceOfA(char , int , int , int);
+    char chanceOfA(char, int, int, int);
 
-    char chanceOfB(char , int , int , int );
+    char chanceOfB(char, int, int, int);
 
     void setNotMoveable(char, int, int, int);
 
-    char choosePlayer(char , int , int , int );
+    char choosePlayer(char, int, int, int);
 
     void setMoveable(char, int, int, int);
 
