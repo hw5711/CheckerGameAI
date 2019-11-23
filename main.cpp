@@ -574,7 +574,7 @@ void MinMaxUser4() { //Both use evaluation 2
     displayResult(winner, executionTime, nodesGenerated, nodesExpanded);
 }
 
-void MinMaxUser5() { //Both use evaluation 2
+void AlphaBetaUser5() { //Both use evaluation 2
     clock_t time_req;
     time_req = clock();
     Checker checker;
@@ -688,7 +688,7 @@ void gameMenu() {
         case 10:
             MinMaxUser4();
         case 11:
-            MinMaxUser5();
+            AlphaBetaUser5();
     }
 
 }
