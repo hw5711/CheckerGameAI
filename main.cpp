@@ -121,28 +121,28 @@ void MinMax1(int choice) {  //option 1
 //        cout << "Lets begin the game" << endl;
 //        cout << " Checker Board\n" << endl;
     // checker.displayCheckerBoard();
-
-    Step ArepeatStep[2]; // detect if in the loop
-    Step BrepeatStep[2]; // detect if in the loop
-
-    for (int i = 0; i < 2; i++) {
-        ArepeatStep[i].heuristic_value = -1000;
-        ArepeatStep[i].row = -1;
-        ArepeatStep[i].col = -1;
-        BrepeatStep[i].heuristic_value = -1000;
-        BrepeatStep[i].row = -1;
-        BrepeatStep[i].col = -1;
-    }
-
-    Step stepArrayA[12]; // index means each piece id of player A
-    Step stepArrayB[12]; // index means each piece id of player B
-
-    for (int i = 0; i < 12; i++) {
-        stepArrayA[i] = ArepeatStep[2];
-    }
-    for (int i = 0; i < 12; i++) {
-        stepArrayB[i] = ArepeatStep[2];
-    }
+//
+//    Step ArepeatStep[2]; // detect if in the loop
+//    Step BrepeatStep[2]; // detect if in the loop
+//
+//    for (int i = 0; i < 2; i++) {
+//        ArepeatStep[i].heuristic_value = -1000;
+//        ArepeatStep[i].row = -1;
+//        ArepeatStep[i].col = -1;
+//        BrepeatStep[i].heuristic_value = -1000;
+//        BrepeatStep[i].row = -1;
+//        BrepeatStep[i].col = -1;
+//    }
+//
+//    Step stepArrayA[12]; // index means each piece id of player A
+//    Step stepArrayB[12]; // index means each piece id of player B
+//
+//    for (int i = 0; i < 12; i++) {
+//        stepArrayA[i] = ArepeatStep[2];
+//    }
+//    for (int i = 0; i < 12; i++) {
+//        stepArrayB[i] = ArepeatStep[2];
+//    }
 
     Checker checker1;
     Checker checker2;
@@ -167,75 +167,73 @@ void MinMax1(int choice) {  //option 1
             v = MinMaxAB(headptr, 1, player, useVal, passVal, evaluation3);
         }
 
-        int temp_r = -1;
-        int temp_c = -1;
-        int temp_r1 = -1;
-        int temp_c1 = -1;
-        int temp_id = 0;
-        int current_id = v.id;
-        int counterA = -1;
-        int counterB = -1;
-        if (player == 'A') {
-            counterA = getMoveableCount(player, &headptr->currentboard);
-//                cout << "\nHow many moveable A: "<< counterA << endl;
-        }
-        if (player == 'B') {
-            counterB = getMoveableCount(player, &headptr->currentboard);
-//                cout << "\nHow many moveable B: " << counterB << endl;
-        }
+//        int temp_r = -1;
+//        int temp_c = -1;
+//        int temp_r1 = -1;
+//        int temp_c1 = -1;
+//        int temp_id = 0;
+//        int current_id = v.id;
+//        int counterA = -1;
+//        int counterB = -1;
+//        if (player == 'A') {
+//            counterA = getMoveableCount(player, &headptr->currentboard);
+//        }
+//        if (player == 'B') {
+//            counterB = getMoveableCount(player, &headptr->currentboard);
+//        }
 
-        if (player == 'A') {
-            while (checkMoveable(player, &stepArrayA[current_id], v) == false) {
-                if (counterA > 0) {
-                    checker.setNotMoveable(player, ArepeatStep[0].row, ArepeatStep[0].col, ArepeatStep[0].id);
-                    checker.setNotMoveable(player, ArepeatStep[1].row, ArepeatStep[1].col, ArepeatStep[1].id);
-                    if (v.row == ArepeatStep[0].row && v.col == ArepeatStep[0].col) {
-                        temp_r1 = v.row;
-                        temp_c1 = v.col;
-                    } else {
-                        ArepeatStep[0].row = v.row;
-                        ArepeatStep[0].col = v.col;
-                    }
-                    temp_id = ArepeatStep[1].id;
-                    temp_r = ArepeatStep[1].row;
-                    temp_c = ArepeatStep[1].col;
-                    headptr->newCurrentBoard(checker);
-                    v = MinMaxAB(headptr, 1, player, useVal, passVal, counter);
-                    checker.setMoveable(player, temp_r, temp_c, temp_id);
-                    checker.setMoveable(player, temp_r1, temp_c1, temp_id);
-                    counterA--;
-                } else break;
-            }
-        }
+//        if (player == 'A') {
+//            while (checkMoveable(player, &stepArrayA[current_id], v) == false) {
+//                if (counterA > 0) {
+//                    checker.setNotMoveable(player, ArepeatStep[0].row, ArepeatStep[0].col, ArepeatStep[0].id);
+//                    checker.setNotMoveable(player, ArepeatStep[1].row, ArepeatStep[1].col, ArepeatStep[1].id);
+//                    if (v.row == ArepeatStep[0].row && v.col == ArepeatStep[0].col) {
+//                        temp_r1 = v.row;
+//                        temp_c1 = v.col;
+//                    } else {
+//                        ArepeatStep[0].row = v.row;
+//                        ArepeatStep[0].col = v.col;
+//                    }
+//                    temp_id = ArepeatStep[1].id;
+//                    temp_r = ArepeatStep[1].row;
+//                    temp_c = ArepeatStep[1].col;
+//                    headptr->newCurrentBoard(checker);
+//                    v = MinMaxAB(headptr, 1, player, useVal, passVal, counter);
+//                    checker.setMoveable(player, temp_r, temp_c, temp_id);
+//                    checker.setMoveable(player, temp_r1, temp_c1, temp_id);
+//                    counterA--;
+//                } else break;
+//            }
+//        }
 
 
-        if (player == 'B') {
-            while (checkMoveable(player, &stepArrayB[current_id], v) == false) {
-                if (counterB > 0) {
-                    checker.setNotMoveable(player, BrepeatStep[0].row, BrepeatStep[0].col, BrepeatStep[0].id);
-                    checker.setNotMoveable(player, BrepeatStep[1].row, BrepeatStep[1].col, BrepeatStep[1].id);
-                    if (v.row == BrepeatStep[0].row && v.col == BrepeatStep[0].col) {
-                        temp_r1 = v.row;
-                        temp_c1 = v.col;
-                    } else {
-                        BrepeatStep[0].row = v.row;
-                        BrepeatStep[0].col = v.col;
-                    }
-                    temp_id = BrepeatStep[1].id;
-                    temp_r = BrepeatStep[1].row;
-                    temp_c = BrepeatStep[1].col;
-                    headptr->newCurrentBoard(checker);
-                    v = MinMaxAB(headptr, 1, player, useVal, passVal, counter);
-                    checker.setMoveable(player, temp_r, temp_c, temp_id);
-                    checker.setMoveable(player, temp_r1, temp_c1, temp_id);
-                    counterB--;
-                } else break;
-            }
-        }
-        v = MinMaxAB(headptr, 1, player, useVal, passVal, counter);
+//        if (player == 'B') {
+//            while (checkMoveable(player, &stepArrayB[current_id], v) == false) {
+//                if (counterB > 0) {
+//                    checker.setNotMoveable(player, BrepeatStep[0].row, BrepeatStep[0].col, BrepeatStep[0].id);
+//                    checker.setNotMoveable(player, BrepeatStep[1].row, BrepeatStep[1].col, BrepeatStep[1].id);
+//                    if (v.row == BrepeatStep[0].row && v.col == BrepeatStep[0].col) {
+//                        temp_r1 = v.row;
+//                        temp_c1 = v.col;
+//                    } else {
+//                        BrepeatStep[0].row = v.row;
+//                        BrepeatStep[0].col = v.col;
+//                    }
+//                    temp_id = BrepeatStep[1].id;
+//                    temp_r = BrepeatStep[1].row;
+//                    temp_c = BrepeatStep[1].col;
+//                    headptr->newCurrentBoard(checker);
+//                    v = MinMaxAB(headptr, 1, player, useVal, passVal, counter);
+//                    checker.setMoveable(player, temp_r, temp_c, temp_id);
+//                    checker.setMoveable(player, temp_r1, temp_c1, temp_id);
+//                    counterB--;
+//                } else break;
+//            }
+//        }
+//        v = MinMaxAB(headptr, 1, player, useVal, passVal, counter);
 
-//            cout << "\n** In step " << steps << ": " << player << v.getId() << "(" << v.getValue();
-//            cout << ") moved to row  : " << v.getRow() << " and column " << v.getCol() << endl;
+      cout << "\n** In step " << steps << ": " << player << v.getId() << "(" << v.getValue();
+      cout << ") moved to row  : " << v.getRow() << " and column " << v.getCol() << endl;
         player = checker.choosePlayer(player, v.getId(), v.getRow(), v.getCol());
         //checker.displayCheckerBoard();
         winner = checker.winningPlayer();
@@ -265,28 +263,6 @@ void AlphaBeta2(int choice) {  //option 2
     int evaluation3 = 3;
     int shift = 1;
 
-    Step ArepeatStep[2]; // detect if in the loop
-    Step BrepeatStep[2]; // detect if in the loop
-
-    for (int i = 0; i < 2; i++) {
-        ArepeatStep[i].heuristic_value = -1000;
-        ArepeatStep[i].row = -1;
-        ArepeatStep[i].col = -1;
-        BrepeatStep[i].heuristic_value = -1000;
-        BrepeatStep[i].row = -1;
-        BrepeatStep[i].col = -1;
-    }
-
-    Step stepArrayA[12]; // index means each piece id of player A
-    Step stepArrayB[12]; // index means each piece id of player B
-
-    for (int i = 0; i < 12; i++) {
-        stepArrayA[i] = ArepeatStep[2];
-    }
-    for (int i = 0; i < 12; i++) {
-        stepArrayB[i] = ArepeatStep[2];
-    }
-
     Checker checker1;
     Checker checker2;
     Object alpha(1000, checker1, 0, -1, -1);
@@ -307,72 +283,7 @@ void AlphaBeta2(int choice) {  //option 2
         if (counter == 3) {
             v = alphabeta(headptr, 1, player, alpha, beta, evaluation3);
         }
-        int temp_r = -1;
-        int temp_c = -1;
-        int temp_r1 = -1;
-        int temp_c1 = -1;
-        int temp_id = 0;
-        int current_id = v.id;
-        int counterA = -1;
-        int counterB = -1;
-        if (player == 'A') {
-            counterA = getMoveableCount(player, &headptr->currentboard);
-//                cout << "\nHow many moveable A: "<< counterA << endl;
-        }
-        if (player == 'B') {
-            counterB = getMoveableCount(player, &headptr->currentboard);
-//                cout << "\nHow many moveable B: " << counterB << endl;
-        }
 
-        if (player == 'A') {
-            while (checkMoveable(player, &stepArrayA[current_id], v) == false) {
-                if (counterA > 0) {
-                    checker.setNotMoveable(player, ArepeatStep[0].row, ArepeatStep[0].col, ArepeatStep[0].id);
-                    checker.setNotMoveable(player, ArepeatStep[1].row, ArepeatStep[1].col, ArepeatStep[1].id);
-                    if (v.row == ArepeatStep[0].row && v.col == ArepeatStep[0].col) {
-                        temp_r1 = v.row;
-                        temp_c1 = v.col;
-                    } else {
-                        ArepeatStep[0].row = v.row;
-                        ArepeatStep[0].col = v.col;
-                    }
-                    temp_id = ArepeatStep[1].id;
-                    temp_r = ArepeatStep[1].row;
-                    temp_c = ArepeatStep[1].col;
-                    headptr->newCurrentBoard(checker);
-                    v = MinMaxAB(headptr, 1, player, alpha, beta, counter);
-                    checker.setMoveable(player, temp_r, temp_c, temp_id);
-                    checker.setMoveable(player, temp_r1, temp_c1, temp_id);
-                    counterA--;
-                } else break;
-            }
-        }
-
-
-        if (player == 'B') {
-            while (checkMoveable(player, &stepArrayB[current_id], v) == false) {
-                if (counterB > 0) {
-                    checker.setNotMoveable(player, BrepeatStep[0].row, BrepeatStep[0].col, BrepeatStep[0].id);
-                    checker.setNotMoveable(player, BrepeatStep[1].row, BrepeatStep[1].col, BrepeatStep[1].id);
-                    if (v.row == BrepeatStep[0].row && v.col == BrepeatStep[0].col) {
-                        temp_r1 = v.row;
-                        temp_c1 = v.col;
-                    } else {
-                        BrepeatStep[0].row = v.row;
-                        BrepeatStep[0].col = v.col;
-                    }
-                    temp_id = BrepeatStep[1].id;
-                    temp_r = BrepeatStep[1].row;
-                    temp_c = BrepeatStep[1].col;
-                    headptr->newCurrentBoard(checker);
-                    v = MinMaxAB(headptr, 1, player, alpha, beta, counter);
-                    checker.setMoveable(player, temp_r, temp_c, temp_id);
-                    checker.setMoveable(player, temp_r1, temp_c1, temp_id);
-                    counterB--;
-                } else break;
-            }
-        }
-        v = MinMaxAB(headptr, 1, player, alpha, beta, counter);
 //        cout<<"\n** In step " <<steps<<": "<< player << v.id<< "(" << v.value;
 //        cout << ") moved to row  : "<< v.row<< " and column "" - "<< v.col << endl;
         player = checker.choosePlayer(player, v.id, v.row, v.col);
@@ -412,28 +323,6 @@ void MinMaxAlphaBeta3(int choice) { //option 3
     Object alpha(1000, checker1, 0, -1, -1);
     Object beta(-1000, checker2, 0, -1, -1);
 
-    Step ArepeatStep[2]; // detect if in the loop
-    Step BrepeatStep[2]; // detect if in the loop
-
-    for (int i = 0; i < 2; i++) {
-        ArepeatStep[i].heuristic_value = -1000;
-        ArepeatStep[i].row = -1;
-        ArepeatStep[i].col = -1;
-        BrepeatStep[i].heuristic_value = -1000;
-        BrepeatStep[i].row = -1;
-        BrepeatStep[i].col = -1;
-    }
-
-    Step stepArrayA[12]; // index means each piece id of player A
-    Step stepArrayB[12]; // index means each piece id of player B
-
-    for (int i = 0; i < 12; i++) {
-        stepArrayA[i] = ArepeatStep[2];
-    }
-    for (int i = 0; i < 12; i++) {
-        stepArrayB[i] = ArepeatStep[2];
-    }
-
     while (winner == 'N') {
         steps++;
         CheckerTree *headptr = new CheckerTree(player);
@@ -461,44 +350,6 @@ void MinMaxAlphaBeta3(int choice) { //option 3
                 v = alphabeta(headptr, 1, player, alpha, beta, evaluation3);
             }
         }
-//        int temp_r = -1;
-//        int temp_c = -1;
-//        int temp_r1 = -1;
-//        int temp_c1 = -1;
-//        while(player == 'A' && checkMoveable(player, ArepeatStep, v) == false) {
-//            checker.setNotMoveable(player, ArepeatStep[0].row, ArepeatStep[0].col);
-//            checker.setNotMoveable(player, ArepeatStep[1].row, ArepeatStep[1].col);
-//            if(v.row == ArepeatStep[0].row && v.col == ArepeatStep[0].col ) {
-//                temp_r1 = v.row;
-//                temp_c1 = v.col;
-//            }else{
-//                ArepeatStep[0].row = v.row;
-//                ArepeatStep[0].col = v.col;
-//            }
-//            temp_r = ArepeatStep[1].row;
-//            temp_c = ArepeatStep[1].col;
-//            headptr->newCurrentBoard(checker);
-//            v = alphabeta(headptr, 1, player, alpha, beta, evaluation1);
-//            checker.setMoveable(player, temp_r, temp_c);
-//            checker.setMoveable(player, temp_r1, temp_c1);
-//        }
-//        while(player == 'B' && checkMoveable(player, BrepeatStep, v) == false) {
-//            checker.setNotMoveable(player, BrepeatStep[0].row, BrepeatStep[0].col);
-//            checker.setNotMoveable(player, BrepeatStep[1].row, BrepeatStep[1].col);
-//            if(v.row == BrepeatStep[0].row && v.col == BrepeatStep[0].col ) {
-//                temp_r1 = v.row;
-//                temp_c1 = v.col;
-//            }else{
-//                BrepeatStep[0].row = v.row;
-//                BrepeatStep[0].col = v.col;
-//            }
-//            temp_r = BrepeatStep[1].row;
-//            temp_c = BrepeatStep[1].col;
-//            headptr->newCurrentBoard(checker);
-//            v = alphabeta(headptr, 1, player, alpha, beta, evaluation2);
-//            checker.setMoveable(player, temp_r, temp_c);
-//            checker.setMoveable(player, temp_r1, temp_c1);
-//        }
 //        cout<<"\n** In step "<<steps<<": "<< player << v.id<< "(" << v.value;
 //        cout << ") moved to row  : " << v.row<<   " and column "<< v.col << endl;
         player = checker.choosePlayer(player, v.id, v.row, v.col);

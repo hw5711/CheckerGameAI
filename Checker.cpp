@@ -470,5 +470,45 @@ char Checker::winningPlayer() {
     return 'N';
 }
 
+int Checker::getDiffId(Board b1[8][8]){
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            if(this->board[i][j].id != b1[i][j].id && this->board[i][j].player != ' ' ){
+                return this->board[i][j].id;
+            }
+            if(this->board[i][j].id != b1[i][j].id && b1[i][j].player != ' ' ){
+                continue;
+            }
+        }
+    }
+    return -1;
+}
+int Checker::getDiffRow(Board b1[8][8]){
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            if(this->board[i][j].id != b1[i][j].id && this->board[i][j].player != ' ' ){
+                return i;
+            }
+            if(this->board[i][j].id != b1[i][j].id && b1[i][j].player != ' ' ){
+                continue;
+            }
+        }
+    }
+    return -1;
+}
+int Checker::getDiffCol(Board b1[8][8]){
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            if(this->board[i][j].id != b1[i][j].id && this->board[i][j].player != ' ' ){
+                return j;
+            }
+            if(this->board[i][j].id != b1[i][j].id && b1[i][j].player != ' ' ){
+                continue;
+            }
+        }
+    }
+    return -1;
+}
+
 
 

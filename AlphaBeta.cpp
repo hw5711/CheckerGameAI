@@ -52,7 +52,9 @@ Object alphabeta(CheckerTree *node, int depth, char player, Object a, Object b, 
             if (EF == 2) {
                 obj1 = alphabeta(node->successor[i], depth + 1, node->player, a, b, 2);
             }
-
+            if (EF == 3) {
+                obj1 = alphabeta(node->successor[i], depth + 1, node->player, a, b, 3);
+            }
             maxvalue.setValue((maxvalue.value > obj1.value) ? maxvalue.value : obj1.value);
             maxvalue.setTempBoard((maxvalue.value > obj1.value) ? maxvalue.tempBoard : obj1.tempBoard);
             maxvalue.setId((maxvalue.value > obj1.value) ? maxvalue.id : obj1.id);
@@ -81,6 +83,9 @@ Object alphabeta(CheckerTree *node, int depth, char player, Object a, Object b, 
             }
             if (EF == 2) {
                 obj1 = alphabeta(node->successor[i], depth + 1, node->player, a, b, 2);
+            }
+            if (EF == 3) {
+                obj1 = alphabeta(node->successor[i], depth + 1, node->player, a, b, 3);
             }
             maxvalue.setValue((maxvalue.value > obj1.value) ? maxvalue.value : obj1.value);
             maxvalue.setTempBoard((maxvalue.value > obj1.value) ? maxvalue.tempBoard : obj1.tempBoard);

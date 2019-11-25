@@ -6,24 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBeta.cpp
-AlphaBeta.h
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBeta.h
-CheckerTree.h
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/CheckerTree.h
-iostream
--
-
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBeta.h
-CheckerTree.h
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/CheckerTree.h
-Object.h
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/Object.h
-stdio.h
--
-iostream
--
-
 /Users/huanwu/Desktop/myVersion/CheckerGameAI/Checker.h
 stdio.h
 -
@@ -48,39 +30,5 @@ Checker.h
 Object.h
 /Users/huanwu/Desktop/myVersion/CheckerGameAI/Object.h
 
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/MinMaxAB.cpp
-MinMaxAB.h
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/MinMaxAB.h
-iostream
--
-
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/MinMaxAB.h
-CheckerTree.h
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/CheckerTree.h
-Object.h
 /Users/huanwu/Desktop/myVersion/CheckerGameAI/Object.h
-stdio.h
--
-iostream
--
-
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/Object.h
-
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/main.cpp
-iostream
--
-ctime
--
-CheckerTree.h
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/CheckerTree.h
-Checker.h
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/Checker.h
-MinMaxAB.h
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/MinMaxAB.h
-Object.h
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/Object.h
-AlphaBeta.h
-/Users/huanwu/Desktop/myVersion/CheckerGameAI/AlphaBeta.h
-stdio.h
--
 

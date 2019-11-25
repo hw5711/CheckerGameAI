@@ -1,6 +1,3 @@
-//
-// Created by Huan wu on 11/10/19.
-//
 
 #ifndef CHECKERGAMEAI_OBJECT_H
 #define CHECKERGAMEAI_OBJECT_H

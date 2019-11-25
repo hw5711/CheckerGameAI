@@ -60,6 +60,10 @@ public:
 
     int stepAvaliable(char);
 
+    int getDiffId(Board [8][8]);
+    int getDiffRow(Board [8][8]);
+    int getDiffCol(Board [8][8]);
+
 };
 
 

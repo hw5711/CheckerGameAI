@@ -13,7 +13,13 @@
   <component name="ChangeListManager">
     <list default="true" id="1049f50a-b802-4356-8d39-63554f1d0167" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CheckerTree.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/CheckerTree.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaBeta.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/AlphaBeta.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Checker.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Checker.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Checker.h" beforeDir="false" afterPath="$PROJECT_DIR$/Checker.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinMaxAB.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/MinMaxAB.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Object.h" beforeDir="false" afterPath="$PROJECT_DIR$/Object.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CheckerGameAI" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CheckerGameAI" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +82,9 @@
       <workItem from="1573582409031" duration="75536000" />
       <workItem from="1574455432712" duration="25612000" />
       <workItem from="1574487010793" duration="6107000" />
-      <workItem from="1574501148365" duration="262000" />
+      <workItem from="1574501148365" duration="421000" />
+      <workItem from="1574616192474" duration="5244000" />
+      <workItem from="1574621540941" duration="18114000" />
     </task>
     <servers />
   </component>
@@ -101,28 +109,23 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>251</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.cpp</url>
           <line>113</line>
-          <option name="timeStamp" value="4" />
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>392</line>
-          <option name="timeStamp" value="12" />
+          <line>303</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>574</line>
-          <option name="timeStamp" value="13" />
+          <line>249</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>517</line>
-          <option name="timeStamp" value="14" />
+          <url>file://$PROJECT_DIR$/CheckerTree.cpp</url>
+          <line>364</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
