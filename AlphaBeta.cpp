@@ -10,32 +10,19 @@ Object alphabeta(CheckerTree *node, int depth, char player, Object a, Object b, 
     if (node->deepenough(depth, player)) {
         if (EF == 1) {
             obj.setValue(node->evaluation1(player));
-            obj.setTempBoard(node->currentboard);
-            node->setHeuristicValue(obj.getValue(), obj.getTempBoard(), node->id, node->row, node->col);
-            obj.setRow(node->row);
-            obj.setCol(node->col);
-            obj.setId(node->id);
-            return obj;
         }
         if (EF == 2) {
             obj.setValue(node->evaluation2(player));//changed
-            obj.setTempBoard(node->currentboard);
-            node->setHeuristicValue(obj.getValue(), obj.getTempBoard(), node->id, node->row, node->col);
-            obj.setRow(node->row);
-            obj.setCol(node->col);
-            obj.setId(node->id);
-            return obj;
         }
 
         if (EF == 3) {
             obj.setValue(node->evaluation3(player));//changed
-            obj.setTempBoard(node->currentboard);
-            node->setHeuristicValue(obj.getValue(), obj.getTempBoard(), node->id, node->row, node->col);
-            obj.setRow(node->row);
-            obj.setCol(node->col);
-            obj.setId(node->id);
-            return obj;
         }
+
+            obj.setRow(b.getRow());
+            obj.setCol(b.getCol());
+            obj.setId(b.getId());
+            return obj;
     }
     Checker ck;
 
@@ -46,13 +33,20 @@ Object alphabeta(CheckerTree *node, int depth, char player, Object a, Object b, 
             if (node->successor[i] == NULL) {
                 continue;
             }
+            if(depth==1){
+                b.setId(node->successor[i]->currentboard.getDiffId(node->currentboard.board));
+                b.setRow(node->successor[i]->currentboard.getDiffRow(node->currentboard.board));
+                b.setCol(node->successor[i]->currentboard.getDiffCol(node->currentboard.board));
+            }
             if (EF == 1) {
                 obj1 = alphabeta(node->successor[i], depth + 1, node->player, a, b, 1);
             }
             if (EF == 2) {
                 obj1 = alphabeta(node->successor[i], depth + 1, node->player, a, b, 2);
             }
-
+            if (EF == 3) {
+                obj1 = alphabeta(node->successor[i], depth + 1, node->player, a, b, 3);
+            }
             maxvalue.setValue((maxvalue.value > obj1.value) ? maxvalue.value : obj1.value);
             maxvalue.setTempBoard((maxvalue.value > obj1.value) ? maxvalue.tempBoard : obj1.tempBoard);
             maxvalue.setId((maxvalue.value > obj1.value) ? maxvalue.id : obj1.id);
@@ -72,15 +66,24 @@ Object alphabeta(CheckerTree *node, int depth, char player, Object a, Object b, 
     } else {
         Object maxvalue(1, ck, 0, -1, -1);
         Object obj1(0, ck, 0, -1, -1);
+
         for (int i = 0; i < 48; i++) {
             if (node->successor[i] == NULL) {
                 continue;
+            }
+            if(depth==1){
+                b.setId(node->successor[i]->currentboard.getDiffId(node->currentboard.board));
+                b.setRow(node->successor[i]->currentboard.getDiffRow(node->currentboard.board));
+                b.setCol(node->successor[i]->currentboard.getDiffCol(node->currentboard.board));
             }
             if (EF == 1) {
                 obj1 = alphabeta(node->successor[i], depth + 1, node->player, a, b, 1);
             }
             if (EF == 2) {
                 obj1 = alphabeta(node->successor[i], depth + 1, node->player, a, b, 2);
+            }
+            if (EF == 3) {
+                obj1 = alphabeta(node->successor[i], depth + 1, node->player, a, b, 3);
             }
             maxvalue.setValue((maxvalue.value > obj1.value) ? maxvalue.value : obj1.value);
             maxvalue.setTempBoard((maxvalue.value > obj1.value) ? maxvalue.tempBoard : obj1.tempBoard);
