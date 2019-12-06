@@ -427,7 +427,7 @@ void MinMaxAlphaBeta3(int choice) { //option 3
     Checker checker2;
     Object useVal(1000, checker1, 0, -1, -1);
     Object passVal(-1000, checker2, 0, -1, -1);
-    Object alpha(1000, checker1, 0, -1, -1);
+    Object alpha(-1000, checker1, 0, -1, -1);
     Object beta(-1000, checker2, 0, -1, -1);
 
     while (winner == 'N') {
