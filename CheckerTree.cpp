@@ -362,7 +362,7 @@ void CheckerTree::generateChildren(char player) {
 }
 
 bool CheckerTree::deepenough(int depth, char player) {
-    if (depth >=3|| this->currentboard.winningPlayer() != 'N') {
+    if (depth >= 4|| this->currentboard.winningPlayer() != 'N') {
         return true;
     } else if (depth == 1) {
         nodes_expanded++;

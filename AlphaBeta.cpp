@@ -61,7 +61,7 @@ Object alphabeta(CheckerTree *node, int depth, char player, Object a, Object b, 
         node->setHeuristicValue(maxvalue.value, maxvalue.tempBoard, maxvalue.id, maxvalue.row, maxvalue.col);
         return maxvalue;
     } else {
-        Object maxvalue(1000, ck, 0, -1, -1);
+        Object maxvalue(-1000, ck, 0, -1, -1);
         Object obj1(0, ck, 0, -1, -1);
 
         for (int i = 0; i < 48; i++) {

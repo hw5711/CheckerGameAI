@@ -141,7 +141,7 @@ void MinMax1(int choice) {  //option 1
         stepArrayA[i] = ArepeatStep[2];
     }
     for (int i = 0; i < 12; i++) {
-        stepArrayB[i] = ArepeatStep[2];
+        stepArrayB[i] = BrepeatStep[2];
     }
 
     Checker checker1;
@@ -205,7 +205,6 @@ void MinMax1(int choice) {  //option 1
                 } else break;
             }
         }
-
 
         if (player == 'B') {
             while (checkMoveable(player, &stepArrayB[current_id], v) == false) {
@@ -276,7 +275,7 @@ void AlphaBeta2(int choice) {  //option 2
         stepArrayA[i] = ArepeatStep[2];
     }
     for (int i = 0; i < 12; i++) {
-        stepArrayB[i] = ArepeatStep[2];
+        stepArrayB[i] = BrepeatStep[2];
     }
     char winner = checker.winningPlayer();
     char player = 'A';
@@ -341,7 +340,6 @@ void AlphaBeta2(int choice) {  //option 2
                     counterA--;
                 } else break;
             }
-            v = alphabeta(headptr, 1, player, alpha, beta,counter);
         }
         if (player == 'B') {
             while (checkMoveable(player, &stepArrayB[current_id], v) == false) {
@@ -365,8 +363,9 @@ void AlphaBeta2(int choice) {  //option 2
                     counterB--;
                 } else break;
             }
-            v = alphabeta(headptr, 1, player, alpha, beta,counter);
+//            v = alphabeta(headptr, 1, player, alpha, beta,counter);
         }
+        v = alphabeta(headptr, 1, player, alpha, beta,counter);
 
         cout<<"\n** In step " <<steps<<": "<< player << v.id<< "(" << v.value;
         cout << ") moved to row  : "<< v.row<< " and column "<< v.col << endl;
@@ -395,10 +394,8 @@ void MinMaxAlphaBeta3(int choice) { //option 3
 //    cout << "Lets begin the game" << endl;
 //    cout<<" Checker Board\n"<<endl;
 //    checker.displayCheckerBoard();
-
     Step ArepeatStep[2]; // detect if in the loop
     Step BrepeatStep[2]; // detect if in the loop
-
     for (int i = 0; i < 2; i++) {
         ArepeatStep[i].heuristic_value = -1000;
         ArepeatStep[i].row = -1;
@@ -407,7 +404,6 @@ void MinMaxAlphaBeta3(int choice) { //option 3
         BrepeatStep[i].row = -1;
         BrepeatStep[i].col = -1;
     }
-
     Step stepArrayA[12]; // index means each piece id of player A
     Step stepArrayB[12]; // index means each piece id of player B
 
@@ -415,7 +411,7 @@ void MinMaxAlphaBeta3(int choice) { //option 3
         stepArrayA[i] = ArepeatStep[2];
     }
     for (int i = 0; i < 12; i++) {
-        stepArrayB[i] = ArepeatStep[2];
+        stepArrayB[i] = BrepeatStep[2];
     }
     char winner = checker.winningPlayer();
     char player = 'A';
