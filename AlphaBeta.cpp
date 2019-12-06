@@ -1,4 +1,3 @@
-
 #include "AlphaBeta.h"
 #include "CheckerTree.h"
 #include<iostream>
@@ -14,20 +13,18 @@ Object alphabeta(CheckerTree *node, int depth, char player, Object a, Object b, 
         if (EF == 2) {
             obj.setValue(node->evaluation2(player));//changed
         }
-
         if (EF == 3) {
             obj.setValue(node->evaluation3(player));//changed
         }
-
-            obj.setRow(b.getRow());
-            obj.setCol(b.getCol());
-            obj.setId(b.getId());
-            return obj;
+        obj.setRow(b.getRow());
+        obj.setCol(b.getCol());
+        obj.setId(b.getId());
+        return obj;
     }
     Checker ck;
 
     if (player == 'A') {
-        Object maxvalue(-1, ck, 0, -1, -1);
+        Object maxvalue(-1000, ck, 0, -1, -1);
         Object obj1(0, ck, 0, -1, -1);
         for (int i = 0; i < 48; i++) {
             if (node->successor[i] == NULL) {
@@ -64,7 +61,7 @@ Object alphabeta(CheckerTree *node, int depth, char player, Object a, Object b, 
         node->setHeuristicValue(maxvalue.value, maxvalue.tempBoard, maxvalue.id, maxvalue.row, maxvalue.col);
         return maxvalue;
     } else {
-        Object maxvalue(1, ck, 0, -1, -1);
+        Object maxvalue(1000, ck, 0, -1, -1);
         Object obj1(0, ck, 0, -1, -1);
 
         for (int i = 0; i < 48; i++) {

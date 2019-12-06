@@ -362,7 +362,7 @@ void CheckerTree::generateChildren(char player) {
 }
 
 bool CheckerTree::deepenough(int depth, char player) {
-    if (depth >= 2 || this->currentboard.winningPlayer() != 'N') {
+    if (depth >= 2|| this->currentboard.winningPlayer() != 'N') {
         return true;
     } else if (depth == 1) {
         nodes_expanded++;
@@ -456,21 +456,21 @@ int CheckerTree::evaluation2(char player) { // good for player B ,keep the more 
             }
         }
         //check side
-        for (int i = 5; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (currentboard.board[i][j].player == 'A') {
-                    points -= 8;
-                }
-            }
-        }
-
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (currentboard.board[i][j].player == 'B') {
-                    points += 8;
-                }
-            }
-        }
+//        for (int i = 5; i < 8; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].player == 'A') {
+//                    points -= 8;
+//                }
+//            }
+//        }
+//
+//        for (int i = 0; i < 4; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].player == 'B') {
+//                    points += 8;
+//                }
+//            }
+//        }
     }
     return points;
 }
@@ -512,9 +512,9 @@ int CheckerTree::evaluation3(char player) {// good for player A , keep the threa
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (threaten(i, j, currentboard, 'A')) {
-                    points += 5;
+                    points += 50;
                 } else if (threaten(i, j, currentboard, 'B')) {
-                    points -= 1;
+                    points -= 10;
                 } else {}
             }
         }
