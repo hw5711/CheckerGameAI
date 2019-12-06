@@ -115,7 +115,7 @@ int Checker::getId(int r, int c) {
 
 //This function allows to display the checker board
 void Checker::displayCheckerBoard() {
-    cout << "***** DISPLAY BOARD *****\n";
+    cout << "\n***** DISPLAY BOARD *****\n";
     cout << "\nCol      0  1  2  3  4  5  6  7\n";
     for (int i = 0; i < 8; i++) {
         cout << "row " << i << "   ";

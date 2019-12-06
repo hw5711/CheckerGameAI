@@ -56,7 +56,7 @@ void displayResult(char winner, int executionTime, int nodesGenerated, int nodes
     cout << "Total length of path : " << steps << endl;
     cout << "Memory need for 1 node is: 1236 bytes." << endl;
     int x = 1236 * nodesGenerated;
-    cout << "Total memory needed for the algorithm is : " << x << "bytes = " << x / (1024) << "kb" << endl;
+    cout << "Total memory needed for the algorithm is : " << x << " bytes = " << x / (1024) << " kb" << endl;
 }
 
 bool checkMoveable(char player, Step *repeat, Object v) {
@@ -118,9 +118,9 @@ void MinMax1(int choice) {  //option 1
     char player = 'A';
     Checker checker; // checker is the board to be displayed
     char winner = checker.winningPlayer();
-        cout << "Lets begin the game" << endl;
-        cout << " Checker Board\n" << endl;
-     checker.displayCheckerBoard();
+//        cout << "Lets begin the game" << endl;
+//        cout << " Checker Board\n" << endl;
+//     checker.displayCheckerBoard();
 
     Step ArepeatStep[2]; // detect if in the loop
     Step BrepeatStep[2]; // detect if in the loop
@@ -231,8 +231,8 @@ void MinMax1(int choice) {  //option 1
         }
         v = MinMaxAB(headptr, 1, player, useVal, passVal, counter);
 
-      cout << "\n** In step " << steps << ": " << player << v.getId() << "(" << v.getValue();
-      cout << ") moved to row  : " << v.getRow() << " and column " << v.getCol() << endl;
+//      cout << "\n** In step " << steps << ": " << player << v.getId() << "(" << v.getValue();
+//      cout << ") moved to row  : " << v.getRow() << " and column " << v.getCol() << endl;
         player = checker.choosePlayer(player, v.getId(), v.getRow(), v.getCol());
         //checker.displayCheckerBoard();
         winner = checker.winningPlayer();
@@ -363,13 +363,10 @@ void AlphaBeta2(int choice) {  //option 2
                     counterB--;
                 } else break;
             }
-//            v = alphabeta(headptr, 1, player, alpha, beta,counter);
         }
         v = alphabeta(headptr, 1, player, alpha, beta,counter);
-
-        cout<<"\n** In step " <<steps<<": "<< player << v.id<< "(" << v.value;
-        cout << ") moved to row  : "<< v.row<< " and column "<< v.col << endl;
-
+//        cout<<"\n** In step " <<steps<<": "<< player << v.id<< "(" << v.value;
+//        cout << ") moved to row  : "<< v.row<< " and column "<< v.col << endl;
         player = checker.choosePlayer(player, v.id, v.row, v.col);
 //        checker.displayCheckerBoard();
         winner = checker.winningPlayer();
@@ -380,7 +377,6 @@ void AlphaBeta2(int choice) {  //option 2
     int executionTime = clock() - time_req;
     checker.displayCheckerBoard();
     displayResult(winner, executionTime, nodesGenerated, nodesExpanded);
-
 }
 
 //MinmaxAB vs AlphaBeta ( using ev1,ev2 and ev3)
@@ -430,7 +426,6 @@ void MinMaxAlphaBeta3(int choice) { //option 3
         steps++;
         CheckerTree *headptr = new CheckerTree(player);
         headptr->newCurrentBoard(checker);
-        //cout << "***Chance of "<< player<<"****"<<endl;
         Object v;
         if (counter == 1) {
             if (shift % 2 == 1) { //start with A
@@ -519,8 +514,8 @@ void MinMaxAlphaBeta3(int choice) { //option 3
             v = alphabeta(headptr, 1, player, alpha, beta,counter);
         }
 
-        cout<<"\n** In step "<<steps<<": "<< player << v.id<< "(" << v.value;
-        cout << ") moved to row  : " << v.row<<   " and column "<< v.col << endl;
+//        cout<<"\n** In step "<<steps<<": "<< player << v.id<< "(" << v.value;
+//        cout << ") moved to row  : " << v.row<<   " and column "<< v.col << endl;
         player = checker.choosePlayer(player, v.id, v.row, v.col);
         //ck.displayBoard();
         winner = checker.winningPlayer();
@@ -531,16 +526,15 @@ void MinMaxAlphaBeta3(int choice) { //option 3
     int executionTime = clock() - time_req;
     checker.displayCheckerBoard();
     displayResult(winner, executionTime, nodesGenerated, nodesExpanded);
-
 }
 
 void MinMaxUser4() { //Both use evaluation 2
     clock_t time_req;
     time_req = clock();
     Checker checker;
-    cout << "Lets begin the game" << endl;
-    cout << " Checker Board\n" << endl;
-    checker.displayCheckerBoard();
+//    cout << "Lets begin the game" << endl;
+//    cout << " Checker Board\n" << endl;
+//    checker.displayCheckerBoard();
     char winner = checker.winningPlayer();
     char player = 'A';
 //    int evaluation1 = 1;
@@ -577,8 +571,8 @@ void MinMaxUser4() { //Both use evaluation 2
             v.col = col;
         }
 
-        cout << "\n** In step " << steps << ": " << player << v.id << "(" << v.value;
-        cout << ") moved to row  : " << v.row << " and column " << v.col << endl;
+//        cout << "\n** In step " << steps << ": " << player << v.id << "(" << v.value;
+//        cout << ") moved to row  : " << v.row << " and column " << v.col << endl;
         player = checker.choosePlayer(player, v.id, v.row, v.col);
         checker.displayCheckerBoard();
         winner = checker.winningPlayer();
@@ -595,9 +589,9 @@ void AlphaBetaUser5() { //Both use evaluation 2
     clock_t time_req;
     time_req = clock();
     Checker checker;
-    cout << "Lets begin the game" << endl;
-    cout << " Checker Board\n" << endl;
-    checker.displayCheckerBoard();
+//    cout << "Lets begin the game" << endl;
+//    cout << " Checker Board\n" << endl;
+//    checker.displayCheckerBoard();
     char winner = checker.winningPlayer();
     char player = 'A';
 //    int evaluation1 = 1;
@@ -615,7 +609,7 @@ void AlphaBetaUser5() { //Both use evaluation 2
         steps++;
         CheckerTree *headptr = new CheckerTree(player);
         headptr->newCurrentBoard(checker);
-        cout << "***Chance of " << player << "****" << endl;
+        cout << "*** Chance of " << player << "****" << endl;
         Object v;
         if (shift % 2 == 1) { //start with A
             v = alphabeta(headptr, 1, player, alpha, beta, 1);
@@ -634,8 +628,8 @@ void AlphaBetaUser5() { //Both use evaluation 2
             v.col = col;
         }
 
-        cout << "\n** In step " << steps << ": " << player << v.id << "(" << v.value;
-        cout << ") moved to row  : " << v.row << " and column " << v.col << endl;
+//        cout << "\n** In step " << steps << ": " << player << v.id << "(" << v.value;
+//        cout << ") moved to row  : " << v.row << " and column " << v.col << endl;
         player = checker.choosePlayer(player, v.id, v.row, v.col);
         checker.displayCheckerBoard();
         winner = checker.winningPlayer();
@@ -656,8 +650,13 @@ int main() {
 
 void gameMenu() {
 
+    Checker checker;
+    cout << "Lets begin the game" << endl;
+//    cout << " Checker Board" << endl;
+    checker.displayCheckerBoard();
+
     int menu;
-    cout << "/*******Checker Game(8X8)****/" << endl;
+    cout << "\n/*******Checker Game(8X8)****/" << endl;
     cout << "/****** Choose menu option from 1-11 ********/" << endl;
     cout << "/***** Select 1 for MinMaxAB(EF1) VS MinMaxAB(EF1)****/ " << endl;
     cout << "/***** Select 2 for MinMaxAB(EF2) VS MinMaxAB(EF2)****/ " << endl;
@@ -704,8 +703,27 @@ void gameMenu() {
             break;
         case 10:
             MinMaxUser4();
+            break;
         case 11:
             AlphaBetaUser5();
+            break;
+            //add for demo
+        case 12:
+            MinMax1(1);
+            MinMax1(2);
+            MinMax1(3);
+            break;
+        case 13:
+            AlphaBeta2(1);
+            AlphaBeta2(2);
+            AlphaBeta2(3);
+            break;
+        case 14:
+            MinMaxAlphaBeta3(1);
+            MinMaxAlphaBeta3(2);
+            MinMaxAlphaBeta3(3);
+            break;
+
     }
 
 }

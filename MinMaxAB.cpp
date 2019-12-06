@@ -49,28 +49,12 @@ Object MinMaxAB(CheckerTree *checkerboard, int depth, char player, Object useVal
                 passVal.setRow(checkerboard->successor[i]->currentboard.getDiffRow(checkerboard->currentboard.board));
                 passVal.setCol(checkerboard->successor[i]->currentboard.getDiffCol(checkerboard->currentboard.board));
             }
-//          else {
-//                useVal.setId(useVal.getId());
-//                useVal.setRow(useVal.getRow());
-//                useVal.setCol(useVal.getCol());
-//            }
 
            // Object negUse;
            if(depth !=  1) {
                passVal.setValue(-useVal.getValue());
            }
             passVal.setTempBoard(passVal.getTempBoard());
-
-//            if(depth == 1){
-//                passVal.setId(checkerboard->successor[i]->currentboard.getDiffId(checkerboard->currentboard.board));
-//                passVal.setRow(checkerboard->successor[i]->currentboard.getDiffRow(checkerboard->currentboard.board));
-//                passVal.setCol(checkerboard->successor[i]->currentboard.getDiffCol(checkerboard->currentboard.board));
-//            }
-//            else {
-//                passVal.setId(passVal.getId());
-//                passVal.setRow(passVal.getRow());
-//                passVal.setCol(passVal.getCol());
-//            }
 
             obj1 = MinMaxAB(checkerboard->successor[i], depth + 1, player1, useVal, passVal, EF);
             Object newVal(-obj1.getValue(), obj1.getTempBoard(), obj1.getId(), obj1.getRow(), obj1.getCol());
@@ -83,10 +67,6 @@ Object MinMaxAB(CheckerTree *checkerboard, int depth, char player, Object useVal
                 passVal.setCol(newVal.getCol());
 
                 if (passVal.getValue() >= useVal.getValue()) {
-//                    cout << "2 UPDATE pass and return {{pass val >= use val}} : " << passVal.getValue() << ": "
-//                         << useVal.getValue() << ": " <<
-//                         passVal.getRow() << "*" << passVal.getCol() << "*$" << useVal.getRow() << "*"
-//                         << useVal.getCol() << endl;
                     obj1.setValue(passVal.getValue());
                     obj1.setTempBoard(passVal.getTempBoard());
                     obj1.setId(passVal.getId());
