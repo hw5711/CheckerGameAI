@@ -443,12 +443,27 @@ int Checker::stepAvaliable(char player) {
 char Checker::winningPlayer() {
     int noOfPlayerA = 0;
     int noOfPlayerB = 0;
+    int noOfPieceA = 0;
+    int noOfPieceB = 0;
 
     noOfPlayerA = stepAvaliable('A');
     noOfPlayerB = stepAvaliable('B');
+//
+//    cout<<"\ncheck1 winA: "<<noOfPlayerA;
+//    cout<<"\ncheck1s winB: "<<noOfPlayerB;
 
-//    cout<<"\n noOfPlayerA: "<< noOfPlayerA;
-//    cout<<"\n noOfPlayerB: "<< noOfPlayerB<<endl;
+    for(int i=0; i<8; i++){
+        for(int j=0; j<8; j++){
+            if(this->board[i][j].player == 'A'){
+                noOfPieceA++;
+            }
+            if(this->board[i][j].player == 'B'){
+                noOfPieceB++;
+            }
+        }
+    }
+//    cout<<"\ncheck2 winA: "<<noOfPieceA;
+//    cout<<"\ncheck2 winB: "<<noOfPieceB;
 
     if (noOfPlayerA == 0) {
         return 'B';
@@ -456,15 +471,24 @@ char Checker::winningPlayer() {
     if (noOfPlayerB == 0) {
         return 'A';
     }
-    if (noOfPlayerA == 1 && noOfPlayerB > 1) {
+
+    if (noOfPieceA == 1 && noOfPieceB > 1) {
         return 'B';
     }
 
-    if (noOfPlayerB == 1 && noOfPlayerA > 1) {
+    if (noOfPieceB == 1 && noOfPieceA > 1) {
         return 'A';
     }
 
-    if (noOfPlayerB == noOfPlayerA && noOfPlayerA == 1) {
+    if (noOfPieceA == 2 && noOfPieceB > 2) {
+        return 'B';
+    }
+
+    if (noOfPieceB == 2 && noOfPieceA > 2) {
+        return 'A';
+    }
+
+    if (noOfPieceA == noOfPieceB && noOfPieceA == 1 && noOfPieceB == 1) {
         return 'T';
     }
     return 'N';

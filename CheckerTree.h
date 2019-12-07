@@ -26,7 +26,6 @@ struct Add {
     int col_after;
 };
 
-
 class CheckerTree {
 public:
 

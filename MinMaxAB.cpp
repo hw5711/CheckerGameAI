@@ -18,6 +18,7 @@ Object MinMaxAB(CheckerTree *checkerboard, int depth, char player, Object useVal
                 obj.setValue(checkerboard->evaluation3(player));
             }
             obj.setTempBoard(checkerboard->currentboard);
+
             if (player == 'B') {
                 obj.setValue(-obj.getValue());
             }

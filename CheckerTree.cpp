@@ -7,6 +7,8 @@ using namespace std;
 int CheckerTree::nodes_generated = 0;
 int CheckerTree::nodes_expanded = 0;
 
+extern int node_generatedA, node_generatedB,node_expendedA, node_expendedB;
+
 CheckerTree::CheckerTree() {
 
     this->player = 'n';
@@ -252,7 +254,7 @@ void CheckerTree::generateChildren(char player) {
                             successor[children_num]->currentboard.choosePlayer('A', this->currentboard.board[i][j].id,
                                                                                location.l1, location.l2);
                             children_num++;
-                            nodes_generated++;
+                            node_generatedA++;
                         }
                         if (location.l3 != -2 && location.l4 != -2) {
                             successor[children_num] = new CheckerTree(p);
@@ -260,7 +262,7 @@ void CheckerTree::generateChildren(char player) {
                             successor[children_num]->currentboard.choosePlayer('A', this->currentboard.board[i][j].id,
                                                                                location.l3, location.l4);
                             children_num++;
-                            nodes_generated++;
+                            node_generatedA++;
                         }
 
                     } else if (this->currentboard.board[i][j].role == 'k') {
@@ -270,7 +272,7 @@ void CheckerTree::generateChildren(char player) {
                             successor[children_num]->currentboard.choosePlayer('A', this->currentboard.board[i][j].id,
                                                                                location.l1, location.l2);
                             children_num++;
-                            nodes_generated++;
+                            node_generatedA++;
                         }
                         if (location.l3 != -2 && location.l4 != -2) {
                             successor[children_num] = new CheckerTree(p);
@@ -278,7 +280,7 @@ void CheckerTree::generateChildren(char player) {
                             successor[children_num]->currentboard.choosePlayer('A', this->currentboard.board[i][j].id,
                                                                                location.l3, location.l4);
                             children_num++;
-                            nodes_generated++;
+                            node_generatedA++;
                         }
                         if (location.l5 != -2 && location.l6 != -2) {
                             successor[children_num] = new CheckerTree(p);
@@ -286,7 +288,7 @@ void CheckerTree::generateChildren(char player) {
                             successor[children_num]->currentboard.choosePlayer('A', this->currentboard.board[i][j].id,
                                                                                location.l5, location.l6);
                             children_num++;
-                            nodes_generated++;
+                            node_generatedA++;
                         }
                         if (location.l7 != -2 && location.l8 != -2) {
                             successor[children_num] = new CheckerTree(p);
@@ -294,7 +296,7 @@ void CheckerTree::generateChildren(char player) {
                             successor[children_num]->currentboard.choosePlayer('A', this->currentboard.board[i][j].id,
                                                                                location.l7, location.l8);
                             children_num++;
-                            nodes_generated++;
+                            node_generatedA++;
                         }
                     } else {}
                 }
@@ -303,7 +305,6 @@ void CheckerTree::generateChildren(char player) {
 
                 location = jump(i, j, this->currentboard, 'B');
                 if (available_to_jump(location) == true) {
-//                    cout<<"\ncurrent ture situation-B : "<< i<<","<<j<<endl;
                     if (this->currentboard.board[i][j].role == 'm') {
                         if (location.l1 != -2 && location.l2 != -2) {
                             successor[children_num] = new CheckerTree(p);
@@ -311,7 +312,7 @@ void CheckerTree::generateChildren(char player) {
                             successor[children_num]->currentboard.choosePlayer('B', this->currentboard.board[i][j].id,
                                                                                location.l1, location.l2);
                             children_num++;
-                            nodes_generated++;
+                            node_generatedB++;
                         }
                         if (location.l3 != -2 && location.l4 != -2) {
                             successor[children_num] = new CheckerTree(p);
@@ -319,7 +320,7 @@ void CheckerTree::generateChildren(char player) {
                             successor[children_num]->currentboard.choosePlayer('B', this->currentboard.board[i][j].id,
                                                                                location.l3, location.l4);
                             children_num++;
-                            nodes_generated++;
+                            node_generatedB++;
                         }
                     } else if (this->currentboard.board[i][j].role == 'k') {
                         if (location.l1 != -2 && location.l2 != -2) {
@@ -328,7 +329,7 @@ void CheckerTree::generateChildren(char player) {
                             successor[children_num]->currentboard.choosePlayer('B', this->currentboard.board[i][j].id,
                                                                                location.l1, location.l2);
                             children_num++;
-                            nodes_generated++;
+                            node_generatedB++;
                         }
                         if (location.l3 != -2 && location.l4 != -2) {
                             successor[children_num] = new CheckerTree(p);
@@ -336,7 +337,7 @@ void CheckerTree::generateChildren(char player) {
                             successor[children_num]->currentboard.choosePlayer('B', this->currentboard.board[i][j].id,
                                                                                location.l3, location.l4);
                             children_num++;
-                            nodes_generated++;
+                            node_generatedB++;
                         }
                         if (location.l5 != -2 && location.l6 != -2) {
                             successor[children_num] = new CheckerTree(p);
@@ -344,7 +345,7 @@ void CheckerTree::generateChildren(char player) {
                             successor[children_num]->currentboard.choosePlayer('B', this->currentboard.board[i][j].id,
                                                                                location.l5, location.l6);
                             children_num++;
-                            nodes_generated++;
+                            node_generatedB++;
                         }
                         if (location.l7 != -2 && location.l8 != -2) {
                             successor[children_num] = new CheckerTree(p);
@@ -352,7 +353,7 @@ void CheckerTree::generateChildren(char player) {
                             successor[children_num]->currentboard.choosePlayer('B', this->currentboard.board[i][j].id,
                                                                                location.l7, location.l8);
                             children_num++;
-                            nodes_generated++;
+                            node_generatedB++;
                         }
                     } else {}
                 }
@@ -362,14 +363,24 @@ void CheckerTree::generateChildren(char player) {
 }
 
 bool CheckerTree::deepenough(int depth, char player) {
-    if (depth >= 2|| this->currentboard.winningPlayer() != 'N') {
+    if (depth >= 2 || this->currentboard.winningPlayer() != 'N') {
         return true;
     } else if (depth == 1) {
-        nodes_expanded++;
+        if(player == 'A'){
+            node_expendedA++;
+        }
+        if(player == 'B'){
+            node_expendedB++;
+        }
         generateChildren2(player);
         return false;
     } else {
-        nodes_expanded++;
+        if(player == 'A'){
+            node_expendedA++;
+        }
+        if(player == 'B'){
+            node_expendedB++;
+        }
         generateChildren(player);
         return false;
     }
@@ -382,13 +393,38 @@ int CheckerTree::evaluation1(char player) {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'A') {
-                    points += 30;
+                    points += 3;
                 } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'A') {
-                    points += 45;
+                    points += 7;
                 } else if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'B') {
-                    points -= 15;
+                    points -= 1;
                 } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'B') {
-                    points -= 25;
+                    points -= 2;
+                } else {}
+            }
+        }
+        //check side
+        for (int i = 5; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (currentboard.board[i][j].player == 'A') {
+                    points += 53;
+                }
+            }
+        }
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (currentboard.board[i][j].player == 'B') {
+                    points -= 32;
+                }
+            }
+        }
+        // check threatened
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (threaten(i, j, currentboard, 'B')) {
+                    points += 57;
+//                } else if (threaten(i, j, currentboard, 'A')) {
+//                    points -= 11;
                 } else {}
             }
         }
@@ -398,24 +434,39 @@ int CheckerTree::evaluation1(char player) {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'B') {
-                    points += 15;
+                    points += 10;
                 } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'B') {
-                    points += 25;
-                } else if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'A') {
-                    points -= 15;
-                } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'A') {
-                    points -= 25;
+                    points += 20;
+//                } else if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'A') {
+//                    points -= 1;
+//                } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'A') {
+//                    points -= 4;
                 } else {}
             }
         }
+        //check side
+//        for (int i = 5; i < 8; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].player == 'A') {
+//                    points -= 2;
+//                }
+//            }
+//        }
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (currentboard.board[i][j].player == 'B') {
+                    points += 8;
+                }
+            }
+        }
 
-        //threatened
+        // check threatened
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (threaten(i, j, currentboard, 'A')) {
-                    points += 50;
-                } else if (threaten(i, j, currentboard, 'B')) {
-                    points -= 10;
+                    points += 55;
+//                } else if (threaten(i, j, currentboard, 'B')) {
+//                    points -= 41;
                 } else {}
             }
         }
@@ -430,48 +481,83 @@ int CheckerTree::evaluation2(char player) { // good for player B ,keep the more 
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'A') {
-                    points += 10;
+                    points += 2;
                 } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'A') {
-                    points += 20;
-                } else if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'B') {
-                    points -= 10;
-                } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'B') {
-                    points -= 20;
-                } else {}
-            }
-        }
-    } else if (player == 'B') {
-
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'B') {
-                    points += 20;
-                } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'B') {
-                    points += 40;
-                } else if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'A') {
-                    points -= 10;
-                } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'A') {
-                    points -= 20;
+                    points += 7;
+//                } else if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'B') {
+//                    points -= 1;
+//                } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'B') {
+//                    points -= 4;
                 } else {}
             }
         }
         //check side
-//        for (int i = 5; i < 8; i++) {
-//            for (int j = 0; j < 8; j++) {
-//                if (currentboard.board[i][j].player == 'A') {
-//                    points -= 8;
-//                }
-//            }
-//        }
-//
 //        for (int i = 0; i < 4; i++) {
 //            for (int j = 0; j < 8; j++) {
 //                if (currentboard.board[i][j].player == 'B') {
-//                    points += 8;
+//                    points -= 1;
 //                }
 //            }
 //        }
+//        for (int i = 5; i < 8; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].player == 'A') {
+//                    points += 67;
+//                }
+//            }
+//        }
+        // check threatened
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (threaten(i, j, currentboard, 'B')) {
+                    points += 33;
+                } else if (threaten(i, j, currentboard, 'A')) {
+                    points -= 1;
+                } else {}
+            }
+        }
+
+    } else if (player == 'B') {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'B') {
+                    points += 2;
+                } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'B') {
+                    points += 7;
+//                } else if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'A') {
+//                    points -= 10;
+//                } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'A') {
+//                    points -= 20;
+                } else {}
+            }
+        }
+        //check side
+//        for (int i = 0; i < 4; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].player == 'B') {
+//                    points += 30;
+//                }
+//            }
+//        }
+//        for (int i = 5; i < 8; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].player == 'A') {
+//                    points -= 20;
+//                }
+//            }
+//        }
+        // check threatened
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (threaten(i, j, currentboard, 'B')) {
+                    points += 57;
+                } else if (threaten(i, j, currentboard, 'A')) {
+                    points -= 1;
+                } else {}
+            }
+        }
     }
+
     return points;
 }
 
@@ -482,39 +568,38 @@ int CheckerTree::evaluation3(char player) {// good for player A , keep the threa
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'A') {
-                    points += 2;
-                } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'A') {
                     points += 4;
-                } else if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'B') {
-                    points -= 1;//1 to 3
-                } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'B') {
-                    points -= 3;//2 to 6
+                } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'A') {
+                    points += 8;
+//                } else if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'B') {
+//                    points -= 2;//1 to 3
+//                } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'B') {
+//                    points -= 6;//2 to 6
                 } else {}
             }
         }
         //check side
+//        for (int i = 0; i < 4; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].player == 'B') {
+//                    points -= 9;
+//                }
+//            }
+//        }
         for (int i = 5; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (currentboard.board[i][j].player == 'A') {
-                    points += 10;
+                    points += 23;
                 }
             }
         }
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (currentboard.board[i][j].player == 'B') {
-                    points -= 2;
-                }
-            }
-        }
-
-//        threatened
+        // check threatened
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if (threaten(i, j, currentboard, 'A')) {
-                    points += 50;
-                } else if (threaten(i, j, currentboard, 'B')) {
-                    points -= 10;
+                if (threaten(i, j, currentboard, 'B')) {
+                    points += 32;
+//                } else if (threaten(i, j, currentboard, 'A')) {
+//                    points -= 11;
                 } else {}
             }
         }
@@ -524,15 +609,40 @@ int CheckerTree::evaluation3(char player) {// good for player A , keep the threa
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'B') {
-                    points += 3;
+                    points += 4;
                 } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'B') {
-                    points += 6;
-                } else if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'A') {
-                    points -= 3;
-                } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'A') {
-                    points -= 6;
+                    points += 8;
+//                } else if (currentboard.board[i][j].role == 'm' && currentboard.board[i][j].player == 'A') {
+//                    points -= 2;
+//                } else if (currentboard.board[i][j].role == 'k' && currentboard.board[i][j].player == 'A') {
+//                    points -= 6;
                 } else {}
             }
+        }
+//        for (int i = 0; i < 4; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].player == 'B') {
+//                    points += 23;
+//                }
+//            }
+//        }
+//        for (int i = 5; i < 8; i++) {
+//            for (int j = 0; j < 8; j++) {
+//                if (currentboard.board[i][j].player == 'A') {
+//                    points -= 9;
+//                }
+//            }
+//        }
+
+    }
+    // check threatened
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            if (threaten(i, j, currentboard, 'A')) {
+                points += 52;
+//            } else if (threaten(i, j, currentboard, 'B')) {
+//                points -= 11;
+            } else {}
         }
     }
     return points;
@@ -568,6 +678,8 @@ bool CheckerTree::threaten(int i, int j, Checker checker, char player) {
     }
     return false;
 }
+
+
 
 bool CheckerTree::available_to_jump(Location location) {
 
@@ -614,7 +726,7 @@ void CheckerTree::generateChildren2(char player) {
                             successor[children_num]->col = location.l2;
                             successor[children_num]->id = this->currentboard.board[i][j].id;
                             children_num++;
-                            nodes_generated++;
+                            node_generatedA++;
                         }
                         if (location.l3 != -2 && location.l4 != -2) {
                             successor[children_num] = new CheckerTree(p);
@@ -625,7 +737,7 @@ void CheckerTree::generateChildren2(char player) {
                             successor[children_num]->col = location.l4;
                             successor[children_num]->id = this->currentboard.board[i][j].id;
                             children_num++;
-                            nodes_generated++;
+                            node_generatedA++;
                         }
 
                     } else if (this->currentboard.board[i][j].role == 'k') {
@@ -638,7 +750,7 @@ void CheckerTree::generateChildren2(char player) {
                             successor[children_num]->col = location.l2;
                             successor[children_num]->id = this->currentboard.board[i][j].id;
                             children_num++;
-                            nodes_generated++;
+                            node_generatedA++;
                         }
                         if (location.l3 != -2 && location.l4 != -2) {
                             successor[children_num] = new CheckerTree(p);
@@ -649,7 +761,7 @@ void CheckerTree::generateChildren2(char player) {
                             successor[children_num]->col = location.l4;
                             successor[children_num]->id = this->currentboard.board[i][j].id;
                             children_num++;
-                            nodes_generated++;
+                            node_generatedA++;
                         }
                         if (location.l5 != -2 && location.l6 != -2) {
                             successor[children_num] = new CheckerTree(p);
@@ -660,7 +772,7 @@ void CheckerTree::generateChildren2(char player) {
                             successor[children_num]->col = location.l6;
                             successor[children_num]->id = this->currentboard.board[i][j].id;
                             children_num++;
-                            nodes_generated++;
+                            node_generatedA++;
                         }
                         if (location.l7 != -2 && location.l8 != -2) {
                             successor[children_num] = new CheckerTree(p);
@@ -671,7 +783,7 @@ void CheckerTree::generateChildren2(char player) {
                             successor[children_num]->col = location.l8;
                             successor[children_num]->id = this->currentboard.board[i][j].id;
                             children_num++;
-                            nodes_generated++;
+                            node_generatedA++;
                         }
                     } else {}
                 }
@@ -689,7 +801,7 @@ void CheckerTree::generateChildren2(char player) {
                             successor[children_num]->col = location.l2;
                             successor[children_num]->id = this->currentboard.board[i][j].id;
                             children_num++;
-                            nodes_generated++;
+                            node_generatedB++;
                         }
                         if (location.l3 != -2 && location.l4 != -2) {
                             successor[children_num] = new CheckerTree(p);
@@ -700,7 +812,7 @@ void CheckerTree::generateChildren2(char player) {
                             successor[children_num]->col = location.l4;
                             successor[children_num]->id = this->currentboard.board[i][j].id;
                             children_num++;
-                            nodes_generated++;
+                            node_generatedB++;
                         }
                     } else if (this->currentboard.board[i][j].role == 'k') {
                         if (location.l1 != -2 && location.l2 != -2) {
@@ -712,7 +824,7 @@ void CheckerTree::generateChildren2(char player) {
                             successor[children_num]->col = location.l2;
                             successor[children_num]->id = this->currentboard.board[i][j].id;
                             children_num++;
-                            nodes_generated++;
+                            node_generatedB++;
                         }
                         if (location.l3 != -2 && location.l4 != -2) {
                             successor[children_num] = new CheckerTree(p);
@@ -723,7 +835,7 @@ void CheckerTree::generateChildren2(char player) {
                             successor[children_num]->col = location.l4;
                             successor[children_num]->id = this->currentboard.board[i][j].id;
                             children_num++;
-                            nodes_generated++;
+                            node_generatedB++;
                         }
                         if (location.l5 != -2 && location.l6 != -2) {
                             successor[children_num] = new CheckerTree(p);
@@ -734,7 +846,7 @@ void CheckerTree::generateChildren2(char player) {
                             successor[children_num]->col = location.l6;
                             successor[children_num]->id = this->currentboard.board[i][j].id;
                             children_num++;
-                            nodes_generated++;
+                            node_generatedB++;
                         }
                         if (location.l7 != -2 && location.l8 != -2) {
                             successor[children_num] = new CheckerTree(p);
@@ -745,7 +857,7 @@ void CheckerTree::generateChildren2(char player) {
                             successor[children_num]->col = location.l8;
                             successor[children_num]->id = this->currentboard.board[i][j].id;
                             children_num++;
-                            nodes_generated++;
+                            node_generatedB++;
                         }
                     } else {}
                 }

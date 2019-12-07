@@ -61,7 +61,7 @@ Object alphabeta(CheckerTree *node, int depth, char player, Object a, Object b, 
         node->setHeuristicValue(maxvalue.value, maxvalue.tempBoard, maxvalue.id, maxvalue.row, maxvalue.col);
         return maxvalue;
     } else {
-        Object maxvalue(-1000, ck, 0, -1, -1);
+        Object minvalue(1000, ck, 0, -1, -1);
         Object obj1(0, ck, 0, -1, -1);
 
         for (int i = 0; i < 48; i++) {
@@ -82,22 +82,22 @@ Object alphabeta(CheckerTree *node, int depth, char player, Object a, Object b, 
             if (EF == 3) {
                 obj1 = alphabeta(node->successor[i], depth + 1, node->player, a, b, 3);
             }
-            maxvalue.setValue((maxvalue.value > obj1.value) ? maxvalue.value : obj1.value);
-            maxvalue.setTempBoard((maxvalue.value > obj1.value) ? maxvalue.tempBoard : obj1.tempBoard);
-            maxvalue.setId((maxvalue.value > obj1.value) ? maxvalue.id : obj1.id);
-            maxvalue.setRow((maxvalue.value > obj1.value) ? maxvalue.row : obj1.row);
-            maxvalue.setCol((maxvalue.value > obj1.value) ? maxvalue.col : obj1.col);
+            minvalue.setValue((minvalue.value < obj1.value) ? minvalue.value : obj1.value);
+            minvalue.setTempBoard((minvalue.value < obj1.value) ? minvalue.tempBoard : obj1.tempBoard);
+            minvalue.setId((minvalue.value < obj1.value) ? minvalue.id : obj1.id);
+            minvalue.setRow((minvalue.value <obj1.value) ? minvalue.row : obj1.row);
+            minvalue.setCol((minvalue.value < obj1.value) ? minvalue.col : obj1.col);
 
-            b.setValue((b.value > maxvalue.value) ? b.value : maxvalue.value);
-            b.setTempBoard((b.value > maxvalue.value) ? b.tempBoard : maxvalue.tempBoard);
-            b.setId((b.value > maxvalue.value) ? b.id : maxvalue.id);
-            b.setRow((b.value > maxvalue.value) ? b.row : maxvalue.row);
-            b.setCol((b.value > maxvalue.value) ? b.col : maxvalue.col);
+            b.setValue((b.value < minvalue.value) ? b.value : minvalue.value);
+            b.setTempBoard((b.value < minvalue.value) ? b.tempBoard : minvalue.tempBoard);
+            b.setId((b.value < minvalue.value) ? b.id : minvalue.id);
+            b.setRow((b.value < minvalue.value) ? b.row : minvalue.row);
+            b.setCol((b.value < minvalue.value) ? b.col : minvalue.col);
 
-            if (b.value > a.value)
+            if (b.value <= a.value)
                 break;
         }
-        node->setHeuristicValue(maxvalue.value, maxvalue.tempBoard, maxvalue.id, maxvalue.row, maxvalue.col);
-        return maxvalue;
+        node->setHeuristicValue(minvalue.value, minvalue.tempBoard, minvalue.id, minvalue.row, minvalue.col);
+        return minvalue;
     }
 }
